@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>分配课程</title>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<link rel="stylesheet" href="css/bootstrap.min.css" />
+<link rel="stylesheet" href="css/bootstrap-responsive.min.css" />
+<link rel="stylesheet" href="css/colorpicker.css" />
+<link rel="stylesheet" href="css/datepicker.css" />
+<link rel="stylesheet" href="css/uniform.css" />
+<link rel="stylesheet" href="css/select2.css" />
+<link rel="stylesheet" href="css/matrix-style.css" />
+<link rel="stylesheet" href="css/matrix-media.css" />
+<link rel="stylesheet" href="css/bootstrap-wysihtml5.css" />
+<link href="font-awesome/css/font-awesome.css" rel="stylesheet" />
+<link rel="stylesheet" href="css/base.css" /> 
+</head>
+<body>
+<div id="content" style="margin-left:0px;">
+  <div class="container-fluid">
+    <div class="row-fluid">
+      <div class="span12">
+        <div class="widget-box">
+          <div class="widget-content">
+            <form action="#" method="get" class="form-horizontal">
+              <div class="control-group">
+                <label class="control-label">选择课程类别:</label>
+                <div class="controls">
+                  <select >
+                    <option>全部</option>
+                    <option>艺术</option>
+                    <option>科技</option>
+                  </select>
+                </div>
+              </div>
+              <div class="control-group">
+                <label class="control-label">搜索关键字:</label>
+                <div class="controls">
+                  <input type="text" placeholder="搜索关键字"  >
+                </div>
+              </div>
+              <div class="control-group">
+                <label class="control-label">已分配课程:</label>
+                <div class="controls"  id="selectedCourse">
+                  <div class="alert alert-info span4"> <a class="close" data-dismiss="alert" >×</a> 心理咨询师二级课程（零起点） </div>
+                  <div class="alert alert-info  span4"> <a class="close" data-dismiss="alert"  >×</a> 咨询师人格成长起点 </div>
+                  <div class="alert alert-info  span4"> <a class="close" data-dismiss="alert" >×</a> 人体艺术 </div>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row-fluid">
+      <div class="span12">
+        <div class="widget-box">
+          <div class="widget-title"> <span class="icon">
+            <input type="checkbox" id="title-checkbox" name="title-checkbox" />
+            </span>
+            <h5>待选课程</h5>
+          </div>
+          <div class="widget-content nopadding">
+            <table class="table table-bordered table-striped with-check">
+              <thead>
+                <tr>
+                  <th><i class="icon-resize-vertical"></i></th>
+                  <th>课程名称</th>
+                  <th>课程类型</th>
+                  <th>创建时间</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><input type="checkbox" coursename="题目1"/></td>
+                  <td>题目1</td>
+                  <td>2012-02-02</td>
+                  <td>--</td>
+                </tr>
+                <tr>
+                  <td><input type="checkbox"  coursename="题目2"/></td>
+                  <td>题目2</td>
+                  <td>2012-02-02</td>
+                  <td>--</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="pagination">
+            <ul>
+              <li><a href="#">上一页</a></li>
+              <li><a href="#">下一页</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div> 
+
+<script src="js/jquery.min.js"></script> 
+<script src="js/jquery.ui.custom.js"></script> 
+<script src="js/bootstrap.min.js"></script> 
+<script src="js/bootstrap-colorpicker.js"></script> 
+<script src="js/bootstrap-datepicker.js"></script> 
+<script src="js/jquery.toggle.buttons.html"></script> 
+<script src="js/masked.js"></script> 
+<script src="js/jquery.uniform.js"></script> 
+<script src="js/select2.min.js"></script> 
+<script src="js/matrix.js"></script> 
+<script src="js/matrix.form_common.js"></script> 
+<script src="js/wysihtml5-0.3.0.js"></script> 
+<script src="js/jquery.peity.min.js"></script> 
+<script src="js/bootstrap-wysihtml5.js"></script> 
+<script src="js/app/sel_course.js"></script>
+</body>
+</html>

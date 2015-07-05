@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<title>后台管理系统</title>
+<title>关于我们</title>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <link rel="stylesheet" href="css/bootstrap.min.css" />
@@ -16,7 +16,7 @@
 <link href="font-awesome/css/font-awesome.css" rel="stylesheet" />
 <link rel="stylesheet" href="css/base.css" />
 </head>
-<body class="page-index">
+<body class="page-about">
 
 	<!--Header-part-->
 	<div id="header">
@@ -75,27 +75,28 @@
 		<a href="#" class="visible-phone"><i class="icon icon-home"></i>
 			控制台</a>
 		<ul>
-			<li class="active"><a href="index.html"><i
-					class="icon icon-home"></i> <span>logo管理</span></a></li>
+			<li><a href="index.html"><i class="icon icon-home"></i> <span>logo管理</span></a>
+			</li>
 			<li><a href="noticeList.html"><i class="icon icon-signal"></i>
-					<span>公告管理</span></a></li>
+					<span>动态管理</span></a></li>
 			<li><a href="dynamicList.html"><i class="icon icon-inbox"></i>
 					<span>动态管理</span></a></li>
 			<li><a href="studentList.html"><i
 					class="icon icon-fullscreen"></i> <span>学员管理</span></a></li>
-			<li><a href="about.html"><i class="icon icon-fullscreen"></i>
-					<span>关于我们</span></a></li>
+			<li class="active"><a href="about.html"><i
+					class="icon icon-fullscreen"></i> <span>关于我们</span></a></li>
 		</ul>
 	</div>
 	<!--sidebar-menu-->
 
 	<!--main-container-part-->
+	
 	<div id="content">
 		<!--breadcrumbs-->
 		<div id="content-header">
 			<div id="breadcrumb">
-				<a href="index.html" title="Go to Home" class="tip-bottom"><i
-					class="icon-home"></i> 首页广告</a>
+				<a href="index.html" title="回到首页" class="tip-bottom"><i
+					class="icon-home"></i> 首页</a> <a href="about.html">关于我们</a>
 			</div>
 		</div>
 		<!--End-breadcrumbs-->
@@ -104,42 +105,21 @@
 		<div class="container-fluid">
 			<div class="row-fluid">
 				<div class="span12">
-					<div class="widget-box">
-						<div class="widget-title">
-							<span class="icon"> <i class="icon-align-justify"></i>
-							</span>
-							<h5>LOGO管理</h5>
-						</div>
-						<div class="widget-content nopadding">
-							<form action="#" method="get" class="form-horizontal">
-								<div class="control-group">
-									<label class="control-label">首页标语 :</label>
-									<div class="controls">
-										<input type="text" class="span11" placeholder="请输入首页标语">
-									</div>
-								</div>
-								<div class="control-group">
-									<label class="control-label">logo图片：</label>
-									<div class="controls">
-										<input type="file" class="uploadFile" />
-										<div id="imgView">
-											<img src="img/app/none.jpg" >
-										</div>
-									</div>
-								</div>
-								<div class="control-group">
-									<div class="controls controls-row">
-										<button type="submit" class="btn btn-success">提交</button>
-									</div>
-								</div>
-							</form>
-						</div>
+				<a href="aboutEdit.html" class="editLink">编辑</a>
+					<h3 class="title">德瑞姆上海中心介绍</h3>
+					
+					<img src="img/app/logo.jpg" class="logo"><br>
+					<div class="content">
+						<p>上海德瑞姆职业技能培训中心创立于2002年10月，隶属于心融（中国）集团。是中国政府授权的第一家职业心理咨询师培训机构。（是中国首家获得政府授权的心理教育机构。）</p>
+						<p>开天辟地，中国首批职业心理咨询师（心理医生）2002年就诞生在德瑞姆！德瑞姆是中国心理咨询师的摇篮（黄埔军校），培养近两万名心理咨询师从这里学成（占上海总量65%以上）走出，成为全国各地当前心理咨询业界之精英！无论在心理评测、心理咨询、团体心理服务，德瑞姆心理咨询师是高品质应用心理学服务的代名词。</p>
+						<p>秉持“德心之源，瑞行天下”理念，凭借合作全球顶尖心理机构----美国国家职业心理咨询师鉴定委员会NBCC，美国心理咨询学会ACA的优势，德瑞姆求索并问道中国人心理常模下的心理咨询理论与方式。一路专注潜研，最终形成中国心理咨询师之“德瑞姆培养模式”，并已成为中国心理咨询业界的一种共识。</p>
+						<p>德瑞姆十年来，只专注于心理学咨询师的培养，荣获多项殊荣。2013年国家心理咨询师教研组长单位（上海），2012年度上海唯一一家心理教育机构教学质量和诚信等级A级单位，2011年中国最具品牌影响力心理教育机构，2010年中国最受欢迎的专业培训机构，2009上海十大教育品牌，成为中国心理学教育领域的领导品牌。</p>
 					</div>
 				</div>
 			</div>
 		</div>
-	</div>
 
+	</div>
 	<!--end-main-container-part-->
 
 	<!--Footer-part-->
@@ -150,6 +130,7 @@
 
 	<!--end-Footer-part-->
 
+	<!--end-Footer-part-->
 	<script src="js/jquery.min.js"></script>
 	<script src="js/jquery.ui.custom.js"></script>
 	<script src="js/bootstrap.min.js"></script>
@@ -165,6 +146,8 @@
 	<script src="js/jquery.peity.min.js"></script>
 	<script src="js/bootstrap-wysihtml5.js"></script>
 	<script src="js/app/img_preview.js"></script>
-
+	<script>
+		$('.textarea_editor').wysihtml5();
+	</script>
 </body>
 </html>

@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<title>后台管理系统</title>
+<title>分配课程</title>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <link rel="stylesheet" href="css/bootstrap.min.css" />
@@ -12,11 +12,10 @@
 <link rel="stylesheet" href="css/select2.css" />
 <link rel="stylesheet" href="css/matrix-style.css" />
 <link rel="stylesheet" href="css/matrix-media.css" />
-<link rel="stylesheet" href="css/bootstrap-wysihtml5.css" />
 <link href="font-awesome/css/font-awesome.css" rel="stylesheet" />
 <link rel="stylesheet" href="css/base.css" />
 </head>
-<body class="page-index">
+<body class="page-course-config">
 
 	<!--Header-part-->
 	<div id="header">
@@ -33,7 +32,7 @@
 				class="dropdown-toggle"><i class="icon icon-user"></i> <span
 					class="text">欢迎Admin</span><b class="caret"></b></a>
 				<ul class="dropdown-menu">
-					<li><a href="setting.html"><i class="icon-user"></i> 我的资料</a></li>
+					<li><a href="#"><i class="icon-user"></i> 我的资料</a></li>
 					<li class="divider"></li>
 					<li><a href="#"><i class="icon-check"></i> 我的任务</a></li>
 					<li class="divider"></li>
@@ -75,13 +74,13 @@
 		<a href="#" class="visible-phone"><i class="icon icon-home"></i>
 			控制台</a>
 		<ul>
-			<li class="active"><a href="index.html"><i
-					class="icon icon-home"></i> <span>logo管理</span></a></li>
+			<li><a href="index.html"><i class="icon icon-home"></i> <span>logo管理</span></a>
+			</li>
 			<li><a href="noticeList.html"><i class="icon icon-signal"></i>
 					<span>公告管理</span></a></li>
 			<li><a href="dynamicList.html"><i class="icon icon-inbox"></i>
 					<span>动态管理</span></a></li>
-			<li><a href="studentList.html"><i
+			<li class="active"><a href="studentList.html"><i
 					class="icon icon-fullscreen"></i> <span>学员管理</span></a></li>
 			<li><a href="about.html"><i class="icon icon-fullscreen"></i>
 					<span>关于我们</span></a></li>
@@ -90,12 +89,14 @@
 	<!--sidebar-menu-->
 
 	<!--main-container-part-->
+	
 	<div id="content">
 		<!--breadcrumbs-->
 		<div id="content-header">
 			<div id="breadcrumb">
-				<a href="index.html" title="Go to Home" class="tip-bottom"><i
-					class="icon-home"></i> 首页广告</a>
+				<a href="index.html" title="回到首页" class="tip-bottom"><i
+					class="icon-home"></i> 首页</a> <a href="studentList.html">学员管理</a> <a
+					href="courseConfig.html">分配课程</a>
 			</div>
 		</div>
 		<!--End-breadcrumbs-->
@@ -106,47 +107,115 @@
 				<div class="span12">
 					<div class="widget-box">
 						<div class="widget-title">
-							<span class="icon"> <i class="icon-align-justify"></i>
-							</span>
-							<h5>LOGO管理</h5>
+							<h5>分配课程</h5>
+							<div class="buttons">
+								<a data-toggle="modal" href="#modal-add-court"
+									class="btn btn-inverse btn-mini"><i
+									class="icon-plus icon-white"></i> 选择课程</a> <a data-toggle="modal"
+									href="#modal-add-user" class="btn btn-inverse btn-mini"><i
+									class="icon-plus icon-white"></i> 选择用户</a> <a
+									href="studentList.html" class="btn btn-inverse btn-mini"><i
+									class="icon-chevron-left icon-white"></i> 返回</a>
+
+
+							</div>
 						</div>
-						<div class="widget-content nopadding">
-							<form action="#" method="get" class="form-horizontal">
-								<div class="control-group">
-									<label class="control-label">首页标语 :</label>
-									<div class="controls">
-										<input type="text" class="span11" placeholder="请输入首页标语">
+					</div>
+					<div class="widget-content">
+						<form action="#" method="get" class="form-horizontal">
+							<div class="control-group">
+								<label class="control-label">待分配课程:</label>
+								<div class="controls">
+									<div class="alert alert-info span4" style="margin-left: 22px;">
+										<a class="close" data-dismiss="alert" href="#">×</a>
+										心理咨询师二级课程（零起点）
+									</div>
+									<div class="alert alert-info  span4">
+										<a class="close" data-dismiss="alert" href="#">×</a> 咨询师人格成长起点
+									</div>
+									<div class="alert alert-info  span4">
+										<a class="close" data-dismiss="alert" href="#">×</a>
+										心理咨询师二级课程（零起点）
+									</div>
+									<div class="alert alert-info  span4">
+										<a class="close" data-dismiss="alert" href="#">×</a>
+										心理咨询师二级课程（零起点）
 									</div>
 								</div>
-								<div class="control-group">
-									<label class="control-label">logo图片：</label>
-									<div class="controls">
-										<input type="file" class="uploadFile" />
-										<div id="imgView">
-											<img src="img/app/none.jpg" >
-										</div>
+							</div>
+							<div class="control-group">
+								<label class="control-label">分配给:</label>
+								<div class="controls">
+									<div class="alert alert-info span3" style="margin-left: 22px;">
+										<a class="close" data-dismiss="alert" href="#">×</a> 马林
 									</div>
-								</div>
-								<div class="control-group">
-									<div class="controls controls-row">
-										<button type="submit" class="btn btn-success">提交</button>
+									<div class="alert alert-info  span3">
+										<a class="close" data-dismiss="alert" href="#">×</a> 杨玉芬
 									</div>
+									<div class="alert alert-info  span3">
+										<a class="close" data-dismiss="alert" href="#">×</a> 杨玉芬
+									</div>
+									<div class="alert alert-info  span3">
+										<a class="close" data-dismiss="alert" href="#">×</a> 杨玉芬
+									</div>
+
 								</div>
-							</form>
-						</div>
+							</div>
+							<div class="control-group">
+								<div class="controls money" >
+									你本次操作口出金额为:<span class="badge badge-important">1000</span>元<br>
+									<br> 预付款余额为：<span class="badge badge-important">1000</span>元
+								</div>
+							</div>
+							<div class="controls controls-row btnSubmit" >
+										<button type="submit" class="btn btn-success">确认分配</button>
+									</div>
+						</form>
 					</div>
 				</div>
 			</div>
 		</div>
 	</div>
 
-	<!--end-main-container-part-->
+	<div class="modal hide" id="modal-add-court" aria-hidden="true"
+		style="display: none;">
+		<div class="modal-header">
+			<button type="button" class="close" data-dismiss="modal">×</button>
+			<h3>选择课程</h3>
+		</div>
+		<div class="modal-body">
+			<iframe src="selCourse.html" width="100%" height="380px"
+				frameborder="no" border="0" marginwidth="0" marginheight="0"></iframe>
+		</div>
+		<div class="modal-footer">
+			<a href="#" id="add-event-submit" class="btn btn-primary">确定</a> <a
+				href="#" class="btn" data-dismiss="modal">取消</a>
+		</div>
+	</div>
 
-	<!--Footer-part-->
+
+	<div class="modal hide" id="modal-add-user" aria-hidden="true"
+		style="display: none;">
+		<div class="modal-header">
+			<button type="button" class="close" data-dismiss="modal">×</button>
+			<h3>选择用戶</h3>
+		</div>
+		<div class="modal-body">
+			<iframe src="selUser.html" width="100%" height="380px"
+				frameborder="no" border="0" marginwidth="0" marginheight="0"></iframe>
+		</div>
+		<div class="modal-footer">
+			<a href="#" id="add-event-submit" class="btn btn-primary">确定</a> <a
+				href="#" class="btn" data-dismiss="modal">取消</a>
+		</div>
+	</div>
+
 
 	<div class="row-fluid">
 		<div id="footer" class="span12">2013 &copy; MatAdmin.</div>
 	</div>
+
+	<!--end-Footer-part-->
 
 	<!--end-Footer-part-->
 
@@ -161,10 +230,9 @@
 	<script src="js/select2.min.js"></script>
 	<script src="js/matrix.js"></script>
 	<script src="js/matrix.form_common.js"></script>
-	<script src="js/wysihtml5-0.3.0.js"></script>
 	<script src="js/jquery.peity.min.js"></script>
-	<script src="js/bootstrap-wysihtml5.js"></script>
-	<script src="js/app/img_preview.js"></script>
-
+	<script>
+		
+	</script>
 </body>
 </html>

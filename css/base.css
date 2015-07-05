@@ -1,0 +1,74 @@
+.modal {
+	position: fixed;
+	top: 10%;
+	left: 40%;
+	width: 850px;
+}
+
+table.table td {
+	text-align: center;
+}
+
+.uploader {
+	float: left
+}
+
+.form-horizontal .control-label {
+	text-align: left;
+}
+
+.form-horizontal .control-label {
+	width: 140px;
+}
+
+.form-horizontal .controls {
+	margin-left: 160px;
+}
+
+ #imgView img{
+	width:100px;
+	height:100px;
+}
+.page-about .logo {
+	display: block;
+	margin: 0 auto;
+}
+
+.page-about .title {
+	text-align: center;
+}
+
+.page-about .content {
+	width: 800px;
+	margin: 0 auto;
+}
+
+.page-about .editLink {
+	display: block;
+	margin: 0 auto;
+	text-align: right;
+	width: 800px;
+}
+
+.page-course-config .money {
+	margin-left: 180px;
+}
+
+.page-course-config .btnSubmit {
+	margin-left: 180px;
+}
+
+.page-student-list .liPop{
+	float: left;margin-left:5px;
+}
+.page-student-list .tip-top{
+	margin-right:5px;
+}
+.page-student-add .sexLabel {
+	float: left;
+}
+
+.page-sel-user .table img {
+	border: 1px solid #cccccc;	 
+	cursor: pointer;
+}
