@@ -12,7 +12,6 @@
 <link rel="stylesheet" href="css/select2.css" />
 <link rel="stylesheet" href="css/matrix-style.css" />
 <link rel="stylesheet" href="css/matrix-media.css" />
-<link rel="stylesheet" href="css/bootstrap-wysihtml5.css" />
 <link href="font-awesome/css/font-awesome.css" rel="stylesheet" />
 <link rel="stylesheet" href="css/base.css"/>
 </head>
@@ -35,8 +34,8 @@
 					<li class="divider"></li>
 					<li><a href="login.html"><i class="icon-key"></i> 退出</a></li>
 				</ul></li>
-			<li class=""><a title="" href="#"><i class="icon icon-cog"></i>
-					<span class="text">个人信息修改</span></a></li>
+			<li class=""><a title="" href="setting.html"><i class="icon icon-cog"></i>
+					<span class="text">信息设置</span></a></li>
 			<li class=""><a title="" href="login.html"><i
 					class="icon icon-share-alt"></i> <span class="text">退出</span></a></li>
 		</ul>
@@ -79,6 +78,13 @@
           </div>
           <div class="widget-content">
             <form action="#" method="get" class="form-horizontal">
+              <div class="control-group">
+                <label class="control-label">头像：</label>
+                 <div class="controls">
+                  <input type="file" />
+                  <div id="imgView"><img src="img/app/none.jpg"></div>
+                </div>
+              </div>			
               <div class="control-group">
                 <label class="control-label">用户名：</label>
                 <div class="controls">
@@ -168,7 +174,7 @@
 <script src="js/matrix.form_common.js"></script> 
 <script src="js/wysihtml5-0.3.0.js"></script> 
 <script src="js/jquery.peity.min.js"></script> 
-<script src="js/bootstrap-wysihtml5.js"></script> 
+<script src="js/app/img_preview.js"></script>
 <script src="js/app/setting.js"></script>
 </body>
 </html>
