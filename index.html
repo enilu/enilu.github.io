@@ -1,170 +1,97 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-<title>后台管理系统</title>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<link rel="stylesheet" href="css/bootstrap.min.css" />
-<link rel="stylesheet" href="css/bootstrap-responsive.min.css" />
-<link rel="stylesheet" href="css/colorpicker.css" />
-<link rel="stylesheet" href="css/datepicker.css" />
-<link rel="stylesheet" href="css/uniform.css" />
-<link rel="stylesheet" href="css/select2.css" />
-<link rel="stylesheet" href="css/matrix-style.css" />
-<link rel="stylesheet" href="css/matrix-media.css" />
-<link rel="stylesheet" href="css/bootstrap-wysihtml5.css" />
-<link href="font-awesome/css/font-awesome.css" rel="stylesheet" />
-<link rel="stylesheet" href="css/base.css" />
+<meta charset='utf-8'>
+<meta http-equiv="X-UA-Compatible" content="chrome=1">
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, maximum-scale=1">
+<link href='https://fonts.googleapis.com/css?family=Architects+Daughter'
+	rel='stylesheet' type='text/css'>
+<link rel="stylesheet" type="text/css" href="stylesheets/stylesheet.css"
+	media="screen">
+<link rel="stylesheet" type="text/css"
+	href="stylesheets/pygment_trac.css" media="screen">
+<link rel="stylesheet" type="text/css" href="stylesheets/print.css"
+	media="print">
+
+<!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+
+<title>Open-Idea</title>
 </head>
-<body class="page-index">
 
-	<!--Header-part-->
-	<div id="header">
-		<h1>
-			<a href="dashboard.html">MatAdmin</a>
-		</h1>
-	</div>
-	<!--close-Header-part-->
-	<!--top-Header-menu-->
-	<div id="user-nav" class="navbar navbar-inverse">
-		<ul class="nav">
-			<li class="dropdown" id="profile-messages"><a title="" href="#"
-				data-toggle="dropdown" data-target="#profile-messages"
-				class="dropdown-toggle"><i class="icon icon-user"></i> <span
-					class="text">欢迎Admin</span><b class="caret"></b></a>
-				<ul class="dropdown-menu">
-					<li><a href="setting.html"><i class="icon-user"></i> 我的资料</a></li>
-					<li class="divider"></li>
-					<li><a href="#"><i class="icon-check"></i> 我的任务</a></li>
-					<li class="divider"></li>
-					<li><a href="login.html"><i class="icon-key"></i> 退出</a></li>
-				</ul></li>
-			<li class="dropdown" id="menu-messages"><a href="#"
-				data-toggle="dropdown" data-target="#menu-messages"
-				class="dropdown-toggle"><i class="icon icon-envelope"></i> <span
-					class="text">消息</span> <span class="label label-important">5</span>
-					<b class="caret"></b></a>
-				<ul class="dropdown-menu">
-					<li><a class="sAdd" title="" href="#"><i class="icon-plus"></i>
-							新消息</a></li>
-					<li class="divider"></li>
-					<li><a class="sInbox" title="" href="#"><i
-							class="icon-envelope"></i> 收件箱</a></li>
-					<li class="divider"></li>
-					<li><a class="sOutbox" title="" href="#"><i
-							class="icon-arrow-up"></i> 发件箱</a></li>
-					<li class="divider"></li>
-					<li><a class="sTrash" title="" href="#"><i
-							class="icon-trash"></i> 发送</a></li>
-				</ul></li>
-			<li class=""><a title="" href="#"><i class="icon icon-cog"></i>
-					<span class="text">设置</span></a></li>
-			<li class=""><a title="" href="login.html"><i
-					class="icon icon-share-alt"></i> <span class="text">退出</span></a></li>
-		</ul>
-	</div>
-	<!--close-top-Header-menu-->
-	<!--start-top-serch
-<div id="search">
-  <input type="text" placeholder="输入搜索内容..."/>
-  <button type="submit" class="tip-bottom" title="Search"><i class="icon-search icon-white"></i></button>
-</div>
---close-top-serch-->
-	<!--sidebar-menu-->
-	<div id="sidebar">
-		<a href="#" class="visible-phone"><i class="icon icon-home"></i>
-			控制台</a>
-		<ul>
-			<li class="active"><a href="index.html"><i
-					class="icon icon-home"></i> <span>logo管理</span></a></li>
-			<li><a href="noticeList.html"><i class="icon icon-signal"></i>
-					<span>公告管理</span></a></li>
-			<li><a href="dynamicList.html"><i class="icon icon-inbox"></i>
-					<span>动态管理</span></a></li>
-			<li><a href="studentList.html"><i
-					class="icon icon-fullscreen"></i> <span>学员管理</span></a></li>
-			<li><a href="about.html"><i class="icon icon-fullscreen"></i>
-					<span>关于我们</span></a></li>
-		</ul>
-	</div>
-	<!--sidebar-menu-->
-
-	<!--main-container-part-->
-	<div id="content">
-		<!--breadcrumbs-->
-		<div id="content-header">
-			<div id="breadcrumb">
-				<a href="index.html" title="Go to Home" class="tip-bottom"><i
-					class="icon-home"></i> 首页广告</a>
-			</div>
+<body>
+	<header>
+		<div class="inner">
+			<h1>Open-Idea</h1>
+			<h2>受尽苦难而不厌，此乃修罗之道</h2>
+			<a href="https://github.com/enilu" class="button"><small>Follow
+					me on</small>GitHub</a>
 		</div>
-		<!--End-breadcrumbs-->
+	</header>
 
-		<!--Action boxes-->
-		<div class="container-fluid">
-			<div class="row-fluid">
-				<div class="span12">
-					<div class="widget-box">
-						<div class="widget-title">
-							<span class="icon"> <i class="icon-align-justify"></i>
-							</span>
-							<h5>LOGO管理</h5>
-						</div>
-						<div class="widget-content nopadding">
-							<form action="#" method="get" class="form-horizontal">
-								<div class="control-group">
-									<label class="control-label">首页标语 :</label>
-									<div class="controls">
-										<input type="text" class="span11" placeholder="请输入首页标语">
-									</div>
-								</div>
-								<div class="control-group">
-									<label class="control-label">logo图片：</label>
-									<div class="controls">
-										<input type="file" class="uploadFile" />
-										<div id="imgView">
-											<img src="img/app/none.jpg" >
-										</div>
-									</div>
-								</div>
-								<div class="control-group">
-									<div class="controls controls-row">
-										<button type="submit" class="btn btn-success">提交</button>
-									</div>
-								</div>
-							</form>
-						</div>
-					</div>
-				</div>
-			</div>
+	<div id="content-wrapper">
+		<div class="inner clearfix">
+			<section id="main-content">
+				<h3>
+					<a name="welcome-to-github-pages" class="anchor"
+						href="#welcome-to-github-pages"><span
+						class="octicon octicon-link"></span></a>什么是OpenIdea.
+				</h3>
+
+				<p>这里记录更新着本人一个一个细小的创意，每天新增一个创意，或者更新完善之前的创意，直到自己觉得某个创意基本可行的时候就着手实现</p>
+
+				<h3>
+					<a name="designer-templates" class="anchor"
+						href="#"><span
+						class="octicon octicon-link"></span></a>bookbar书吧
+				</h3>
+				<h4>简介</h4>
+				<p>
+					书吧初步做成一个聚合网站，聚合各种网上书店的书籍聚合信息，书籍的基本信息包括：，书名，作者，出版社，价格；另外扩展内容可以包括，书籍的热度，评论，购买趋势，购买指数<br>
+					通过分类，提供快速的检索功能
+				</p>
+				<h4>主要解决的问题</h4>
+				<p>1,根据类别查找相关书籍的难度，比如用户搜索hadoop相关的，会出来一堆相关的书，那么哪本书比较实用，比较畅销，通过聚合各个网站的销售量，点击量，为依据为用户提供参考</p>
+				<h4>目前完成内容</h4>
+				<p>目前已经级别完成基本的数据库设计，基于当当网图书采集的后台演示例子，首页书籍展示，分类书籍浏览功能，详情查看<a href="https://github.com/enilu/bookbar">bookbar 仓库</a></p>
+				<hr>
+				<h3>
+					<a name="designer-templates" class="anchor"
+						href="#"><span
+						class="octicon octicon-link"></span></a>校友会
+				</h3>
+				<h4>简介</h4>
+				<p>
+					校友会主要是用于已毕业的校友之间的人际交流，尤其是同城之间的交流，
+				</p>
+				<h4>主要解决的问题</h4>
+				<p>1,刚刚毕业的学生，来到异地打工，求职，在住房，工作，娱乐方面都会遇到很多问题，那么他可以通过本地的校友来帮助他解决这些问题，尤其像北上广这种大城市的求职，住房，经常会遇到骗子等各种不顺心的事情，有个同门师兄，师姐稍微指点迷津还是非常有用的。<br>
+				</p>
+				
+				<hr>
+				
+				<h3>
+					<a name="support-or-contact" class="anchor"
+						href="#support-or-contact"><span class="octicon octicon-link"></span></a>联系我
+					or Contact
+				</h3>
+
+				<p>
+					你有什么意见或者想法，可以访问这个面进行留言： <a href="http://blog.csdn.net/mooyinn">http://blog.csdn.net/mooyinn</a>
+					或者发邮件到这里： <a href="mailto:82552623@qq.com">82552623@qq.com</a>
+				</p>
+			</section>
+
+			<aside id="sidebar">
+
+
+				<p>期待与你的交流.</p>
+			</aside>
 		</div>
 	</div>
 
-	<!--end-main-container-part-->
-
-	<!--Footer-part-->
-
-	<div class="row-fluid">
-		<div id="footer" class="span12">2013 &copy; MatAdmin.</div>
-	</div>
-
-	<!--end-Footer-part-->
-
-	<script src="js/jquery.min.js"></script>
-	<script src="js/jquery.ui.custom.js"></script>
-	<script src="js/bootstrap.min.js"></script>
-	<script src="js/bootstrap-colorpicker.js"></script>
-	<script src="js/bootstrap-datepicker.js"></script>
-	<script src="js/jquery.toggle.buttons.html"></script>
-	<script src="js/masked.js"></script>
-	<script src="js/jquery.uniform.js"></script>
-	<script src="js/select2.min.js"></script>
-	<script src="js/matrix.js"></script>
-	<script src="js/matrix.form_common.js"></script>
-	<script src="js/wysihtml5-0.3.0.js"></script>
-	<script src="js/jquery.peity.min.js"></script>
-	<script src="js/bootstrap-wysihtml5.js"></script>
-	<script src="js/app/img_preview.js"></script>
 
 </body>
 </html>
