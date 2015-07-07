@@ -1,4 +1,3 @@
-$('.textarea_editor').wysihtml5();
 	$('.btnUpdate').click(function(){
 		$(this).hide();
 		var text = $(this).prev().text();		 
