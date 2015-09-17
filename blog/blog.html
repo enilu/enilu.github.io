@@ -5,11 +5,10 @@
 <!-- BEGIN HEAD -->
 <head>
     <meta charset="utf-8" />
-    <title>enel's blog</title>
+    <title>Metronic Frotnend | Blog</title>
     <meta content="width=device-width, initial-scale=1.0" name="viewport" />
-    <meta content="技术博客,enel的技术博客,java" name="description" />
-    <meta content="enel的技术博客，欢迎批评指正" name="keywords">
-    <meta content="enel" name="author" />
+    <meta content="" name="description" />
+    <meta content="" name="author" />
 
    <!-- BEGIN GLOBAL MANDATORY STYLES -->          
    <link href="assets/plugins/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css"/>
@@ -70,7 +69,7 @@
                 <!-- END RESPONSIVE MENU TOGGLER -->
                 <!-- BEGIN LOGO (you can use logo image instead of text)-->
                 <a class="navbar-brand logo-v1" href="index.html">
-                    <img src="assets/img/logo_blue.png" id="logoimg" alt="" style="width:200px;height:60px">
+                    <img src="assets/img/logo_blue.png" id="logoimg" alt="">
                 </a>
                 <!-- END LOGO -->
             </div>
@@ -78,26 +77,72 @@
             <!-- BEGIN TOP NAVIGATION MENU -->
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
-                    
-                     <li><a href="#" target="_blank">首页</a></li>
-                    
-                 <li class="dropdown active">
-                        <a class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-delay="0" data-close-others="false" href="#">
-                            博客
+                    <li class="dropdown">
+                            <a class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-delay="0" data-close-others="false" href="#">
+                            Home
                             <i class="fa fa-angle-down"></i>
                         </a>
                         <ul class="dropdown-menu">
-							<li class="active"><a href="#">全部</a></li>
-							<li><a href="#">java</a></li>
-                            <li><a href="#">运维</a></li>                           
-						    <li><a href="#">大数据</a></li>
-							<li><a href="#">web</a></li>
-							<li><a href="#">管理</a></li>
-                           
+                            <li><a href="index.html">Home Default</a></li>
+                            <li><a href="page_home_fixed_header.html">Header Fixed</a></li>
+                            <li><a href="page_home2.html">Home with Top Bar</a></li>
                         </ul>
                     </li>
-                       <li><a href="#">举个栗子</a></li>
-                       <li><a href="#">玩儿</a></li>
+                    <li class="dropdown">
+                            <a class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-delay="0" data-close-others="false" href="#">
+                            Pages
+                            <i class="fa fa-angle-down"></i>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a href="page_about.html">About Us</a></li>
+                            <li><a href="page_services.html">Services</a></li>
+                            <li><a href="page_prices.html">Prices</a></li>
+                            <li><a href="page_faq.html">FAQ</a></li>
+                            <li><a href="page_gallery.html">Gallery</a></li>
+                            <li><a href="page_search_result.html">Search Result</a></li>
+                            <li><a href="page_404.html">404</a></li>
+                            <li><a href="page_500.html">500</a></li>
+                            <li><a href="page_login.html">Login Page</a></li>
+                            <li><a href="page_signup.html">Signup Page</a></li>
+                            <li><a href="page_careers.html">Careers</a></li>
+                            <li><a href="page_contacts.html">Contact</a></li>
+                        </ul>
+                    </li>
+                    <li class="dropdown">
+                        <a class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-delay="0" data-close-others="false" href="#">
+                            Features
+                            <i class="fa fa-angle-down"></i>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a href="feature_typography.html">Typography</a></li>
+                            <li><a href="feature_buttons.html">Buttons</a></li>
+                            <li><a href="feature_forms.html">Forms</a></li>
+                            <li><a href="feature_icons.html">Icons</a></li>
+                        </ul>
+                    </li>                        
+                    <li class="dropdown">
+                        <a class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-delay="0" data-close-others="false" href="#">
+                            Portfolio
+                            <i class="fa fa-angle-down"></i>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a href="portfolio_4.html">Portfolio 4</a></li>
+                            <li><a href="portfolio_3.html">Portfolio 3</a></li>
+                            <li><a href="portfolio_2.html">Portfolio 2</a></li>
+                            <li><a href="portfolio_item.html">Portfolio Item</a></li>
+                        </ul>
+                    </li>
+                    <li class="dropdown active">
+                        <a class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-delay="0" data-close-others="false" href="#">
+                            Blog
+                            <i class="fa fa-angle-down"></i>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li class="active"><a href="blog.html">Blog Page</a></li>
+                            <li><a href="blog_item.html">Blog Item</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="http://www.keenthemes.com/preview/index.php?theme=metronic_admin&page=index.html" target="_blank">Admin Theme</a></li>
                     <li class="menu-search">
                         <span class="sep"></span>
                         <i class="fa fa-search search-btn"></i>
@@ -127,13 +172,13 @@
         <div class="row breadcrumbs margin-bottom-40">
             <div class="container">
                 <div class="col-md-4 col-sm-4">
-                    <h1>文章列表</h1>
+                    <h1>Blog Page</h1>
                 </div>
                 <div class="col-md-8 col-sm-8">
                     <ul class="pull-right breadcrumb">
-                        <li><a href="index.html">首页</a></li>
-                        <li><a href="">博客</a></li>
-                        <li class="active">文章列表</li>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="">Pages</a></li>
+                        <li class="active">Blog Page</li>
                     </ul>
                 </div>
             </div>
@@ -154,11 +199,14 @@
 									<!-- Carousel items -->
 									<div class="carousel-inner">
 										<div class="active item">
-											<img src="blog/redis_1.png" alt="">
+											<img src="assets/img/works/img1.jpg" alt="">
 										</div>
 										<div class="item">
-											<img src="blog/redis_2.png" alt="">
-										</div>										
+											<img src="assets/img/works/img2.jpg" alt="">
+										</div>
+										<div class="item">
+											<img src="assets/img/works/img3.jpg" alt="">
+										</div>
 									</div>
 									<!-- Carousel nav -->
 									<a class="carousel-control left" href="#myCarousel" data-slide="prev">
@@ -172,39 +220,41 @@
 							<!-- END CAROUSEL -->             
 						</div>
 						<div class="col-md-8 col-sm-8">
-							<h2><a href="blog_item.html">Redis入门</a></h2>
-							<ul class="blog-info">
-								<li><i class="fa fa-calendar"></i> 4/07/2015</li>
-								<li><i class="fa fa-comments"></i> 0</li>
-								<li><i class="fa fa-tags"></i> redis,分布式缓存,大数据</li>
-							</ul>
-							<p>  Redis是一个开源的使用ANSI C语言编写、支持网络、可基于内存亦可持久化的日志型、Key-Value数据库，并提供多种语言的API。 redis是一个key-value存储系统。和Memcached类似，它支持存储的value类型相对更多，包括string(字符串)、list(链表)、set(集合)、zset(sorted set --有序集合)和hash（哈希类型）。</p>
-							<a class="more" href="blog/redis.html">阅读全文<i class="icon-angle-right"></i></a>
-						</div>
-					</div>
-					<hr class="blog-post-sep"> 
-					<div class="row">
-						<div class="col-md-4 col-sm-4">
-							<img src="assets/img/works/img2.jpg" alt="" class="img-responsive">
-						</div>
-						<div class="col-md-8 col-sm-8">
-							<h2><a href="#">Corrupti quos dolores etquas</a></h2>
+							<h2><a href="blog_item.html">Corrupti quos dolores etquas</a></h2>
 							<ul class="blog-info">
 								<li><i class="fa fa-calendar"></i> 25/07/2013</li>
 								<li><i class="fa fa-comments"></i> 17</li>
 								<li><i class="fa fa-tags"></i> Metronic, Keenthemes, UI Design</li>
 							</ul>
 							<p>At vero eos et accusamus et iusto odio dignissimos ducimus qui sint blanditiis prae sentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non eleifend enim a feugiat. Pellentesque viverra vehicula sem ut volutpat. Lorem ipsum dolor sit amet, consectetur adipiscing condimentum eleifend enim a feugiat.</p>
-							<a class="more" href="blog_item.html">Read more <i class="fa fa-angle-right"></i></a>
+							<a class="more" href="blog_item.html">Read more <i class="icon-angle-right"></i></a>
 						</div>
 					</div>
 					<hr class="blog-post-sep">
 					<div class="row">
 						<div class="col-md-4 col-sm-4">
-							<img src="assets/img/works/img2.jpg" alt="" class="img-responsive">
+							<img src="assets/img/works/img4.jpg" alt="" class="img-responsive">
 						</div>
 						<div class="col-md-8 col-sm-8">
-							<h2><a href="#">Corrupti quos dolores etquas</a></h2>
+							<h2><a href="blog_item.html">Corrupti quos dolores etquas</a></h2>
+							<ul class="blog-info">
+								<li><i class="fa fa-calendar"></i> 25/07/2013</li>
+								<li><i class="fa fa-comments"></i> 17</li>
+								<li><i class="fa fa-tags"></i> Metronic, Keenthemes, UI Design</li>
+							</ul>
+							<p>At vero eos et accusamus et iusto odio dignissimos ducimus qui sint blanditiis prae sentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non eleifend enim a feugiat. Pellentesque viverra vehicula sem ut volutpat. Lorem ipsum dolor sit amet, consectetur adipiscing condimentum eleifend enim a feugiat.</p>
+							<a class="more" href="blog_item.html">Read more <i class="icon-angle-right"></i></a>
+						</div>
+					</div>
+					<hr class="blog-post-sep">
+					<div class="row">
+						<div class="col-md-4 col-sm-4">
+							<!-- BEGIN VIDEO -->   
+							<iframe src="http://player.vimeo.com/video/56974716?portrait=0" height="205" style="width:100%; border:0" allowFullScreen></iframe>
+							<!-- END VIDEO -->   
+						</div>
+						<div class="col-md-8 col-sm-8">
+							<h2><a href="blog_item.html">Corrupti quos dolores etquas</a></h2>
 							<ul class="blog-info">
 								<li><i class="fa fa-calendar"></i> 25/07/2013</li>
 								<li><i class="fa fa-comments"></i> 17</li>
@@ -232,13 +282,13 @@
 					</div>
 					<div class="text-center">
 						<ul class="pagination pagination-centered">
-							<li><a href="#">上页</a></li>
-							<li class="active"><a href="#">1</a></li>
+							<li><a href="#">Prev</a></li>
+							<li><a href="#">1</a></li>
 							<li><a href="#">2</a></li>
-							<li><a href="#">3</a></li>
+							<li class="active"><a href="#">3</a></li>
 							<li><a href="#">4</a></li>
 							<li><a href="#">5</a></li>
-							<li><a href="#">下页</a></li>
+							<li><a href="#">Next</a></li>
 						</ul>
 					</div>                
 				</div>
@@ -247,19 +297,18 @@
 				<!-- BEGIN RIGHT SIDEBAR -->            
 				<div class="col-md-3 col-sm-3 blog-sidebar">
 					<!-- CATEGORIES START -->
-					<h2>文章分类</h2>
+					<h2>Categories</h2>
 					<ul class="nav sidebar-categories margin-bottom-40">
-						<li class="active"><a href="#">全部(1)</a></li>
-						<li><a href="#">java (1)</a></li>
-						<li><a href="#">运维 (1)</a></li>
-						<li><a href="#">大数据(1)</a></li>
-						<li><a href="#">web (1)</a></li>
-						<li><a href="#">管理 (1)</a></li>
+						<li><a href="#">London (18)</a></li>
+						<li><a href="#">Moscow (5)</a></li>
+						<li class="active"><a href="#">Paris (12)</a></li>
+						<li><a href="#">Berlin (7)</a></li>
+						<li><a href="#">Instanbul (3)</a></li>
 					</ul>
 					<!-- CATEGORIES END -->
 
 					<!-- BEGIN RECENT NEWS -->                            
-					<h2>热门文章</h2>
+					<h2>Recent News</h2>
 					<div class="recent-news margin-bottom-10">
 						<div class="row margin-bottom-10">
 							<div class="col-md-3">
@@ -293,7 +342,7 @@
 
 					<!-- BEGIN BLOG TALKS -->
 					<div class="blog-talks margin-bottom-30">
-						<h2>最近关注</h2>
+						<h2>Popular Talks</h2>
 						<div class="tab-style-1">
 							<ul class="nav nav-tabs">
 								<li class="active"><a href="#tab-1" data-toggle="tab">Multipurpose</a></li>
@@ -312,20 +361,34 @@
 					</div>                            
 					<!-- END BLOG TALKS -->
 
-				 
+					<!-- BEGIN BLOG PHOTOS STREAM -->
+					<div class="blog-photo-stream margin-bottom-20">
+						<h2>Photos Stream</h2>
+						<ul class="list-unstyled">
+							<li><a href="#"><img src="assets/img/people/img5-small.jpg" alt=""></a></li>
+							<li><a href="#"><img src="assets/img/works/img1.jpg" alt=""></a></li>
+							<li><a href="#"><img src="assets/img/people/img4-large.jpg" alt=""></a></li>
+							<li><a href="#"><img src="assets/img/works/img6.jpg" alt=""></a></li>
+							<li><a href="#"><img src="assets/img/pics/img1-large.jpg" alt=""></a></li>
+							<li><a href="#"><img src="assets/img/pics/img2-large.jpg" alt=""></a></li>
+							<li><a href="#"><img src="assets/img/works/img3.jpg" alt=""></a></li>
+							<li><a href="#"><img src="assets/img/people/img2-large.jpg" alt=""></a></li>
+						</ul>                    
+					</div>
+					<!-- END BLOG PHOTOS STREAM -->
 
 					<!-- BEGIN BLOG TAGS -->
 					<div class="blog-tags margin-bottom-20">
-						<h2>热门标签</h2>
+						<h2>Tags</h2>
 						<ul>
-							<li><a href="#"><i class="fa fa-tags"></i>大数据</a></li>
-							<li><a href="#"><i class="fa fa-tags"></i>hadoop</a></li>
-							<li><a href="#"><i class="fa fa-tags"></i>elastic search</a></li>
-							<li><a href="#"><i class="fa fa-tags"></i>nutch</a></li>
-							<li><a href="#"><i class="fa fa-tags"></i>性能优化</a></li>
-							<li><a href="#"><i class="fa fa-tags"></i>爬虫</a></li>
-							<li><a href="#"><i class="fa fa-tags"></i>举个栗子</a></li>
-							<li><a href="#"><i class="fa fa-tags"></i>redis</a></li>
+							<li><a href="#"><i class="fa fa-tags"></i>OS</a></li>
+							<li><a href="#"><i class="fa fa-tags"></i>Metronic</a></li>
+							<li><a href="#"><i class="fa fa-tags"></i>Dell</a></li>
+							<li><a href="#"><i class="fa fa-tags"></i>Conquer</a></li>
+							<li><a href="#"><i class="fa fa-tags"></i>MS</a></li>
+							<li><a href="#"><i class="fa fa-tags"></i>Google</a></li>
+							<li><a href="#"><i class="fa fa-tags"></i>Keenthemes</a></li>
+							<li><a href="#"><i class="fa fa-tags"></i>Twitter</a></li>
 						</ul>
 					</div>
 					<!-- END BLOG TAGS -->
@@ -345,12 +408,12 @@
             <div class="row">
                 <div class="col-md-4 col-sm-4 space-mobile">
                     <!-- BEGIN ABOUT -->                    
-                    <h2>关于我</h2>
-                    <p class="margin-bottom-30">年近三十而不立；身为笨鸟而不先飞；知错而不悔改；空谈梦想而不行动；是也。</p>
+                    <h2>About</h2>
+                    <p class="margin-bottom-30">Vivamus imperdiet felis consectetur onec eget orci adipiscing nunc. Pellentesque fermentum, ante ac interdum ullamcorper.</p>
                     <div class="clearfix"></div>                    
                     <!-- END ABOUT -->          
 
-                    <h2>最近艳照</h2>
+                    <h2>Photos Stream</h2>
                     <!-- BEGIN BLOG PHOTOS STREAM -->
                     <div class="blog-photo-stream margin-bottom-30">
                         <ul class="list-unstyled">
@@ -370,39 +433,95 @@
                 </div>
                 <div class="col-md-4 col-sm-4 space-mobile">
                     <!-- BEGIN CONTACTS -->                                    
-                    <h2>联系我</h2>
+                    <h2>Contact Us</h2>
                     <address class="margin-bottom-40">
-                       easecredit. <br />
-                        北京.朝阳 <br />
-                         
-                        QQ:909051758 <br />
-                        Email: <a href="mailto:eniluzt@qq.com">eniluzt@qq.com</a>                        
+                        Loop, Inc. <br />
+                        795 Park Ave, Suite 120 <br />
+                        San Francisco, CA 94107 <br />
+                        P: (234) 145-1810 <br />
+                        Email: <a href="mailto:info@keenthemes.com">info@keenthemes.com</a>                        
                     </address>
-                                                   
+                    <!-- END CONTACTS -->                                    
+
+                    <!-- BEGIN SUBSCRIBE -->                                    
+                    <h2>Monthly Newsletter</h2>  
+                    <p>Subscribe to our newsletter and stay up to date with the latest news and deals!</p>
+                    <form action="#" class="form-subscribe">
+                        <div class="input-group input-large">
+                            <input class="form-control" type="text">
+                            <span class="input-group-btn">
+                                <button class="btn theme-btn" type="button">SUBSCRIBE</button>
+                            </span>
+                        </div>
+                    </form>
+
+                    <!-- END SUBSCRIBE -->                                    
                 </div>
-				<div class="col-md-4 col-sm-4 space-mobile">
-                    <!-- BEGIN CONTACTS -->                                    
-                    <h2>友情链接</h2>
-                    <address class="margin-bottom-40">
-                       网站使用metronic模版，感谢，<a target="_blank" href="http://themeforest.net/item/metronic-responsive-admin-dashboard-template/4021469">go to metronic</a>  </address>                                                   
+                <div class="col-md-4 col-sm-4">
+                    <!-- BEGIN TWITTER BLOCK -->                                                    
+                    <h2>Latest Tweets</h2>
+                    <dl class="dl-horizontal f-twitter">
+                        <dt><i class="fa fa-twitter"></i></dt>
+                        <dd>
+                            <a href="#">@keenthemes</a>
+                            Imperdiet condimentum diam dolor lorem sit consectetur adipiscing
+                            <span>3 min ago</span>
+                        </dd>
+                    </dl>                    
+                    <dl class="dl-horizontal f-twitter">
+                        <dt><i class="fa fa-twitter"></i></dt>
+                        <dd>
+                            <a href="#">@keenthemes</a>
+                            Sequat ipsum dolor onec eget orci fermentum condimentum lorem sit consectetur adipiscing
+                            <span>8 min ago</span>
+                        </dd>
+                    </dl>                    
+                    <dl class="dl-horizontal f-twitter">
+                        <dt><i class="fa fa-twitter"></i></dt>
+                        <dd>
+                            <a href="#">@keenthemes</a>
+                            Remonde sequat ipsum dolor lorem sit consectetur adipiscing
+                            <span>12 min ago</span>
+                        </dd>
+                    </dl>                    
+                    <dl class="dl-horizontal f-twitter">
+                        <dt><i class="fa fa-twitter"></i></dt>
+                        <dd>
+                            <a href="#">@keenthemes</a>
+                            Pilsum dolor lorem sit consectetur adipiscing orem sequat
+                            <span>16 min ago</span>
+                        </dd>
+                    </dl>                    
+                    <!-- END TWITTER BLOCK -->                                                                        
                 </div>
-               
             </div>
         </div>
     </div>
     <!-- END FOOTER -->
 
     <!-- BEGIN COPYRIGHT -->
-   <div class="copyright">
+    <div class="copyright">
         <div class="container">
             <div class="row">
                 <div class="col-md-8">
                     <p>
-                        <span class="margin-right-10">2015 © eniluzt. ALL Rights Reserved.</span> 
-                         
+                        <span class="margin-right-10">2013 © Metronic. ALL Rights Reserved.</span> 
+                        <a href="#">Privacy Policy</a> | <a href="#">Terms of Service</a>
                     </p>
                 </div>
-                
+                <div class="col-md-4">
+                    <ul class="social-footer">
+                        <li><a href="#"><i class="fa fa-facebook"></i></a></li>
+                        <li><a href="#"><i class="fa fa-google-plus"></i></a></li>
+                        <li><a href="#"><i class="fa fa-dribbble"></i></a></li>
+                        <li><a href="#"><i class="fa fa-linkedin"></i></a></li>
+                        <li><a href="#"><i class="fa fa-twitter"></i></a></li>
+                        <li><a href="#"><i class="fa fa-skype"></i></a></li>
+                        <li><a href="#"><i class="fa fa-github"></i></a></li>
+                        <li><a href="#"><i class="fa fa-youtube"></i></a></li>
+                        <li><a href="#"><i class="fa fa-dropbox"></i></a></li>
+                    </ul>                
+                </div>
             </div>
         </div>
     </div>
