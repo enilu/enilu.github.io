@@ -5,10 +5,10 @@
 <!-- BEGIN HEAD -->
 <head>
     <meta charset="utf-8" />
-    <title>enel的技术博客 | redis入门</title>
+    <title>enel的技术博客 | mysql主从配置</title>
     <meta content="width=device-width, initial-scale=1.0" name="viewport" />
-    <meta content="技术博客,enel的技术博客,java" name="description" />
-    <meta content="enel的技术博客，欢迎批评指正,redis,redis入门" name="keywords">
+    <meta content="技术博客,enel的技术博客,mysql,主从配置,数据库" name="description" />
+    <meta content="enel的技术博客，欢迎批评指正,mysql,mysql主从配置" name="keywords">
     <meta content="enel" name="author" />
 
    <!-- BEGIN GLOBAL MANDATORY STYLES -->          
@@ -90,8 +90,8 @@
                         <ul class="dropdown-menu">
 							<li><a href="../index.html">全部</a></li>
 							<li><a href="../index.html">java</a></li>
-                            <li><a href="../index.html">运维</a></li>                           
-						    <li class="active"><a href="../index.html">大数据</a></li>
+                            <li class="active"><a href="../index.html">运维</a></li>                           
+						    <li><a href="../index.html">大数据</a></li>
 							<li><a href="../index.html">web</a></li>
 							<li><a href="../index.html">管理</a></li>
                            
@@ -129,7 +129,7 @@
         <div class="row breadcrumbs margin-bottom-40">
               <div class="container">
                 <div class="col-md-4 col-sm-4">
-                    <h1>redis入门</h1>
+                    <h1>mysql主从配置</h1>
                 </div>
                 <div class="col-md-8 col-sm-8">
                     <ul class="pull-right breadcrumb">
@@ -149,57 +149,95 @@
 				<!-- BEGIN LEFT SIDEBAR -->            
 				<div class="col-md-9 blog-item margin-bottom-40"> 
 					<p>
-						<h3>What is Redis</h3>
+						<h1>mysql主从配置</h1>
+<pre><code>版本：mysql5.6
+os:centos6.5
+主服务器：（192.168.1.1），从服务器：(192.168.1.2)</code></pre>
+<h2>配置主服务器</h2>
+<ul>
+<li>修改/etc/my.cnf文件 </li>
+<li><p>在[mysqld]下面增加：</p>
+<pre><code>  server-id=1
+  log-bin=mysqlmaster-bin.log
+  sync_binlog=1
+  innodb_buffer_pool_size=8192M #建议配置为内存的70%
+  innodb_flush_log_at_trx_commit=1
+  sql_mode=STRICT_TRANS_TABLES,NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION,NO_AUTO_VALUE_ON_ZERO
+  lower_case_table_names=1
+  log_bin_trust_function_creators=1
+  read-only=0
+  binlog-do-db=dbname #要同步的数据库，可以配置多个
+  binlog-do-db=dbname2</code></pre>
+</li>
+<li><p>重启mysql服务：</p>
+<pre><code>  sudo /etc/init.d/mysqld restart</code></pre>
+</li>
+</ul>
+<h2>配置从服务器</h2>
+<ul>
+<li><p>修改/etc/my.cnf文件 
+在[mysqld]下面增加：</p>
+<pre><code>  server-id=2
+  log-bin=mysqlslave-bin.log
+  sync_binlog=1
+  innodb_buffer_pool_size=8096M  #建议配置为内存的70%
+  innodb_flush_log_at_trx_commit=1
+  sql_mode=STRICT_TRANS_TABLES,NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION,NO_AUTO_VALUE_ON_ZERO
+  lower_case_table_names=1
+  log_bin_trust_function_creators=1</code></pre>
+</li>
+<li><p>重启mysql服务：</p>
+<pre><code>  sudo /etc/init.d/mysqld restart</code></pre>
+</li>
+<li>主数据库上增加从数据库账户</li>
+</ul>
+<p>登录数据库，执行： 
 
-    &nbsp;&nbsp;&nbsp;&nbsp;Redis是一个开源的使用ANSI C语言编写、支持网络、可基于内存亦可持久化的日志型、Key-Value数据库，并提供多种语言的API。<br><br>
-    &nbsp;&nbsp;&nbsp;&nbsp;redis是一个key-value存储系统。和Memcached类似，它支持存储的value类型相对更多，包括string(字符串)、list(链表)、set(集合)、zset(sorted set --有序集合)和hash（哈希类型）。这些数据类型都支持push/pop、add/remove及取交集并集和差集及更丰富的操作，而且这些操作都是原子性的。在此基础上，redis支持各种不同方式的排序。与memcached一样，为了保证效率，数据都是缓存在内存中。区别的是redis会周期性的把更新的数据写入磁盘或者把修改操作写入追加的记录文件，并且在此基础上实现了master-slave(主从)同步。<br><br>
-    &nbsp;&nbsp;&nbsp;&nbsp;Redis 是一个高性能的key-value数据库。 redis的出现，很大程度补偿了memcached这类key/value存储的不足，在部 分场合可以对关系数据库起到很好的补充作用。它提供了Java，C/C++，C#，PHP，JavaScript，Perl，Object-C，Python，Ruby，Erlang等客户端，使用很方便。<br><br>
-    &nbsp;&nbsp;&nbsp;&nbsp;Redis支持主从同步。数据可以从主服务器向任意数量的从服务器上同步，从服务器可以是关联其他从服务器的主服务器。这使得Redis可执行单层树复制。存盘可以有意无意的对数据进行写操作。由于完全实现了发布/订阅机制，使得从数据库在任何地方同步树时，可订阅一个频道并接收主服务器完整的消息发布记录。同步对读取操作的可扩展性和数据冗余很有帮助。<br><br>
+</p>
+<pre><code>mysql&gt; GRANT REPLICATION SLAVE ON . to ‘username’@’192.168.1.2’ identified by ‘password’; 
+锁表（禁止再插入数据以获取主数据库的的二进制日志坐标）： 
+FLUSH TABLES WITH READ LOCK;</code></pre>
+<ul>
+<li><p>获取主数据库二进制日志状态：</p>
+<pre><code>  mysql&gt; SHOW MASTER STATUS \G;
+  *************************** 1. row ***************************
+  File: mysqlmaster-bin.000001
+  Position: 336
+  Binlog_Do_DB: td
+  Binlog_Ignore_DB: 
+  Executed_Gtid_Set: 
+  1 row in set (0.00 sec)</code></pre>
+</li>
+<li><p>在从数据库服务器中导出主数据库的数据库数据：</p>
+<pre><code>  mysqldump -uroot -peasecredit2015 -h192.168.1.1  --all-databases  --triggers --routines --events &gt;all.sql</code></pre>
+<p>-然后导入到 从数据库自己的数据库中：</p>
+<pre><code>  mysql -uroot -peasecredit2015 &lt;all.sql</code></pre>
+</li>
+<li><p>给从数据库设置复制的主数据库信息（注意修改MASTER_LOG_FILE和MASTER_LOG_POS的值）</p>
+<pre><code>  mysql&gt; CHANGE MASTER TO MASTER_HOST='192.168.1.1',MASTER_USER='username',MASTER_PASSWORD='password',MASTER_LOG_FILE='mysqlmaster-bin.000001',MASTER_LOG_POS=336;</code></pre>
+</li>
+<li><p>在从服务器：启动从数据库的复制线程</p>
+<pre><code>  mysql&gt; START slave;</code></pre>
+</li>
+<li><p>接着查询数据库的slave状态：</p>
+<pre><code>  mysql&gt; SHOW slave STATUS \G</code></pre>
+</li>
+<li><p>如果下面两个参数都是Yes，则说明主从配置成功！</p>
+<pre><code>  Slave_IO_Running: Yes        
+  Slave_SQL_Running: Yes</code></pre>
+<h2>测试</h2>
+</li>
+</ul>
+<p>在主数据库上创建一个test表，并插入数据，查看从服务器也有更新即可。
 
-	<h3>Download Redis</h3>
-
-    &nbsp;&nbsp;&nbsp;&nbsp;Redis的官网是http://redis.io 直接来这里下载linux/unix版本的redis即可<br><br>
-    &nbsp;&nbsp;&nbsp;&nbsp;Redis官方不提供windows版本，所以如果你想在windows下耍耍可以来这里下载第三方开发者提供的redis的windows版的：https://github.com/MSOpenTech/redis/releases <br><br>
-    &nbsp;&nbsp;&nbsp;&nbsp;下载解压后（这里说的是windows的安装包，linux版本的请自动在脑子里去掉.exe即可）主要有以下几个文件：<br><br>
-	<blockquote>
-	redis-benchmark.exe：性能测试，用以模拟同时由N个客户端发送M个 SETs/GETs 查询 (类似于 Apache 的ab 工具).<br>
-    redis-check-aof.exe：更新日志检查<br>
-	redis-check-dump.exe：本地数据库检查<br>
-	redis-cli.exe：客户端<br>
-	redis-server.exe：服务端<br>
-   </blockquote>
-    另外windows版本解压后会有个redis.windows.conf，linux下为redis.conf
-
-<h3>Install Redis</h3>
-    &nbsp;&nbsp;&nbsp;&nbsp;windows下安装过程即解压过程，解压到某个目录下，比如解压到：D:\Program\redis-2.8.19   
-    linux下按照官方文档指导，几分钟就搞定了：http://redis.io/download
-
-<h3>Configu Reredis</h3>
-   &nbsp;&nbsp;&nbsp;&nbsp; windows下需要稍微进行配置，打开redis.windows.conf文件，找到这一行：
-    # maxheap <bytes>
-    在下面添加：
-    maxheap 1024000000
-    即可
-    linux不需要进行配置
-
-
-<h3>Startup Redis</h3>
-    &nbsp;&nbsp;&nbsp;&nbsp;在安装目录下运行redis-server即可，为了方便可以把redis目录配置到环境变量里面
-    当然在windows下运行还需要加配置文件参数：redis-server redis.windows.conf
-
-    成功运行后，会在控制台显示如下界面：<img src="redis_1.png"/><br><br>
-	 如红色标记所示，启动命令和默认的监听端口<br>
-
-<h3>Test Redis</h3>
-    &nbsp;&nbsp;&nbsp;&nbsp;运行redis-cli命令，即可通过set，get之类的命令来进行测试了<br><br>
-	<img src="redis_2.png"/>
+</p>
 					</p>
 				 
 					<ul class="blog-info">
 						<li><i class="fa fa-user"></i> By enel</li>
 						<li><i class="fa fa-calendar"></i> 04/07/2015</li>
 						<li><i class="fa fa-comments"></i> 0</li>
-						<li><i class="fa fa-tags"></i> redis,分布式缓存,大数据</li>
+						<li><i class="fa fa-tags"></i> mysql,主从配置,数据库</li>
 					</ul>				 
 				 
 					 
@@ -220,8 +258,8 @@
 					<ul class="nav sidebar-categories margin-bottom-40">
 						<li><a href="#">全部<span>(0)</span></a></li>
 						<li><a href="#">java <span>(0)</span></a></li>
-						<li><a href="#">运维<span>(0)</span></a></li>
-						<li class="active"><a href="#">大数据<span>(0)</span></a></li>
+						<li  class="active"><a href="#">运维<span>(0)</span></a></li>
+						<li><a href="#">大数据<span>(0)</span></a></li>
 						<li><a href="#">web <span>(0)</span></a></li>
 						<li><a href="#">管理<span>(0)</span></a></li>
 					</ul>

@@ -5,10 +5,10 @@
 <!-- BEGIN HEAD -->
 <head>
     <meta charset="utf-8" />
-    <title>enel的技术博客 | redis入门</title>
+    <title>enel的技术博客 | CentOS配置bond ip冗余</title>
     <meta content="width=device-width, initial-scale=1.0" name="viewport" />
-    <meta content="技术博客,enel的技术博客,java" name="description" />
-    <meta content="enel的技术博客，欢迎批评指正,redis,redis入门" name="keywords">
+    <meta content="技术博客,enel的技术博客,centos,ip bond" name="description" />
+    <meta content="enel的技术博客，欢迎批评指正,centos,ip bond配置" name="keywords">
     <meta content="enel" name="author" />
 
    <!-- BEGIN GLOBAL MANDATORY STYLES -->          
@@ -90,8 +90,8 @@
                         <ul class="dropdown-menu">
 							<li><a href="../index.html">全部</a></li>
 							<li><a href="../index.html">java</a></li>
-                            <li><a href="../index.html">运维</a></li>                           
-						    <li class="active"><a href="../index.html">大数据</a></li>
+                            <li class="active"><a href="../index.html">运维</a></li>                           
+						    <li><a href="../index.html">大数据</a></li>
 							<li><a href="../index.html">web</a></li>
 							<li><a href="../index.html">管理</a></li>
                            
@@ -129,7 +129,7 @@
         <div class="row breadcrumbs margin-bottom-40">
               <div class="container">
                 <div class="col-md-4 col-sm-4">
-                    <h1>redis入门</h1>
+                    <h1>CentOS配置bond ip冗余</h1>
                 </div>
                 <div class="col-md-8 col-sm-8">
                     <ul class="pull-right breadcrumb">
@@ -149,57 +149,169 @@
 				<!-- BEGIN LEFT SIDEBAR -->            
 				<div class="col-md-9 blog-item margin-bottom-40"> 
 					<p>
-						<h3>What is Redis</h3>
+					 <h2>Bonding的模式一共有7种：</h2>
+<pre><code>#defineBOND_MODE_ROUNDROBIN       0   （balance-rr模式）网卡的负载均衡模式
+#defineBOND_MODE_ACTIVEBACKUP     1   （active-backup模式）网卡的容错模式
+#defineBOND_MODE_XOR              2   （balance-xor模式）需要交换机支持
+#defineBOND_MODE_BROADCAST        3    （broadcast模式）
+#defineBOND_MODE_8023AD           4   （IEEE 802.3ad动态链路聚合模式）需要交换机支持
+#defineBOND_MODE_TLB              5   自适应传输负载均衡模式
+#defineBOND_MODE_ALB              6   网卡虚拟化方式</code></pre>
+<h2>bonding模块的所有工作模式可以分为两类：</h2>
+<p> 多主型工作模式和主备型工作模式，
+ balance-rr 和broadcast属于多主型工作模式而active-backup属于主备型工作模式。（balance-xor、自适应传输负载均衡模式（balance-tlb）和自适应负载均衡模式（balance-alb）也属于多主型工作模式，IEEE 802.3ad动态链路聚合模式（802.3ad）属于主备型工作模式。
 
-    &nbsp;&nbsp;&nbsp;&nbsp;Redis是一个开源的使用ANSI C语言编写、支持网络、可基于内存亦可持久化的日志型、Key-Value数据库，并提供多种语言的API。<br><br>
-    &nbsp;&nbsp;&nbsp;&nbsp;redis是一个key-value存储系统。和Memcached类似，它支持存储的value类型相对更多，包括string(字符串)、list(链表)、set(集合)、zset(sorted set --有序集合)和hash（哈希类型）。这些数据类型都支持push/pop、add/remove及取交集并集和差集及更丰富的操作，而且这些操作都是原子性的。在此基础上，redis支持各种不同方式的排序。与memcached一样，为了保证效率，数据都是缓存在内存中。区别的是redis会周期性的把更新的数据写入磁盘或者把修改操作写入追加的记录文件，并且在此基础上实现了master-slave(主从)同步。<br><br>
-    &nbsp;&nbsp;&nbsp;&nbsp;Redis 是一个高性能的key-value数据库。 redis的出现，很大程度补偿了memcached这类key/value存储的不足，在部 分场合可以对关系数据库起到很好的补充作用。它提供了Java，C/C++，C#，PHP，JavaScript，Perl，Object-C，Python，Ruby，Erlang等客户端，使用很方便。<br><br>
-    &nbsp;&nbsp;&nbsp;&nbsp;Redis支持主从同步。数据可以从主服务器向任意数量的从服务器上同步，从服务器可以是关联其他从服务器的主服务器。这使得Redis可执行单层树复制。存盘可以有意无意的对数据进行写操作。由于完全实现了发布/订阅机制，使得从数据库在任何地方同步树时，可订阅一个频道并接收主服务器完整的消息发布记录。同步对读取操作的可扩展性和数据冗余很有帮助。<br><br>
+</p>
+<h2>详细介绍这7种模式：</h2>
+<ul>
+<li><p>1、balance-rr （mode=0）</p>
+<p>  轮转（Round-robin）策略：从头到尾顺序的在每一个slave接口上面发送数据包。本模式提供负载均衡和容错的能力。</p>
+</li>
+<li><p>2、active-backup（mode=1）</p>
+<p>  活动-备份（主备）策略：在绑定中，只有一个slave被激活。当且仅当活动的slave接口失败时才会激活其他slave。为了避免交换机发生混乱此时绑定的MAC地址只有一个外部端口上可见。在bongding的2.6.2及其以后的版本中，主备模式下发生一次故障迁移时，bonding将在新激活的slave上会送一个或者多个gratuitous ARP。bonding的主salve接口上以及配置在接口上的所有VLAN接口都会发送gratuitous ARP，只要这些接口上配置了至少一个IP地址。VLAN接口上发送的的gratuitous ARP将会附上适当的VLAN id。本模式提供容错能力，primary option，documented below会影响本模式的行为。</p>
+</li>
+<li><p>3、balance-xor（mode=2）</p>
+<p>  XOR策略：基于所选择的传送hash策略。本模式提供负载均衡和容错的能力。</p>
+</li>
+<li><p>4、broadcast（mode=3）</p>
+<p>  广播策略：在所有的slave接口上传送所有的报文。本模式提供容错能力。</p>
+</li>
+<li><p>5、802.3ad（mode=4）</p>
+<p>  IEEE 802.3ad 动态链路聚合。创建共享相同的速率和双工模式的聚合组。能根据802.3ad规范利用所有的slave来建立聚合链路。Salve的出站选择取决于传输的hash策略，默认策略是简单的XOR策略，而hash策略则可以通xmit_hash_policy选项加以改变。需要注意的是：不是所有的传输策略都与802.3ad兼容，尤其是802.3ad标准的43.2.4章节中关于 packet mis-ordering要求的地方。不同个体的实现往往出现很大的不兼容。
+先决条件：</p>
+<ul>
+<li><ol>
+<li>每个slave的基本驱动支持Ehtool获取速率和双工状态。</li>
+</ol>
+</li>
+<li>2.交换机支持IEEE 802.3ad动态链路聚合。大多数的交换机都需要使用某种配置方式来启用802.3ad模式。</li>
+</ul>
+</li>
+<li><p>6、balance-tlb（mode=5）</p>
+<p>  自适应传输负载均衡：信道绑定不需要特殊的交换机支持。出口流量的分布取决于当前每个slave的负载（计算相对速度）。进口流量从当前的slave的接收。如果接收salve出错，其他的slave接管失败的slave的MAC地址继续接收。
+先决条件：
+每个slave的基本驱动支持Ehtool获取速率状态。</p>
+</li>
+<li><p>7、balance-alb（mode=6）</p>
+<p>  自适应负载均衡：</p>
+<pre><code>  包括balance-tlb（模式5）以及用于IPV4流量的接收负载均衡，并且不需要特殊的交换机支持。接收负载均衡通过ARP协商实现。bonding的驱动拦截本机发出的ARP Replies（ARP回应报文），并且用bond的某一个slave的硬件地址改写ARP报文的源地址，使得本服务器对不同的设备使用不同的硬件地址。本服务器建立的连接的接收流量也是负载均衡的。当本机发送ARP Request时，bonding驱动通过ARP报文复制并保存节点的IP信息。当从其他节点接收到ARP Reply，bonding驱动获取节点的硬件地址并且会回应一个包含绑定好的slave的硬件地址的ARP Reply给发送的节点。用ARP协商的负载均衡的有一个问题是每次用bond的硬件地址广播ARP报文，那么其他节点发送的数据全部集中在一个slave上，处理ARP更新给其他所有节点的时候，每个节点会重新学习硬件地址，导致流量重新分配。当新加入一个slave或者一个非激活的slave重新激活的时候也会导致接收流量重新分配。接收流量负载是串行（轮转）的分配在bond的一组速率最高的slave上。当一个链路重连或者一个新的slave加入的时候，bond会重新初始化ARP Replies给所有的客户端。updelay参数的值必须等于或者大于交换机的forwarding delay，以免ARP Replies被交换机阻塞。</code></pre>
+<p>  先决条件：</p>
+<ul>
+<li>1.每个slave的基本驱动支持Ehtool获取速率状态。</li>
+<li><ol>
+<li>基本驱动支持当设备打开时重新设置硬件地址。也要求每一个slave具有唯一的硬件地址。如果curr_active_slave失败，它的硬件地址被新选上的curr_active_slave硬件地址来替换。</li>
+</ol>
+</li>
+</ul>
+</li>
+</ul>
+<h2>在CentOS上配置Bond0和Bond1：</h2>
+<p>首先要看linux是否支持bonding,RHEL4已经默认支持了.(大部分发行版都支持)
+</p>
+<pre><code># modinfo bonding
+filename:       /lib/modules/2.6.18-8.el5/kernel/drivers/net/bonding/bonding.ko
+author:         Thomas Davis, tadavis@lbl.gov and many others
+de.ion:    Ethernet Channel Bonding Driver, v3.0.3
+version:        3.0.3
+license:        GPL
+srcversion:     2547D22885C2FDF28EF7D98</code></pre>
+<p>如果有类似上面的信息输出,说明已经支持了.
+</p>
+<h3>1、配置Bond 0 负载均衡</h3>
+<p>特点:
 
-	<h3>Download Redis</h3>
+</p>
+<ul>
+<li>双网块同时工作,实现负载均衡,某一网卡不正常时,不会引发网络中断.</li>
+<li>恢复不能正常工作的网卡时,会引发网络中断几秒,然后双网卡同时工作.</li>
+<li>编辑虚拟网络接口配置文件,指定网卡IP <pre><code>  cp /etc/sysconfig/network-scripts/ifcfg-lo ifcfg-bond0
+  vi  ifcfg-bond0
+  DEVICE=bond0
+  IPADDR=10.10.10.1
+  NETMASK=255.255.255.0
+  NETWORK=10.10.10.0
+  BROADCAST=10.10.10.255
+  ONBOOT=yes
+  BOOTPROTO=none
+  USERCTL=no
+  GATEWAY=192.168.0.1</code></pre>
+</li>
+</ul>
+<h3>2.在bond0上添加网关,是确保默认路由无故障</h3>
+<pre><code>[root@Linux ~]# route
+Kernel IP routing table
+Destination     Gateway         Genmask         Flags Metric Ref    Use Iface
+10.0.0.0        *               255.255.255.0   U     0      0        0 bond0
+10.0.0.0        *               255.255.255.0   U     0      0        0 eth0
+10.0.0.0        *               255.255.255.0   U     0      0        0 eth1
+169.254.0.0     *               255.255.0.0     U     0      0        0 bond0
+default         10.0.0.1        0.0.0.0         UG    0      0        0 bond0</code></pre>
+<ul>
+<li><p>编辑网卡配置文件：</p>
+<pre><code>  vi  ifcfg-eth0
+  DEVICE=eth0
+  BOOTPROTO=none
+  ONBOOT=yes
+  USERCTL=no
+  MASTER=bond0
+  SLAVE=yes</code></pre>
+</li>
+<li><p>编辑另外一块网卡配置文件：</p>
+<pre><code> vi  ifcfg-eth1
+ DEVICE=eth1
+ BOOTPROTO=none
+ ONBOOT=yes
+ USERCTL=no
+ MASTER=bond0
+ SLAVE=yes</code></pre>
+</li>
+</ul>
+<h3>3，编辑/etc/modprobe.conf 文件，</h3>
+<p>加入如下一行内容，以使系统在启动时加载bonding模块，对外虚拟网络接口设备为 bond0 
+加入下列两行 
 
-    &nbsp;&nbsp;&nbsp;&nbsp;Redis的官网是http://redis.io 直接来这里下载linux/unix版本的redis即可<br><br>
-    &nbsp;&nbsp;&nbsp;&nbsp;Redis官方不提供windows版本，所以如果你想在windows下耍耍可以来这里下载第三方开发者提供的redis的windows版的：https://github.com/MSOpenTech/redis/releases <br><br>
-    &nbsp;&nbsp;&nbsp;&nbsp;下载解压后（这里说的是windows的安装包，linux版本的请自动在脑子里去掉.exe即可）主要有以下几个文件：<br><br>
-	<blockquote>
-	redis-benchmark.exe：性能测试，用以模拟同时由N个客户端发送M个 SETs/GETs 查询 (类似于 Apache 的ab 工具).<br>
-    redis-check-aof.exe：更新日志检查<br>
-	redis-check-dump.exe：本地数据库检查<br>
-	redis-cli.exe：客户端<br>
-	redis-server.exe：服务端<br>
-   </blockquote>
-    另外windows版本解压后会有个redis.windows.conf，linux下为redis.conf
+</p>
+<pre><code>alias bond0 bonding 
+options bond0 miimon=100 mode=0 </code></pre>
+<p>说明：
+miimon是用来进行链路监测的。 比如:miimon=100，那么系统每100ms监测一次链路连接状态，如果有一条线路不通就转入另一条线路；
+mode的值表示工作模式，他共有0，1,2,3四种模式，常用的为0,1两种。
+   mode=0表示load balancing (round-robin)为负载均衡方式，两块网卡都工作。
+   mode=1表示fault-tolerance (active-backup)提供冗余功能，工作方式是主备的工作方式,也就是说默认情况下只有一块网卡工作,另一块做备份. 
+4 # vi /etc/rc.d/rc.local 
+加入以下内容 
+</p>
+<h3>仅在热备模式下,eht0 eth1网卡的工作顺序.</h3>
+<p>ifenslave bond0 eth0 eth1 
+到这时已经配置完毕重新启动机器.
+重启会看见以下信息就表示配置成功了
 
-<h3>Install Redis</h3>
-    &nbsp;&nbsp;&nbsp;&nbsp;windows下安装过程即解压过程，解压到某个目录下，比如解压到：D:\Program\redis-2.8.19   
-    linux下按照官方文档指导，几分钟就搞定了：http://redis.io/download
+</p>
+<pre><code>................ 
+Bringing up interface bond0 OK 
+Bringing up interface eth0 OK 
+Bringing up interface eth1 OK</code></pre>
+<h2>配置Bond 1 热备模式</h2>
+<p>特点:
 
-<h3>Configu Reredis</h3>
-   &nbsp;&nbsp;&nbsp;&nbsp; windows下需要稍微进行配置，打开redis.windows.conf文件，找到这一行：
-    # maxheap <bytes>
-    在下面添加：
-    maxheap 1024000000
-    即可
-    linux不需要进行配置
-
-
-<h3>Startup Redis</h3>
-    &nbsp;&nbsp;&nbsp;&nbsp;在安装目录下运行redis-server即可，为了方便可以把redis目录配置到环境变量里面
-    当然在windows下运行还需要加配置文件参数：redis-server redis.windows.conf
-
-    成功运行后，会在控制台显示如下界面：<img src="redis_1.png"/><br><br>
-	 如红色标记所示，启动命令和默认的监听端口<br>
-
-<h3>Test Redis</h3>
-    &nbsp;&nbsp;&nbsp;&nbsp;运行redis-cli命令，即可通过set，get之类的命令来进行测试了<br><br>
-	<img src="redis_2.png"/>
+</p>
+<ul>
+<li><ol>
+<li>正在工作的网卡不正常后,切换到备用网卡,此时会中间几秒钟</li>
+</ol>
+</li>
+<li><ol>
+<li><p>恢复不正常的网卡时,不会引发网络中断.
+其他步骤一致，只在第3步骤，将mode设置成1即可.</p>
+<pre><code>   alias bond0 bonding 
+   options bond0 miimon=100 mode=1</code></pre>
 					</p>
 				 
 					<ul class="blog-info">
 						<li><i class="fa fa-user"></i> By enel</li>
 						<li><i class="fa fa-calendar"></i> 04/07/2015</li>
 						<li><i class="fa fa-comments"></i> 0</li>
-						<li><i class="fa fa-tags"></i> redis,分布式缓存,大数据</li>
+						<li><i class="fa fa-tags"></i> centos,运维,ip bond</li>
 					</ul>				 
 				 
 					 
@@ -220,8 +332,8 @@
 					<ul class="nav sidebar-categories margin-bottom-40">
 						<li><a href="#">全部<span>(0)</span></a></li>
 						<li><a href="#">java <span>(0)</span></a></li>
-						<li><a href="#">运维<span>(0)</span></a></li>
-						<li class="active"><a href="#">大数据<span>(0)</span></a></li>
+						<li class="active"><a href="#">运维<span>(0)</span></a></li>
+						<li ><a href="#">大数据<span>(0)</span></a></li>
 						<li><a href="#">web <span>(0)</span></a></li>
 						<li><a href="#">管理<span>(0)</span></a></li>
 					</ul>
