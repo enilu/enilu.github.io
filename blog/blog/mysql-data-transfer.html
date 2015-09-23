@@ -5,10 +5,10 @@
 <!-- BEGIN HEAD -->
 <head>
     <meta charset="utf-8" />
-    <title>enel的技术博客 | redis入门</title>
+    <title>enel的技术博客 | linux mysql数据目录迁移</title>
     <meta content="width=device-width, initial-scale=1.0" name="viewport" />
-    <meta content="技术博客,enel的技术博客,java" name="description" />
-    <meta content="enel的技术博客，欢迎批评指正,redis,redis入门" name="keywords">
+    <meta content="技术博客,enel的技术博客,mysql,目录迁移,数据库" name="description" />
+    <meta content="enel的技术博客，欢迎批评指正,mysql,mysql主从配置" name="keywords">
     <meta content="enel" name="author" />
 
    <!-- BEGIN GLOBAL MANDATORY STYLES -->          
@@ -90,8 +90,8 @@
                         <ul class="dropdown-menu">
 							<li><a href="../index.html">全部</a></li>
 							<li><a href="../index.html">java</a></li>
-                            <li><a href="../index.html">运维</a></li>                           
-						    <li class="active"><a href="../index.html">大数据</a></li>
+                            <li class="active"><a href="../index.html">运维</a></li>                           
+						    <li><a href="../index.html">大数据</a></li>
 							<li><a href="../index.html">web</a></li>
 							<li><a href="../index.html">管理</a></li>
                            
@@ -129,7 +129,7 @@
         <div class="row breadcrumbs margin-bottom-40">
               <div class="container">
                 <div class="col-md-4 col-sm-4">
-                    <h1>redis入门</h1>
+                    <h1>linux mysql数据目录迁移</h1>
                 </div>
                 <div class="col-md-8 col-sm-8">
                     <ul class="pull-right breadcrumb">
@@ -149,57 +149,59 @@
 				<!-- BEGIN LEFT SIDEBAR -->            
 				<div class="col-md-9 blog-item margin-bottom-40"> 
 					<p>
-						<h3>What is Redis</h3>
+						<h2>准备工作</h2>
+<ul>
+<li><p>版本：centos:6.5 64位 mysql:5.6</p>
+</li>
+<li><p>先说下mysql目录结构</p>
+</li>
+</ul>
+<p>centos6.5下安装mysql5.6后 mysql的数据目录，通过查看/etc/my.cnf
 
-    &nbsp;&nbsp;&nbsp;&nbsp;Redis是一个开源的使用ANSI C语言编写、支持网络、可基于内存亦可持久化的日志型、Key-Value数据库，并提供多种语言的API。<br><br>
-    &nbsp;&nbsp;&nbsp;&nbsp;redis是一个key-value存储系统。和Memcached类似，它支持存储的value类型相对更多，包括string(字符串)、list(链表)、set(集合)、zset(sorted set --有序集合)和hash（哈希类型）。这些数据类型都支持push/pop、add/remove及取交集并集和差集及更丰富的操作，而且这些操作都是原子性的。在此基础上，redis支持各种不同方式的排序。与memcached一样，为了保证效率，数据都是缓存在内存中。区别的是redis会周期性的把更新的数据写入磁盘或者把修改操作写入追加的记录文件，并且在此基础上实现了master-slave(主从)同步。<br><br>
-    &nbsp;&nbsp;&nbsp;&nbsp;Redis 是一个高性能的key-value数据库。 redis的出现，很大程度补偿了memcached这类key/value存储的不足，在部 分场合可以对关系数据库起到很好的补充作用。它提供了Java，C/C++，C#，PHP，JavaScript，Perl，Object-C，Python，Ruby，Erlang等客户端，使用很方便。<br><br>
-    &nbsp;&nbsp;&nbsp;&nbsp;Redis支持主从同步。数据可以从主服务器向任意数量的从服务器上同步，从服务器可以是关联其他从服务器的主服务器。这使得Redis可执行单层树复制。存盘可以有意无意的对数据进行写操作。由于完全实现了发布/订阅机制，使得从数据库在任何地方同步树时，可订阅一个频道并接收主服务器完整的消息发布记录。同步对读取操作的可扩展性和数据冗余很有帮助。<br><br>
+</p>
+<p>然后my.cnf中会列出几个默认的目录：
 
-	<h3>Download Redis</h3>
-
-    &nbsp;&nbsp;&nbsp;&nbsp;Redis的官网是http://redis.io 直接来这里下载linux/unix版本的redis即可<br><br>
-    &nbsp;&nbsp;&nbsp;&nbsp;Redis官方不提供windows版本，所以如果你想在windows下耍耍可以来这里下载第三方开发者提供的redis的windows版的：https://github.com/MSOpenTech/redis/releases <br><br>
-    &nbsp;&nbsp;&nbsp;&nbsp;下载解压后（这里说的是windows的安装包，linux版本的请自动在脑子里去掉.exe即可）主要有以下几个文件：<br><br>
-	<blockquote>
-	redis-benchmark.exe：性能测试，用以模拟同时由N个客户端发送M个 SETs/GETs 查询 (类似于 Apache 的ab 工具).<br>
-    redis-check-aof.exe：更新日志检查<br>
-	redis-check-dump.exe：本地数据库检查<br>
-	redis-cli.exe：客户端<br>
-	redis-server.exe：服务端<br>
-   </blockquote>
-    另外windows版本解压后会有个redis.windows.conf，linux下为redis.conf
-
-<h3>Install Redis</h3>
-    &nbsp;&nbsp;&nbsp;&nbsp;windows下安装过程即解压过程，解压到某个目录下，比如解压到：D:\Program\redis-2.8.19   
-    linux下按照官方文档指导，几分钟就搞定了：http://redis.io/download
-
-<h3>Configu Reredis</h3>
-   &nbsp;&nbsp;&nbsp;&nbsp; windows下需要稍微进行配置，打开redis.windows.conf文件，找到这一行：
-    # maxheap <bytes>
-    在下面添加：
-    maxheap 1024000000
-    即可
-    linux不需要进行配置
-
-
-<h3>Startup Redis</h3>
-    &nbsp;&nbsp;&nbsp;&nbsp;在安装目录下运行redis-server即可，为了方便可以把redis目录配置到环境变量里面
-    当然在windows下运行还需要加配置文件参数：redis-server redis.windows.conf
-
-    成功运行后，会在控制台显示如下界面：<img src="redis_1.png"/><br><br>
-	 如红色标记所示，启动命令和默认的监听端口<br>
-
-<h3>Test Redis</h3>
-    &nbsp;&nbsp;&nbsp;&nbsp;运行redis-cli命令，即可通过set，get之类的命令来进行测试了<br><br>
-	<img src="redis_2.png"/>
+</p>
+<pre><code>数据目录 ： datadir=/var/lib/mysql
+日志文件：log-error=/var/log/mysqld.log
+进程id文件：pid-file=/var/run/mysqld/mysqld.pid</code></pre>
+<h2>目录迁移过程：</h2>
+<ul>
+<li>假如要迁移到的目录为：/data/mysql</li>
+<li>首先停止mysql，service mysqld stop 或者/etc/init.d/mysqld stop</li>
+<li>移动数据目录：<pre><code>  mv /var/lib/mysql /data/</code></pre>
+</li>
+<li>查看新的data目录是不是都是mysql用户组下的：<pre><code>  ll /data/mysql</code></pre>
+</li>
+<li><p>确认无误后，启动mysql：</p>
+<pre><code>  /etc/init.d start</code></pre>
+</li>
+<li><p>这时候可能启动不成功，查看日志/var/log/mysqld.log 会发现下面字样：</p>
+<pre><code>2015-06-08 11:11:11 0 [Note] /usr/sbin/mysqld (mysqld 5.6.24) starting as process 4839 ...
+2015-06-08 11:11:11 4839 [Warning] Can't create test file /data/mysql/dataengine3.lower-test
+2015-06-08 11:11:11 4839 [Warning] Can't create test file /data/mysql/dataengine3.lower-test
+/usr/sbin/mysqld: Can't change dir to '/data/mysql/' (Errcode: 13 - Permission denied)
+2015-06-08 11:11:11 4839 [ERROR] Aborting
+2015-06-08 11:11:11 4839 [Note] Binlog end
+2015-06-08 11:11:11 4839 [Note] /usr/sbin/mysqld: Shutdown complete</code></pre>
+</li>
+<li>这个时候如果确保mysql的data目录已经在mysql用户组下，那么可能是selinux的问题。解决方法为：<ul>
+<li>临时关闭selinux：<pre><code>  setenforce 0</code></pre>
+</li>
+<li>修改/etc/selinux/config文件中设置SELINUX=disabled</li>
+<li>然后重启服务器。</li>
+</ul>
+</li>
+<li>迁移目录的时候也可以不更改配置文件，而只是将数据目录迁移出来，没有实验这种方式可不可以解决selinux权限的问题。
+ </li>
+</ul>
 					</p>
 				 
 					<ul class="blog-info">
 						<li><i class="fa fa-user"></i> By enel</li>
 						<li><i class="fa fa-calendar"></i> 04/07/2015</li>
 						<li><i class="fa fa-comments"></i> 0</li>
-						<li><i class="fa fa-tags"></i> redis,分布式缓存,大数据</li>
+						<li><i class="fa fa-tags"></i> mysql,主从配置,数据库</li>
 					</ul>				 
 				 
 					 
@@ -220,8 +222,8 @@
 					<ul class="nav sidebar-categories margin-bottom-40">
 						<li><a href="#">全部<span>(0)</span></a></li>
 						<li><a href="#">java <span>(0)</span></a></li>
-						<li><a href="#">运维<span>(0)</span></a></li>
-						<li class="active"><a href="#">大数据<span>(0)</span></a></li>
+						<li  class="active"><a href="#">运维<span>(0)</span></a></li>
+						<li><a href="#">大数据<span>(0)</span></a></li>
 						<li><a href="#">web <span>(0)</span></a></li>
 						<li><a href="#">管理<span>(0)</span></a></li>
 					</ul>
