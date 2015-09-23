@@ -5,27 +5,27 @@
 <!-- BEGIN HEAD -->
 <head>
     <meta charset="utf-8" />
-    <title>enel的技术博客 | mysql主从配置</title>
+    <title>enel的技术博客 | CentOS配置bond ip冗余</title>
     <meta content="width=device-width, initial-scale=1.0" name="viewport" />
-    <meta content="技术博客,enel的技术博客,mysql,主从配置,数据库" name="description" />
-    <meta content="enel的技术博客，欢迎批评指正,mysql,mysql主从配置" name="keywords">
+    <meta content="技术博客,enel的技术博客,centos,ip bond" name="description" />
+    <meta content="enel的技术博客，欢迎批评指正,centos,ip bond配置" name="keywords">
     <meta content="enel" name="author" />
 
    <!-- BEGIN GLOBAL MANDATORY STYLES -->          
-   <link href="../assets/plugins/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css"/>
-   <link href="../assets/plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
+   <link href="../../assets/plugins/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css"/>
+   <link href="../../assets/plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
    <!-- END GLOBAL MANDATORY STYLES -->
    
    <!-- BEGIN PAGE LEVEL PLUGIN STYLES --> 
-   <link href="../assets/plugins/fancybox/source/jquery.fancybox.css" rel="stylesheet" />               
+   <link href="../../assets/plugins/fancybox/source/jquery.fancybox.css" rel="stylesheet" />               
    <!-- END PAGE LEVEL PLUGIN STYLES -->
 
    <!-- BEGIN THEME STYLES --> 
-   <link href="../assets/css/style-metronic.css" rel="stylesheet" type="text/css"/>
-   <link href="../assets/css/style.css" rel="stylesheet" type="text/css"/>
-   <link href="../assets/css/themes/blue.css" rel="stylesheet" type="text/css" id="style_color"/>
-   <link href="../assets/css/style-responsive.css" rel="stylesheet" type="text/css"/>
-   <link href="../assets/css/custom.css" rel="stylesheet" type="text/css"/>
+   <link href="../../assets/css/style-metronic.css" rel="stylesheet" type="text/css"/>
+   <link href="../../assets/css/style.css" rel="stylesheet" type="text/css"/>
+   <link href="../../assets/css/themes/blue.css" rel="stylesheet" type="text/css" id="style_color"/>
+   <link href="../../assets/css/style-responsive.css" rel="stylesheet" type="text/css"/>
+   <link href="../../assets/css/custom.css" rel="stylesheet" type="text/css"/>
    <!-- END THEME STYLES -->
 
    <link rel="shortcut icon" href="favicon.ico" />
@@ -70,7 +70,7 @@
                 <!-- END RESPONSIVE MENU TOGGLER -->
                 <!-- BEGIN LOGO (you can use logo image instead of text)-->
                 <a class="navbar-brand logo-v1" href="index.html">
-                    <img src="../assets/img/logo_blue.png" id="logoimg" alt="" style="width:200px;height:60px">
+                    <img src="../../assets/img/logo_blue.png" id="logoimg" alt="" style="width:200px;height:60px">
                 </a>
                 <!-- END LOGO -->
             </div>
@@ -129,7 +129,7 @@
         <div class="row breadcrumbs margin-bottom-40">
               <div class="container">
                 <div class="col-md-4 col-sm-4">
-                    <h1>mysql主从配置</h1>
+                    <h1>CentOS配置bond ip冗余</h1>
                 </div>
                 <div class="col-md-8 col-sm-8">
                     <ul class="pull-right breadcrumb">
@@ -149,95 +149,169 @@
 				<!-- BEGIN LEFT SIDEBAR -->            
 				<div class="col-md-9 blog-item margin-bottom-40"> 
 					<p>
-						 
-<pre><code>版本：mysql5.6
-os:centos6.5
-主服务器：（192.168.1.1），从服务器：(192.168.1.2)</code></pre>
-<h2>配置主服务器</h2>
-<ul>
-<li>修改/etc/my.cnf文件 </li>
-<li><p>在[mysqld]下面增加：</p>
-<pre><code>  server-id=1
-  log-bin=mysqlmaster-bin.log
-  sync_binlog=1
-  innodb_buffer_pool_size=8192M #建议配置为内存的70%
-  innodb_flush_log_at_trx_commit=1
-  sql_mode=STRICT_TRANS_TABLES,NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION,NO_AUTO_VALUE_ON_ZERO
-  lower_case_table_names=1
-  log_bin_trust_function_creators=1
-  read-only=0
-  binlog-do-db=dbname #要同步的数据库，可以配置多个
-  binlog-do-db=dbname2</code></pre>
-</li>
-<li><p>重启mysql服务：</p>
-<pre><code>  sudo /etc/init.d/mysqld restart</code></pre>
-</li>
-</ul>
-<h2>配置从服务器</h2>
-<ul>
-<li><p>修改/etc/my.cnf文件 
-在[mysqld]下面增加：</p>
-<pre><code>  server-id=2
-  log-bin=mysqlslave-bin.log
-  sync_binlog=1
-  innodb_buffer_pool_size=8096M  #建议配置为内存的70%
-  innodb_flush_log_at_trx_commit=1
-  sql_mode=STRICT_TRANS_TABLES,NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION,NO_AUTO_VALUE_ON_ZERO
-  lower_case_table_names=1
-  log_bin_trust_function_creators=1</code></pre>
-</li>
-<li><p>重启mysql服务：</p>
-<pre><code>  sudo /etc/init.d/mysqld restart</code></pre>
-</li>
-<li>主数据库上增加从数据库账户</li>
-</ul>
-<p>登录数据库，执行： 
+					 <h2>Bonding的模式一共有7种：</h2>
+<pre><code>#defineBOND_MODE_ROUNDROBIN       0   （balance-rr模式）网卡的负载均衡模式
+#defineBOND_MODE_ACTIVEBACKUP     1   （active-backup模式）网卡的容错模式
+#defineBOND_MODE_XOR              2   （balance-xor模式）需要交换机支持
+#defineBOND_MODE_BROADCAST        3    （broadcast模式）
+#defineBOND_MODE_8023AD           4   （IEEE 802.3ad动态链路聚合模式）需要交换机支持
+#defineBOND_MODE_TLB              5   自适应传输负载均衡模式
+#defineBOND_MODE_ALB              6   网卡虚拟化方式</code></pre>
+<h2>bonding模块的所有工作模式可以分为两类：</h2>
+<p> 多主型工作模式和主备型工作模式，
+ balance-rr 和broadcast属于多主型工作模式而active-backup属于主备型工作模式。（balance-xor、自适应传输负载均衡模式（balance-tlb）和自适应负载均衡模式（balance-alb）也属于多主型工作模式，IEEE 802.3ad动态链路聚合模式（802.3ad）属于主备型工作模式。
 
 </p>
-<pre><code>mysql&gt; GRANT REPLICATION SLAVE ON . to ‘username’@’192.168.1.2’ identified by ‘password’; 
-锁表（禁止再插入数据以获取主数据库的的二进制日志坐标）： 
-FLUSH TABLES WITH READ LOCK;</code></pre>
+<h2>详细介绍这7种模式：</h2>
 <ul>
-<li><p>获取主数据库二进制日志状态：</p>
-<pre><code>  mysql&gt; SHOW MASTER STATUS \G;
-  *************************** 1. row ***************************
-  File: mysqlmaster-bin.000001
-  Position: 336
-  Binlog_Do_DB: td
-  Binlog_Ignore_DB: 
-  Executed_Gtid_Set: 
-  1 row in set (0.00 sec)</code></pre>
+<li><p>1、balance-rr （mode=0）</p>
+<p>  轮转（Round-robin）策略：从头到尾顺序的在每一个slave接口上面发送数据包。本模式提供负载均衡和容错的能力。</p>
 </li>
-<li><p>在从数据库服务器中导出主数据库的数据库数据：</p>
-<pre><code>  mysqldump -uroot -peasecredit2015 -h192.168.1.1  --all-databases  --triggers --routines --events &gt;all.sql</code></pre>
-<p>-然后导入到 从数据库自己的数据库中：</p>
-<pre><code>  mysql -uroot -peasecredit2015 &lt;all.sql</code></pre>
+<li><p>2、active-backup（mode=1）</p>
+<p>  活动-备份（主备）策略：在绑定中，只有一个slave被激活。当且仅当活动的slave接口失败时才会激活其他slave。为了避免交换机发生混乱此时绑定的MAC地址只有一个外部端口上可见。在bongding的2.6.2及其以后的版本中，主备模式下发生一次故障迁移时，bonding将在新激活的slave上会送一个或者多个gratuitous ARP。bonding的主salve接口上以及配置在接口上的所有VLAN接口都会发送gratuitous ARP，只要这些接口上配置了至少一个IP地址。VLAN接口上发送的的gratuitous ARP将会附上适当的VLAN id。本模式提供容错能力，primary option，documented below会影响本模式的行为。</p>
 </li>
-<li><p>给从数据库设置复制的主数据库信息（注意修改MASTER_LOG_FILE和MASTER_LOG_POS的值）</p>
-<pre><code>  mysql&gt; CHANGE MASTER TO MASTER_HOST='192.168.1.1',MASTER_USER='username',MASTER_PASSWORD='password',MASTER_LOG_FILE='mysqlmaster-bin.000001',MASTER_LOG_POS=336;</code></pre>
+<li><p>3、balance-xor（mode=2）</p>
+<p>  XOR策略：基于所选择的传送hash策略。本模式提供负载均衡和容错的能力。</p>
 </li>
-<li><p>在从服务器：启动从数据库的复制线程</p>
-<pre><code>  mysql&gt; START slave;</code></pre>
+<li><p>4、broadcast（mode=3）</p>
+<p>  广播策略：在所有的slave接口上传送所有的报文。本模式提供容错能力。</p>
 </li>
-<li><p>接着查询数据库的slave状态：</p>
-<pre><code>  mysql&gt; SHOW slave STATUS \G</code></pre>
+<li><p>5、802.3ad（mode=4）</p>
+<p>  IEEE 802.3ad 动态链路聚合。创建共享相同的速率和双工模式的聚合组。能根据802.3ad规范利用所有的slave来建立聚合链路。Salve的出站选择取决于传输的hash策略，默认策略是简单的XOR策略，而hash策略则可以通xmit_hash_policy选项加以改变。需要注意的是：不是所有的传输策略都与802.3ad兼容，尤其是802.3ad标准的43.2.4章节中关于 packet mis-ordering要求的地方。不同个体的实现往往出现很大的不兼容。
+先决条件：</p>
+<ul>
+<li><ol>
+<li>每个slave的基本驱动支持Ehtool获取速率和双工状态。</li>
+</ol>
 </li>
-<li><p>如果下面两个参数都是Yes，则说明主从配置成功！</p>
-<pre><code>  Slave_IO_Running: Yes        
-  Slave_SQL_Running: Yes</code></pre>
-<h2>测试</h2>
+<li>2.交换机支持IEEE 802.3ad动态链路聚合。大多数的交换机都需要使用某种配置方式来启用802.3ad模式。</li>
+</ul>
+</li>
+<li><p>6、balance-tlb（mode=5）</p>
+<p>  自适应传输负载均衡：信道绑定不需要特殊的交换机支持。出口流量的分布取决于当前每个slave的负载（计算相对速度）。进口流量从当前的slave的接收。如果接收salve出错，其他的slave接管失败的slave的MAC地址继续接收。
+先决条件：
+每个slave的基本驱动支持Ehtool获取速率状态。</p>
+</li>
+<li><p>7、balance-alb（mode=6）</p>
+<p>  自适应负载均衡：</p>
+<pre><code>  包括balance-tlb（模式5）以及用于IPV4流量的接收负载均衡，并且不需要特殊的交换机支持。接收负载均衡通过ARP协商实现。bonding的驱动拦截本机发出的ARP Replies（ARP回应报文），并且用bond的某一个slave的硬件地址改写ARP报文的源地址，使得本服务器对不同的设备使用不同的硬件地址。本服务器建立的连接的接收流量也是负载均衡的。当本机发送ARP Request时，bonding驱动通过ARP报文复制并保存节点的IP信息。当从其他节点接收到ARP Reply，bonding驱动获取节点的硬件地址并且会回应一个包含绑定好的slave的硬件地址的ARP Reply给发送的节点。用ARP协商的负载均衡的有一个问题是每次用bond的硬件地址广播ARP报文，那么其他节点发送的数据全部集中在一个slave上，处理ARP更新给其他所有节点的时候，每个节点会重新学习硬件地址，导致流量重新分配。当新加入一个slave或者一个非激活的slave重新激活的时候也会导致接收流量重新分配。接收流量负载是串行（轮转）的分配在bond的一组速率最高的slave上。当一个链路重连或者一个新的slave加入的时候，bond会重新初始化ARP Replies给所有的客户端。updelay参数的值必须等于或者大于交换机的forwarding delay，以免ARP Replies被交换机阻塞。</code></pre>
+<p>  先决条件：</p>
+<ul>
+<li>1.每个slave的基本驱动支持Ehtool获取速率状态。</li>
+<li><ol>
+<li>基本驱动支持当设备打开时重新设置硬件地址。也要求每一个slave具有唯一的硬件地址。如果curr_active_slave失败，它的硬件地址被新选上的curr_active_slave硬件地址来替换。</li>
+</ol>
 </li>
 </ul>
-<p>在主数据库上创建一个test表，并插入数据，查看从服务器也有更新即可。
+</li>
+</ul>
+<h2>在CentOS上配置Bond0和Bond1：</h2>
+<p>首先要看linux是否支持bonding,RHEL4已经默认支持了.(大部分发行版都支持)
+</p>
+<pre><code># modinfo bonding
+filename:       /lib/modules/2.6.18-8.el5/kernel/drivers/net/bonding/bonding.ko
+author:         Thomas Davis, tadavis@lbl.gov and many others
+de.ion:    Ethernet Channel Bonding Driver, v3.0.3
+version:        3.0.3
+license:        GPL
+srcversion:     2547D22885C2FDF28EF7D98</code></pre>
+<p>如果有类似上面的信息输出,说明已经支持了.
+</p>
+<h3>1、配置Bond 0 负载均衡</h3>
+<p>特点:
 
 </p>
+<ul>
+<li>双网块同时工作,实现负载均衡,某一网卡不正常时,不会引发网络中断.</li>
+<li>恢复不能正常工作的网卡时,会引发网络中断几秒,然后双网卡同时工作.</li>
+<li>编辑虚拟网络接口配置文件,指定网卡IP <pre><code>  cp /etc/sysconfig/network-scripts/ifcfg-lo ifcfg-bond0
+  vi  ifcfg-bond0
+  DEVICE=bond0
+  IPADDR=10.10.10.1
+  NETMASK=255.255.255.0
+  NETWORK=10.10.10.0
+  BROADCAST=10.10.10.255
+  ONBOOT=yes
+  BOOTPROTO=none
+  USERCTL=no
+  GATEWAY=192.168.0.1</code></pre>
+</li>
+</ul>
+<h3>2.在bond0上添加网关,是确保默认路由无故障</h3>
+<pre><code>[root@Linux ~]# route
+Kernel IP routing table
+Destination     Gateway         Genmask         Flags Metric Ref    Use Iface
+10.0.0.0        *               255.255.255.0   U     0      0        0 bond0
+10.0.0.0        *               255.255.255.0   U     0      0        0 eth0
+10.0.0.0        *               255.255.255.0   U     0      0        0 eth1
+169.254.0.0     *               255.255.0.0     U     0      0        0 bond0
+default         10.0.0.1        0.0.0.0         UG    0      0        0 bond0</code></pre>
+<ul>
+<li><p>编辑网卡配置文件：</p>
+<pre><code>  vi  ifcfg-eth0
+  DEVICE=eth0
+  BOOTPROTO=none
+  ONBOOT=yes
+  USERCTL=no
+  MASTER=bond0
+  SLAVE=yes</code></pre>
+</li>
+<li><p>编辑另外一块网卡配置文件：</p>
+<pre><code> vi  ifcfg-eth1
+ DEVICE=eth1
+ BOOTPROTO=none
+ ONBOOT=yes
+ USERCTL=no
+ MASTER=bond0
+ SLAVE=yes</code></pre>
+</li>
+</ul>
+<h3>3，编辑/etc/modprobe.conf 文件，</h3>
+<p>加入如下一行内容，以使系统在启动时加载bonding模块，对外虚拟网络接口设备为 bond0 
+加入下列两行 
+
+</p>
+<pre><code>alias bond0 bonding 
+options bond0 miimon=100 mode=0 </code></pre>
+<p>说明：
+miimon是用来进行链路监测的。 比如:miimon=100，那么系统每100ms监测一次链路连接状态，如果有一条线路不通就转入另一条线路；
+mode的值表示工作模式，他共有0，1,2,3四种模式，常用的为0,1两种。
+   mode=0表示load balancing (round-robin)为负载均衡方式，两块网卡都工作。
+   mode=1表示fault-tolerance (active-backup)提供冗余功能，工作方式是主备的工作方式,也就是说默认情况下只有一块网卡工作,另一块做备份. 
+4 # vi /etc/rc.d/rc.local 
+加入以下内容 
+</p>
+<h3>仅在热备模式下,eht0 eth1网卡的工作顺序.</h3>
+<p>ifenslave bond0 eth0 eth1 
+到这时已经配置完毕重新启动机器.
+重启会看见以下信息就表示配置成功了
+
+</p>
+<pre><code>................ 
+Bringing up interface bond0 OK 
+Bringing up interface eth0 OK 
+Bringing up interface eth1 OK</code></pre>
+<h2>配置Bond 1 热备模式</h2>
+<p>特点:
+
+</p>
+<ul>
+<li><ol>
+<li>正在工作的网卡不正常后,切换到备用网卡,此时会中间几秒钟</li>
+</ol>
+</li>
+<li><ol>
+<li><p>恢复不正常的网卡时,不会引发网络中断.
+其他步骤一致，只在第3步骤，将mode设置成1即可.</p>
+<pre><code>   alias bond0 bonding 
+   options bond0 miimon=100 mode=1</code></pre>
 					</p>
 				 
 					<ul class="blog-info">
 						<li><i class="fa fa-user"></i> By enel</li>
 						<li><i class="fa fa-calendar"></i> 04/07/2015</li>
 						<li><i class="fa fa-comments"></i> 0</li>
-						<li><i class="fa fa-tags"></i> mysql,主从配置,数据库</li>
+						<li><i class="fa fa-tags"></i> centos,运维,ip bond</li>
 					</ul>				 
 				 
 					 
@@ -258,8 +332,8 @@ FLUSH TABLES WITH READ LOCK;</code></pre>
 					<ul class="nav sidebar-categories margin-bottom-40">
 						<li><a href="#">全部<span>(0)</span></a></li>
 						<li><a href="#">java <span>(0)</span></a></li>
-						<li  class="active"><a href="#">运维<span>(0)</span></a></li>
-						<li><a href="#">大数据<span>(0)</span></a></li>
+						<li class="active"><a href="#">运维<span>(0)</span></a></li>
+						<li ><a href="#">大数据<span>(0)</span></a></li>
 						<li><a href="#">web <span>(0)</span></a></li>
 						<li><a href="#">管理<span>(0)</span></a></li>
 					</ul>
@@ -354,16 +428,16 @@ FLUSH TABLES WITH READ LOCK;</code></pre>
                     <!-- BEGIN BLOG PHOTOS STREAM -->
                     <div class="blog-photo-stream margin-bottom-30">
                         <ul class="list-unstyled">
-                            <li><a href="#"><img src="../assets/img/people/img5-small.jpg" alt=""></a></li>
-                            <li><a href="#"><img src="../assets/img/works/img1.jpg" alt=""></a></li>
-                            <li><a href="#"><img src="../assets/img/people/img4-large.jpg" alt=""></a></li>
-                            <li><a href="#"><img src="../assets/img/works/img6.jpg" alt=""></a></li>
-                            <li><a href="#"><img src="../assets/img/pics/img1-large.jpg" alt=""></a></li>
-                            <li><a href="#"><img src="../assets/img/pics/img2-large.jpg" alt=""></a></li>
-                            <li><a href="#"><img src="../assets/img/works/img3.jpg" alt=""></a></li>
-                            <li><a href="#"><img src="../assets/img/people/img2-large.jpg" alt=""></a></li>
-                            <li><a href="#"><img src="../assets/img/works/img2.jpg" alt=""></a></li>
-                            <li><a href="#"><img src="../assets/img/works/img5.jpg" alt=""></a></li>
+                            <li><a href="#"><img src="../../assets/img/people/img5-small.jpg" alt=""></a></li>
+                            <li><a href="#"><img src="../../assets/img/works/img1.jpg" alt=""></a></li>
+                            <li><a href="#"><img src="../../assets/img/people/img4-large.jpg" alt=""></a></li>
+                            <li><a href="#"><img src="../../assets/img/works/img6.jpg" alt=""></a></li>
+                            <li><a href="#"><img src="../../assets/img/pics/img1-large.jpg" alt=""></a></li>
+                            <li><a href="#"><img src="../../assets/img/pics/img2-large.jpg" alt=""></a></li>
+                            <li><a href="#"><img src="../../assets/img/works/img3.jpg" alt=""></a></li>
+                            <li><a href="#"><img src="../../assets/img/people/img2-large.jpg" alt=""></a></li>
+                            <li><a href="#"><img src="../../assets/img/works/img2.jpg" alt=""></a></li>
+                            <li><a href="#"><img src="../../assets/img/works/img5.jpg" alt=""></a></li>
                         </ul>                    
                     </div>
                     <!-- END BLOG PHOTOS STREAM -->                              
@@ -411,24 +485,24 @@ FLUSH TABLES WITH READ LOCK;</code></pre>
     <!-- Load javascripts at bottom, this will reduce page load time -->
     <!-- BEGIN CORE PLUGINS(REQUIRED FOR ALL PAGES) -->
     <!--[if lt IE 9]>
-    <script src="../assets/plugins/respond.min.js"></script>  
+    <script src="../../assets/plugins/respond.min.js"></script>  
     <![endif]-->  
-    <script src="../assets/plugins/jquery-1.10.2.min.js" type="text/javascript"></script>
-    <script src="../assets/plugins/jquery-migrate-1.2.1.min.js" type="text/javascript"></script>
-    <script src="../assets/plugins/bootstrap/js/bootstrap.min.js" type="text/javascript"></script>      
-    <script type="text/javascript" src="../assets/plugins/hover-dropdown.js"></script>
-    <script type="text/javascript" src="../assets/plugins/back-to-top.js"></script>    
+    <script src="../../assets/plugins/jquery-1.10.2.min.js" type="text/javascript"></script>
+    <script src="../../assets/plugins/jquery-migrate-1.2.1.min.js" type="text/javascript"></script>
+    <script src="../../assets/plugins/bootstrap/js/bootstrap.min.js" type="text/javascript"></script>      
+    <script type="text/javascript" src="../../assets/plugins/hover-dropdown.js"></script>
+    <script type="text/javascript" src="../../assets/plugins/back-to-top.js"></script>    
     <!-- END CORE PLUGINS -->
 
     <!-- BEGIN PAGE LEVEL JAVASCRIPTS(REQUIRED ONLY FOR CURRENT PAGE) -->
-    <script type="text/javascript" src="../assets/plugins/fancybox/source/jquery.fancybox.pack.js"></script>  
-    <script src="../assets/scripts/app.js"></script>  
+    <script type="text/javascript" src="../../assets/plugins/fancybox/source/jquery.fancybox.pack.js"></script>  
+    <script src="../../assets/scripts/app.js"></script>  
     <script type="text/javascript">
         jQuery(document).ready(function() {
             App.init();                      
         });
     </script>
-	<script type="text/javascript" src="../assets/scripts/blog.js"></script>
+	<script type="text/javascript" src="../../assets/scripts/blog.js"></script>
     <!-- END PAGE LEVEL JAVASCRIPTS -->
 </body>
 <!-- END BODY -->

@@ -5,27 +5,27 @@
 <!-- BEGIN HEAD -->
 <head>
     <meta charset="utf-8" />
-    <title>enel的技术博客 | linux mysql数据目录迁移</title>
+    <title>enel的技术博客 | mysql主从配置</title>
     <meta content="width=device-width, initial-scale=1.0" name="viewport" />
-    <meta content="技术博客,enel的技术博客,mysql,目录迁移,数据库" name="description" />
+    <meta content="技术博客,enel的技术博客,mysql,主从配置,数据库" name="description" />
     <meta content="enel的技术博客，欢迎批评指正,mysql,mysql主从配置" name="keywords">
     <meta content="enel" name="author" />
 
    <!-- BEGIN GLOBAL MANDATORY STYLES -->          
-   <link href="../assets/plugins/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css"/>
-   <link href="../assets/plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
+   <link href="../../assets/plugins/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css"/>
+   <link href="../../assets/plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
    <!-- END GLOBAL MANDATORY STYLES -->
    
    <!-- BEGIN PAGE LEVEL PLUGIN STYLES --> 
-   <link href="../assets/plugins/fancybox/source/jquery.fancybox.css" rel="stylesheet" />               
+   <link href="../../assets/plugins/fancybox/source/jquery.fancybox.css" rel="stylesheet" />               
    <!-- END PAGE LEVEL PLUGIN STYLES -->
 
    <!-- BEGIN THEME STYLES --> 
-   <link href="../assets/css/style-metronic.css" rel="stylesheet" type="text/css"/>
-   <link href="../assets/css/style.css" rel="stylesheet" type="text/css"/>
-   <link href="../assets/css/themes/blue.css" rel="stylesheet" type="text/css" id="style_color"/>
-   <link href="../assets/css/style-responsive.css" rel="stylesheet" type="text/css"/>
-   <link href="../assets/css/custom.css" rel="stylesheet" type="text/css"/>
+   <link href="../../assets/css/style-metronic.css" rel="stylesheet" type="text/css"/>
+   <link href="../../assets/css/style.css" rel="stylesheet" type="text/css"/>
+   <link href="../../assets/css/themes/blue.css" rel="stylesheet" type="text/css" id="style_color"/>
+   <link href="../../assets/css/style-responsive.css" rel="stylesheet" type="text/css"/>
+   <link href="../../assets/css/custom.css" rel="stylesheet" type="text/css"/>
    <!-- END THEME STYLES -->
 
    <link rel="shortcut icon" href="favicon.ico" />
@@ -70,7 +70,7 @@
                 <!-- END RESPONSIVE MENU TOGGLER -->
                 <!-- BEGIN LOGO (you can use logo image instead of text)-->
                 <a class="navbar-brand logo-v1" href="index.html">
-                    <img src="../assets/img/logo_blue.png" id="logoimg" alt="" style="width:200px;height:60px">
+                    <img src="../../assets/img/logo_blue.png" id="logoimg" alt="" style="width:200px;height:60px">
                 </a>
                 <!-- END LOGO -->
             </div>
@@ -129,7 +129,7 @@
         <div class="row breadcrumbs margin-bottom-40">
               <div class="container">
                 <div class="col-md-4 col-sm-4">
-                    <h1>linux mysql数据目录迁移</h1>
+                    <h1>mysql主从配置</h1>
                 </div>
                 <div class="col-md-8 col-sm-8">
                     <ul class="pull-right breadcrumb">
@@ -149,52 +149,88 @@
 				<!-- BEGIN LEFT SIDEBAR -->            
 				<div class="col-md-9 blog-item margin-bottom-40"> 
 					<p>
-						<h2>准备工作</h2>
+						 
+<pre><code>版本：mysql5.6
+os:centos6.5
+主服务器：（192.168.1.1），从服务器：(192.168.1.2)</code></pre>
+<h2>配置主服务器</h2>
 <ul>
-<li><p>版本：centos:6.5 64位 mysql:5.6</p>
+<li>修改/etc/my.cnf文件 </li>
+<li><p>在[mysqld]下面增加：</p>
+<pre><code>  server-id=1
+  log-bin=mysqlmaster-bin.log
+  sync_binlog=1
+  innodb_buffer_pool_size=8192M #建议配置为内存的70%
+  innodb_flush_log_at_trx_commit=1
+  sql_mode=STRICT_TRANS_TABLES,NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION,NO_AUTO_VALUE_ON_ZERO
+  lower_case_table_names=1
+  log_bin_trust_function_creators=1
+  read-only=0
+  binlog-do-db=dbname #要同步的数据库，可以配置多个
+  binlog-do-db=dbname2</code></pre>
 </li>
-<li><p>先说下mysql目录结构</p>
+<li><p>重启mysql服务：</p>
+<pre><code>  sudo /etc/init.d/mysqld restart</code></pre>
 </li>
 </ul>
-<p>centos6.5下安装mysql5.6后 mysql的数据目录，通过查看/etc/my.cnf
+<h2>配置从服务器</h2>
+<ul>
+<li><p>修改/etc/my.cnf文件 
+在[mysqld]下面增加：</p>
+<pre><code>  server-id=2
+  log-bin=mysqlslave-bin.log
+  sync_binlog=1
+  innodb_buffer_pool_size=8096M  #建议配置为内存的70%
+  innodb_flush_log_at_trx_commit=1
+  sql_mode=STRICT_TRANS_TABLES,NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION,NO_AUTO_VALUE_ON_ZERO
+  lower_case_table_names=1
+  log_bin_trust_function_creators=1</code></pre>
+</li>
+<li><p>重启mysql服务：</p>
+<pre><code>  sudo /etc/init.d/mysqld restart</code></pre>
+</li>
+<li>主数据库上增加从数据库账户</li>
+</ul>
+<p>登录数据库，执行： 
 
 </p>
-<p>然后my.cnf中会列出几个默认的目录：
+<pre><code>mysql&gt; GRANT REPLICATION SLAVE ON . to ‘username’@’192.168.1.2’ identified by ‘password’; 
+锁表（禁止再插入数据以获取主数据库的的二进制日志坐标）： 
+FLUSH TABLES WITH READ LOCK;</code></pre>
+<ul>
+<li><p>获取主数据库二进制日志状态：</p>
+<pre><code>  mysql&gt; SHOW MASTER STATUS \G;
+  *************************** 1. row ***************************
+  File: mysqlmaster-bin.000001
+  Position: 336
+  Binlog_Do_DB: td
+  Binlog_Ignore_DB: 
+  Executed_Gtid_Set: 
+  1 row in set (0.00 sec)</code></pre>
+</li>
+<li><p>在从数据库服务器中导出主数据库的数据库数据：</p>
+<pre><code>  mysqldump -uroot -peasecredit2015 -h192.168.1.1  --all-databases  --triggers --routines --events &gt;all.sql</code></pre>
+<p>-然后导入到 从数据库自己的数据库中：</p>
+<pre><code>  mysql -uroot -peasecredit2015 &lt;all.sql</code></pre>
+</li>
+<li><p>给从数据库设置复制的主数据库信息（注意修改MASTER_LOG_FILE和MASTER_LOG_POS的值）</p>
+<pre><code>  mysql&gt; CHANGE MASTER TO MASTER_HOST='192.168.1.1',MASTER_USER='username',MASTER_PASSWORD='password',MASTER_LOG_FILE='mysqlmaster-bin.000001',MASTER_LOG_POS=336;</code></pre>
+</li>
+<li><p>在从服务器：启动从数据库的复制线程</p>
+<pre><code>  mysql&gt; START slave;</code></pre>
+</li>
+<li><p>接着查询数据库的slave状态：</p>
+<pre><code>  mysql&gt; SHOW slave STATUS \G</code></pre>
+</li>
+<li><p>如果下面两个参数都是Yes，则说明主从配置成功！</p>
+<pre><code>  Slave_IO_Running: Yes        
+  Slave_SQL_Running: Yes</code></pre>
+<h2>测试</h2>
+</li>
+</ul>
+<p>在主数据库上创建一个test表，并插入数据，查看从服务器也有更新即可。
 
 </p>
-<pre><code>数据目录 ： datadir=/var/lib/mysql
-日志文件：log-error=/var/log/mysqld.log
-进程id文件：pid-file=/var/run/mysqld/mysqld.pid</code></pre>
-<h2>目录迁移过程：</h2>
-<ul>
-<li>假如要迁移到的目录为：/data/mysql</li>
-<li>首先停止mysql，service mysqld stop 或者/etc/init.d/mysqld stop</li>
-<li>移动数据目录：<pre><code>  mv /var/lib/mysql /data/</code></pre>
-</li>
-<li>查看新的data目录是不是都是mysql用户组下的：<pre><code>  ll /data/mysql</code></pre>
-</li>
-<li><p>确认无误后，启动mysql：</p>
-<pre><code>  /etc/init.d start</code></pre>
-</li>
-<li><p>这时候可能启动不成功，查看日志/var/log/mysqld.log 会发现下面字样：</p>
-<pre><code>2015-06-08 11:11:11 0 [Note] /usr/sbin/mysqld (mysqld 5.6.24) starting as process 4839 ...
-2015-06-08 11:11:11 4839 [Warning] Can't create test file /data/mysql/dataengine3.lower-test
-2015-06-08 11:11:11 4839 [Warning] Can't create test file /data/mysql/dataengine3.lower-test
-/usr/sbin/mysqld: Can't change dir to '/data/mysql/' (Errcode: 13 - Permission denied)
-2015-06-08 11:11:11 4839 [ERROR] Aborting
-2015-06-08 11:11:11 4839 [Note] Binlog end
-2015-06-08 11:11:11 4839 [Note] /usr/sbin/mysqld: Shutdown complete</code></pre>
-</li>
-<li>这个时候如果确保mysql的data目录已经在mysql用户组下，那么可能是selinux的问题。解决方法为：<ul>
-<li>临时关闭selinux：<pre><code>  setenforce 0</code></pre>
-</li>
-<li>修改/etc/selinux/config文件中设置SELINUX=disabled</li>
-<li>然后重启服务器。</li>
-</ul>
-</li>
-<li>迁移目录的时候也可以不更改配置文件，而只是将数据目录迁移出来，没有实验这种方式可不可以解决selinux权限的问题。
- </li>
-</ul>
 					</p>
 				 
 					<ul class="blog-info">
@@ -318,16 +354,16 @@
                     <!-- BEGIN BLOG PHOTOS STREAM -->
                     <div class="blog-photo-stream margin-bottom-30">
                         <ul class="list-unstyled">
-                            <li><a href="#"><img src="../assets/img/people/img5-small.jpg" alt=""></a></li>
-                            <li><a href="#"><img src="../assets/img/works/img1.jpg" alt=""></a></li>
-                            <li><a href="#"><img src="../assets/img/people/img4-large.jpg" alt=""></a></li>
-                            <li><a href="#"><img src="../assets/img/works/img6.jpg" alt=""></a></li>
-                            <li><a href="#"><img src="../assets/img/pics/img1-large.jpg" alt=""></a></li>
-                            <li><a href="#"><img src="../assets/img/pics/img2-large.jpg" alt=""></a></li>
-                            <li><a href="#"><img src="../assets/img/works/img3.jpg" alt=""></a></li>
-                            <li><a href="#"><img src="../assets/img/people/img2-large.jpg" alt=""></a></li>
-                            <li><a href="#"><img src="../assets/img/works/img2.jpg" alt=""></a></li>
-                            <li><a href="#"><img src="../assets/img/works/img5.jpg" alt=""></a></li>
+                            <li><a href="#"><img src="../../assets/img/people/img5-small.jpg" alt=""></a></li>
+                            <li><a href="#"><img src="../../assets/img/works/img1.jpg" alt=""></a></li>
+                            <li><a href="#"><img src="../../assets/img/people/img4-large.jpg" alt=""></a></li>
+                            <li><a href="#"><img src="../../assets/img/works/img6.jpg" alt=""></a></li>
+                            <li><a href="#"><img src="../../assets/img/pics/img1-large.jpg" alt=""></a></li>
+                            <li><a href="#"><img src="../../assets/img/pics/img2-large.jpg" alt=""></a></li>
+                            <li><a href="#"><img src="../../assets/img/works/img3.jpg" alt=""></a></li>
+                            <li><a href="#"><img src="../../assets/img/people/img2-large.jpg" alt=""></a></li>
+                            <li><a href="#"><img src="../../assets/img/works/img2.jpg" alt=""></a></li>
+                            <li><a href="#"><img src="../../assets/img/works/img5.jpg" alt=""></a></li>
                         </ul>                    
                     </div>
                     <!-- END BLOG PHOTOS STREAM -->                              
@@ -375,24 +411,24 @@
     <!-- Load javascripts at bottom, this will reduce page load time -->
     <!-- BEGIN CORE PLUGINS(REQUIRED FOR ALL PAGES) -->
     <!--[if lt IE 9]>
-    <script src="../assets/plugins/respond.min.js"></script>  
+    <script src="../../assets/plugins/respond.min.js"></script>  
     <![endif]-->  
-    <script src="../assets/plugins/jquery-1.10.2.min.js" type="text/javascript"></script>
-    <script src="../assets/plugins/jquery-migrate-1.2.1.min.js" type="text/javascript"></script>
-    <script src="../assets/plugins/bootstrap/js/bootstrap.min.js" type="text/javascript"></script>      
-    <script type="text/javascript" src="../assets/plugins/hover-dropdown.js"></script>
-    <script type="text/javascript" src="../assets/plugins/back-to-top.js"></script>    
+    <script src="../../assets/plugins/jquery-1.10.2.min.js" type="text/javascript"></script>
+    <script src="../../assets/plugins/jquery-migrate-1.2.1.min.js" type="text/javascript"></script>
+    <script src="../../assets/plugins/bootstrap/js/bootstrap.min.js" type="text/javascript"></script>      
+    <script type="text/javascript" src="../../assets/plugins/hover-dropdown.js"></script>
+    <script type="text/javascript" src="../../assets/plugins/back-to-top.js"></script>    
     <!-- END CORE PLUGINS -->
 
     <!-- BEGIN PAGE LEVEL JAVASCRIPTS(REQUIRED ONLY FOR CURRENT PAGE) -->
-    <script type="text/javascript" src="../assets/plugins/fancybox/source/jquery.fancybox.pack.js"></script>  
-    <script src="../assets/scripts/app.js"></script>  
+    <script type="text/javascript" src="../../assets/plugins/fancybox/source/jquery.fancybox.pack.js"></script>  
+    <script src="../../assets/scripts/app.js"></script>  
     <script type="text/javascript">
         jQuery(document).ready(function() {
             App.init();                      
         });
     </script>
-	<script type="text/javascript" src="../assets/scripts/blog.js"></script>
+	<script type="text/javascript" src="../../assets/scripts/blog.js"></script>
     <!-- END PAGE LEVEL JAVASCRIPTS -->
 </body>
 <!-- END BODY -->
