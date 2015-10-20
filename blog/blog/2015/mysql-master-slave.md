@@ -1,55 +1,55 @@
-#mysqlÖ÷´ÓÅäÖÃ
+#mysqlä¸»ä»Žé…ç½®
 
-    °æ±¾£ºmysql5.6
+    ç‰ˆæœ¬ï¼šmysql5.6
     os:centos6.5
-    Ö÷·þÎñÆ÷£º£¨192.168.1.1£©£¬´Ó·þÎñÆ÷£º(192.168.1.2)
+    ä¸»æœåŠ¡å™¨ï¼šï¼ˆ192.168.1.1ï¼‰ï¼Œä»ŽæœåŠ¡å™¨ï¼š(192.168.1.2)
 
-##ÅäÖÃÖ÷·þÎñÆ÷
+##é…ç½®ä¸»æœåŠ¡å™¨
 
-- ÐÞ¸Ä/etc/my.cnfÎÄ¼þ 
-- ÔÚ[mysqld]ÏÂÃæÔö¼Ó£º
+- ä¿®æ”¹/etc/my.cnfæ–‡ä»¶ 
+- åœ¨[mysqld]ä¸‹é¢å¢žåŠ ï¼š
 
         server-id=1
         log-bin=mysqlmaster-bin.log
         sync_binlog=1
-        innodb_buffer_pool_size=8192M #½¨ÒéÅäÖÃÎªÄÚ´æµÄ70%
+        innodb_buffer_pool_size=8192M #å»ºè®®é…ç½®ä¸ºå†…å­˜çš„70%
         innodb_flush_log_at_trx_commit=1
         sql_mode=STRICT_TRANS_TABLES,NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION,NO_AUTO_VALUE_ON_ZERO
         lower_case_table_names=1
         log_bin_trust_function_creators=1
         read-only=0
-        binlog-do-db=dbname #ÒªÍ¬²½µÄÊý¾Ý¿â£¬¿ÉÒÔÅäÖÃ¶à¸ö
+        binlog-do-db=dbname #è¦åŒæ­¥çš„æ•°æ®åº“ï¼Œå¯ä»¥é…ç½®å¤šä¸ª
         binlog-do-db=dbname2
 
-- ÖØÆômysql·þÎñ£º
+- é‡å¯mysqlæœåŠ¡ï¼š
 
         sudo /etc/init.d/mysqld restart
 
-## ÅäÖÃ´Ó·þÎñÆ÷
+## é…ç½®ä»ŽæœåŠ¡å™¨
 
-- ÐÞ¸Ä/etc/my.cnfÎÄ¼þ 
- ÔÚ[mysqld]ÏÂÃæÔö¼Ó£º
+- ä¿®æ”¹/etc/my.cnfæ–‡ä»¶ 
+ åœ¨[mysqld]ä¸‹é¢å¢žåŠ ï¼š
 
         server-id=2
         log-bin=mysqlslave-bin.log
         sync_binlog=1
-        innodb_buffer_pool_size=8096M  #½¨ÒéÅäÖÃÎªÄÚ´æµÄ70%
+        innodb_buffer_pool_size=8096M  #å»ºè®®é…ç½®ä¸ºå†…å­˜çš„70%
         innodb_flush_log_at_trx_commit=1
         sql_mode=STRICT_TRANS_TABLES,NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION,NO_AUTO_VALUE_ON_ZERO
         lower_case_table_names=1
         log_bin_trust_function_creators=1
-- ÖØÆômysql·þÎñ£º
+- é‡å¯mysqlæœåŠ¡ï¼š
 
         sudo /etc/init.d/mysqld restart
-- Ö÷Êý¾Ý¿âÉÏÔö¼Ó´ÓÊý¾Ý¿âÕË»§
+- ä¸»æ•°æ®åº“ä¸Šå¢žåŠ ä»Žæ•°æ®åº“è´¦æˆ·
 
-µÇÂ¼Êý¾Ý¿â£¬Ö´ÐÐ£º 
+ç™»å½•æ•°æ®åº“ï¼Œæ‰§è¡Œï¼š 
 
-    mysql> GRANT REPLICATION SLAVE ON . to ¡®username¡¯@¡¯192.168.1.2¡¯ identified by ¡®password¡¯; 
-    Ëø±í£¨½ûÖ¹ÔÙ²åÈëÊý¾ÝÒÔ»ñÈ¡Ö÷Êý¾Ý¿âµÄµÄ¶þ½øÖÆÈÕÖ¾×ø±ê£©£º 
+    mysql> GRANT REPLICATION SLAVE ON . to â€˜usernameâ€™@â€™192.168.1.2â€™ identified by â€˜passwordâ€™; 
+    é”è¡¨ï¼ˆç¦æ­¢å†æ’å…¥æ•°æ®ä»¥èŽ·å–ä¸»æ•°æ®åº“çš„çš„äºŒè¿›åˆ¶æ—¥å¿—åæ ‡ï¼‰ï¼š 
     FLUSH TABLES WITH READ LOCK;
 
-- »ñÈ¡Ö÷Êý¾Ý¿â¶þ½øÖÆÈÕÖ¾×´Ì¬£º
+- èŽ·å–ä¸»æ•°æ®åº“äºŒè¿›åˆ¶æ—¥å¿—çŠ¶æ€ï¼š
 
         mysql> SHOW MASTER STATUS \G;
         *************************** 1. row ***************************
@@ -59,25 +59,25 @@
         Binlog_Ignore_DB: 
         Executed_Gtid_Set: 
         1 row in set (0.00 sec)
-- ÔÚ´ÓÊý¾Ý¿â·þÎñÆ÷ÖÐµ¼³öÖ÷Êý¾Ý¿âµÄÊý¾Ý¿âÊý¾Ý£º
+- åœ¨ä»Žæ•°æ®åº“æœåŠ¡å™¨ä¸­å¯¼å‡ºä¸»æ•°æ®åº“çš„æ•°æ®åº“æ•°æ®ï¼š
 
         mysqldump -uroot -peasecredit2015 -h192.168.1.1  --all-databases  --triggers --routines --events >all.sql
--È»ºóµ¼Èëµ½ ´ÓÊý¾Ý¿â×Ô¼ºµÄÊý¾Ý¿âÖÐ£º
+-ç„¶åŽå¯¼å…¥åˆ° ä»Žæ•°æ®åº“è‡ªå·±çš„æ•°æ®åº“ä¸­ï¼š
 
         mysql -uroot -peasecredit2015 <all.sql
-- ¸ø´ÓÊý¾Ý¿âÉèÖÃ¸´ÖÆµÄÖ÷Êý¾Ý¿âÐÅÏ¢£¨×¢ÒâÐÞ¸ÄMASTER_LOG_FILEºÍMASTER_LOG_POSµÄÖµ£©
+- ç»™ä»Žæ•°æ®åº“è®¾ç½®å¤åˆ¶çš„ä¸»æ•°æ®åº“ä¿¡æ¯ï¼ˆæ³¨æ„ä¿®æ”¹MASTER_LOG_FILEå’ŒMASTER_LOG_POSçš„å€¼ï¼‰
 
         mysql> CHANGE MASTER TO MASTER_HOST='192.168.1.1',MASTER_USER='username',MASTER_PASSWORD='password',MASTER_LOG_FILE='mysqlmaster-bin.000001',MASTER_LOG_POS=336;
-- ÔÚ´Ó·þÎñÆ÷£ºÆô¶¯´ÓÊý¾Ý¿âµÄ¸´ÖÆÏß³Ì
+- åœ¨ä»ŽæœåŠ¡å™¨ï¼šå¯åŠ¨ä»Žæ•°æ®åº“çš„å¤åˆ¶çº¿ç¨‹
 
         mysql> START slave;
-- ½Ó×Å²éÑ¯Êý¾Ý¿âµÄslave×´Ì¬£º
+- æŽ¥ç€æŸ¥è¯¢æ•°æ®åº“çš„slaveçŠ¶æ€ï¼š
 
         mysql> SHOW slave STATUS \G
-- Èç¹ûÏÂÃæÁ½¸ö²ÎÊý¶¼ÊÇYes£¬ÔòËµÃ÷Ö÷´ÓÅäÖÃ³É¹¦£¡
+- å¦‚æžœä¸‹é¢ä¸¤ä¸ªå‚æ•°éƒ½æ˜¯Yesï¼Œåˆ™è¯´æ˜Žä¸»ä»Žé…ç½®æˆåŠŸï¼
 
         Slave_IO_Running: Yes        
         Slave_SQL_Running: Yes
-## ²âÊÔ
+## æµ‹è¯•
 
-ÔÚÖ÷Êý¾Ý¿âÉÏ´´½¨Ò»¸ötest±í£¬²¢²åÈëÊý¾Ý£¬²é¿´´Ó·þÎñÆ÷Ò²ÓÐ¸üÐÂ¼´¿É¡£
+åœ¨ä¸»æ•°æ®åº“ä¸Šåˆ›å»ºä¸€ä¸ªtestè¡¨ï¼Œå¹¶æ’å…¥æ•°æ®ï¼ŒæŸ¥çœ‹ä»ŽæœåŠ¡å™¨ä¹Ÿæœ‰æ›´æ–°å³å¯ã€‚

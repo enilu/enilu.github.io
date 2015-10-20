@@ -5,10 +5,10 @@
 <!-- BEGIN HEAD -->
 <head>
     <meta charset="utf-8" />
-    <title>enel的技术博客 | redis入门</title>
+    <title>enel的技术博客 | 精选转载</title>
     <meta content="width=device-width, initial-scale=1.0" name="viewport" />
     <meta content="技术博客,enel的技术博客,java" name="description" />
-    <meta content="enel的技术博客，欢迎批评指正,redis,redis入门" name="keywords">
+    <meta content="enel的技术博客，欢迎批评指正，网页转载" name="keywords">
     <meta content="enel" name="author" />
 
    <!-- BEGIN GLOBAL MANDATORY STYLES -->          
@@ -88,10 +88,10 @@
                             <i class="fa fa-angle-down"></i>
                         </a>
                         <ul class="dropdown-menu">
-							<li><a href="../../index.html">全部</a></li>
+							<li  class="active"><a href="../../index.html">全部</a></li>
 							<li><a href="../../index.html">java</a></li>
                             <li><a href="../../index.html">运维</a></li>                           
-						    <li class="active"><a href="../index.html">大数据</a></li>
+						    <li><a href="../index.html">大数据</a></li>
 							<li><a href="../../index.html">web</a></li>
 							<li><a href="../../index.html">管理</a></li>
                            
@@ -129,7 +129,7 @@
         <div class="row breadcrumbs margin-bottom-40">
               <div class="container">
                 <div class="col-md-4 col-sm-4">
-                    <h1>redis入门</h1>
+                    <h1>精选转载</h1>
                 </div>
                 <div class="col-md-8 col-sm-8">
                     <ul class="pull-right breadcrumb">
@@ -149,50 +149,16 @@
 				<!-- BEGIN LEFT SIDEBAR -->            
 				<div class="col-md-9 blog-item margin-bottom-40"> 
 					<p>
-						<h3>What is Redis</h3>
-
-    &nbsp;&nbsp;&nbsp;&nbsp;Redis是一个开源的使用ANSI C语言编写、支持网络、可基于内存亦可持久化的日志型、Key-Value数据库，并提供多种语言的API。<br><br>
-    &nbsp;&nbsp;&nbsp;&nbsp;redis是一个key-value存储系统。和Memcached类似，它支持存储的value类型相对更多，包括string(字符串)、list(链表)、set(集合)、zset(sorted set --有序集合)和hash（哈希类型）。这些数据类型都支持push/pop、add/remove及取交集并集和差集及更丰富的操作，而且这些操作都是原子性的。在此基础上，redis支持各种不同方式的排序。与memcached一样，为了保证效率，数据都是缓存在内存中。区别的是redis会周期性的把更新的数据写入磁盘或者把修改操作写入追加的记录文件，并且在此基础上实现了master-slave(主从)同步。<br><br>
-    &nbsp;&nbsp;&nbsp;&nbsp;Redis 是一个高性能的key-value数据库。 redis的出现，很大程度补偿了memcached这类key/value存储的不足，在部 分场合可以对关系数据库起到很好的补充作用。它提供了Java，C/C++，C#，PHP，JavaScript，Perl，Object-C，Python，Ruby，Erlang等客户端，使用很方便。<br><br>
-    &nbsp;&nbsp;&nbsp;&nbsp;Redis支持主从同步。数据可以从主服务器向任意数量的从服务器上同步，从服务器可以是关联其他从服务器的主服务器。这使得Redis可执行单层树复制。存盘可以有意无意的对数据进行写操作。由于完全实现了发布/订阅机制，使得从数据库在任何地方同步树时，可订阅一个频道并接收主服务器完整的消息发布记录。同步对读取操作的可扩展性和数据冗余很有帮助。<br><br>
-
-	<h3>Download Redis</h3>
-
-    &nbsp;&nbsp;&nbsp;&nbsp;Redis的官网是http://redis.io 直接来这里下载linux/unix版本的redis即可<br><br>
-    &nbsp;&nbsp;&nbsp;&nbsp;Redis官方不提供windows版本，所以如果你想在windows下耍耍可以来这里下载第三方开发者提供的redis的windows版的：https://github.com/MSOpenTech/redis/releases <br><br>
-    &nbsp;&nbsp;&nbsp;&nbsp;下载解压后（这里说的是windows的安装包，linux版本的请自动在脑子里去掉.exe即可）主要有以下几个文件：<br><br>
-	<blockquote>
-	redis-benchmark.exe：性能测试，用以模拟同时由N个客户端发送M个 SETs/GETs 查询 (类似于 Apache 的ab 工具).<br>
-    redis-check-aof.exe：更新日志检查<br>
-	redis-check-dump.exe：本地数据库检查<br>
-	redis-cli.exe：客户端<br>
-	redis-server.exe：服务端<br>
-   </blockquote>
-    另外windows版本解压后会有个redis.windows.conf，linux下为redis.conf
-
-<h3>Install Redis</h3>
-    &nbsp;&nbsp;&nbsp;&nbsp;windows下安装过程即解压过程，解压到某个目录下，比如解压到：D:\Program\redis-2.8.19   
-    linux下按照官方文档指导，几分钟就搞定了：http://redis.io/download
-
-<h3>Configu Reredis</h3>
-   &nbsp;&nbsp;&nbsp;&nbsp; windows下需要稍微进行配置，打开redis.windows.conf文件，找到这一行：
-    # maxheap <bytes>
-    在下面添加：
-    maxheap 1024000000
-    即可
-    linux不需要进行配置
-
-
-<h3>Startup Redis</h3>
-    &nbsp;&nbsp;&nbsp;&nbsp;在安装目录下运行redis-server即可，为了方便可以把redis目录配置到环境变量里面
-    当然在windows下运行还需要加配置文件参数：redis-server redis.windows.conf
-
-    成功运行后，会在控制台显示如下界面：<img src="redis_1.png"/><br><br>
-	 如红色标记所示，启动命令和默认的监听端口<br>
-
-<h3>Test Redis</h3>
-    &nbsp;&nbsp;&nbsp;&nbsp;运行redis-cli命令，即可通过set，get之类的命令来进行测试了<br><br>
-	<img src="redis_2.png"/>
+						
+<h3>七个对我最好的职业建议（精简版）</h3>
+	<br>
+	Nicholas C. Zakas 是全世界最著名的 JavaScript 程序员之一。
+	两年前，他写了一篇长文，回顾自己的职业生涯，提到七个对他来说最重要的建议。我读完很受启发，决定做一点摘录。你可以先读下面的精简版，再去读全文。 <a target="_blank" href="http://www.ruanyifeng.com/blog/2015/09/career-advice.html">点击查看</a>
+<hr>
+<h3>12年老程序员在小米网干了什么</h3><br>
+	本期我们采访的讲师是来自小米科技的架构师、研发部负责人张涛。他于2004年加入金山软件，曾任金山词霸技术副总监，负责后台研发团队的日常工作。组建了金山WPS网站研发团队。
+	2010年加入小米科技至今，先后负责MIUI数据统计分析，小米网，小米网支付，订单处理中心，小米仓储与物流，异步消息，业务监控等系统的开发，以及高负载，大并发系统架构设计，开发团队建设。   <a target="_blank" href="http://www.csdn.net/article/2015-10-12/2825895">点击查看</a>
+ 							
 					</p>
 				 
 					<ul class="blog-info">

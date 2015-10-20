@@ -2,6 +2,8 @@ var categoryArr = [ [ 'total', 3 ], [ 'java', 0 ], [ 'yunwei', 2 ],
 		[ 'bigdata', 1 ], [ 'web', 0 ], [ 'mgr', 0 ] ];
 
 var hotArts = [
+		[ '精选转载', '网上精选文章转载',
+				'http://enilu.github.io/blog/blog/2015/hot_article.html' ],
 		[
 				'Redis入门',
 				'Redis是一个开源的使用ANSI C语言编写、支持网络、可基于内存亦可持久化的日志型、Key-Value数据库，并提供多种语言的API',
