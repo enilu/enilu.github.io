@@ -1,0 +1,98 @@
+
+itext 生成图文混排的pdf文件
+
+    博客分类： 开源 
+
+Windows
+Java代码  收藏代码
+
+    import java.io.FileOutputStream;  
+      
+    import com.lowagie.text.Document;  
+    import com.lowagie.text.Font;  
+    import com.lowagie.text.Image;  
+    import com.lowagie.text.PageSize;  
+    import com.lowagie.text.Paragraph;  
+    import com.lowagie.text.Rectangle;  
+    import com.lowagie.text.pdf.BaseFont;  
+    import com.lowagie.text.pdf.PdfContentByte;  
+    import com.lowagie.text.pdf.PdfPCell;  
+    import com.lowagie.text.pdf.PdfPTable;  
+    import com.lowagie.text.pdf.PdfWriter;  
+      
+       
+    public class Test01 {  
+      
+        /** 
+         * @param args 
+         * @throws Exception 
+         */  
+        public static void main(String args[]) throws Exception {  
+             //itext在pdf中输入中文字体(中文楷体)时：  
+            BaseFont bfChinese  = BaseFont.createFont("C:/WINDOWS/Fonts/SIMKAI.TTF", BaseFont.IDENTITY_H,BaseFont.NOT_EMBEDDED);    
+            // 设置之纸张为A4纸，左右上下边距全部为5，  
+            MyDocument doc = new MyDocument(PageSize.A4, 5, 5, 5, 5);  
+            // 构造好的pdf文件输出位置  
+            PdfWriter pdf = PdfWriter.getInstance(doc, new FileOutputStream(  
+                    "d:/demo.pdf"));  
+            // 打开文件  
+            doc.open();  
+            // 向PDF文件中添加具体内容  
+               
+              
+            PdfPTable table = new PdfPTable(4);  
+            PdfPCell cell = new PdfPCell(new Paragraph("        header with colspan 4"));  
+            cell.setColspan(4);  
+            table.addCell(cell);  
+            //避免因为最后一行数据由于不能满足总列数而导致itext自动将其去掉，而生成一些多余的数  
+            int column = 4;  
+            int persons = 5;  
+            int yushu = persons % 4;  
+               
+            int tmppersons = persons + (column - yushu);  
+            for (int i = 0; i < tmppersons; i++) {  
+                if (i < persons) {  
+                    PdfContentByte cb = pdf.getDirectContent();  
+                    Image image = Image.getInstance("d:/gutianle.jpg");  
+                    //构造一个一列两行的表格  
+                    PdfPTable mytable = new PdfPTable(1);  
+                    //第一行放图片  
+                    mytable.addCell(image);  
+                     Font FontChinese = new Font(bfChinese, 12, Font.NORMAL);  
+                     String cntext = "student名字 \n 北京时海淀区"+i;  
+                      Paragraph userinfo = new Paragraph(cntext, FontChinese);  
+                      //第二行放文字信息  
+                     mytable.addCell(userinfo);  
+                    //mytable.addCell("student名字 \n 地址"+i);  
+                     //在单元格中放置构造好的一个表格  
+                    table.addCell(mytable);  
+                      
+                } else {  
+                    //避免因为最后一行数据由于不能满足总列数而导致itext自动将其去掉，不知道有没有其他方法，目前用多余的空格填充  
+                    table.addCell(" ");  
+                }  
+            }  
+            doc.add(table);   
+            doc.close();  
+        }  
+    }  
+      
+      
+    class MyDocument extends Document {  
+      
+    public MyDocument(Rectangle pageSize, float marginLeft, float marginRight,  
+        float marginTop, float marginBottom) {  
+       // 设置pdf文档纸张大小  
+       this.pageSize = pageSize;  
+       // 分别设置左右上下边距  
+       this.marginLeft = marginLeft;  
+       this.marginRight = marginRight;  
+       this.marginTop = marginTop;  
+       this.marginBottom = marginBottom;  
+      
+    }  
+      
+    }  
+      
+      
+       
