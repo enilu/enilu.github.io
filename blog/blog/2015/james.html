@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+<!--[if IE 8]> <html lang="en" class="ie8"> <![endif]-->
+<!--[if IE 9]> <html lang="en" class="ie9"> <![endif]-->
+<!--[if !IE]><!--> <html lang="en"> <!--<![endif]-->
+<!-- BEGIN HEAD -->
+<head>
+    <meta charset="utf-8" />
+    <title>enel的技术博客 | Apache James快速部署</title>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <meta content="技术博客,enel的技术博客,apache james,邮箱搭建" name="description" />
+    <meta content="enel的技术博客，欢迎批评指正,apache james" name="keywords">
+    <meta content="enel" name="author" />
+
+   <!-- BEGIN GLOBAL MANDATORY STYLES -->          
+   <link href="../../assets/plugins/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css"/>
+   <link href="../../assets/plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
+   <!-- END GLOBAL MANDATORY STYLES -->
+   
+   <!-- BEGIN PAGE LEVEL PLUGIN STYLES --> 
+   <link href="../../assets/plugins/fancybox/source/jquery.fancybox.css" rel="stylesheet" />               
+   <!-- END PAGE LEVEL PLUGIN STYLES -->
+
+   <!-- BEGIN THEME STYLES --> 
+   <link href="../../assets/css/style-metronic.css" rel="stylesheet" type="text/css"/>
+   <link href="../../assets/css/style.css" rel="stylesheet" type="text/css"/>
+   <link href="../../assets/css/themes/blue.css" rel="stylesheet" type="text/css" id="style_color"/>
+   <link href="../../assets/css/style-responsive.css" rel="stylesheet" type="text/css"/>
+   <link href="../../assets/css/custom.css" rel="stylesheet" type="text/css"/>
+   <!-- END THEME STYLES -->
+
+   <link rel="shortcut icon" href="favicon.ico" />
+</head>
+<!-- END HEAD -->
+
+<!-- BEGIN BODY -->
+<body>
+	<!-- BEGIN STYLE CUSTOMIZER -->
+	<div class="color-panel hidden-sm">
+		<div class="color-mode-icons icon-color"></div>
+		<div class="color-mode-icons icon-color-close"></div>
+		<div class="color-mode">
+			<p>THEME COLOR</p>
+			<ul class="inline">
+				<li class="color-blue current color-default" data-style="blue"></li>
+				<li class="color-red" data-style="red"></li>
+				<li class="color-green" data-style="green"></li>
+				<li class="color-orange" data-style="orange"></li>
+			</ul>
+			<label>
+				<span>Header</span>
+				<select class="header-option form-control input-small">
+					<option value="default" selected>Default</option>
+					<option value="fixed">Fixed</option>
+				</select>
+			</label>
+		</div>
+	</div>
+	<!-- END BEGIN STYLE CUSTOMIZER -->     
+	
+    <!-- BEGIN HEADER -->
+    <div class="header navbar navbar-default navbar-static-top">
+        <div class="container">
+            <div class="navbar-header">
+                <!-- BEGIN RESPONSIVE MENU TOGGLER -->
+                <button class="navbar-toggle btn navbar-btn" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <!-- END RESPONSIVE MENU TOGGLER -->
+                <!-- BEGIN LOGO (you can use logo image instead of text)-->
+                <a class="navbar-brand logo-v1" href="index.html">
+                    <img src="../../assets/img/logo_blue.png" id="logoimg" alt="" style="width:200px;height:60px">
+                </a>
+                <!-- END LOGO -->
+            </div>
+        
+            <!-- BEGIN TOP NAVIGATION MENU -->
+            <div class="navbar-collapse collapse">
+                <ul class="nav navbar-nav">
+                    
+                     <li><a href="http://enilu.github.io/blog" target="_blank">首页</a></li>
+                    
+                   
+                    <li class="dropdown active">
+                        <a class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-delay="0" data-close-others="false" href="#">
+                            博客
+                            <i class="fa fa-angle-down"></i>
+                        </a>
+                        <ul class="dropdown-menu">
+							<li><a href="../../index.html">全部</a></li>
+							<li><a href="../../index.html">java</a></li>
+                            <li><a href="../../index.html">运维</a></li>                           
+						    <li class="active"><a href="../index.html">大数据</a></li>
+							<li><a href="../../index.html">web</a></li>
+							<li><a href="../../index.html">管理</a></li>
+                           
+                        </ul>
+                    </li>
+                       <li><a href="#">举个栗子</a></li>
+                       <li><a href="#">玩儿</a></li>
+                     
+                    <li class="menu-search">
+                        <span class="sep"></span>
+                        <i class="fa fa-search search-btn"></i>
+
+                        <div class="search-box">
+                            <form action="#">
+                                <div class="input-group input-large">
+                                    <input class="form-control" type="text" placeholder="Search">
+                                    <span class="input-group-btn">
+                                        <button type="submit" class="btn theme-btn">Go</button>
+                                    </span>
+                                </div>
+                            </form>
+                        </div> 
+                    </li>
+                </ul>                           
+            </div>
+            <!-- BEGIN TOP NAVIGATION MENU -->
+        </div>
+    </div>
+    <!-- END HEADER -->
+
+    <!-- BEGIN PAGE CONTAINER -->  
+    <div class="page-container">
+
+        <!-- BEGIN BREADCRUMBS -->   
+        <div class="row breadcrumbs margin-bottom-40">
+              <div class="container">
+                <div class="col-md-4 col-sm-4">
+                    <h1>Apache James快速部署</h1>
+                </div>
+                <div class="col-md-8 col-sm-8">
+                    <ul class="pull-right breadcrumb">
+                        <li><a href="http://enilu.github.io/blog/">首页</a></li>
+                        <li><a href="http://enilu.github.io/blog/">博客</a></li>
+                        <li class="active">文章详情</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <!-- END BREADCRUMBS -->
+
+		<!-- BEGIN CONTAINER -->   
+		<div class="container min-hight">
+			<!-- BEGIN BLOG -->
+			<div class="row">
+				<!-- BEGIN LEFT SIDEBAR -->            
+				<div class="col-md-9 blog-item margin-bottom-40"> 
+					<p>
+					1，下载安装
+Apache James是Aapache组织出品的开源邮件系统。下载直接去起官方网站下载即可，安装也是个结业过程。
+2，配置
+   2.1，环境配置
+            apache james运行需要jvm，保证所在主机安装jdk即可
+    2.2，端口配置
+            apache james 使用到的端口包括： pop3端口（110）；SMTP端口（25）；NNTP端口（119）；还有一个telnet服务端口（4555）；这几个端口都在james_home/apps/james/SAR-INF/config.xml配置文件中，可以根据需要自定义这些端口。
+    2.3，启动应用
+            配置完毕james后，就可以启动了，启动命令很简单，只需要运行bin/run.sh即可 。也可以使用nohup命令后台运行这个脚本
+    2.4，创建用户
+                接下来我们在James上建若干用户。James以telnet 的方式提供了接口用来添加用户。下面我来演示一下。
+首先使用telnet来连接james的remote manager .
+1.telnet localhost 4555 回车
+2.然后输入管理员用户名和密码（user/pwd ： root/root 是默认设置这个可以在config.xml中修改）
+<pre>
+JAMES Remote Administration Tool 2.3.1
+Please enter your login and password
+Login id:
+root
+Password:
+root
+Welcome root. HELP for a list of commands
+</pre>
+3.添加用户
+<pre>
+adduser kakaxi kakaxi
+User kakaxi added
+Adduser mingren mingren
+User mingren added
+</pre>
+4.查看添加情况
+<pre>
+listusers
+Existing accounts 2
+user: mingren
+user: kakaxi
+<pre>
+得到上面的信息说明我们已经添加成功。
+ 
+					</p>
+				 
+					<ul class="blog-info">
+						<li><i class="fa fa-user"></i> By enel</li>
+						<li><i class="fa fa-calendar"></i> 04/07/2015</li>
+						<li><i class="fa fa-comments"></i> 0</li>
+						<li><i class="fa fa-tags"></i> apache james,开源</li>
+					</ul>				 
+				 
+					 
+					<div class="post-comment">
+						 
+						<form role="form">
+							 
+							<p><a class="btn btn-default theme-btn" href="mailto:eniluzt@qq.com">联系我</a></p>
+						</form>
+					</div>
+				</div>
+				<!-- END LEFT SIDEBAR -->
+
+				<!-- BEGIN RIGHT SIDEBAR -->            
+				<div class="col-md-3 blog-sidebar">
+					<!-- CATEGORIES START -->
+					<h2 class="no-top-space">文章列表</h2>
+					<ul class="nav sidebar-categories margin-bottom-40">
+						<li><a href="#">全部<span>(0)</span></a></li>
+						<li><a href="#">java <span>(0)</span></a></li>
+						<li class="active"><a href="#">运维<span>(0)</span></a></li>
+						<li><a href="#">大数据<span>(0)</span></a></li>
+						<li><a href="#">web <span>(0)</span></a></li>
+						<li><a href="#">管理<span>(0)</span></a></li>
+					</ul>
+					<!-- CATEGORIES END -->
+					
+					<!-- BEGIN RECENT NEWS -->                            
+					<h2>热门文章</h2>
+					 <div class="recent-news margin-bottom-10">
+						<div class="row margin-bottom-10">
+							 
+							<div class="col-md-12 recent-news-inner">
+								<h3><a href="#">Letiusto gnissimos</a></h3>
+								<p>Decusamus tiusto odiodig nis simos ducimus qui sint</p>
+							</div>                        
+						</div>
+						<div class="row margin-bottom-10">
+							 
+							<div class="col-md-12 recent-news-inner">
+								<h3><a href="#">Letiusto gnissimos</a></h3>
+								<p>Decusamus tiusto odiodig nis simos ducimus qui sint</p>
+							</div>                        
+						</div>
+						<div class="row margin-bottom-10">
+							 
+							<div class="col-md-12 recent-news-inner">
+								<h3><a href="#"></a></h3>
+								<p></p>
+							</div>                        
+						</div>
+						<div class="row margin-bottom-10">
+							 
+							<div class="col-md-12 recent-news-inner">
+								<h3><a href="#"></a></h3>
+								<p></p>
+							</div>                        
+						</div>
+						<div class="row margin-bottom-10">
+							 
+							<div class="col-md-12 recent-news-inner">
+								<h3><a href="#"></a></h3>
+								<p></p>
+							</div>                        
+						</div>
+						 
+					</div> 
+					<!-- END RECENT NEWS -->                            
+ 	 
+
+					<!-- BEGIN BLOG TAGS -->
+					<div class="blog-tags margin-bottom-20">
+						<h2>热门标签</h2>
+						<ul>
+							<li><a href="#"><i class="fa fa-tags"></i>大数据</a></li>
+							<li><a href="#"><i class="fa fa-tags"></i>hadoop</a></li>
+							<li><a href="#"><i class="fa fa-tags"></i>elastic search</a></li>
+							<li><a href="#"><i class="fa fa-tags"></i>nutch</a></li>
+							<li><a href="#"><i class="fa fa-tags"></i>性能优化</a></li>
+							<li><a href="#"><i class="fa fa-tags"></i>爬虫</a></li>
+							<li><a href="#"><i class="fa fa-tags"></i>举个栗子</a></li>
+							<li><a href="#"><i class="fa fa-tags"></i>redis</a></li>
+						</ul>
+					</div>
+					<!-- END BLOG TAGS -->
+				</div>
+				<!-- END RIGHT SIDEBAR -->            
+			</div>
+			<!-- END BEGIN BLOG -->
+		</div>
+		<!-- END CONTAINER -->
+
+	</div>
+    <!-- END BEGIN PAGE CONTAINER -->  
+	
+	
+    <!-- BEGIN FOOTER -->
+    <div class="footer">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4 col-sm-4 space-mobile">
+                    <!-- BEGIN ABOUT -->                    
+                    <h2>关于我</h2>
+                    <p class="margin-bottom-30">年近三十而不立；身为笨鸟而不先飞；知错而不悔改；空谈梦想而不行动；是也。</p>
+                    <div class="clearfix"></div>                    
+                    <!-- END ABOUT -->                               
+                </div>
+                <div class="col-md-4 col-sm-4 space-mobile">
+                    <!-- BEGIN CONTACTS -->                                    
+                    <h2>联系我</h2>
+                    <address class="margin-bottom-40">
+                       easecredit. <br />
+                        北京.朝阳 <br />
+                         
+                        QQ:909051758 <br />
+                        Email: <a href="mailto:eniluzt@qq.com">eniluzt@qq.com</a>                        
+                    </address>
+                                                   
+                </div>
+					<div class="col-md-4 col-sm-4 space-mobile">
+                    <!-- BEGIN CONTACTS -->                                    
+                    <h2>友情链接</h2>
+                    <address class="margin-bottom-40">
+                       网站使用metronic模版，感谢，<a target="_blank" href="http://themeforest.net/item/metronic-responsive-admin-dashboard-template/4021469">go to metronic</a>  </address>                                                   
+                </div>
+               
+            </div>
+        </div>
+    </div>
+    <!-- END FOOTER -->
+
+    <!-- BEGIN COPYRIGHT -->
+    <div class="copyright">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-8">
+                    <p>
+                        <span class="margin-right-10">2015 © eniluzt. ALL Rights Reserved.</span> 
+                         
+                    </p>
+                </div>
+                
+            </div>
+        </div>
+    </div>
+    <!-- END COPYRIGHT -->
+
+    <!-- Load javascripts at bottom, this will reduce page load time -->
+    <!-- BEGIN CORE PLUGINS(REQUIRED FOR ALL PAGES) -->
+    <!--[if lt IE 9]>
+    <script src="../../assets/plugins/respond.min.js"></script>  
+    <![endif]-->  
+    <script src="../../assets/plugins/jquery-1.10.2.min.js" type="text/javascript"></script>
+    <script src="../../assets/plugins/jquery-migrate-1.2.1.min.js" type="text/javascript"></script>
+    <script src="../../assets/plugins/bootstrap/js/bootstrap.min.js" type="text/javascript"></script>      
+    <script type="text/javascript" src="../../assets/plugins/hover-dropdown.js"></script>
+    <script type="text/javascript" src="../../assets/plugins/back-to-top.js"></script>    
+    <!-- END CORE PLUGINS -->
+
+    <!-- BEGIN PAGE LEVEL JAVASCRIPTS(REQUIRED ONLY FOR CURRENT PAGE) -->
+    <script type="text/javascript" src="../../assets/plugins/fancybox/source/jquery.fancybox.pack.js"></script>  
+    <script src="../../assets/scripts/app.js"></script>  
+    <script type="text/javascript">
+        jQuery(document).ready(function() {
+            App.init();                      
+        });
+    </script>
+	<script type="text/javascript" src="../../assets/scripts/blog.js"></script>
+    <!-- END PAGE LEVEL JAVASCRIPTS -->
+</body>
+<!-- END BODY -->
+</html>
