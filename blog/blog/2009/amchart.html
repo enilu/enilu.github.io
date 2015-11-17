@@ -151,7 +151,7 @@
 					<p>
                         # 用amchart的时候遇到一个难题：将数据库里的数据生成xml
                         （mysql5.0）sql脚本
-
+			<pre> 
                         <code>
                             CREATE TABLE `hostdiskinfo` (
                             `hdid` bigint(20) NOT NULL auto_increment,
@@ -161,9 +161,9 @@
                             PRIMARY KEY (`hdid`)
                             ) ；
                         </code>
-
+			</pre>
                         这是查询结果：
-
+			<pre>
                         <code>
                             mysql> select hdiskinfo,begintime from hostdiskinfo where hostid=11
                             +-------------------------+---------------------+
@@ -179,9 +179,9 @@
                             +-------------------------+---------------------+
                             7 rows in set (0.00 sec)
                         </code>
-
+			</pre>
                         现在的要求是要将以上的查询结果以下面形式写入到xml文件里面：
-
+			<pre> 
                         <code>
                             <?xml version="1.0" encoding="UTF-8"?>
                             <chart>
@@ -225,9 +225,9 @@
                                 </graphs>
                             </chart>
                         </code>
-
+			</pre>
                         下面是我之前的实现方法：
-
+			<pre> 
                         <code>
                             package org.enilu.util.amchart;
 
@@ -418,7 +418,7 @@
                             }
                             }
                         </code>
-
+			</pre>
                         我想不到其他的实现方法，本来打算在for循环里动态new graph实例，但是我做不到，不知哪位高人路过你呢个指点下^_^
                         效果图如下：
 
@@ -426,7 +426,7 @@
 
 
                         后来朋友给了个更好的循环方法，贴这儿^_^：
-
+			<pre> 
                         <code>
                             package org.enilu.util.amchart;
 
@@ -574,7 +574,7 @@
                             }
 
                         </code>
-
+			</pre>
                     </p>
 				 
 					<ul class="blog-info">
