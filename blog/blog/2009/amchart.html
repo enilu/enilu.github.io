@@ -182,7 +182,7 @@ mysql> select hdiskinfo,begintime from hostdiskinfo where hostid=11
 </pre>
 现在的要求是要将以上的查询结果以下面形式写入到xml文件里面：
 <xmp>  
-	
+<code> 
 <?xml version="1.0" encoding="UTF-8"?>
 <chart>
 <series>
@@ -224,7 +224,7 @@ mysql> select hdiskinfo,begintime from hostdiskinfo where hostid=11
     </graph>
 </graphs>
 </chart>
-
+</code>
 </xmp>
 下面是我之前的实现方法：
 <pre> 
