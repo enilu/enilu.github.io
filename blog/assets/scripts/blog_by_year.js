@@ -27,7 +27,34 @@ var year2014 = [{
     'title': '使用Jsoup解析HTML文档',
     'href': 'blog/2014/jsoup.html',
     'descript': 'Jsoup是一款开源的抓取和解析网页的java组件，它可以很方便的对静态html进行解析，也可以方便的根据URL获取动态的页面内容，支持POST和get方式请求，而且支持参数的传递。其设计非常简单易用，毫无学习压力。 '
-}];
+}, {
+    'title': 'apache shiro踢出用户和获取所有在线用户',
+    'href': 'blog/2014/apache_shiro.html',
+    'descript': '产品要求用户只能在同一个地方登录，如果之前在其他机器或者浏览器上登录，讲之前登录帐号踢出。applicationContext-shiro.xml配置：    在默认的shiro配置上增加如下配置(本文假设你已经使用过apache shiro，并且已经使用shiro成功实现登录功能）：'
+}, {
+    'title': 'lucene in action 读书笔记-实践1简单的桌面搜索器',
+    'href': 'blog/2014/lucene_desktop.html',
+    'descript': '需求，做一个桌面搜索小工具，将制定的目录下的文件，生成索引，提供一个搜索界面，输入关键字，在内容里搜索匹配的文件，列出文件信息：'
+}
+    , {
+        'title': 'nginx和tomcat负载均衡',
+        'href': 'blog/2014/nginx_tomcat.html',
+        'descript': '前段时间领导总是要看系统，但是系统总是频繁更新，为了避免更新系统的时候领导看不到东西，打算用ngix做代理，后台部署两个tomcat做负载均衡，避免更新一台就无法使用系统的问题，这两天看了写资料，把几个关键点记录在这里以便备忘。'
+    }
+    , {
+        'title': 'lucene in action 读书笔记',
+        'href': 'blog/2014/lucene_in_action.html',
+        'descript': '09年的时候就接触了lucene，可惜一直没有机会在项目中实战，去年终于有机会在项目离使用，可惜由于当时时间紧张，没有好好深入，只是用到什么看什么。最近重新看了下《Lucene In Action》，算是系统的对lucene有个了解，该笔记记录了该书中第一章，主要针对Lucene的级别概念和用法做了描述。'
+    }
+    , {
+        'title': '5分钟看懂BSON协议',
+        'href': 'blog/2014/bson.html',
+        'descript': 'NOSQL从10年开始已经发展了4年了。其中最火的Mongodb也被人熟知，不过自己一直没有机会了解下这方面东东，最近有时间稍微看了下Mongodb的bson协议，在同事的指导下，整理出来分享给大家。至于BSON的概念我就不赘述了，自己找度娘。'
+    }
+    , {'title': '', 'href': '', 'descript': ''}
+    , {'title': '', 'href': '', 'descript': ''}
+    , {'title': '', 'href': '', 'descript': ''}
+    , {'title': '', 'href': '', 'descript': ''}];
 var year2015 = [{
     'title': 'CentOS配置ip冗余配置',
     'href': 'blog/2015/ipbond.html',
