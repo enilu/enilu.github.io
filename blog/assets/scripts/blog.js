@@ -20,7 +20,7 @@ var setHotTags = function () {
 }
 setHotTags();
 
-var yearCateories = [{'title': '2015', 'count': 5, 'href': '2015.html'},{'title': '2014', 'count': 1, 'href': '2014.html'}, {'title': '2009', 'count': 5, 'href': '2009.html'}]
+var yearCateories = [{'title': '2015', 'count': 6, 'href': '2015.html'},{'title': '2014', 'count': 2, 'href': '2014.html'}, {'title': '2009', 'count': 5, 'href': '2009.html'}]
 var setYearCateories = function () {
     for (var i = 0; i < yearCateories.length; i++) {
         $('.sidebar-categories').append('<li><a href="' + rootPath+yearCateories[i].href + '">' + yearCateories[i].title + ' (' + yearCateories[i].count + ')</a></li>')

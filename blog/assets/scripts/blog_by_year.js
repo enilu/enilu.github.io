@@ -44,12 +44,20 @@ var year2015 = [{
     'title': 'Redis入门',
     'href': 'blog/2015/redis.html',
     'descript': 'Redis是一个开源的使用ANSI C语言编写、支持网络、可基于内存亦可持久化的日志型、Key-Value数据库，并提供多种语言的API。 redis是一个key-value存储系统。和Memcached类似，它支持存储的value类型相对更多，包括string(字符串)、list(链表)、set(集合)、zset(sorted set --有序集合)和hash（哈希类型）。'
+}, {
+    'title': '使用Jsoup解析HTML文档',
+    'href': 'blog/2015/jsoup.html',
+    'descript': 'Jsoup是一款开源的抓取和解析网页的java组件，它可以很方便的对静态html进行解析，也可以方便的根据URL获取动态的页面内容，支持POST和get方式请求，而且支持参数的传递。其设计非常简单易用，毫无学习压力。 '
+}, {
+    'title': 'ElasticSearch 简单入门 ',
+    'href': 'blog/2015/es_start.html',
+    'descript': 'ElasticSearch是一个开源的分布式搜索引擎，具备高可靠性，支持非常多的企业级搜索用例。像Solr4一样，是基于Lucene构建的。支持时间时间索引和全文检索。官网：http://www.elasticsearch.org.  它对外提供一系列基于java和http的api，用于索引、检索、修改大多数配置。'
 }]
 
 var loadByYear = function (datalist) {
     for (var i = 0; i < datalist.length; i++) {
         var article = datalist[i];
-        if(article.title==''){
+        if (article.title == '') {
             continue;
         }
         var item = '<div class="search-result-item">';
