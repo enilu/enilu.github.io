@@ -19,7 +19,11 @@ var year2009 = [{
     'href': 'blog/2009/starttelnet.html',
     'descript': 'Linux默认没有开启telnet，首先更改/etc/xinetd.d/telnet文件，有的可能没有该文件，有比如krb5-telnet之类的，那就更改这个文件，如果实在一个跟telnet沾边的文件都没有；可能是没有安装telent服务，就需要拿盘再安装了，或者安装后还没有，就新建一个该文件，文件内容为：'
 }];
-
+var year2014 = [{
+    'title': '通过统计nginx访问日志禁止恶意抓取数据的实现 ',
+    'href': 'blog/2014/nginx_log.html',
+    'descript': '业务需求：每小时读取access.log内容，统计每个ipd访问系统次数，如果超过指定次数，则将该ip加入到防火墙中，以便禁止其继续访问（后续可以考虑不是禁止其访问服务，而是重定向到指定的页面）。这样避免别人恶意从自己网站上抓取数据 '
+}, {'title': '', 'href': '', 'descript': ''}];
 var year2015 = [{
     'title': 'CentOS配置ip冗余配置',
     'href': 'blog/2015/ipbond.html',
@@ -45,6 +49,9 @@ var year2015 = [{
 var loadByYear = function (datalist) {
     for (var i = 0; i < datalist.length; i++) {
         var article = datalist[i];
+        if(article.title==''){
+            continue;
+        }
         var item = '<div class="search-result-item">';
         item += '<h4><a href="' + article.href + '">' + article.title + '</a></h4>';
         item += '<p>' + article.descript + '</p>';
