@@ -5,27 +5,27 @@
 <!-- BEGIN HEAD -->
 <head>
     <meta charset="utf-8" />
-    <title>enilu's blog</title>
+    <title>enilu的技术博客 | c#连接mysql</title>
     <meta content="width=device-width, initial-scale=1.0" name="viewport" />
-    <meta content="技术博客,enilu的技术博客,java" name="description" />
-    <meta content="enilu的技术博客，欢迎批评指正" name="keywords">
+    <meta content="技术博客,enilu的技术博客,c#,mysql" name="description" />
+    <meta content="enilu的技术博客，欢迎批评指正,c#连接mysql" name="keywords">
     <meta content="enilu" name="author" />
 
    <!-- BEGIN GLOBAL MANDATORY STYLES -->          
-   <link href="assets/plugins/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css"/>
-   <link href="assets/plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
+   <link href="../../assets/plugins/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css"/>
+   <link href="../../assets/plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
    <!-- END GLOBAL MANDATORY STYLES -->
    
    <!-- BEGIN PAGE LEVEL PLUGIN STYLES --> 
-   <link href="assets/plugins/fancybox/source/jquery.fancybox.css" rel="stylesheet" />                              
+   <link href="../../assets/plugins/fancybox/source/jquery.fancybox.css" rel="stylesheet" />               
    <!-- END PAGE LEVEL PLUGIN STYLES -->
 
    <!-- BEGIN THEME STYLES --> 
-   <link href="assets/css/style-metronic.css" rel="stylesheet" type="text/css"/>
-   <link href="assets/css/style.css" rel="stylesheet" type="text/css"/>
-   <link href="assets/css/themes/blue.css" rel="stylesheet" type="text/css" id="style_color"/>
-   <link href="assets/css/style-responsive.css" rel="stylesheet" type="text/css"/>
-   <link href="assets/css/custom.css" rel="stylesheet" type="text/css"/>
+   <link href="../../assets/css/style-metronic.css" rel="stylesheet" type="text/css"/>
+   <link href="../../assets/css/style.css" rel="stylesheet" type="text/css"/>
+   <link href="../../assets/css/themes/blue.css" rel="stylesheet" type="text/css" id="style_color"/>
+   <link href="../../assets/css/style-responsive.css" rel="stylesheet" type="text/css"/>
+   <link href="../../assets/css/custom.css" rel="stylesheet" type="text/css"/>
    <!-- END THEME STYLES -->
 
    <link rel="shortcut icon" href="favicon.ico" />
@@ -56,7 +56,7 @@
 		</div>
 	</div>
 	<!-- END BEGIN STYLE CUSTOMIZER -->     
-		
+	
     <!-- BEGIN HEADER -->
     <div class="header navbar navbar-default navbar-static-top">
         <div class="container">
@@ -70,7 +70,7 @@
                 <!-- END RESPONSIVE MENU TOGGLER -->
                 <!-- BEGIN LOGO (you can use logo image instead of text)-->
                 <a class="navbar-brand logo-v1" href="index.html">
-                    <img src="assets/img/logo_blue.png" id="logoimg" alt="" style="width:200px;height:60px">
+                    <img src="../../assets/img/logo_blue.png" id="logoimg" alt="" style="width:200px;height:60px">
                 </a>
                 <!-- END LOGO -->
             </div>
@@ -78,11 +78,12 @@
             <!-- BEGIN TOP NAVIGATION MENU -->
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
-					<li ><a href="#" target="_blank">首页</a></li>
-					<li  class="active"><a href="#">博客</a></li>
-					<li><a href="blog/2015/hot_article.html">精选转载</a></li>
-					<li><a href="#">举个栗子</a></li>
-                       
+                    <li><a href="../../index.html" target="_blank">首页</a></li>
+                    <li class="active"><a href="../../index.html">博客</a></li>
+                    <li><a href="../2015/hot_article.html">精选转载</a></li>
+                    <li><a href="#">举个栗子</a></li>
+
+                     
                     <li class="menu-search">
                         <span class="sep"></span>
                         <i class="fa fa-search search-btn"></i>
@@ -98,7 +99,7 @@
                             </form>
                         </div> 
                     </li>
-                </ul>                         
+                </ul>                           
             </div>
             <!-- BEGIN TOP NAVIGATION MENU -->
         </div>
@@ -107,17 +108,18 @@
 
     <!-- BEGIN PAGE CONTAINER -->  
     <div class="page-container">
-	
+
         <!-- BEGIN BREADCRUMBS -->   
         <div class="row breadcrumbs margin-bottom-40">
-            <div class="container">
+              <div class="container">
                 <div class="col-md-4 col-sm-4">
-                    <h1>文章列表</h1>
+                    <h1>c#连接mysql</h1>
                 </div>
                 <div class="col-md-8 col-sm-8">
                     <ul class="pull-right breadcrumb">
-						<li><a href="#">首页</a></li>
-						<li class="active"><a href="#">博客</a></li>
+                        <li><a href="../../index.html">首页</a></li>
+                        <li><a href="../../index.html">博客</a></li>
+                        <li class="active">文章详情</li>
                     </ul>
                 </div>
             </div>
@@ -129,111 +131,93 @@
 			<!-- BEGIN BLOG -->
 			<div class="row">
 				<!-- BEGIN LEFT SIDEBAR -->            
-				<div class="col-md-9 col-sm-9 blog-posts margin-bottom-40">
+				<div class="col-md-9 blog-item margin-bottom-40"> 
+				 <p>
 
-					<div class="row" style="display: none">
-						<div class="col-md-4 col-sm-4">
-							<img src="图片" alt="" class="img-responsive">
-						</div>
-						<div class="col-md-8 col-sm-8">
-							<h2><a href="链接" tag="title">标题</a></h2>
-							<ul class="blog-info">
-								<li><i class="fa fa-calendar"></i> 日期 &nbsp;</li>
-								<!--
-								<li><i class="fa fa-comments"></i> 1</li>
-								-->
-								<li><i class="fa fa-tags"></i> 标签&nbsp;</li>
-							</ul>
-							<p> 文章简介</p>
-							<a class="more" href="连接">阅读全文<i class="fa fa-angle-right"></i></a>
-						</div>
+
+                     &nbsp;&nbsp;&nbsp;&nbsp;想用c#做点桌面应用，可是又不想用sqlserver，准备用mysql，找了些资料，先来个简单的连接例子：<br>
+                     &nbsp;&nbsp;&nbsp;&nbsp;首先要下载mysql的的.net驱动，我下的是：mysql-connector-net-5.0.3，下载地址：ftp://gd.tuwien.ac.at/db/mysql/Downloads/Connector-Net/   这里也可以：http://library.pantek.com/Applications/MySQL/Downloads/Connector-Net/<br>
+
+                     &nbsp;&nbsp;&nbsp;&nbsp;然后双击安装MySql.Data.msi，安装后会在安装目录中有关bin目录Binaries\.Net2.0\MySql.Data.dll,在建立的c#项目中引用该dll，<br>
+
+                     测试代码如下：
+<pre><code>
+ using System;
+ using System.Collections.Generic;
+ using System.Text;
+ using MySql.Data.MySqlClient;
+
+ namespace testmysql
+ {
+    class DBUtil
+     {
+         public static void main(String[] args) {
+            new DBUtil().getData("select * from tablename");
+        }
+         public void getData(String sql){
+             MySqlConnection conn = null;
+             MySqlCommand command = null;
+             MySqlDataReader reader = null;
+             try
+             {
+                 conn = new MySqlConnection("Server=localhost;User Id=root;Password=root;Persist Security Info=True;Database=test");
+                 command = conn.CreateCommand();
+                 command.CommandText = sql;
+                 conn.Open();
+                 reader = command.ExecuteReader();
+                 while (reader.Read())
+                 {
+                     Console.WriteLine(reader[0]);
+                     Console.WriteLine(reader[1]);
+                     Console.WriteLine(reader[2]);
+                 }
+             }
+             catch (MySqlException se)
+             {
+                 Console.WriteLine("Database operation errors : " + se.StackTrace);
+                 conn.Close();
+                 command = null;
+                 reader.Close();
+             }
+        }
+
+     }
+ }
+
+</code></pre>
+
+                 </p>
+				 
+					<ul class="blog-info">
+						<li><i class="fa fa-user"></i> By enilu</li>
+						<li><i class="fa fa-calendar"></i> 24/10/2009</li>
+						<li><i class="fa fa-comments"></i> 0</li>
+						<li><i class="fa fa-tags"></i> c#,mysql</li>
+					</ul>				 
+				 
+					 
+					<div class="post-comment">
+						 
+						<form role="form">
+							 
+							<p><a class="btn btn-default theme-btn" href="mailto:eniluzt@qq.com">联系我</a></p>
+						</form>
 					</div>
-
-					<hr class="blog-post-sep">
-
-					<div class="row" style="display: none">
-						<div class="col-md-4 col-sm-4">
-							<img src="图片" alt="" class="img-responsive">
-						</div>
-						<div class="col-md-8 col-sm-8">
-							<h2><a href="链接" tag="title">标题</a></h2>
-							<ul class="blog-info">
-								<li><i class="fa fa-calendar"></i> 日期 &nbsp;</li>
-								<!--
-								<li><i class="fa fa-comments"></i> 1</li>
-								-->
-								<li><i class="fa fa-tags"></i> 标签&nbsp;</li>
-							</ul>
-							<p> 文章简介</p>
-							<a class="more" href="连接">阅读全文<i class="fa fa-angle-right"></i></a>
-						</div>
-					</div>
-
-					<hr class="blog-post-sep">
-					<div class="row" style="display: none">
-						<div class="col-md-4 col-sm-4">
-							<img src="图片" alt="" class="img-responsive">
-						</div>
-						<div class="col-md-8 col-sm-8">
-							<h2><a href="链接" tag="title">标题</a></h2>
-							<ul class="blog-info">
-								<li><i class="fa fa-calendar"></i> 日期 &nbsp;</li>
-								<!--
-								<li><i class="fa fa-comments"></i> 1</li>
-								-->
-								<li><i class="fa fa-tags"></i> 标签&nbsp;</li>
-							</ul>
-							<p> 文章简介</p>
-							<a class="more" href="连接">阅读全文<i class="fa fa-angle-right"></i></a>
-						</div>
-					</div>
-
-					<hr class="blog-post-sep">
-					<div class="row" style="display: none">
-						<div class="col-md-4 col-sm-4">
-							<img src="图片" alt="" class="img-responsive">
-						</div>
-						<div class="col-md-8 col-sm-8">
-							<h2><a href="链接" tag="title">标题</a></h2>
-							<ul class="blog-info">
-								<li><i class="fa fa-calendar"></i> 日期 &nbsp;</li>
-								<!--
-								<li><i class="fa fa-comments"></i> 1</li>
-								-->
-								<li><i class="fa fa-tags"></i> 标签&nbsp;</li>
-							</ul>
-							<p> 文章简介</p>
-							<a class="more" href="连接">阅读全文<i class="fa fa-angle-right"></i></a>
-						</div>
-					</div>
-
-
-					<hr class="blog-post-sep">
-					<!--
-					<div class="text-center">
-						<ul class="pagination pagination-centered">
-							<li><a href="#">上页</a></li>
-							<li class="active"><a href="#">1</a></li>
-							<li><a href="#">2</a></li>
-							<li><a href="#">3</a></li>
-							<li><a href="#">4</a></li>
-							<li><a href="#">5</a></li>
-							<li><a href="#">下页</a></li>
-						</ul>
-					</div>
-					 -->
 				</div>
 				<!-- END LEFT SIDEBAR -->
 
 				<!-- BEGIN RIGHT SIDEBAR -->            
-				<div class="col-md-3 col-sm-3 blog-sidebar">
-					<h2>分类</h2>
+				<div class="col-md-3 blog-sidebar">
+					<!-- CATEGORIES START -->
+					<h2 class="no-top-space">文章列表</h2>
 					<ul class="nav sidebar-categories margin-bottom-40">
 
 					</ul>
+					<!-- CATEGORIES END -->
+					
 					<!-- BEGIN RECENT NEWS -->                            
 					<h2>热门文章</h2>
-					<div class="recent-news margin-bottom-10">
+					 <div class="recent-news margin-bottom-10">
 						<div class="row margin-bottom-10">
 							 
 							<div class="col-md-12 recent-news-inner">
@@ -270,14 +254,14 @@
 							</div>                        
 						</div>
 						 
-					</div>
-					<!-- END RECENT NEWS -->     
+					</div> 
+					<!-- END RECENT NEWS -->                            
+ 	 
 
 					<!-- BEGIN BLOG TAGS -->
 					<div class="blog-tags margin-bottom-20">
 						<h2>热门标签</h2>
 						<ul>
-							<!--<li><a href="#"><i class="fa fa-tags"></i>大数据</a></li>-->
 
 						</ul>
 					</div>
@@ -288,10 +272,11 @@
 			<!-- END BEGIN BLOG -->
 		</div>
 		<!-- END CONTAINER -->
-		
+
 	</div>
     <!-- END BEGIN PAGE CONTAINER -->  
-		
+	
+	
     <!-- BEGIN FOOTER -->
     <div class="footer">
         <div class="container">
@@ -301,7 +286,7 @@
                     <h2>关于我</h2>
                     <p class="margin-bottom-30">年近三十而不立；身为笨鸟而不先飞；知错而不悔改；空谈梦想而不行动；是也。</p>
                     <div class="clearfix"></div>                    
-                    <!-- END ABOUT -->           
+                    <!-- END ABOUT -->                               
                 </div>
                 <div class="col-md-4 col-sm-4 space-mobile">
                     <!-- BEGIN CONTACTS -->                                    
@@ -315,7 +300,7 @@
                     </address>
                                                    
                 </div>
-				<div class="col-md-4 col-sm-4 space-mobile">
+					<div class="col-md-4 col-sm-4 space-mobile">
                     <!-- BEGIN CONTACTS -->                                    
                     <h2>友情链接</h2>
                     <address class="margin-bottom-40">
@@ -328,7 +313,7 @@
     <!-- END FOOTER -->
 
     <!-- BEGIN COPYRIGHT -->
-   <div class="copyright">
+    <div class="copyright">
         <div class="container">
             <div class="row">
                 <div class="col-md-8">
@@ -346,25 +331,24 @@
     <!-- Load javascripts at bottom, this will reduce page load time -->
     <!-- BEGIN CORE PLUGINS(REQUIRED FOR ALL PAGES) -->
     <!--[if lt IE 9]>
-    <script src="assets/plugins/respond.min.js"></script>  
+    <script src="../../assets/plugins/respond.min.js"></script>  
     <![endif]-->  
-    <script src="assets/plugins/jquery-1.10.2.min.js" type="text/javascript"></script>
-    <script src="assets/plugins/jquery-migrate-1.2.1.min.js" type="text/javascript"></script>
-    <script src="assets/plugins/bootstrap/js/bootstrap.min.js" type="text/javascript"></script>      
-    <script type="text/javascript" src="assets/plugins/hover-dropdown.js"></script>
-    <script type="text/javascript" src="assets/plugins/back-to-top.js"></script>    
+    <script src="../../assets/plugins/jquery-1.10.2.min.js" type="text/javascript"></script>
+    <script src="../../assets/plugins/jquery-migrate-1.2.1.min.js" type="text/javascript"></script>
+    <script src="../../assets/plugins/bootstrap/js/bootstrap.min.js" type="text/javascript"></script>      
+    <script type="text/javascript" src="../../assets/plugins/hover-dropdown.js"></script>
+    <script type="text/javascript" src="../../assets/plugins/back-to-top.js"></script>    
     <!-- END CORE PLUGINS -->
 
     <!-- BEGIN PAGE LEVEL JAVASCRIPTS(REQUIRED ONLY FOR CURRENT PAGE) -->
-    <script type="text/javascript" src="assets/plugins/fancybox/source/jquery.fancybox.pack.js"></script>  
-    <script src="assets/scripts/app.js"></script>  
+    <script type="text/javascript" src="../../assets/plugins/fancybox/source/jquery.fancybox.pack.js"></script>  
+    <script src="../../assets/scripts/app.js"></script>  
     <script type="text/javascript">
         jQuery(document).ready(function() {
             App.init();                      
         });
     </script>
-    <script type="text/javascript" src="assets/scripts/blog.js"></script>
-	<script type="text/javascript" src="assets/scripts/home.js"></script>
+	<script type="text/javascript" src="../../assets/scripts/blog.js"></script>
     <!-- END PAGE LEVEL JAVASCRIPTS -->
 </body>
 <!-- END BODY -->

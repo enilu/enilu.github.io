@@ -1,10 +1,7 @@
 
 itext 生成图文混排的pdf文件
 
-    博客分类： 开源 
-
-Windows
-Java代码  收藏代码
+ 
 
     import java.io.FileOutputStream;  
       

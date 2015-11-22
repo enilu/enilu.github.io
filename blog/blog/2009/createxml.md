@@ -6,7 +6,7 @@ java生成xml数据的一点困惑
 XMLJavaAjaxBeanF#
 
 由于之前页面用的是ajax请求数据，后来想在页面再添加一个表格数据的时候也打算继续用这种方式：ajax提交后台组长xml数据返回，回调函数中用js解析xml生成表格。困惑来了，组装xml的时候本来我是这么做的：用一个StringBuilder然后一个一个节点在后面追加。最后用PrinterWriter将这个StringBuilder对象输出。写完之后觉得页面比较乱，如下，代码具体内容大伙不必关注，只看下大致情形即可：
-Java代码  收藏代码
+Java代码  
 
     StringBuilder baseinfo = new StringBuilder("<?xml version='1.0' encoding='gb2312'?>");  
             baseinfo.append("<totaltable>");  
@@ -65,7 +65,7 @@ Java代码  收藏代码
 
 最后生成的xml文件格式如下：
 Xml代码  收藏代码
-
+    
     <?xml version='1.0' encoding='gb2312'?>  
     <totaltable>  
         <basetable>  

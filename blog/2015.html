@@ -15,18 +15,21 @@
    <link href="assets/plugins/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css"/>
    <link href="assets/plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
    <!-- END GLOBAL MANDATORY STYLES -->
-   
-   <!-- BEGIN PAGE LEVEL PLUGIN STYLES --> 
-   <link href="assets/plugins/fancybox/source/jquery.fancybox.css" rel="stylesheet" />                              
-   <!-- END PAGE LEVEL PLUGIN STYLES -->
 
-   <!-- BEGIN THEME STYLES --> 
-   <link href="assets/css/style-metronic.css" rel="stylesheet" type="text/css"/>
-   <link href="assets/css/style.css" rel="stylesheet" type="text/css"/>
-   <link href="assets/css/themes/blue.css" rel="stylesheet" type="text/css" id="style_color"/>
-   <link href="assets/css/style-responsive.css" rel="stylesheet" type="text/css"/>
-   <link href="assets/css/custom.css" rel="stylesheet" type="text/css"/>
-   <!-- END THEME STYLES -->
+
+	<!-- BEGIN PAGE LEVEL PLUGIN STYLES -->
+	<link href="assets/plugins/fancybox/source/jquery.fancybox.css" rel="stylesheet" />
+	<link href="assets/plugins/uniform/css/uniform.default.css" rel="stylesheet" type="text/css"/>
+	<!-- END PAGE LEVEL PLUGIN STYLES -->
+
+	<!-- BEGIN THEME STYLES -->
+	<link href="assets/css/style-metronic.css" rel="stylesheet" type="text/css"/>
+	<link href="assets/css/style.css" rel="stylesheet" type="text/css"/>
+	<link href="assets/css/pages/search-page-results.css" rel="stylesheet" type="text/css"/>
+	<link href="assets/css/themes/blue.css" rel="stylesheet" type="text/css" id="style_color"/>
+	<link href="assets/css/style-responsive.css" rel="stylesheet" type="text/css"/>
+	<link href="assets/css/custom.css" rel="stylesheet" type="text/css"/>
+	<!-- END THEME STYLES -->
 
    <link rel="shortcut icon" href="favicon.ico" />
 </head>
@@ -107,12 +110,12 @@
 
     <!-- BEGIN PAGE CONTAINER -->  
     <div class="page-container">
-	
-        <!-- BEGIN BREADCRUMBS -->   
+
+        <!-- BEGIN BREADCRUMBS -->
         <div class="row breadcrumbs margin-bottom-40">
             <div class="container">
                 <div class="col-md-4 col-sm-4">
-                    <h1>文章列表</h1>
+                    <h1>2015年文章列表</h1>
                 </div>
                 <div class="col-md-8 col-sm-8">
                     <ul class="pull-right breadcrumb">
@@ -124,171 +127,27 @@
         </div>
         <!-- END BREADCRUMBS -->
 
-		<!-- BEGIN CONTAINER -->   
+		<!-- BEGIN CONTAINER -->
 		<div class="container min-hight">
-			<!-- BEGIN BLOG -->
-			<div class="row">
-				<!-- BEGIN LEFT SIDEBAR -->            
-				<div class="col-md-9 col-sm-9 blog-posts margin-bottom-40">
+			<div class="row margin-bottom-40">
+				<div class="col-md-12 col-sm-12" id="articleList">
 
-					<div class="row" style="display: none">
-						<div class="col-md-4 col-sm-4">
-							<img src="图片" alt="" class="img-responsive">
-						</div>
-						<div class="col-md-8 col-sm-8">
-							<h2><a href="链接" tag="title">标题</a></h2>
-							<ul class="blog-info">
-								<li><i class="fa fa-calendar"></i> 日期 &nbsp;</li>
-								<!--
-								<li><i class="fa fa-comments"></i> 1</li>
-								-->
-								<li><i class="fa fa-tags"></i> 标签&nbsp;</li>
-							</ul>
-							<p> 文章简介</p>
-							<a class="more" href="连接">阅读全文<i class="fa fa-angle-right"></i></a>
-						</div>
-					</div>
-
-					<hr class="blog-post-sep">
-
-					<div class="row" style="display: none">
-						<div class="col-md-4 col-sm-4">
-							<img src="图片" alt="" class="img-responsive">
-						</div>
-						<div class="col-md-8 col-sm-8">
-							<h2><a href="链接" tag="title">标题</a></h2>
-							<ul class="blog-info">
-								<li><i class="fa fa-calendar"></i> 日期 &nbsp;</li>
-								<!--
-								<li><i class="fa fa-comments"></i> 1</li>
-								-->
-								<li><i class="fa fa-tags"></i> 标签&nbsp;</li>
-							</ul>
-							<p> 文章简介</p>
-							<a class="more" href="连接">阅读全文<i class="fa fa-angle-right"></i></a>
-						</div>
-					</div>
-
-					<hr class="blog-post-sep">
-					<div class="row" style="display: none">
-						<div class="col-md-4 col-sm-4">
-							<img src="图片" alt="" class="img-responsive">
-						</div>
-						<div class="col-md-8 col-sm-8">
-							<h2><a href="链接" tag="title">标题</a></h2>
-							<ul class="blog-info">
-								<li><i class="fa fa-calendar"></i> 日期 &nbsp;</li>
-								<!--
-								<li><i class="fa fa-comments"></i> 1</li>
-								-->
-								<li><i class="fa fa-tags"></i> 标签&nbsp;</li>
-							</ul>
-							<p> 文章简介</p>
-							<a class="more" href="连接">阅读全文<i class="fa fa-angle-right"></i></a>
-						</div>
-					</div>
-
-					<hr class="blog-post-sep">
-					<div class="row" style="display: none">
-						<div class="col-md-4 col-sm-4">
-							<img src="图片" alt="" class="img-responsive">
-						</div>
-						<div class="col-md-8 col-sm-8">
-							<h2><a href="链接" tag="title">标题</a></h2>
-							<ul class="blog-info">
-								<li><i class="fa fa-calendar"></i> 日期 &nbsp;</li>
-								<!--
-								<li><i class="fa fa-comments"></i> 1</li>
-								-->
-								<li><i class="fa fa-tags"></i> 标签&nbsp;</li>
-							</ul>
-							<p> 文章简介</p>
-							<a class="more" href="连接">阅读全文<i class="fa fa-angle-right"></i></a>
-						</div>
-					</div>
+					<!-- BEGIN SEARCH RESULTS -->
+					<!--<div class="search-result-item">-->
+						<!--<h4><a href="#">Conquer - Responsive Admin Dashboard Template</a></h4>-->
+						<!--<p>Conquer is a responsive admin dashboard template created mainly for admin and backend applications(CMS, CRM, Custom Admin Application, Admin Dashboard). Conquer template powered with Twitter Bootstrap Framework..</p>-->
+						<!--<a href="#" class="search-link">http://www.keenthemes.com</a>-->
+					<!--</div>-->
+					<!-- END SEARCH RESULTS -->
 
 
-					<hr class="blog-post-sep">
-					<!--
-					<div class="text-center">
-						<ul class="pagination pagination-centered">
-							<li><a href="#">上页</a></li>
-							<li class="active"><a href="#">1</a></li>
-							<li><a href="#">2</a></li>
-							<li><a href="#">3</a></li>
-							<li><a href="#">4</a></li>
-							<li><a href="#">5</a></li>
-							<li><a href="#">下页</a></li>
-						</ul>
-					</div>
-					 -->
 				</div>
-				<!-- END LEFT SIDEBAR -->
-
-				<!-- BEGIN RIGHT SIDEBAR -->            
-				<div class="col-md-3 col-sm-3 blog-sidebar">
-					<h2>分类</h2>
-					<ul class="nav sidebar-categories margin-bottom-40">
-
-					</ul>
-					<!-- BEGIN RECENT NEWS -->                            
-					<h2>热门文章</h2>
-					<div class="recent-news margin-bottom-10">
-						<div class="row margin-bottom-10">
-							 
-							<div class="col-md-12 recent-news-inner">
-								<h3><a href="#">Letiusto gnissimos</a></h3>
-								<p>Decusamus tiusto odiodig nis simos ducimus qui sint</p>
-							</div>                        
-						</div>
-						<div class="row margin-bottom-10">
-							 
-							<div class="col-md-12 recent-news-inner">
-								<h3><a href="#">Letiusto gnissimos</a></h3>
-								<p>Decusamus tiusto odiodig nis simos ducimus qui sint</p>
-							</div>                        
-						</div>
-						<div class="row margin-bottom-10">
-							 
-							<div class="col-md-12 recent-news-inner">
-								<h3><a href="#"></a></h3>
-								<p></p>
-							</div>                        
-						</div>
-						<div class="row margin-bottom-10">
-							 
-							<div class="col-md-12 recent-news-inner">
-								<h3><a href="#"></a></h3>
-								<p></p>
-							</div>                        
-						</div>
-						<div class="row margin-bottom-10">
-							 
-							<div class="col-md-12 recent-news-inner">
-								<h3><a href="#"></a></h3>
-								<p></p>
-							</div>                        
-						</div>
-						 
-					</div>
-					<!-- END RECENT NEWS -->     
-
-					<!-- BEGIN BLOG TAGS -->
-					<div class="blog-tags margin-bottom-20">
-						<h2>热门标签</h2>
-						<ul>
-							<!--<li><a href="#"><i class="fa fa-tags"></i>大数据</a></li>-->
-
-						</ul>
-					</div>
-					<!-- END BLOG TAGS -->
-				</div>
-				<!-- END RIGHT SIDEBAR -->            
 			</div>
-			<!-- END BEGIN BLOG -->
+			<!-- END CONTAINER -->
+
 		</div>
 		<!-- END CONTAINER -->
-		
+
 	</div>
     <!-- END BEGIN PAGE CONTAINER -->  
 		
@@ -360,11 +219,12 @@
     <script src="assets/scripts/app.js"></script>  
     <script type="text/javascript">
         jQuery(document).ready(function() {
-            App.init();                      
+            App.init();
+			loadByYear(year2015);
         });
     </script>
     <script type="text/javascript" src="assets/scripts/blog.js"></script>
-	<script type="text/javascript" src="assets/scripts/home.js"></script>
+	<script type="text/javascript" src="assets/scripts/blog_by_year.js"></script>
     <!-- END PAGE LEVEL JAVASCRIPTS -->
 </body>
 <!-- END BODY -->
