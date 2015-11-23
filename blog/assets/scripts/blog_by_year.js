@@ -56,6 +56,10 @@ var year2014 = [{
     , {'title': '', 'href': '', 'descript': ''}
     , {'title': '', 'href': '', 'descript': ''}];
 var year2015 = [{
+    'title': '数据抓取之数据抓取流程', 'img': 'blog/2015/images/crawler_process/crawler1.png',
+    'href': 'blog/2015/crawler_process.html', 'tag': '数据抓取', 'date': '23/11/2015',
+    'descript': '公司的数据抓取系统也写了一阵子了，是时候总结下了，不然凭我的记性，过一段时间就忘的差不多了。打算写一个系列将其中踩过的坑都记录下来。暂时定一个目录，按照这个系列来写'
+}, {
     'title': 'CentOS配置ip冗余配置',
     'href': 'blog/2015/ipbond.html',
     'descript': 'Bonding的模式一共，有bonding模块的所有工作模式可以分为两类：多主型工作模式和主备型工作模式，balance-rr 和broadcast属于多主型工作模式而active-backup属于主备型工作模式。（balance-xor、自适应传输负载均衡模式（balance-tlb）和自适应负载均衡模式（balance-alb）也属于多主型工作模式，IEEE 802.3ad动态链路聚合模式（802.3ad）属于主备型工作模式。'

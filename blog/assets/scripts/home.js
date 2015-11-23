@@ -1,6 +1,9 @@
-
 //设置首页文章
 var homeNews = [{
+    'title': '数据抓取之数据抓取流程', 'img': 'blog/2015/images/crawler_process/crawler1.png',
+    'href': 'blog/2015/crawler_process.html', 'tag': '数据抓取', 'date': '23/11/2015',
+    'descript': '公司的数据抓取系统也写了一阵子了，是时候总结下了，不然凭我的记性，过一段时间就忘的差不多了。打算写一个系列将其中踩过的坑都记录下来。暂时定一个目录，按照这个系列来写'
+}, {
     'title': 'Redis入门',
     'img': 'blog/2015/redis_1.png',
     'href': 'blog/2015/redis.html',

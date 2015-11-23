@@ -1,17 +1,6 @@
 var rootPath='http://enilu.github.io/blog/';
-//var categoryArr = [['total', 3], ['java', 0], ['yunwei', 2],
-//    ['bigdata', 1], ['web', 0], ['mgr', 0]];
-//// 设置右侧文章类别数量
-//var setCategory = function () {
-//    $('.sidebar-categories').children().each(
-//        function (i, item) {
-//            $(item).children().first().children().first().html(
-//                '(' + categoryArr[i][1] + ')');
-//        });
-//}
-//setCategory();
 //设置热门标签
-var hotTags = [['大数据', '#'], ['hadoop', '#'], ['elasticsearch', '#'], ['性能优化', '#'], ['重构', '#'], ['redis', '#']]
+var hotTags = [['数据抓取','#'],['大数据', '#'], ['hadoop', '#'], ['elasticsearch', '#'], ['性能优化', '#'], ['重构', '#'], ['redis', '#']]
 var setHotTags = function () {
     for (var i = 0; i < hotTags.length; i++) {
         var hotTag = hotTags[i];
@@ -20,7 +9,7 @@ var setHotTags = function () {
 }
 setHotTags();
 
-var yearCateories = [{'title': '2015', 'count': 6, 'href': '2015.html'},{'title': '2014', 'count': 7, 'href': '2014.html'}, {'title': '2009', 'count': 5, 'href': '2009.html'}]
+var yearCateories = [{'title': '2015', 'count': 8, 'href': '2015.html'},{'title': '2014', 'count': 7, 'href': '2014.html'}, {'title': '2009', 'count': 5, 'href': '2009.html'}]
 var setYearCateories = function () {
     for (var i = 0; i < yearCateories.length; i++) {
         $('.sidebar-categories').append('<li><a href="' + rootPath+yearCateories[i].href + '">' + yearCateories[i].title + ' (' + yearCateories[i].count + ')</a></li>')
