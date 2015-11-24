@@ -1,4 +1,4 @@
-var rootPath='http://enilu.github.io/blog/';
+var rootPath='http://enilu.github.io/';
 //设置热门标签
 var hotTags = [['数据抓取','#'],['大数据', '#'], ['hadoop', '#'], ['elasticsearch', '#'], ['性能优化', '#'], ['重构', '#'], ['redis', '#']]
 var setHotTags = function () {

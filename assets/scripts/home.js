@@ -53,4 +53,4 @@ var setHomeNews = function () {
         console.log(homeNew.title);
     }
 }
-setHomeNews();
+//setHomeNews();
