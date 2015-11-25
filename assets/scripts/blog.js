@@ -19,22 +19,22 @@ setYearCateories();
 var hotArts = [
     {
         'title': '精选转载', 'desc': '精选文章转载',
-        'href': 'http://enilu.github.io/blog/blog/2015/hot_article.html'
+        'href': 'http://enilu.github.io/blog/2015/hot_article.html'
     },
     {
         'title': 'Redis入门',
         'desc': 'Redis是一个开源的使用ANSI C语言编写、支持网络、可基于内存亦可持久化的日志型、Key-Value数据库，并提供多种语言的API',
-        'href': 'http://enilu.github.io/blog/blog/2015/redis.html'
+        'href': 'http://enilu.github.io/blog/2015/redis.html'
     },
     {
         'title': 'mysql主从配置',
         'desc': ' mysql主从配置 版本：mysql5.6 os:centos6.5 主服务器：（192.168.1.1），从服务器：(192.168.1.2)',
-        'href': 'http://enilu.github.io/blog/blog/2015/mysql-master-slave.html'
+        'href': 'http://enilu.github.io/blog/2015/mysql-master-slave.html'
     },
     {
         'title': 'CentOS配置bond ip冗余',
         'desc': 'Bonding的模式一共，有bonding模块的所有工作模式可以分为两类：多主型工作模式和主备型工作模式',
-        'href': 'http://enilu.github.io/blog/blog/2015/ipbond.html'
+        'href': 'http://enilu.github.io/blog/2015/ipbond.html'
     }];
 
 
