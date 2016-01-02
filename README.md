@@ -1,78 +1,34 @@
-# Jekyll-Bootstrap
+#TODOLIST
+2015-11-23
+## 数据抓取
+- 数据抓取流程，以公示网四川为例子，介绍开发者工具的使用
+- 反爬虫规则：验证码识别，介绍easyocr和uuwise的使用
+- 反爬虫规则：使用代理
+- 反爬虫规则：httpclient头信息
+- 数据存储方式，介绍使用json存储在单字段以及优点和缺点
 
-The quickest way to start and publish your Jekyll powered blog. 100% compatible with GitHub pages
+### 数据抓取流程
+- 人工操作流程，输入关键字，点击搜索，输入验证码，打开企业列表，点击打开某一个企业的详情页面
+- 总共有多少个请求，验证码，搜索，详情
 
-## Usage
-
-For all usage and documentation please see: <http://jekyllbootstrap.com>
-
-## Version
-
-0.3.0 - stable and versioned using [semantic versioning](http://semver.org/).
-
-**NOTE:** 0.3.0 introduces a new theme which is not backwards compatible in the sense it won't _look_ like the old version.
-However, the actual API has not changed at all.
-You might want to run 0.3.0 in a branch to make sure you are ok with the theme design changes.
-
-## Milestones
-
-[0.4.0](https://github.com/plusjade/jekyll-bootstrap/milestones/v%200.4.0) - next release [ETA 03/29/2015]
-
-### GOALS
-
-* No open PRs against master branch.
-* Squash some bugs.
-* Add some new features (low-hanging fruit).
-* Establish social media presence.
+2015-11-24
+- seo需要页面存在真实连接，不能用js来生成页面，index.html已经更改了一半
+在线工具
+http://jquery.cuishifeng.cn/
+http://write.blog.csdn.net/mdeditor
+http://mahua.jser.me/
 
 
-### Bugs
+#命令备忘
+1,如果有新文件：
+git add*
+2,提交并增加注释，注释分为4种类型：
+Added ( 新加入的需求 )
+Fixed ( 修复 bug )
+Changed ( 完成的任务 )
+Updated ( 完成的任务，或者由于第三方模块变化而做的变化 )
 
-|Bug |Description
-|------|---------------
-|[#86](https://github.com/plusjade/jekyll-bootstrap/issues/86)  |&#x2611; Facebook Comments
-|[#113](https://github.com/plusjade/jekyll-bootstrap/issues/113)|&#x2611; ASSET_PATH w/ page & post
-|[#144](https://github.com/plusjade/jekyll-bootstrap/issues/144)|&#x2610; BASE_PATH w/ FQDN
-|[#227](https://github.com/plusjade/jekyll-bootstrap/issues/227)|&#x2611; Redundant JB/setup
+git commit -am "Fixed"
 
-### Features
-
-|Bug |Description
-|------|---------------
-|[#98](https://github.com/plusjade/jekyll-bootstrap/issues/98)  |&#x2611; GIST Integration
-|[#244](https://github.com/plusjade/jekyll-bootstrap/issues/244)|&#x2611; JB/file_exists Helper
-|[#42](https://github.com/plusjade/jekyll-bootstrap/issues/42)  |&#x2611; Sort collections of Pages / Posts
-|[#84](https://github.com/plusjade/jekyll-bootstrap/issues/84)  |&#x2610; Detecting production mode
-
-### TODOS
-
-Review existing pull requests against plusjake/jekyll-bootstrap:master. Merge or close each.
-
-* Create twitter account. Add link / icon on jekyllbootstrap.com.
-* Create blog posts under plusjade/gh-pages, expose on jekyllbootstrap.com, feed to twitter account.
-* Announce state of project, announce roadmap(s), announce new versions as they’re released.
-
-## Contributing
-
-
-To contribute to the framework please make sure to checkout your branch based on `jb-development`!!
-This is very important as it allows me to accept your pull request without having to publish a public version release.
-
-Small, atomic Features, bugs, etc.
-Use the `jb-development` branch but note it will likely change fast as pull requests are accepted.
-Please rebase as often as possible when working.
-Work on small, atomic features/bugs to avoid upstream commits affecting/breaking your development work.
-
-For Big Features or major API extensions/edits:
-This is the one case where I'll accept pull-requests based off the master branch.
-This allows you to work in isolation but it means I'll have to manually merge your work into the next public release.
-Translation : it might take a bit longer so please be patient! (but sincerely thank you).
-
-**Jekyll-Bootstrap Documentation Website.**
-
-The documentation website at <http://jekyllbootstrap.com> is maintained at https://github.com/plusjade/jekyllbootstrap.com
-
-
-## License
-
-[MIT](http://opensource.org/licenses/MIT)
+3,提交
+git push -f

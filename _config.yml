@@ -8,14 +8,14 @@ highlighter: pygments
 # Themes are encouraged to use these universal variables 
 # so be sure to set them if your theme uses them.
 #
-title : Jekyll Bootstrap
-tagline: Site Tagline
+title : enilu的网络日志
+tagline : 人生总是充满困惑啊，黄猿君
 author :
-  name : Name Lastname
-  email : blah@email.test
-  github : username
-  twitter : username
-  feedburner : feedname
+  name : enilu
+  email : eniluzt@qq.com
+  github : enilu
+  twitter : enilu
+  feedburner : enilu
 
 # The production_url is only used when full-domain names are needed
 # such as sitemap.txt 
@@ -25,7 +25,7 @@ author :
 # Else if you are pushing to username.github.io, replace with your username.
 # Finally if you are pushing to a GitHub project page, include the project name at the end.
 #
-production_url : http://username.github.io
+production_url : http://enilu.github.io
 
 # All Jekyll-Bootstrap specific configurations are namespaced into this hash
 #
@@ -80,20 +80,20 @@ JB :
   # Set 'provider' to false to turn commenting off globally.
   #
   comments :
-    provider : disqus
+    provider : duoshuo
     disqus :
       short_name : jekyllbootstrap
     livefyre :
-      site_id : 123
+      site_id : enilublog
     intensedebate :
-      account : 123abc
+      account : enilu
     facebook :
       appid : 123
       num_posts: 5
       width: 580
       colorscheme: light
     duoshuo :
-      short_name : jekyllbootstrap
+      short_name : enilu
    
   # Settings for analytics helper
   # Set 'provider' to the analytics provider you want to use.
@@ -102,9 +102,9 @@ JB :
   analytics :
     provider : google
     gauges :
-        site_id : 'SITE ID'
+        site_id : 'enilu'
     google : 
-        tracking_id : 'UA-123-12'
+        tracking_id : 'UA-71886989-1'
     getclicky :
       site_id : 
     mixpanel :
@@ -131,4 +131,10 @@ JB :
   # and include your custom code. Your custom file must be defined at:
   #   ./_includes/custom/[HELPER]
   # where [HELPER] is the name of the helper you are overriding.
-  
+
+# 每一页显示的文章数
+paginate: 10
+
+paginate_path: "/page:num/"
+#自定义的一些参数
+img_url: http://enilu.github.io/assets/images
