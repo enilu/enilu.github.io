@@ -1,12 +1,12 @@
 ---
-layout: default
+layout: default 
 
 ---
-
  
 
+<h4>最新文章</h4>
 
-<!-- 遍历分页后的文章 --> 
+
 <ul class="posts">
 {% for post in site.posts %}
 
@@ -23,3 +23,5 @@ layout: default
 {% endfor %}
 
 </ul>
+
+  
