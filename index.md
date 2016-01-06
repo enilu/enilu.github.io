@@ -1,6 +1,6 @@
 ---
-layout: page
-title: enilu的网络日志
+layout: default
+
 ---
 
  
