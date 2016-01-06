@@ -8,7 +8,7 @@ layout: default
 
 
 <ul class="posts">
-{% for post in site.posts %}
+{% for post in paginator.posts %}
 
  <hr>
    
