@@ -134,6 +134,7 @@ JB :
 
 # 每一页显示的文章数
 paginate: 5
+
 paginate_path: "page:num"
 #自定义的一些参数
 img_url: http://enilu.github.io/assets/images
