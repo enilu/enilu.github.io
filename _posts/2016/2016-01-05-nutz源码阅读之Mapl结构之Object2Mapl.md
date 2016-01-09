@@ -9,7 +9,9 @@ tags : [nutz,源码学习]
 
 Mapl的使用方式参考[官方文档](http://nutzam.com/core/maplist/overview.html),灰常详细了。这里不再赘述。
 如图所示，Mapl有以下方法，可供使用
-[Mapl方法示例]({{ site.img_url }}/2016/nutz/mapl.png)
+
+![Mapl方法示例]({{ site.img_url }}/2016/nutz/mapl.png)
+
 Mapl类中并没有实现具体的操作方法，分别调用的具体的工具类：
 
 - ObjConvertImpl，将maplist数据转换为指定的java对象
