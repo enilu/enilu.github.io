@@ -18,7 +18,7 @@ layout: default
   </h4> 
       {{ post.content  | | split:'<!--break-->' | first }} 
    <br>
-    <a href="{{ site.baseurl }}{{ post.url }}">查看全部..</a>
+    <a href="{{ site.baseurl }}{{ post.url }}">查看文章...</a>
    
 {% endfor %}
 

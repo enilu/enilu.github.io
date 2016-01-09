@@ -133,8 +133,8 @@ JB :
   # where [HELPER] is the name of the helper you are overriding.
 
 # 每一页显示的文章数
-paginate: 5
+paginate: 10
 
-paginate_path: "page:num"
-#自定义的一些参数
+paginate_path: "/page:num/"
+#some customer parameters
 img_url: http://enilu.github.io/assets/images
