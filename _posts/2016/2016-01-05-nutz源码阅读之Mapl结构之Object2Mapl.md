@@ -28,8 +28,8 @@ Mapl类中并没有实现具体的操作方法，分别调用的具体的工具�
 
 
 
-### ObjConvertImpl
-ObjConvertImpl 是MaplCompile接口的默认实现，该接口只有一个方法parse，将用来将java对象转换为maplist，
+### ObjCompileImpl
+ObjCompileImpl 是MaplCompile接口的默认实现，该接口只有一个方法parse，将用来将java对象转换为maplist，
 parse方法中，将传入的参数（java对象）归类为三种类型进行处理：单个pojo对象，集合，数组，map，
 这三个对象分别对应了 pojo2Json,coll2Json,array2Json,map2Json方法。
 
