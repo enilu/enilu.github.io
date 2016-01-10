@@ -63,7 +63,7 @@ ObjConvertImpl中将要转换的maplist结构分为两大类来处理：
 - 然后再调用Castors类得castTo方法将源数据转换为制定类型的目标数据。
 - 具体转换方法，由抽象类Castor定义，然后针对每种转换场景进行了具体的实现，实现类在包org.nutz.castor.castor下。
 - 总共98个类，有兴趣的自行去看api吧 [点击查看](http://nutzam.com/javadoc/1.b.53/org/nutz/castor/Castor.html)
-- 简单看了几个，关于类型转换的实现，我的想法是，有亮点很重要：一个是效率，一个是容错性。
+- 简单看了几个，关于类型转换的实现，我的想法是，有两点很重要：一个是效率，一个是容错性。
 ![castors]({{ site.img_url }}/2016/nutz/castor.png)
 
 
