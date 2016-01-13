@@ -16,6 +16,8 @@ tags : [nutz,源码学习]
         {'user':[{'name':'jk', 'age':12,'test':'hello'},{'name':'nutz', 'age':5}]}    
 
 - 而MaplMerge 主要用来将多个mapl结构数据合并起来，该类只有一个接口：mergeItems(Object... objs)
+
+
 <!--break-->
 
 {% include JB/setup %}
