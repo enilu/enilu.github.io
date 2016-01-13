@@ -7,14 +7,14 @@ tags : [nutz,源码学习]
 ---
 
 上篇阅读了nutz中Object2Mapl的源码，[点击这里查看](http://enilu.github.io/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/2016/01/05/nutz%E6%BA%90%E7%A0%81%E9%98%85%E8%AF%BB%E4%B9%8BMapl%E7%BB%93%E6%9E%84%E4%B9%8BObject2Mapl/)
-这篇来说说Mapl2Object的具体实现，Mapl中针对Mapl转换为Object提供了两个接口：
+这篇来说说Mapl2Object。Mapl中针对Mapl转换为Object提供了两个接口：
 
 - maplistToObj(Object maplist, Type type)
 - maplistToT(Object maplist, Class<T> clz)
 
 具体用法参考官方官方文档，这里不赘述。
 maplist转换为真实的对象，主要使用了ObjConvertImpl类实现。 
-这篇文章主要来看这个类的是ian
+这篇文章主要来看这个类的实现。
 
 
 <!--break-->
