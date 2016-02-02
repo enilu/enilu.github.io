@@ -1,2 +1,2 @@
-# enilu.github.io
-enilu的网络日志
+# maggielmz.github.io
+maggie的网络日志
