@@ -79,21 +79,21 @@ JB :
   # Set 'provider' to the comment provider you want to use.
   # Set 'provider' to false to turn commenting off globally.
   #
-  comments :
-    provider : duoshuo
-    disqus :
-      short_name : jekyllbootstrap
-    livefyre :
-      site_id : enilublog
-    intensedebate :
-      account : enilu
-    facebook :
-      appid : 123
-      num_posts: 5
-      width: 580
-      colorscheme: light
-    duoshuo :
-      short_name : enilu
+#  comments :
+#    provider : duoshuo
+#    disqus :
+#      short_name : jekyllbootstrap
+#    livefyre :
+#      site_id : enilublog
+#    intensedebate :
+#      account : enilu
+#    facebook :
+#      appid : 123
+#      num_posts: 5
+#      width: 580
+#      colorscheme: light
+#    duoshuo :
+#      short_name : enilu
    
   # Settings for analytics helper
   # Set 'provider' to the analytics provider you want to use.
