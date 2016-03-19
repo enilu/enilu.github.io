@@ -2,11 +2,11 @@
 layout: post
 category : 学习笔记 
 keywords: "nutz,源码学习"
-description : ""
+description : "上篇通过一个get请求大致弄明白了HttpClient的请求过程，和请求中使用到关键的几个类，这次来说说其他种类的请求。"
 tags : [nutz,源码学习]
 ---
   
-上篇通过一个get请求大致弄明白了HttpClient的请求过程，和请求中使用到关键的几个类，这次来说说其他种类的请求。
+上篇通过一个get请求大致弄明白了HttpClient的请求过程，和请求中使用到关键的几个类，这次来说说其他种类的请求,以及超时，上传文件，cookie的用法和实现。
 
 
 <!--break-->
