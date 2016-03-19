@@ -31,7 +31,8 @@ tags : [nutz,源码学习]
                     Streams.safeFlush(ops);
                     Streams.safeClose(ops);
                 }
-## 超时
+
+## 超时处理
 
 - 超时处理，在Sender类中体现，因为这个类负责openConnection嘛。
 - 超时处理有两种类型，连接超时（默认30秒）和读取数据超时（默认10分钟）
