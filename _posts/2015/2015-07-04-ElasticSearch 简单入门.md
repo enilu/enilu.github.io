@@ -1,6 +1,6 @@
 ---
 layout: post
-category : 搜索 
+category : elasticsearch 
 keywords : "开源,搜索,elasticsearch,大数据,入门教程,elasticsearch简单入门"
 description : "ElasticSearch是一个开源的分布式搜索引擎，具备高可靠性，支持非常多的企业级搜索用例。像Solr4一样，是基于Lucene构建的。支持时间时间索引和全文检索。官网：http://www.elasticsearch.org"
 tags : [开源,搜索,elasticsearch,大数据,入门教程]
