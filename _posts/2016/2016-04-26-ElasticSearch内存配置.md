@@ -20,7 +20,7 @@ tags : [开源,搜索,elasticsearch,大数据]
     	at java.lang.Thread.run(Thread.java:745)
     Caused by: java.lang.OutOfMemoryError: Java heap space
     
-刚开始以为是查询写的有问题，导致内存溢出呢。但是自己看了写日志产生日期，感觉不对劲啊，这个日志一致报着，而且大半夜也听不下来。    
+刚开始以为是查询写的有问题，导致内存溢出呢。但是自己看了写日志产生日期，感觉不对劲啊，这个日志一直报着，而且大半夜也听不下来。    
 <!--break-->
 
 {% include JB/setup %}
