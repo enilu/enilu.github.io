@@ -2,7 +2,7 @@
 layout: post
 category : 学习笔记 
 keywords: "nutz,源码学习"
-description : "nutz的lan包，工具库"
+description : "这篇文章说下，lang包中基本类型相关的工具类，说基本类型其实有点不太准确，主要是针对字符串（Strings)，数字(Nums)，日期(Times)的工具类"
 tags : [nutz,源码学习]
 ---
 
