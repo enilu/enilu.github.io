@@ -77,7 +77,7 @@
           </form>
         </div><!-- /.navbar-collapse -->
       </nav>
-      <div id="loader"><img src="{{ ASSET_PATH }}/images/weixin.jpg" alt="请稍侯"></div>
+      <div style="visibility: hidden" id="loader"><img src="{{ ASSET_PATH }}/images/weixin.jpg" alt="请稍侯"></div>
       <div id="main-content"></div>
 
       <div class="container">
@@ -118,7 +118,7 @@
         function findEntries(q) {
           var matches = [];
           var rq = new RegExp(q, 'im');
-          var rl = /^http:\/\/liberize\.me\/post\/(.+)\.html$/;
+          var rl = /^http:\/\/www\.enilu\.cn\/post\/(.+)\.html$/;
           for (var i = 0; i < entries.length; i++) {
             var entry = entries[i];
             var title = $(entry.getElementsByTagName('title')[0]).text();
@@ -145,6 +145,7 @@
         }
 
         $('#search-form').submit(function() {
+          $("#loader").show();
           var query = $('#query').val();
           $('#query').blur().attr('disabled', true);
           $('#main-content').hide();
