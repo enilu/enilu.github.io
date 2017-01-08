@@ -7,7 +7,7 @@ tags : [github,项目管理,开发工具]
 ---
 
 发现一个github很有用的方法，使用github搭建个人的maven仓库
-[原文地址](http://www.importnew.com/19178.html)
+[原文地址](http://blog.csdn.net/hengyunabc/article/details/47308913)
 
 下面记录下自己的搭建过程 ，备忘下。
 
