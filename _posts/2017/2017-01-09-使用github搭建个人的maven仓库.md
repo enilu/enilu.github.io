@@ -11,6 +11,11 @@ tags : [github]
 
 下面记录下自己的搭建过程 ，备忘下。
 
+<!--break-->
+
+{% include JB/setup %}
+
+
 将项目deploy本地目录：
 mvn deploy -DaltDeploymentRepository=enilu-mvn-repo::default::file:/e:\enilu.github.repo\
 
@@ -26,7 +31,3 @@ mvn deploy -DaltDeploymentRepository=enilu-mvn-repo::default::file:/e:\enilu.git
             <url>https://raw.githubusercontent.com/enilu/maven-repo/master/repository</url>
         </repository>
     </repositories>
-
-<!--break-->
-
-{% include JB/setup %}

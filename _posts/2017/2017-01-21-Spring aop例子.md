@@ -6,6 +6,13 @@ description :"使用Spring aop进行面向切面编程"
 tags : [spring]
 ---
 
+使用spring可以很方便的编写aop程序
+
+<!--break-->
+
+{% include JB/setup %}
+
+
 
 maven依赖
 
@@ -87,7 +94,3 @@ spring配置：
 
 http://www.cnblogs.com/wushiqi54719880/archive/2011/08/09/2133048.html
 http://shouce.jb51.net/spring/aop.html
-
-<!--break-->
-
-{% include JB/setup %}
