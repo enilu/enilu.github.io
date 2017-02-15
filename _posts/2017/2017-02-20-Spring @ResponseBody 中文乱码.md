@@ -1,6 +1,6 @@
 ---
 layout: post
-category : 开源
+category : 随手记
 keywords: "spring,ResponseBody,中文乱码"
 description :"spring @ResponseBody返回中文乱码问题"
 tags : [spring，乱码,开源]

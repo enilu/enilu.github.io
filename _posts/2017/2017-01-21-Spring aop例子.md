@@ -1,6 +1,6 @@
 ---
 layout: post
-category : 开源
+category : 随手记
 keywords: "spring,aop"
 description :"使用Spring aop进行面向切面编程"
 tags : [spring]
