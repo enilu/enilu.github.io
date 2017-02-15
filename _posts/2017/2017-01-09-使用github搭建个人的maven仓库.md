@@ -3,7 +3,7 @@ layout: post
 category : 开发工具
 keywords: "github,项目管理,开发工具"
 description :"使用github搭建个人的maven仓库"
-tags : [github,项目管理,开发工具]
+tags : [github]
 ---
 
 发现一个github很有用的方法，使用github搭建个人的maven仓库
@@ -30,9 +30,3 @@ mvn deploy -DaltDeploymentRepository=enilu-mvn-repo::default::file:/e:\enilu.git
 <!--break-->
 
 {% include JB/setup %}
-
-
-
-
-
-
