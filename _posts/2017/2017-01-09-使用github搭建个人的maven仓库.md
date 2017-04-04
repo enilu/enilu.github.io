@@ -1,8 +1,8 @@
 ---
 layout: post
 category : 开发工具
-keywords: "github,项目管理,开发工具"
-description :"使用github搭建个人的maven仓库"
+keywords: "开发工具"
+description : "使用github搭建个人的maven仓库"
 tags : [github]
 ---
 
