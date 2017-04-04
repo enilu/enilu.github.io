@@ -1,12 +1,12 @@
 ---
 layout: post
-category : 随手记
-keywords: "spring,ResponseBody,中文乱码"
+category : 学习笔记
+keywords: "spring,ResponseBody中文乱码"
 description :"spring @ResponseBody返回中文乱码问题"
-tags : [spring，乱码,开源]
+tags : [spring]
 ---
 
-前段页面使用ajax请求后台，后台使用SpringMVC接收请求，发现action返回中文的时候总是乱码。
+前端页面使用ajax请求后台，后台使用SpringMVC接收请求，发现action返回中文的时候总是乱码。
 
 <!--break-->
 
