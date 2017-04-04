@@ -1,7 +1,7 @@
 ---
 layout: post
 category : 学习笔记
-keywords: "spring"
+keywords: "spring,springmvc中文乱码"
 description : "spring @ResponseBody返回中文乱码问题"
 tags : [开源]
 ---
