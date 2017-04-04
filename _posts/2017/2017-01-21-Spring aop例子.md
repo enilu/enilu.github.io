@@ -3,7 +3,7 @@ layout: post
 category : 学习笔记
 keywords: "spring,aop"
 description :"使用Spring aop进行面向切面编程"
-tags : [spring]
+tags : [开源]
 ---
 
 使用spring可以很方便的编写aop程序
