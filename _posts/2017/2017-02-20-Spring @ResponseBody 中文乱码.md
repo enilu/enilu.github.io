@@ -1,17 +1,17 @@
 ---
 layout: post
 category : 学习笔记
-keywords: "springResponseBody中文乱码"
-description :"spring @ResponseBody返回中文乱码问题"
-tags : [学习笔记]
+keywords: "spring"
+description : "spring @ResponseBody返回中文乱码问题"
+tags : [开源]
 ---
 
 前端页面使用ajax请求后台，后台使用SpringMVC接收请求，发现action返回中文的时候总是乱码。
 
+
 <!--break-->
 
 {% include JB/setup %}
-
 
 查了资料，发现
 @ResponseBody 返回对象和返回字符串使用了不同的转换器，返回String字符串的时候，会使用org.springframework.http.converter.StringHttpMessageConverter进行输出，输出的时候，默认使用编码为：ISO-8859-1,部分源代码如下：
