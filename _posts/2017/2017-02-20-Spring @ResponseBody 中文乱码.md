@@ -3,7 +3,7 @@ layout: post
 category : 学习笔记
 keywords: "spring,springmvc中文乱码"
 description : "spring @ResponseBody返回中文乱码问题"
-tags : [开源]
+tags : [学习笔记]
 ---
 
 前端页面使用ajax请求后台，后台使用SpringMVC接收请求，发现action返回中文的时候总是乱码。
