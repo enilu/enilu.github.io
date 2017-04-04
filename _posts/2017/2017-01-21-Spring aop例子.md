@@ -1,8 +1,8 @@
 ---
 layout: post
-category:学习笔记
-keywords:"spring"
-description:"使用Spring aop进行面向切面编程"
+category : 学习笔记
+keywords: "spring,aop"
+description : "使用Spring aop进行面向切面编程"
 tags : [开源]
 ---
 
@@ -11,6 +11,8 @@ tags : [开源]
 <!--break-->
 
 {% include JB/setup %}
+
+
 
 maven依赖
 
