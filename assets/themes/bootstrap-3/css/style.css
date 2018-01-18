@@ -1,0 +1,21 @@
+
+.navbar-default {
+  color:#ffffff;
+  background-color: #000000;
+  background-image: -webkit-linear-gradient(top,#000 0,#000 100%);
+  background-image: linear-gradient(to bottom,#000 0,#000 100%);
+  border-color: #000000;
+}
+
+.navbar-default .navbar-brand {
+  color: #ffffff;
+}
+.navbar-default .navbar-nav>li>a {
+  color: #ffffff;
+}
+body {
+  background-color: #fff;
+}
+#footer {
+  background-color: #000000;
+}

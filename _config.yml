@@ -1,66 +1,140 @@
-# Site settings 配置站点
-title: '廖柯宇的独立博客'
-description: '昵称悟空，千禧一代，前端开发者/伪极客/灵魂摄影师，热爱技术&设计。很高兴能在这里与你分享我对技术和生活的思考。'
-keyword: '廖柯宇, 廖柯宇的独立博客, 廖柯宇的博客, 前端, 前端开发, 前端博客, javascript, vuejs, nodejs, 设计'
-url: 'http://liaokeyu.com' # your host
+# This is the default format. 
+# For more see: http://jekyllrb.com/docs/permalinks/
+permalink: /:categories/:year/:month/:day/:title 
 
-# if you don't need baseurl, you should leave this value blank.
-baseurl: ''
+exclude: [".rvmrc", ".rbenv-version", "README.md", "Rakefile", "changelog.md"]
+highlighter: pygments
 
-# Navigation links
-nav:
-  home: '/'
-  tags: '/tags.html'
+# Themes are encouraged to use these universal variables 
+# so be sure to set them if your theme uses them.
+#
+title : enilu的网络日志
+tagline : 人生总是充满困惑啊，黄猿君
+author :
+  name : enilu
+  email : eniluzt@qq.com
+  github : enilu
+  twitter : enilu
+  feedburner : enilu
 
-# Author 配置博主信息
-author: 'enilu'
-nickname: 'enilu'
-bio: '开发者，热爱技术&设计，简单乐观爱创造'
-avatar: '/assets/img/profile.jpg'
+# The production_url is only used when full-domain names are needed
+# such as sitemap.txt 
+# Most places will/should use BASE_PATH to make the urls
+#
+# If you have set a CNAME (pages.github.com) set your custom domain here.
+# Else if you are pushing to username.github.io, replace with your username.
+# Finally if you are pushing to a GitHub project page, include the project name at the end.
+#
+production_url : http://enilu.github.io
 
-# Search
-search: true
+# All Jekyll-Bootstrap specific configurations are namespaced into this hash
+#
+JB :
+  version : 0.3.0
 
-# Night mode
-nightMode: true
+  # All links will be namespaced by BASE_PATH if defined.
+  # Links in your website should always be prefixed with {{BASE_PATH}}
+  # however this value will be dynamically changed depending on your deployment situation.
+  #
+  # CNAME (http://yourcustomdomain.com)
+  #   DO NOT SET BASE_PATH 
+  #   (urls will be prefixed with "/" and work relatively)
+  #
+  # GitHub Pages (http://username.github.io)
+  #   DO NOT SET BASE_PATH 
+  #   (urls will be prefixed with "/" and work relatively)
+  #
+  # GitHub Project Pages (http://username.github.io/project-name)
+  #
+  #   A GitHub Project site exists in the `gh-pages` branch of one of your repositories.
+  #  REQUIRED! Set BASE_PATH to: http://username.github.io/project-name
+  #
+  # CAUTION:
+  #   - When in Localhost, your site will run from root "/" regardless of BASE_PATH
+  #   - Only the following values are falsy: ["", null, false]
+  #   - When setting BASE_PATH it must be a valid url.
+  #     This means always setting the protocol (http|https) or prefixing with "/"
+  BASE_PATH : false
 
-# Comments
-disqus: false
-disqus_url: 'https://liaokeyu.disqus.com/embed.js'
+  # By default, the asset_path is automatically defined relative to BASE_PATH plus the enabled theme.
+  # ex: [BASE_PATH]/assets/themes/[THEME-NAME]
+  #
+  # Override this by defining an absolute path to assets here.
+  # ex: 
+  #   http://s3.amazonaws.com/yoursite/themes/watermelon
+  #   /assets
+  #
+  ASSET_PATH : false
 
-# Share
-social-share: true
-social-share-items: ['wechat', 'weibo', 'douban', 'twitter']
+  # These paths are to the main pages Jekyll-Bootstrap ships with.
+  # Some JB helpers refer to these paths; change them here if needed.
+  #
+  archive_path: /archive.html
+  categories_path : /categories.html
+  tags_path : /tags.html
+  atom_path : /atom.xml
+  rss_path : /rss.xml
 
-# theme color 主题皮肤
-theme-color: 'default'  # pink or default
+  # Settings for comments helper
+  # Set 'provider' to the comment provider you want to use.
+  # Set 'provider' to false to turn commenting off globally.
+  #
+  comments :
+    provider : disqus
+    disqus :
+      short_name : enilu的网络日志
+    livefyre :
+      site_id : enilublog
+    intensedebate :
+      account : enilu
+    facebook :
+      appid : 123
+      num_posts: 5
+      width: 580
+      colorscheme: light
+    duoshuo :
+      short_name : enilu
+   
+  # Settings for analytics helper
+  # Set 'provider' to the analytics provider you want to use.
+  # Set 'provider' to false to turn analytics off globally.
+  #        
+  analytics :
+    provider : google
+    gauges :
+        site_id : 'enilu'
+    google : 
+        tracking_id : 'UA-71886989-1'
+    getclicky :
+      site_id : 
+    mixpanel :
+        token : '_MIXPANEL_TOKEN_'
+    piwik :
+        baseURL : 'myserver.tld/piwik' # Piwik installation address (without protocol)
+        idsite : '1'                   # the id of the site on Piwik
 
-# Post header background patterns (when the post no cover): circuitBoard, overlappingCircles, food, glamorous, ticTacToe, seaOfClouds
-postPatterns: 'circuitBoard'
+  # Settings for sharing helper. 
+  # Sharing is for things like tweet, plusone, like, reddit buttons etc.
+  # Set 'provider' to the sharing provider you want to use.
+  # Set 'provider' to false to turn sharing off globally.
+  #
+  sharing :
+    provider : false
+    
+  # Settings for all other include helpers can be defined by creating 
+  # a hash with key named for the given helper. ex:
+  #
+  #   pages_list :
+  #     provider : "custom"   
+  #
+  # Setting any helper's provider to 'custom' will bypass the helper code
+  # and include your custom code. Your custom file must be defined at:
+  #   ./_includes/custom/[HELPER]
+  # where [HELPER] is the name of the helper you are overriding.
 
-# SNS settings 配置社交网站url: weibo, zhihu, twitter, instagram, juejin, github, douban, facebook, dribble, uicn, jianshu, medium, linkedin
-sns:
-  weibo: '//weibo.com/5098572270'
-  juejin: '//juejin.im/user/57abd46d6be3ff006b87e095'
-  instagram: '//www.instagram.com/eniluzt'
-  github: '//github.com/enilu'
+# 每一页显示的文章数
+paginate: 10
 
-# Tags 设置标签
-recommend-tags: true # whether or not display recommend-tags on the sidebar
-recommend-condition-size: 12 # a tag will be recommended if the size of it is more than this value
-
-# Build settings
-paginate: 6
-paginate_path: 'page:num'
-exclude: ['node_modules', 'dev', 'package.json', 'gulpfile.js', '.gitignore', 'README.md']
-
-# Markdown
-markdown: kramdown
-highlighter: rouge
-kramdown:
-  input: GFM
-
-RSS: false
-
-# Plugins
-gems: [jekyll-paginate]
+paginate_path: "/page:num/"
+#some customer parameters
+img_url: http://enilu.github.io/assets/images

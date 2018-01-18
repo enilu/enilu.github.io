@@ -1,35 +1,21 @@
 ---
+layout: page
 title: Tags
-layout: default
+header: Posts By Tag
+group: navigation
 ---
+{% include JB/setup %}
 
-{% include header.html %}
+<ul class="tag_box inline">
+  {% assign tags_list = site.tags %}  
+  {% include JB/tags_list %}
+</ul>
 
-<div class="g-banner tags-banner {{ site.postPatterns | prepend: 'post-pattern-' }} {{ site.theme-color | prepend: 'bgcolor-' }}" data-theme="{{ site.theme-color }}">
-    <h2>TAGS</h2>
-</div>
 
-<main class="tags-content">
-
-    <ul class="tags-list">
-        <li>
-        {% if site.recommend-tags and site.tags.size>0 %}
-            {% for tag in site.tags %}
-            <a href="#{{ tag[0] }}" class="tag">{{ tag[0]}}</a>
-            {% endfor %}
-        {% endif %}
-        </li>
-        {% for tag in site.tags %}
-        <li>
-            <span class="tag-name" id="{{ tag[0] }}">「{{ tag[0] }}」</span>
-            {% for post in tag[1] %}
-            <a class="tag-post" href="{{ post.url }}" title="{{ post.title }}">{{ post.title }}</a>
-            {% endfor %}
-        </li>
-        
-        </div>
-        {% endfor%}
-    </ul>
-</main>
-    
-{% include footer.html %}
+{% for tag in site.tags %} 
+  <h2 id="{{ tag[0] }}-ref">{{ tag[0] }}</h2>
+  <ul>
+    {% assign pages_list = tag[1] %}  
+    {% include JB/pages_list %}
+  </ul>
+{% endfor %}
