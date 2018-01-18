@@ -38,12 +38,12 @@ plugins:
 # Settings for rake task
 safe: False
 lsi: False
-username: samanyougarg #github username
-repo: hanuman #github repository
+username: enilu #github username
+repo: enilu.github.io #github repository
 branch: master #branch
 relative_source: ../hanuman/ #source directory
 destination: ../hanuman-pages/ #destination directory
-production_url:  https://samanyougarg.com/
+production_url:  http://enilu.com/
 source_url:  https://github.com/samanyougarg/hanuman #source repository url
 
 exclude:
