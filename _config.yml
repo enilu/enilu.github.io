@@ -82,7 +82,7 @@ JB :
   comments :
     provider : disqus
     disqus :
-      short_name : enilu的网络日志
+      short_name : enilu
     livefyre :
       site_id : enilublog
     intensedebate :
