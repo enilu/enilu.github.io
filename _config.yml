@@ -13,10 +13,10 @@ nav:
   tags: '/tags.html'
 
 # Author 配置博主信息
-author: 'enilu'
-nickname: 'enilu'
-bio: '开发者，热爱技术&设计，简单乐观爱创造'
-avatar: '/assets/img/profile.jpg'
+author: '廖柯宇'
+nickname: '悟空'
+bio: '前端开发者，热爱技术&设计，简单乐观爱创造'
+avatar: '/assets/img/profile.png'
 
 # Search
 search: true
@@ -40,10 +40,10 @@ postPatterns: 'circuitBoard'
 
 # SNS settings 配置社交网站url: weibo, zhihu, twitter, instagram, juejin, github, douban, facebook, dribble, uicn, jianshu, medium, linkedin
 sns:
-  weibo: '//weibo.com/5098572270'
-  juejin: '//juejin.im/user/57abd46d6be3ff006b87e095'
-  instagram: '//www.instagram.com/eniluzt'
-  github: '//github.com/enilu'
+  weibo: '//weibo.com/lovecolcol'
+  juejin: '//juejin.im/user/57a6f434165abd006159b4cc'
+  instagram: '//www.instagram.com/steveliaocn'
+  github: '//github.com/kaeyleo'
 
 # Tags 设置标签
 recommend-tags: true # whether or not display recommend-tags on the sidebar
