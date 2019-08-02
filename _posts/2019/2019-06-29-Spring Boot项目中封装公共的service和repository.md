@@ -155,6 +155,7 @@ tags : [SpringBoot,java]
  这里我们针对CRUD分别定义四个接口：InsertService,DeleteService,UpdateService,SelectService,并且再定义一个CrudService来继承上面四个接口，具体代码如下：
  
  - InsertService
+ 
  ```java
  public interface InsertService<T, ID> {
  
@@ -193,6 +194,7 @@ tags : [SpringBoot,java]
  }
  ```
  - UpdateService
+ 
  ```java
  public interface UpdateService <T, ID> {
      /**
@@ -211,6 +213,7 @@ tags : [SpringBoot,java]
  }
  ```
  - SelectService
+ 
  ```java
  public interface SelectService <T, ID> {
  
@@ -274,6 +277,7 @@ tags : [SpringBoot,java]
  ```
  
  -CurdService
+ 
  ```java
  public interface CrudService <T, ID> extends
          InsertService<T, ID>,
@@ -386,6 +390,7 @@ tags : [SpringBoot,java]
  
  - 上述接口中针对复杂查询和分页查询做了通用的封装
      - 封装SearchFilter来构建复杂查询条件:
+     
      ```java
      public class SearchFilter {
          public enum Operator {
@@ -443,6 +448,7 @@ tags : [SpringBoot,java]
      }
      ```
      - 通过DynamicSpecifications来解析SearchFilter查询条件，构建Spring data jpa复杂查询对象Predicate 
+     
      ```java
      public class DynamicSpecifications {
          public static <T> Specification<T> bySearchFilter(final Collection<SearchFilter> filters, final Class<T> entityClazz) {
@@ -504,6 +510,7 @@ tags : [SpringBoot,java]
      }
      ```
      - 在BaseService实现类中，我们使用了自己封装的一个分页对象Page来做分页查询：
+     
      ```java
      public class Page<T>  {
          /**
@@ -870,6 +877,7 @@ tags : [SpringBoot,java]
  }
  ```
  - 在controller中使用上面的UserService
+ 
  ```java
  @RestController
  @RequestMapping("/user")
