@@ -2,7 +2,7 @@
 layout: post
 category : Spring Boot 
 keywords : "Spring Boot,Validator,数据校验,开源项目"
-description : "在Spring Boot项目中使用数据校验Validator功能"
+description : "在web项目中经常要对用户输入的信息做校验。通常的做法是在前端使用js做初步的验证，然后在后端再做进一步校验。本文会简单介绍在Spring Boot项目中使用hibernate-validator做后端数据校验的做法。 "
 tags : [SpringBoot,java]
 ---
 

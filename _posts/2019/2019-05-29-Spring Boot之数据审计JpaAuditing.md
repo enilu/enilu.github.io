@@ -2,7 +2,7 @@
 layout: post
 category : Spring Boot 
 keywords : "Spring Boot,JpaAuditing,数据审计"
-description : "在Spring Boot项目中使用JpaAuditing实现数据审计功能"
+description : "通常我们都有这样的需求：我需要知道数据库中的数据是由谁创建，什么时候创建，最后一次修改时间是什么时候，最后一次修改人是谁。在Spring jpa中可以通过在实体bean的属性或者方法上添加以下注解来实现上述需求@CreatedDate、@CreatedBy、@LastModifiedDate、@LastModifiedBy。"
 tags : [SpringBoot,java]
 ---
 
