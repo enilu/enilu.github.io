@@ -1,6 +1,6 @@
 ---
 layout: post
-category : Spring Boot 
+category : Spring Boot
 keywords : "Spring Boot,公共service,公共repository,开源项目"
 description : " 在SpringBoot项目中我们经常会提取一些公共的方法封装起来，放到父类中；子类继承父类后复用这些方法，如果自己有特殊需要再写自己特有的方法。一般的web项目核心功能离不开对数据库数据的增删改查操作，因此封装公共的service和repository是很有必要的。"
 tags : [SpringBoot,java]
@@ -8,14 +8,14 @@ tags : [SpringBoot,java]
 
  在SpringBoot项目中我们经常会提取一些公共的方法封装起来，放到父类中；子类继承父类后复用这些方法，如果自己有特殊需要再写自己特有的方法。
  一般的web项目核心功能离不开对数据库数据的增删改查操作，因此封装公共的service和repository是很有必要的。
- 
+
  下面针对我们一个项目的封装过程做个总结
-  
+
 <!--break-->
 
 {% include JB/setup %}
 
- 
+
  ## 封装Repository
  - 基础Repository 除了继承Spring data jpa 中常用的Repository接口外，额外添加自己常用的方法：
  ```java
@@ -39,20 +39,20 @@ tags : [SpringBoot,java]
          implements BaseRepository<T, ID> {
      private final EntityManager entityManager;
      private Class<T> klass;
- 
- 
+
+
      BaseRepositoryImpl(JpaEntityInformation<T, ID> entityInformation,
                         EntityManager entityManager) {
          super(entityInformation, entityManager);
          this.entityManager = entityManager;
          this.klass = (Class<T>) entityInformation.getJavaType();
      }
- 
+
      @Override
      public List<Object[]> queryBySql(String sql) {
          return entityManager.createNativeQuery(sql).getResultList();
      }
- 
+
      @Override
      public Object getBySql(String sql) {
          List list = entityManager.createNativeQuery(sql).getResultList();
@@ -61,23 +61,23 @@ tags : [SpringBoot,java]
          }
          return list.get(0);
      }
- 
+
      @Override
      public T get(String sql) {
          List<T> list =  entityManager.createNativeQuery(sql,klass).getResultList();
          return list.get(0);
      }
- 
+
      @Override
      public int execute(String sql) {
          return entityManager.createNativeQuery(sql).executeUpdate();
      }
- 
+
      @Override
      public Class<T> getDataClass() {
          return klass;
      }
- 
+
      @Override
      public List<T> query(String sql) {
          return entityManager.createNativeQuery(sql,klass).getResultList();
@@ -94,19 +94,19 @@ tags : [SpringBoot,java]
          public BaseRepositoryFactoryBean(Class<? extends JR> repositoryInterface) {
              super(repositoryInterface);
          }
-     
+
          @Override
          protected RepositoryFactorySupport createRepositoryFactory(EntityManager entityManager) {
              return new BaseRepositoryFactory(entityManager);
          }
-     
+
          private static class BaseRepositoryFactory<T, ID extends Serializable> extends JpaRepositoryFactory {
              private final EntityManager entityManager;
              public BaseRepositoryFactory(EntityManager entityManager) {
                  super(entityManager);
                  this.entityManager = entityManager;
              }
-     
+
              @Override
              protected JpaRepositoryImplementation<?, ?> getTargetRepository(RepositoryInformation information, EntityManager entityManager) {
                  JpaEntityInformation<?, Serializable> entityInformation = this.getEntityInformation(information.getDomainType());
@@ -114,7 +114,7 @@ tags : [SpringBoot,java]
                  Assert.isInstanceOf(BaseRepositoryImpl.class, repository);
                  return (JpaRepositoryImplementation)repository;
              }
-     
+
              @Override
              protected Class<?> getRepositoryBaseClass(RepositoryMetadata metadata) {
                  return BaseRepositoryImpl.class;
@@ -129,7 +129,7 @@ tags : [SpringBoot,java]
      @SpringBootApplication   
      @EnableJpaRepositories(basePackages = "cn.enilu.flash.dao", repositoryFactoryBeanClass = BaseRepositoryFactoryBean.class)    
      public class ApiApplication extends SpringBootServletInitializer {
-     
+
          public static void main(String[] args) {
              SpringApplication.run(ApiApplication.class);
          }
@@ -139,26 +139,26 @@ tags : [SpringBoot,java]
  ```java
  public interface UserRepository extends BaseRepository<User,Long> {
  }
- 
+
  ```
- 
- 
+
+
  ## 封装Service
- 
+
  针对service，我们根据自己业务情况封装长用的增删改查方法即可，由于service涉及业务较多封装起来也比较复杂。总体步骤比较简单，只是具体的逻辑稍微复杂些，尤其涉及到复杂的查询，分页查询
  - 定义service接口，针对CRUD分别定义4中领域的接口
  - 实现service接口
- 
- 
+
+
  ### service接口定义
- 
+
  这里我们针对CRUD分别定义四个接口：InsertService,DeleteService,UpdateService,SelectService,并且再定义一个CrudService来继承上面四个接口，具体代码如下：
- 
+
  - InsertService
- 
+
  ```java
  public interface InsertService<T, ID> {
- 
+
      /**
       * 添加一条数据
       *
@@ -167,26 +167,26 @@ tags : [SpringBoot,java]
       */
      T insert(T record);
  }
- 
+
  ```
  - DeleteService
  ```java
  public interface DeleteService<ID> {
- 
+
      /**
       * 根据主键删除记录
       *
       * @param id 主键
       */
      void delete(ID id);
- 
+
      /**
       * 根据主键删除记录
       *
       * @param ids 主键集合
       */
      void delete(Iterable<ID> ids);
- 
+
      /**
       * 清空表数据
       */
@@ -194,7 +194,7 @@ tags : [SpringBoot,java]
  }
  ```
  - UpdateService
- 
+
  ```java
  public interface UpdateService <T, ID> {
      /**
@@ -213,43 +213,43 @@ tags : [SpringBoot,java]
  }
  ```
  - SelectService
- 
+
  ```java
  public interface SelectService <T, ID> {
- 
+
      /**
       * 根据主键查询
       * @param id 主键
       * @return 查询结果,无结果时返回{@code null}
       */
      T get(ID id);
- 
+
      /**
       * 根据多个主键查询
       * @param ids 主键集合
       * @return 查询结果,如果无结果返回空集合
       */
      List<T> query(Iterable<ID> ids);
- 
+
      /**
       * 查询所有结果
       * @return 所有结果,如果无结果则返回空集合
       */
      List<T> queryAll();
- 
+
      /**
       * 查询所有结果
       * @return 获取分页结果
       */
      Page<T> queryPage(Page<T> page);
- 
+
      /**
       * 根据多个条件查询列表数据
       * @param filters
       * @return
       */
      List<T> queryAll(List<SearchFilter> filters);
- 
+
      /**
       * 根据多个条件查询列表数据，并排序
       * @param filters
@@ -257,14 +257,14 @@ tags : [SpringBoot,java]
       * @return
       */
      List<T> queryAll(List<SearchFilter> filters, Sort sort);
- 
+
      /**
       * 根据的单个条件查询列表数据
       * @param filter
       * @return
       */
      List<T> queryAll(SearchFilter filter);
- 
+
      /**
       * 根据的单个条件查询列表数据
       * @param filter
@@ -273,11 +273,11 @@ tags : [SpringBoot,java]
       */
      List<T> queryAll(SearchFilter filter,Sort sort);
  }
- 
+
  ```
- 
+
  -CurdService
- 
+
  ```java
  public interface CrudService <T, ID> extends
          InsertService<T, ID>,
@@ -286,23 +286,23 @@ tags : [SpringBoot,java]
          SelectService<T, ID> {
  }
  ```
- 
+
  ### 实现Service接口
  我们通过BaseService实现上述接口
- 
+
  ```java
- 
+
  public abstract  class BaseService<T, ID extends Serializable, R extends BaseRepository<T, ID>>
          implements CrudService<T, ID> {
      @Autowired
      private R dao;
- 
- 
+
+
      @Override
      public void delete(ID id) {
          dao.deleteById(id);
      }
- 
+
      @Override
      public void delete(Iterable<ID> ids) {
          Iterator<ID> iterator = ids.iterator();
@@ -311,27 +311,27 @@ tags : [SpringBoot,java]
              dao.deleteById(id);
          }
      }
- 
+
      @Override
      public T insert(T record) {
          return dao.save(record);
      }
- 
+
      @Override
      public T get(ID id) {
          return  dao.getOne(id);
      }
- 
+
      @Override
      public List<T> query(Iterable<ID> ids) {
          return dao.findAllById(ids);
      }
- 
+
      @Override
      public List<T> queryAll() {
          return dao.findAll();
      }
- 
+
      @Override
      public Page<T> queryPage(Page<T> page) {
          Pageable pageable = null;
@@ -346,17 +346,17 @@ tags : [SpringBoot,java]
          page.setRecords(pageResult.getContent());
          return page;
      }
- 
+
      @Override
      public List<T> queryAll(List<SearchFilter> filters) {
          return queryAll(filters,null);
      }
- 
+
      @Override
      public List<T> queryAll(SearchFilter filter) {
          return queryAll(filter,null);
      }
- 
+
      @Override
      public List<T> queryAll(List<SearchFilter> filters, Sort sort) {
          Specification<T> specification = DynamicSpecifications.bySearchFilter(filters,dao.getDataClass());
@@ -365,38 +365,38 @@ tags : [SpringBoot,java]
          }
          return dao.findAll(specification,sort);
      }
- 
+
      @Override
      public List<T> queryAll(SearchFilter filter, Sort sort) {
          return queryAll(Lists.newArrayList(filter),sort);
      }
- 
+
      @Override
      public T update(T record) {
          return dao.save(record);
      }
- 
+
      @Override
      public T saveOrUpdate(T record) {
          return dao.save(record);
      }
- 
+
      @Override
      public void clear() {
          dao.deleteAllInBatch();
      }
  }
  ```
- 
+
  - 上述接口中针对复杂查询和分页查询做了通用的封装
      - 封装SearchFilter来构建复杂查询条件:
-     
+
      ```java
      public class SearchFilter {
          public enum Operator {
              EQ, LIKE, GT, LT, GTE, LTE,IN,ISNULL,ISNOTNULL
          }
-     
+
          public String fieldName;
          public Object value;
          public Operator operator;
@@ -415,13 +415,13 @@ tags : [SpringBoot,java]
              this.value = value;
              this.operator = operator;
          }
-     
+
          /**
           * searchParams中key的格式为OPERATOR_FIELDNAME
           */
          public static Map<String, SearchFilter> parse(Map<String, Object> searchParams) {
              Map<String, SearchFilter> filters = Maps.newHashMap();
-     
+
              for (Map.Entry<String, Object> entry : searchParams.entrySet()) {
                  // 过滤掉空值
                  String key = entry.getKey();
@@ -429,7 +429,7 @@ tags : [SpringBoot,java]
      			/*if (StringUtils.isBlank((String) value)) {
      				continue;
      			}*/
-     
+
                  // 拆分operator与filedAttribute
                  String[] names = StringUtils.split(key, "_");
                  if (names.length != 2) {
@@ -437,18 +437,18 @@ tags : [SpringBoot,java]
                  }
                  String filedName = names[1];
                  Operator operator = Operator.valueOf(names[0]);
-     
+
                  // 创建searchFilter
                  SearchFilter filter = new SearchFilter(filedName, operator, value);
                  filters.put(key, filter);
              }
-     
+
              return filters;
          }
      }
      ```
-     - 通过DynamicSpecifications来解析SearchFilter查询条件，构建Spring data jpa复杂查询对象Predicate 
-     
+     - 通过DynamicSpecifications来解析SearchFilter查询条件，构建Spring data jpa复杂查询对象Predicate
+
      ```java
      public class DynamicSpecifications {
          public static <T> Specification<T> bySearchFilter(final Collection<SearchFilter> filters, final Class<T> entityClazz) {
@@ -456,7 +456,7 @@ tags : [SpringBoot,java]
                  @Override
                  public Predicate toPredicate(Root<T> root, CriteriaQuery<?> query, CriteriaBuilder builder) {
                      if (filters!=null && !filters.isEmpty()) {
-     
+
                          List<Predicate> predicates = Lists.newArrayList();
                          for (SearchFilter filter : filters) {
                              // nested path translate, 如Task的名为"user.name"的filedName, 转换为Task.user.name属性
@@ -496,13 +496,13 @@ tags : [SpringBoot,java]
                                      break;
                              }
                          }
-     
+
                          // 将所有条件用 and 联合起来
                          if (!predicates.isEmpty()) {
                              return builder.and(predicates.toArray(new Predicate[predicates.size()]));
                          }
                      }
-     
+
                      return builder.conjunction();
                  }
              };
@@ -510,7 +510,7 @@ tags : [SpringBoot,java]
      }
      ```
      - 在BaseService实现类中，我们使用了自己封装的一个分页对象Page来做分页查询：
-     
+
      ```java
      public class Page<T>  {
          /**
@@ -525,40 +525,40 @@ tags : [SpringBoot,java]
           *
           */
          private transient int limit;
-     
+
          /**
           * 总数
           */
          private int total;
-     
+
          /**
           * 每页显示条数，默认 10
           */
          private int size = 10;
-     
+
          /**
           * 总页数
           */
          private int pages;
-     
+
          /**
           * 当前页
           */
          private int current = 1;
-     
+
          /**
           * 查询总记录数（默认 true）
           */
          private transient boolean searchCount = true;
-     
+
          /**
           * 开启排序（默认 true） 只在代码逻辑判断 并不截取sql分析
           *
           *
           **/
          private transient boolean openSort = true;
-     
-     
+
+
          /**
           * <p>
           * SQL 排序 ASC 集合
@@ -571,7 +571,7 @@ tags : [SpringBoot,java]
           * </p>
           */
          private transient List<String> descs;
-     
+
          /**
           * 是否为升序 ASC（ 默认： true ）
           *
@@ -579,7 +579,7 @@ tags : [SpringBoot,java]
           * @see #descs
           */
          private transient boolean isAsc = true;
-     
+
          /**
           * <p>
           * SQL 排序 ORDER BY 字段，例如： id DESC（根据id倒序查询）
@@ -593,21 +593,21 @@ tags : [SpringBoot,java]
           * </p>
           */
          private transient String orderByField;
-     
+
          public Page() {
-     
+
          }
-     
+
          public Page(int current, int size, String orderByField) {
-     
+
              this.setOrderByField(orderByField);
          }
-     
+
          public Page(int current, int size, String orderByField, boolean isAsc) {
              this(current, size, orderByField);
              this.setAsc(isAsc);
          }
-     
+
          /**
           * <p>
           * 分页构造函数
@@ -619,13 +619,13 @@ tags : [SpringBoot,java]
          public Page(int current, int size) {
              this(current,size,true);
          }
-     
+
          public Page(int current, int size, boolean searchCount) {
              this(current, size, searchCount, true);
          }
-     
+
          public Page(int current, int size, boolean searchCount, boolean openSort) {
-     
+
              setOffset(offsetCurrent(current, size));
              setLimit(size);
              if (current > 1) {
@@ -635,44 +635,44 @@ tags : [SpringBoot,java]
              this.searchCount = searchCount;
              this.openSort = openSort;
          }
-     
+
          protected static int offsetCurrent(int current, int size) {
              if (current > 0) {
                  return (current - 1) * size;
              }
              return 0;
          }
-     
+
          public int offsetCurrent() {
              return offsetCurrent(this.current, this.size);
          }
-     
+
          public boolean hasPrevious() {
              return this.current > 1;
          }
-     
+
          public boolean hasNext() {
              return this.current < this.pages;
          }
-     
+
          public int getTotal() {
              return total;
          }
-     
+
          public Page setTotal(int total) {
              this.total = total;
              return this;
          }
-     
+
          public int getSize() {
              return size;
          }
-     
+
          public Page setSize(int size) {
              this.size = size;
              return this;
          }
-     
+
          public int getPages() {
              if (this.size == 0) {
                  return 0;
@@ -683,25 +683,25 @@ tags : [SpringBoot,java]
              }
              return this.pages;
          }
-     
+
          public int getCurrent() {
              return current;
          }
-     
+
          public Page setCurrent(int current) {
              this.current = current;
              return this;
          }
-     
+
          public boolean isSearchCount() {
              return searchCount;
          }
-     
+
          public Page setSearchCount(boolean searchCount) {
              this.searchCount = searchCount;
              return this;
          }
-     
+
          /**
           * @see #ascs
           * @see #descs
@@ -710,7 +710,7 @@ tags : [SpringBoot,java]
          public String getOrderByField() {
              return orderByField;
          }
-     
+
          /**
           * @see #ascs
           * @see #descs
@@ -721,20 +721,20 @@ tags : [SpringBoot,java]
              }
              return this;
          }
-     
+
          public boolean isOpenSort() {
              return openSort;
          }
-     
+
          public Page setOpenSort(boolean openSort) {
              this.openSort = openSort;
              return this;
          }
-     
+
          public List<String> getAscs() {
              return orders(isAsc, ascs);
          }
-     
+
          private List<String> orders(boolean condition, List<String> columns) {
              if (condition && StringUtils.isNotEmpty(orderByField)) {
                  if (columns == null) {
@@ -746,21 +746,21 @@ tags : [SpringBoot,java]
              }
              return columns;
          }
-     
+
          public Page setAscs(List<String> ascs) {
              this.ascs = ascs;
              return this;
          }
-     
+
          public List<String> getDescs() {
              return orders(!isAsc, descs);
          }
-     
+
          public Page setDescs(List<String> descs) {
              this.descs = descs;
              return this;
          }
-     
+
          /**
           * @see #ascs
           * @see #descs
@@ -769,7 +769,7 @@ tags : [SpringBoot,java]
          public boolean isAsc() {
              return isAsc;
          }
-     
+
          /**
           * @see #ascs
           * @see #descs
@@ -778,20 +778,20 @@ tags : [SpringBoot,java]
              this.isAsc = isAsc;
              return this;
          }
-     
+
          public int getOffset() {
              return offset;
          }
-     
+
          public Page setOffset(int offset) {
              this.offset = offset;
              return this;
          }
-     
+
          public int getLimit() {
              return limit;
          }
-     
+
          public Page setLimit(int limit) {
              this.limit = limit;
              return this;
@@ -800,36 +800,36 @@ tags : [SpringBoot,java]
           * 查询数据列表
           */
          private List<T> records = Collections.emptyList();
-     
+
          /**
           * 查询参数
           */
          private transient Map<String, Object> condition;
          private transient  List<SearchFilter> filters;
-     
-     
+
+
          public List<T> getRecords() {
              return records;
          }
-     
+
          public Page<T> setRecords(List<T> records) {
              this.records = records;
              return this;
          }
-     
+
          public Map<String, Object> getCondition() {
              return condition;
          }
-     
+
          public Page<T> setCondition(Map<String, Object> condition) {
              this.condition = condition;
              return this;
          }
-     
+
          public List<SearchFilter> getFilters() {
              return filters;
          }
-     
+
          public void setFilters(List<SearchFilter> filters) {
              this.filters = filters;
          }
@@ -850,7 +850,7 @@ tags : [SpringBoot,java]
          public void addFilter(String fieldName, SearchFilter.Operator operator){
              addFilter(SearchFilter.build(fieldName,operator));
          }
-     
+
          @Override
          public String toString() {
              StringBuilder pg = new StringBuilder();
@@ -862,22 +862,22 @@ tags : [SpringBoot,java]
              }
              return pg.append(" }").toString();
          }
-     
+
      }
- 
+
      ```
-     
-     
+
+
  - 基本的封装已经完毕，下面我们在自己的service中继承BaseService来使用封装的方法，比如有个用户服务类UserService
- 
+
  ```java
  @Service
  public class UserService  extends BaseService<User,Long,UserRepository> {
- 
+
  }
  ```
  - 在controller中使用上面的UserService
- 
+
  ```java
  @RestController
  @RequestMapping("/user")
@@ -897,6 +897,6 @@ tags : [SpringBoot,java]
      }
  }    
  ```
- 
- 
+
+
  至此一个基础的service和repository已经封装完毕并且可以运行了，当然上面的封装还不完善，你可以根据自己的实际项目中需求做更多的封装：比如支持Or查询，比如controller层自动接收查询参数等等

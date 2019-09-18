@@ -5,7 +5,7 @@ Thumbs.db
 .DS_Store
 
 !.gitkeep
-
+.jekyll-cache
 .rbenv-version
 .rvmrc
 /.idea/

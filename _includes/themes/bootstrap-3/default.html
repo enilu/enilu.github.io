@@ -20,9 +20,11 @@
     <link href="/assets/themes/bootstrap-3/bootstrap/css/bootstrap-theme.min.css" rel="stylesheet">
     <!-- Sticky Footer -->
     <link href="/assets/themes/bootstrap-3/bootstrap/css/bs-sticky-footer.css" rel="stylesheet">
-    
+
     <!-- Custom styles -->
     <link href="/assets/themes/bootstrap-3/css/style.css?body=1" rel="stylesheet" type="text/css" media="all">
+    <link rel="stylesheet" href="{{ BASE_PATH }}/highlight/atom-one-dark.css">
+    <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.10/highlight.min.js"></script>
     <link href="{{ BASE_PATH }}/main.css" rel="stylesheet" type="text/css" media="all">
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -69,7 +71,6 @@
             <li><a  href="/news.html">News</a></li>
             <li><a  href="/about.html">About</a></li>
             <li><a target="_blank" href="http://pdfmerge.enilu.cn">pdf在线合并</a></li>
-            <li><a target="_blank" href="http://blog.enilu.cn/nutz-sourcecode-read">nutz源码阅读</a></li>
           </ul>
           <!--<form class="navbar-form navbar-right" role="search">-->
             <!--<div class="form-group">-->
@@ -105,6 +106,6 @@
     <script src="/assets/themes/bootstrap-3/bootstrap/js/bootstrap.min.js"></script>
     <script type="text/javascript" id="bdshare_js" data="type=tools" ></script>
     <script type="text/javascript" id="bdshell_js"></script>
-
+    <script>hljs.initHighlightingOnLoad();</script>
   </body>
 </html>
