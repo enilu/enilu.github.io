@@ -25,3 +25,10 @@ body{
 #cnzz_stat_icon_1256833154{
     display: none;
 }
+p{
+  line-height: 28px;
+  font-size: 15px;
+  letter-spacing: 0.5px;
+  font-family: -apple-system-font, "Helvetica Neue", "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
+  margin: 20px 8px;
+}
