@@ -21,33 +21,42 @@ tags : [linux,运维,java]
 
 举个栗子：
 
-   -java调用BeanShell:
-        步骤一：写一个BeanShell脚本d:\test.bsh:
-                 print("hello,input Value is: "+inValue);
-         outValue = inValue+1;
-        步骤二：再写一个java文件来调用上面的test.bsh：
-        import bsh.Interpreter;
-        public class TestBeanShell {
-             public static void main(String[] args) {
-                
-                 try {
-                     Interpreter interpreter = new Interpreter();
-                     interpreter.set("inValue", new Integer(1));
-                     interpreter.source("/E:/proj/eclipsews/javasedemo/src/opensource/beanshell/test.bsh");
-                     System.out.println(((Integer) interpreter.get("outValue")).intValue());
-                 } catch (Exception e) {
-                     e.printStackTrace();
-                 } 
-             }
-         }
-        步骤三：运行上面java类，结果是：
-         hello,input Value is: 1
-    - BeanShell  调用java:
-        看过hold住姐的一秒钟变格格么？我们一秒钟让BeanShell调用java：
-        更改test.sh内容为：
-         System.out.println ("hello,input Value is: "+inValue); 
-            outValue = inValue+1;
-     看到么？ System.out.println();这里直接在shell脚本中使用java程序了？
+- java调用BeanShell:
+	- 步骤一：写一个BeanShell脚本d:\test.bsh:
+		```sh
+		print("hello,input Value is: "+inValue);
+		outValue = inValue+1;
+		```
+	- 步骤二：再写一个java文件来调用上面的test.bsh：
+		```sh
+		import bsh.Interpreter;
+		public class TestBeanShell {
+			 public static void main(String[] args) {
+				
+				 try {
+					 Interpreter interpreter = new Interpreter();
+					 interpreter.set("inValue", new Integer(1));
+					 interpreter.source("/E:/proj/eclipsews/javasedemo/src/opensource/beanshell/test.bsh");
+					 System.out.println(((Integer) interpreter.get("outValue")).intValue());
+				 } catch (Exception e) {
+					 e.printStackTrace();
+				 } 
+			 }
+		 }
+		 ```
+	- 步骤三：运行上面java类，结果是：
+		 ```
+		 hello,input Value is: 1
+		 ```
+	 
+- BeanShell  调用java:
+	看过hold住姐的一秒钟变格格么？我们一秒钟让BeanShell调用java：
+	更改test.sh内容为：
+	```java
+	 System.out.println ("hello,input Value is: "+inValue); 
+	 outValue = inValue+1;
+	````
+ 看到么？ System.out.println();这里直接在shell脚本中使用java程序了？
 
 
 为嘛要用这厮：
