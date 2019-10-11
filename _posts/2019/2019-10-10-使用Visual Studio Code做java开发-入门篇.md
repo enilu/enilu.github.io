@@ -38,3 +38,6 @@ tags : [vs code,开发工具,java开发]
 - IntelliJ IDEA Keybindings 如果你之前用IntelliJ IDEA开发工具，那么这个插件必装
 - Lombok Annotations Support for VS Code，Lombok插件，可以方便的帮助我们生成setter,getter方法等
 - Vetur，本片虽然是介绍用vscode做java开发，但是作为免不了写前端的后端程序员，我用vue.js，所以这款vuejs的插件必不可少
+
+## 快捷键
+-  ctrl + alt +B 进入当前接口(方法)的实现类(方法)
