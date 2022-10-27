@@ -6,7 +6,7 @@ description : "升级mysql驱动后导致的异常SQLException:validateconnectio
 tags : [java,mysql]
 ---
 
-最新客户在扫描服务器漏洞，要求升级mysql的java驱动包，没想到升级后报错： java.sql.SQLException: validateConnection false。
+最近客户扫描服务器漏洞，要求升级mysql的java驱动包，想着不是什么大师，顺手升级了下，没想到升级后报错： java.sql.SQLException: validateConnection false。
 <!--break-->
 
 {% include JB/setup %}
@@ -25,4 +25,4 @@ tags : [java,mysql]
 比如我最终使用的是druid1.2.12版本，搜索druid点击对应版本进入后，可以看到“Provided Dependencies (36)"下对应的mysql驱动包版本为：8.0.21至8.0.31：
 ![druid-mysql.png]({{ site.img_url }}/2022/druid-mysql.png)
 
-我的mysql驱动版本为8.0.28在上述区间，这样就没有问题了。
+我的mysql驱动版本为8.0.28，在上述版本区间，这样就没有问题了。
