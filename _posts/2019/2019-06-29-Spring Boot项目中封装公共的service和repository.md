@@ -1,6 +1,6 @@
 ---
 layout: post
-category : Spring Boot
+category : java
 keywords : "Spring Boot,公共service,公共repository,开源项目"
 description : " 在SpringBoot项目中我们经常会提取一些公共的方法封装起来，放到父类中；子类继承父类后复用这些方法，如果自己有特殊需要再写自己特有的方法。一般的web项目核心功能离不开对数据库数据的增删改查操作，因此封装公共的service和repository是很有必要的。"
 tags : [SpringBoot,java]

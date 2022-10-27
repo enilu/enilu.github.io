@@ -1,6 +1,6 @@
 ---
 layout: post
-category : 运维
+category : linux
 keywords : "Arthas,java应用诊断"
 description : "使用alibaba Arthas进行线上java应用诊断"
 tags : [运维,java]

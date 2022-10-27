@@ -1,6 +1,6 @@
 ---
 layout: post
-category : 开发工具 
+category : 前端 
 keywords : "开发工具,bootstrap,pingendo"
 description : "随着响应式网站的大热，bootstrap几乎成了事实上的标准，这不，hacker news站点一连介绍两个bootstrap相关工具，bootstrap sutdio和pingendo"
 tags : [开发工具,bootstrap,pingendo]

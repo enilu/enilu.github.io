@@ -1,6 +1,6 @@
 ---
 layout: post
-category : 运维 
+category : linux 
 tags : [telnet,运维,linux]
 ---
  

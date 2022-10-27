@@ -1,6 +1,6 @@
 ---
 layout: post
-category : 运维 
+category : linux 
 keywords : "linux,运维,ip bond"
 description : "ipbbond是 centos 提供的ip冗余机制，这个机制帮助我们在ip资源上也实现了负载均衡。"
 tags : [linux,运维,ip bond]

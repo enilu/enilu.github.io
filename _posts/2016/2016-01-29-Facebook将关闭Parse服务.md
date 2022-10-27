@@ -1,6 +1,6 @@
 ---
 layout: post
-category : 每日一译 
+category : 英语学习 
 keywords : "翻译,facebook关闭parse，facebook"
 description : "Facebook宣布将于2017年1月28日关闭parse服务"
 tags : [英语学习,翻译]

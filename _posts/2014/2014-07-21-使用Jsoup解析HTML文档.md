@@ -1,6 +1,6 @@
 ---
 layout: post
-category : 数据抓取 
+category : 爬虫 
 tags : [开源,java,数据抓取,jsoup,入门教程]
 ---
 

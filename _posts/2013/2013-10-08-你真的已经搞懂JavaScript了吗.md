@@ -1,6 +1,6 @@
 ---
 layout: post
-category : 入门教程 
+category : 前端 
 tags : [linux,运维,java]
 ---
 

@@ -1,6 +1,6 @@
 ---
 layout: post
-category : 入门教程 
+category : 学习笔记 
 keywords : "kettle,开源,数据清洗,入门教程,spoon"
 description : "项目中有数据清洗的需求，自己对sql中的函数，存储过程，不是太熟悉，就使用kettle进行处理"
 tags : [kettle,开源,数据清洗,入门教程]

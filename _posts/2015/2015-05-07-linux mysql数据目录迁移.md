@@ -1,6 +1,6 @@
 ---
 layout: post
-category : 运维 
+category : 数据库 
 keywords : "linux,运维,mysql,mysql目录迁移"
 description : "linux中mysql目录迁移步骤"
 tags : [linux,运维,mysql]

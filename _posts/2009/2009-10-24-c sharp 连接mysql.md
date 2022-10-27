@@ -1,6 +1,6 @@
 ---
 layout: post
-category : 随手记 
+category : c# 
 keywords: "c#,mysql,"
 description : "想用c#做点桌面应用，可是又不想用sqlserver，准备用mysql，找了些资料，先来个简单的c#连接mysql的例子："
 tags : [c#,mysql,入门教程]

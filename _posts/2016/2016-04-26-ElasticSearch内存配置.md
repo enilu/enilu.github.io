@@ -1,6 +1,6 @@
 ---
 layout: post
-category : elasticsearch 
+category : 大数据 
 keywords : "开源,搜索,elasticsearch,大数据,问题"
 description : "elasticsearch堆内存溢出解决"
 tags : [开源,搜索,elasticsearch,大数据]

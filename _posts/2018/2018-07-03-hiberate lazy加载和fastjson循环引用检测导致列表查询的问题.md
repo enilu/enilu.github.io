@@ -1,6 +1,6 @@
 ---
 layout: post
-category : 问题集锦 
+category : java 
 keywords : "fastjson,延迟加载,循环引用检测"
 description : "hiberate lazy加载和fast json 循环引用检测导致列表查询的问题"
 tags : [fastjson,hibernate,java]

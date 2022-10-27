@@ -1,6 +1,6 @@
 ---
 layout: post
-category : 搜索 
+category : java 
 keywords: "开源,搜索,ikanalyzer,入门教程"
 description : " IKAnalyzer是一个开源的，基于java语言开发的轻量级的中文分词语言包，它是以Lucene为应用主体，结合词典分词和文法分析算法的中文词组组件。 从3.0版本开始，IK发展为面向java的公用分词组件，独立Lucene项目，同时提供了对Lucene的默认优化实现。 IKAnalyzer实现了简单的分词歧义排除算法，标志着IK分词器从单独的词典分词想模拟语义化分词衍生。"
 tags : [开源,搜索,ikanalyzer,入门教程]

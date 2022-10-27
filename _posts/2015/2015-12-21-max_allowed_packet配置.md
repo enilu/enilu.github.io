@@ -1,6 +1,6 @@
 ---
 layout: post
-category : mysql 
+category : 数据库 
 keywords: "mysql,运维,max_allowed_packet"
 description : "解决mysql报出的Packet for query is too large错误，使用max_allowed_packet配置。"
 tags : [mysql, 运维]

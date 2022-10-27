@@ -1,6 +1,6 @@
 ---
 layout: post
-category : elasticsearch 
+category : 大数据 
 keywords : "开源,搜索,elasticsearch,大数据,mongodb,mongodb-connector"
 description : "公司产品部门最近出了个新需求，希望能将公司各种来源的数据根据企业唯一标识合并到一个大库中。理了一下具体需求，主要目标有两个"
 tags : [开源,搜索,elasticsearch,大数据,mongodb]

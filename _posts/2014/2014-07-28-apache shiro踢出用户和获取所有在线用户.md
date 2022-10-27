@@ -1,6 +1,6 @@
 ---
 layout: post
-category : 随手记 
+category : java 
 tags : [开源,java,apache,权限管理]
 ---
 
