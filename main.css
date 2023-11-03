@@ -36,3 +36,8 @@ p,ul,ol{
 pre{
   background-color:#282c34;
 }
+#footer p {
+    line-height: 10px;
+    /* margin-bottom: 0px; */
+    margin-top:10px;
+}
