@@ -1,0 +1,10 @@
+{% include bilingual-context.html %}
+{% if translation_page %}
+<p class="translation-link">
+  {% if page_lang == 'en' %}
+  <a href="{{ translation_page.url | relative_url }}" lang="zh-CN" hreflang="zh-CN">阅读中文版</a>
+  {% else %}
+  <a href="{{ translation_page.url | relative_url }}" lang="en" hreflang="en">Read in English</a>
+  {% endif %}
+</p>
+{% endif %}

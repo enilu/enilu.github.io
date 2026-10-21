@@ -1,0 +1,18 @@
+---
+layout: default
+lang: en
+title: "enilu's Weblog"
+description: "Notes on software development, tools and engineering practice."
+translation_key: home
+---
+<h1>{{ page.title }}</h1>
+<p>Notes on software development, tools and engineering practice. English translations are added gradually; the <a href="/">Chinese site</a> contains the full archive.</p>
+{% assign english_posts = site.english | sort: 'date' | reverse %}
+{% for post in english_posts %}
+<article>
+  <h2><a href="{{ post.url | relative_url }}">{{ post.title | escape }}</a></h2>
+  <p><time datetime="{{ post.date | date_to_xmlschema }}">{{ post.date | date: '%B %-d, %Y' }}</time></p>
+  {{ post.content | split: '<!--break-->' | first }}
+  <p><a href="{{ post.url | relative_url }}">Read more →</a></p>
+</article>
+{% endfor %}

@@ -1,8 +1,27 @@
 # This is the default format.
 # For more see: http://jekyllrb.com/docs/permalinks/
 permalink: /:categories/:year/:month/:day/:title
+url: https://blog.enilu.cn
+baseurl: ""
+lang: zh-CN
+title_en: "enilu's Weblog"
+collections:
+  english:
+    output: true
+    permalink: /en/:path/
+defaults:
+  - scope:
+      path: ""
+    values:
+      lang: zh-CN
+  - scope:
+      path: ""
+      type: english
+    values:
+      lang: en
+      layout: english-post
 
-exclude: [".rvmrc", ".rbenv-version", "README.md", "Rakefile", "changelog.md"]
+exclude: [".rvmrc", ".rbenv-version", "README.md", "Rakefile", "changelog.md", "scripts"]
 highlighter: pygments
 
 # Themes are encouraged to use these universal variables
@@ -25,7 +44,7 @@ author :
 # Else if you are pushing to username.github.io, replace with your username.
 # Finally if you are pushing to a GitHub project page, include the project name at the end.
 #
-production_url : http://enilu.github.io
+production_url : https://blog.enilu.cn
 
 # All Jekyll-Bootstrap specific configurations are namespaced into this hash
 #

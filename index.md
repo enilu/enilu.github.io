@@ -1,5 +1,6 @@
 ---
 layout: default
+translation_key: home
 
 ---
 

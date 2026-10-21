@@ -1,0 +1,13 @@
+---
+layout: default
+---
+<article class="post-full">
+  <header class="page-header"><h1>{{ page.title | escape }}</h1></header>
+  <p class="date"><time datetime="{{ page.date | date_to_xmlschema }}">{{ page.date | date: '%B %-d, %Y' }}</time></p>
+  {% include translation-link.html %}
+  <div class="content">{{ content }}</div>
+  {% if page.tags.size > 0 %}<p class="post-tags">Tags: {{ page.tags | join: ', ' | escape }}</p>{% endif %}
+  <nav aria-label="Article navigation"><a href="/en/archive/">← All English articles</a></nav>
+  <hr>
+  {% include JB/comments %}
+</article>

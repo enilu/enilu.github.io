@@ -1,0 +1,15 @@
+---
+layout: default
+lang: en
+title: English archive
+permalink: /en/archive/
+translation_key: archive
+---
+<h1>English archive</h1>
+{% assign english_posts = site.english | sort: 'date' | reverse %}
+<ul>
+{% for post in english_posts %}
+<li><time datetime="{{ post.date | date_to_xmlschema }}">{{ post.date | date: '%Y-%m-%d' }}</time> — <a href="{{ post.url | relative_url }}">{{ post.title | escape }}</a></li>
+{% endfor %}
+</ul>
+<p><a href="/archive">Browse the full Chinese archive</a></p>

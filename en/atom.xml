@@ -1,0 +1,23 @@
+---
+layout: null
+lang: en
+---
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en">
+  <title>{{ site.title_en | xml_escape }}</title>
+  <link href="{{ '/en/atom.xml' | absolute_url }}" rel="self"/>
+  <link href="{{ '/en/' | absolute_url }}"/>
+  <id>{{ '/en/' | absolute_url }}</id>
+  <updated>{{ site.time | date_to_xmlschema }}</updated>
+  <author><name>{{ site.author.name | xml_escape }}</name></author>
+  {% assign english_posts = site.english | sort: 'date' | reverse %}
+  {% for post in english_posts limit:20 %}
+  <entry>
+    <title>{{ post.title | xml_escape }}</title>
+    <link href="{{ post.url | absolute_url | xml_escape }}"/>
+    <id>{{ post.url | absolute_url | xml_escape }}</id>
+    <updated>{{ post.date | date_to_xmlschema }}</updated>
+    <content type="html">{{ post.content | xml_escape }}</content>
+  </entry>
+  {% endfor %}
+</feed>

@@ -1,0 +1,24 @@
+---
+layout: null
+lang: en
+---
+<?xml version="1.0" encoding="utf-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>{{ site.title_en | xml_escape }}</title>
+    <description>English articles by {{ site.author.name | xml_escape }}</description>
+    <language>en</language>
+    <link>{{ '/en/' | absolute_url }}</link>
+    <atom:link href="{{ '/en/rss.xml' | absolute_url }}" rel="self" type="application/rss+xml"/>
+    {% assign english_posts = site.english | sort: 'date' | reverse %}
+    {% for post in english_posts limit:20 %}
+    <item>
+      <title>{{ post.title | xml_escape }}</title>
+      <link>{{ post.url | absolute_url | xml_escape }}</link>
+      <guid>{{ post.url | absolute_url | xml_escape }}</guid>
+      <description>{{ post.content | xml_escape }}</description>
+      <pubDate>{{ post.date | date_to_rfc822 }}</pubDate>
+    </item>
+    {% endfor %}
+  </channel>
+</rss>

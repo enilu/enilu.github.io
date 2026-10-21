@@ -1,0 +1,20 @@
+{%- assign page_lang = page.lang | default: 'zh-CN' -%}
+{%- assign translation_page = nil -%}
+{%- assign bilingual_documents = site.posts | concat: site.english | concat: site.pages -%}
+{%- if page.translation_key -%}
+  {%- assign translation_candidates = bilingual_documents | where: 'translation_key', page.translation_key -%}
+  {%- for candidate in translation_candidates -%}
+    {%- if candidate.lang != page_lang -%}
+      {%- assign translation_page = candidate -%}
+      {%- break -%}
+    {%- endif -%}
+  {%- endfor -%}
+{%- endif -%}
+{%- if page_lang == 'en' -%}
+  {%- assign language_switch_url = '/' -%}
+{%- else -%}
+  {%- assign language_switch_url = '/en/' -%}
+{%- endif -%}
+{%- if translation_page -%}
+  {%- assign language_switch_url = translation_page.url -%}
+{%- endif -%}
