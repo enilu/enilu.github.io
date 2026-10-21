@@ -35,6 +35,10 @@ p,ul,ol{
 }
 pre{
   background-color:#282c34;
+  color:#abb2bf;
+}
+pre code{
+  color:inherit;
 }
 #footer p {
     line-height: 10px;
