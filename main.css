@@ -40,6 +40,33 @@ pre{
 pre code{
   color:inherit;
 }
+/* Keep Markdown tables readable, with horizontal scrolling on narrow screens. */
+.post-full .content table {
+  display: block;
+  width: 100%;
+  overflow-x: auto;
+  border-collapse: collapse;
+  margin: 20px 0;
+  font-size: 16px;
+  line-height: 1.75;
+  color: #575757;
+}
+.post-full .content th,
+.post-full .content td {
+  border: 1px solid #d8dee4;
+  padding: 10px 14px;
+  min-width: 120px;
+  text-align: left;
+  vertical-align: top;
+}
+.post-full .content th {
+  background-color: #eef2f6;
+  color: #24292f;
+  font-weight: 600;
+}
+.post-full .content tbody tr:nth-child(even) {
+  background-color: #f8fafc;
+}
 #footer p {
     line-height: 10px;
     /* margin-bottom: 0px; */
