@@ -2,166 +2,41 @@
 layout: post
 category : 学习笔记 
 keywords: "nutz,源码学习"
-description : "这篇文章说下，lang包中基本类型相关的工具类，说基本类型其实有点不太准确，主要是针对字符串（Strings)，数字(Nums)，日期(Times)的工具类"
+description: "读字符串工具时，很容易把某种业务分类当成 Unicode 的完整定义。Nutz 1.b.53 的 Strings 提供中文字符、全半角和大小写等方法，理解它们需要先看接受的是 char 还是完整码点。"
 tags : [nutz,源码学习]
+lang: zh-CN
+translation_key: nutz-strings-unicode
 ---
 
-这篇文章说下，lang包中基本类型相关的工具类，说基本类型其实有点不太准确，主要是针对字符串（Strings)，数字(Nums)，
-日期(Times)的工具类。
-下面一个一个类来看了，其实鄙人java基础很不扎实，这次趁着阅读基础的工具类的机会也好好复习巩固下基础。有说的不对的地方，欢迎批评指正。辣么，开始吧。
-
+读字符串工具时，很容易把某种业务分类当成 Unicode 的完整定义。Nutz 1.b.53 的 Strings 提供中文字符、全半角和大小写等方法，理解它们需要先看接受的是 char 还是完整码点。
 <!--break-->
 
 {% include JB/setup %}
- 
 
-## Strings
+## UnicodeBlock 判断的是区块
 
+isChineseCharacter 使用 UnicodeBlock，并把部分标点和全半角形式也归入返回 true 的范围。因此它体现的是工具自己的字符分类，不是准确识别一段文本所用语言的算法。
 
-
-### 字符判断
-
-- 判断是否是中文字符，先来段热气腾腾的代码：
+Java 的 char 是一个 UTF-16 编码单元。补充平面的字符需要两个 char，即使源码列出了 EXTENSION_B，也不能用接收单个 char 的接口完整处理这些汉字。
 
 ```java
-
-    /**
-     * 是中文字符吗?
-     * 
-     * @param c
-     *            待判定字符
-     * @return 判断结果
-     */
-    public static boolean isChineseCharacter(char c) {
-        Character.UnicodeBlock ub = Character.UnicodeBlock.of(c);
-        if (ub == Character.UnicodeBlock.CJK_UNIFIED_IDEOGRAPHS
-            || ub == Character.UnicodeBlock.CJK_COMPATIBILITY_IDEOGRAPHS
-            || ub == Character.UnicodeBlock.CJK_UNIFIED_IDEOGRAPHS_EXTENSION_A
-            || ub == Character.UnicodeBlock.CJK_UNIFIED_IDEOGRAPHS_EXTENSION_B
-            || ub == Character.UnicodeBlock.CJK_SYMBOLS_AND_PUNCTUATION
-            || ub == Character.UnicodeBlock.HALFWIDTH_AND_FULLWIDTH_FORMS
-            || ub == Character.UnicodeBlock.GENERAL_PUNCTUATION) {
-            return true;
-        }
-        return false;
-    }
+String text = "𠀀";
+System.out.println(text.length());                         // 2
+System.out.println(text.codePointCount(0, text.length())); // 1
 ```
 
-好吧，还可以这样判断是否是中文字符。我也是涨姿势了，遥想当年，哦不，也许是上上个月，俺用着蹩脚的正则表达式来判断一个字符是否是中文，太苦逼了。给我们这些总是不能熟练使用正则的同胞一个福音。
-查了下API，Character.UnicodeBlock类的of方法，返回的一个指定字符的Unicode块对象。
-比如CJK_UNIFIED_IDEOGRAPHS就表示中，日，韩等一类国家的这种表意文字（和字母一类的区分）那这个肯定包含汉字字符了。
+字符串长度、码点数量和用户看到的字形数量还不总是相同。处理表情或组合字符时，不能简单把 charAt 的次数当成显示字符数。
 
-- 接下来看对全半角的判断
+## 全半角转换只对特定范围成立
 
-```java
+全角 ASCII 形式 U+FF01 到 U+FF5E 与对应 ASCII 相差 65248，U+3000 空格单独处理。这个偏移不能用于所有中文标点，例如中文句号 U+3002 不在该范围内。
 
-    /**
-     * 判断字符是否为全角字符
-     * 
-     * @param c
-     *            字符
-     * @return 判断结果
-     */
-    public static boolean isFullWidthCharacter(char c) {
-        // 全角空格为12288，半角空格为32
-        // 其他字符半角(33-126)与全角(65281-65374)的对应关系是：均相差65248
-        // 全角空格 || 其他全角字符
-        if (c == 12288 || (c > 65280 && c < 65375)) {
-            return true;
-        }
-        // 中文全部是全角
-        if (isChineseCharacter(c)) {
-            return true;
-        }
-        // 日文判断
-        // 全角平假名 u3040 - u309F
-        // 全角片假名 u30A0 - u30FF
-        if (c >= '\u3040' && c <= '\u30FF') {
-            return true;
-        }
-        return false;
-    }
-```
-这个方法同样使用字符编码来对全角字符进行判断归类，方法中将全角字符归为四类：
-- 全角空格:unicode码值为：12288
-- 其他全角字符，入逗号"，",句号"。"等，码值为从65281至65374。
-- 中文字符，通过调用isChineseCharacter也可以看出，对于日韩文字也划分到全角字符中去。
-- 日文假名
+字符是不是“显示两格”，还涉及终端、字体和宽度策略，不能用旧工具中的宽字符分类推断所有 UI 排版。
 
-上面代码中作者也注释了，除了空格，其他字符的全角和半角形式相差65248，所以就有了下面的全半角转换方法：
+## 大小写和性能
 
-```java
+ASCII 大小写可以做简单范围变换，但一般 Unicode 大小写存在语言和长度变化规则。按业务选择 Character 或 String 的转换接口，并在需要稳定语言规则时明确 Locale。
 
-    public static char toHalfWidthCharacter(char c) {
-        if (c == 12288) {//空格转换
-            return (char) 32;
-        } else if (c > 65280 && c < 65375) { //其他字符转换
-            return (char) (c - 65248);
-        }
-        return c;
-    }
-```
+已知字符串长度时给 StringBuilder 预估容量可能减少扩容，但不能仅凭两行代码就断言性能优劣。优先保证边界与可读性，在真实热点上测量，再考虑微优化。
 
-
-接下来的几个全角和半角的相关操作和转换,以及计算字符串长度基本都是调用上面这三个方法来进行；就不细说了。
-
-### 字符转换
-- 复制字符串,将一个字符串复制N个放在一个字符串中,核心代码如下所示。说实话，平时在使用StringBuilder和StringBuffer的时候很受初始化字符串长度。
-其实如果在能确认字符串长度的时候，加入长度构造参数，对于提升性能是个好习惯。
-
-```java
-
-        StringBuilder sb = new StringBuilder(cs.length() * num);
-        for (int i = 0; i < num; i++)
-            sb.append(cs);
-        return sb.toString();
-```
-
-- 字符串首字母大小写。好吧，曾经有类似下面这么写代码的撅起屁股排一排，让兽兽打一下
-
-```java
-        String s = "hello world";
-       return s.substring(0, 1).toUpperCase()+s.substring(1);
-        System.out.println(result);
-```
-下面来看看兽兽们给我们演示的姿势；哦不，是代码：
-
-```java
-
-    String s = "hello world";
-    char c = s.charAt(0);
-    return new StringBuilder(len).append(Character.toUpperCase(c))
-                                         .append(s.subSequence(1, len))
-                                         .toString();
-```
-效率上熟优熟劣，显而易见。
-
-这里可以更进一步，既然，刚才说到全半角字符编码相差是固定的，那么大写字母和小写字母的码值是不是一定的，如果是一定的，那么就可以使用编码值便宜来处理咯：
-
-```java
-
-    String s = "hello world";
-    char[] c=s.toCharArray();
-    c[0]-=32;//大写字母的码值都比小写字母小32
-    return String.valueOf(cs);
-
-```
-
-关于charAt的用法，这两个方法也用到了：startsWithChar,endsWithChar,对于类似这种针对确定位置的字符进行操作的需求，可以多用charAt。忘了subString吧
-
-
-后面还有一些字符串切割，进制转换的封装;以及个人感觉较个性化的需求封装了（反正我是比较少用嗒），比如：removeFirst,移除匹配的首字符，isin:某组字符串中是否包含一个字符串
-lowerWord：将一个字符串由驼峰式命名变成分割符分隔单词(好吧，这个方法可用于将java bean转换为表名称）
-
-类似一些与业务相关的需求，可以自行去封装了。
-
-不过看下来这个Strings的封装类，总体来说，学到了两点。针对字符定位多使用charAt，针对字符类型的判断，多使用字符编码值来判断。在提高效率上很有益处。
-当然一般项目中的性能优化，以上这些对系统性能影响较小；更多的优化集中在网络连接，数据库连接池，IO方面居多。
-不过对于cs应用以及一些底层框架，还是要在每一行代码上的性能进行尽量优化。
-
-本来想把Nums和Times也在这里一并写下来的，但是自己不惜还长文，所以留做后面再来一篇说它们吧。
-
-## Nums
-
-## Times
-    
+参考：[Java Character](https://docs.oracle.com/javase/8/docs/api/java/lang/Character.html)、[Nutz 1.b.53 Strings 源码](https://repo.maven.apache.org/maven2/org/nutz/nutz/1.b.53/nutz-1.b.53-sources.jar)。

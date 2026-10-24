@@ -2,93 +2,55 @@
 layout: post
 category : java
 keywords: "spring,aop"
-description : "使用Spring aop进行面向切面编程"
+description: "Spring AOP 适合把日志、耗时统计等横切逻辑放到业务方法之外。关键是知道切面拦截哪个方法、何时执行，以及如何保留原方法的返回值和异常。"
 tags : [开源]
+lang: zh-CN
+translation_key: spring-aop-basics
 ---
 
-使用spring可以很方便的编写aop程序
-
+Spring AOP 适合把日志、耗时统计等横切逻辑放到业务方法之外。关键是知道切面拦截哪个方法、何时执行，以及如何保留原方法的返回值和异常。
 <!--break-->
 
 {% include JB/setup %}
 
-maven依赖
+## 一个记录耗时的切面
 
-        <dependency>
-            <groupId>org.springframework</groupId>
-            <artifactId>spring-aop</artifactId>
-            <version>4.3.3.RELEASE</version>
-        </dependency>
-        <dependency>
-            <groupId>org.aspectj</groupId>
-            <artifactId>aspectjrt</artifactId>
-            <version>1.7.3</version>
-        </dependency>
-        <dependency>
-            <groupId>org.aspectj</groupId>
-            <artifactId>aspectjweaver</artifactId>
-            <version>1.7.3</version>
-            <scope>runtime</scope>
-        </dependency>
+项目引入与 Spring 版本匹配的 AOP 依赖。Spring Boot 可以使用 spring-boot-starter-aop；普通 Spring 应开启相应自动代理配置，并让切面被组件扫描。
 
-spring配置：
+```java
+import org.aspectj.lang.ProceedingJoinPoint;
+import org.aspectj.lang.annotation.Around;
+import org.aspectj.lang.annotation.Aspect;
+import org.springframework.stereotype.Component;
 
-        <beans  xmlns:aop="http://www.springframework.org/schema/aop"
-             xsi:schemaLocation="......
-                      http://www.springframework.org/schema/aop
-                      http://www.springframework.org/schema/aop/spring-aop.xsd
-                      ......">
-   <aop:aspectj-autoproxy />
-
-定义切面类：
-
-        import org.aspectj.lang.JoinPoint;
-        import org.aspectj.lang.ProceedingJoinPoint;
-        import org.aspectj.lang.annotation.After;
-        import org.aspectj.lang.annotation.AfterReturning;
-        import org.aspectj.lang.annotation.AfterThrowing;
-        import org.aspectj.lang.annotation.Around;
-        import org.aspectj.lang.annotation.Aspect;
-        import org.aspectj.lang.annotation.Before;
-
-        import org.springframework.stereotype.Component;
-
-
-
-        @Aspect
-        @Component
-        public class HelloWordAspect {
-            @Before(value="execution(* com.SpringAOP.HelloWord.HelloWord.*(..))")
-            public void beforeSayHello(JoinPoint joinPoint){
-
-                System.out.println("Before :"+joinPoint.getArgs()[0]);
-            }
-
-            @After(value="execution(public void com.SpringAOP.HelloWord.HelloWord.sayHello(..)) && args(message)")
-            public void afterSayHello(String message){
-                System.out.println("After : "+message);
-            }
-
-            @Around(value="execution(public void com.SpringAOP.HelloWord.HelloWord.sayHello(..))")
-            public void aroundSayHello(ProceedingJoinPoint joinPoint) throws Throwable{
-                System.out.println("Around Before !! ");
-                joinPoint.proceed();
-                System.out.println("Around After !! ");
-            }
-
-            @AfterThrowing(value="execution(public void com.SpringAOP.HelloWord.HelloWord.sayHello(..))",throwing="ex")
-            public void afterThrowingSayHello(Exception ex){
-                System.out.println("After Throwing : "+ex.getMessage());
-            }
-
-            @AfterReturning(value="execution(public void com.SpringAOP.HelloWord.HelloWord.sayHello(..))",returning="reval")
-            public void afterReturningSayHello(String reval){
-                System.out.println("After Returning : "+reval);
-            }
+@Aspect
+@Component
+public class TimingAspect {
+    @Around("execution(public * com.example.service..*(..))")
+    public Object measure(ProceedingJoinPoint point) throws Throwable {
+        long start = System.nanoTime();
+        try {
+            return point.proceed();
+        } finally {
+            System.out.println(point.getSignature() + ": "
+                    + (System.nanoTime() - start) + " ns");
         }
+    }
+}
+```
 
+切点包名按项目替换。proceed 执行业务方法，返回值原样传回；finally 在正常返回或异常退出时都会执行。实际系统应使用合适日志，避免输出全部参数。
 
-参考网址：
+## 通知类型表达不同时间点
 
-http://www.cnblogs.com/wushiqi54719880/archive/2011/08/09/2133048.html
-http://shouce.jb51.net/spring/aop.html
+Before 在调用前执行；AfterReturning 只处理正常返回；AfterThrowing 处理异常；After 类似 finally；Around 控制整个调用。void 方法没有可绑定的正常返回值，不能强行用 String 参数接收。
+
+通常应保留异常继续向上传播，不捕获后返回 null 假装成功，也不在语义不明时多次调用 proceed。
+
+## 代理边界决定哪些调用生效
+
+Spring AOP 通常依赖代理。对象内部通过 this 调用另一个方法，往往不会再次经过代理；自己 new 出的对象也不会因为注解就自动被拦截。final、private 方法与接口代理或类代理各有限制。
+
+从 Spring 容器取得 Bean，通过外部调用验证正常和异常路径。直接调用切面方法，不能证明业务调用真正经过代理。
+
+参考：[Spring AOP](https://docs.spring.io/spring-framework/reference/core/aop.html)。

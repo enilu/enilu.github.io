@@ -2,82 +2,38 @@
 layout: post
 category : 学习笔记 
 keywords: "nutz,源码学习"
-description : "一种以 Map, List 接口对象所组织起来的结构体系. 类似于JSON结构便于JAVA在内存中处理的结构. 主要提供键值对, 与列表的有机组合, 因这种结构只由Map, List组成, 因些称其为Mapl结构."
+description: "嵌套数据里修改一个字段，常常需要逐层找到 Map 和 List。Nutz 的 MaplRebuild 把路径解析封装起来，MaplMerge 则处理多个结构的合并；两者看似接近，实际语义需要分别确认。本文基于 1.b.53。"
 tags : [nutz,源码学习]
+lang: zh-CN
+translation_key: nutz-mapl-paths-merge
 ---
- 
-如标题所示，这篇文章来说说两个工具类MaplRebuild和MapMerge。
-- 前者用来对已有的mapl结构进行重构。包括添加，删除，读取指定路径的值 比如针对下面一个mapl结构的数据
-    
-        {'user':[{'name':'jk', 'age':12},{'name':'nutz', 'age':5}]}
-    
-- 我们要在这个路径：user[0].test 增加值"hello"使其变为
 
-        {'user':[{'name':'jk', 'age':12,'test':'hello'},{'name':'nutz', 'age':5}]}    
-
-- 而MaplMerge 主要用来将多个mapl结构数据合并起来，该类只有一个接口：mergeItems(Object... objs)
-
-
+嵌套数据里修改一个字段，常常需要逐层找到 Map 和 List。Nutz 的 MaplRebuild 把路径解析封装起来，MaplMerge 则处理多个结构的合并；两者看似接近，实际语义需要分别确认。本文基于 1.b.53。
 <!--break-->
 
 {% include JB/setup %}
 
+## 路径修改与读取
 
-## MapRebuild
+Mapl 提供 cell、put、update 和 del 等入口，内部交给路径处理实现。类似 `user[0].name` 的路径，需要区分 Map 的键与 List 下标，并决定中间节点不存在时怎样处理。
 
-该类提供了对mapl结构的方便操作，遥想当年（呃，其实也就这两年），偶有处理json数据的时候，需要给json某个属性更新个值的时候，不得不，一层一层的深入进去操作（咳咳）。
-现在好了，有了这个神器，一个方法搞定。
+索引越界、值类型不符、路径拼错，都不应该被当作“这个字段本来就是空”。若路径由请求提供，还要限制能够修改的字段，避免绕过正常业务更新接口。
 
-该类一开是定义了针对mapl的三种操作
+## 合并不是统一的覆盖规则
 
-        enum Model {
-            add, del, cell
-        }
-添加（也可以用于更新），删除，读取，分别对应MapRebuild类中的put，remove，cell方法。
+1.b.53 的 MaplMerge 根据首个参数分派：Map 进入 mergeMap，List 进入 mergeList，普通值进入 mergeObj。列表合并通过 contains 去重，比较依赖 equals；普通对象也可以被组织成去重列表，并非所有输入都必须是 Map 或 List。
 
-![maplrebuild_public_method]({{ site.img_url }}/2016/nutz/maplrebuild_public_method.png)
+Map 中同名普通值通常由后值覆盖；后值为 Map/List 且已有值不为 null 时，会进入进一步合并。它不是把所有同名字段无条件变成一个列表，也不是任意异构值都能安全递归。
 
-- 这三个方法内部实现都调用了MapRebuild的两个私有类：init,inject。   
-- 其中init方法是初始化参数
+```text
+{a:1} 与 {a:2} -> a 最终为 2
+[1,2] 与 [2,3] -> 合并为 [1,2,3]
+```
 
-        private void init(String keys, Object obj) {
-            this.keys = Lang.arrayFirst("obj", Strings.split(keys, false, '.'));
-            this.val = obj;
-            this.arrayItem = 0;
-        }
-- inject则是具体根据路径去操作改路径的值。      
-    - inject方法中根据给定的路径一层一层深入到目的地，然后更新值，我们知道mapl结构的数据结构是有map和list组成的，所以inject方法中深入到指定路径进行操作的时候就是针对map和list的操作。
-    - 所以inject中根据数据特征会去调用injectList和injectMap来分别处理list和map的操作
-    - 最终分别调用的是list的add，remove，get方法个map的put，remove，get方法
+以上展示语义，不是严格 JSON 文本。混合容器类型可能进入不匹配的强制转换，调用方应先检查输入结构。
 
+## 业务覆盖策略应显式定义
 
-## MapMerge
+配置合并、企业数据汇总和用户补丁，对 null、空列表与同名字段的要求不同。选定工具前，先用冲突样例验证结果，确认是否修改原对象、是否保留嵌套引用，再决定能否直接用于业务。
 
-看名字就知道，这个是用来合并多个mapl结构数据的。
-改接口只有一个方法mergeItems，将多个mapl数据合并成一个。
-该方法传入的参数，必须是要么全部是list结构的数据，要么全部是map结构的数据，然后根据类型，分别调用mergeList 和mergeMap方法
-其中list比较好处理，只要将多个list中的元素一个一个读取出来放到一个list中即可，实现中对相同元素不重复保存，实现如下所示：
-
-        private Object mergeList(Object... objs) {
-            List list = new ArrayList();
-            for (Object li : objs) {
-                List src = (List) li;
-                for (Object obj : src) {
-                    if (!list.contains(obj)) {
-                        list.add(obj);
-                    }
-                }
-            }
-            return list;
-        }
- 
-而针对map结构的合并处理，需要判断是否key有一样的，如果没有，直接存入即可，如果有一样的，将相同key下的值合并到一个list中再存放在统一个key下。
-
-该类并没有去合并不同结构的mapl数据，比如合并一个顶级结构是list或者顶级结构是map的数据。因为这样合并的话，不太好拿捏到底是合并为一个map还是合并为一个list。
-
-这里仅仅是一个想法，比如是否可以通过指定第一个参数为顶级容器来合并后面多个数据结构：
-   
-    //第一个参数顶级结构如果是map，就将后面数据按照索引指定key值，放在第一个map中，返回map；
-    //第一个参数顶级结构如果是list，就将后面数据放在第一个参数中，返回list
-    mergeInFirst(Object... objs)
-
+参考：[Nutz 1.b.53 MaplMerge 源码](https://repo.maven.apache.org/maven2/org/nutz/nutz/1.b.53/nutz-1.b.53-sources.jar)。

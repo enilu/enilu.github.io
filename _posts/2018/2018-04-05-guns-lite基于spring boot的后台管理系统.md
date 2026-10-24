@@ -2,53 +2,37 @@
 layout: post
 category : 开源项目
 keywords: "guns-lite,spring boot"
-description : "guns-lite,基于spring boot的后台管理系统"
+description: "一个新产品要求快速上线后台管理功能时，我选择在 Guns 的基础上改造，而不是从零制作所有页面。项目其他服务已经采用 Spring Data JPA，因此将后台的数据访问层也调整为 JPA，希望减少两套数据访问逻辑并行维护的成本。"
 tags : [guns,guns-lite,spring boot]
+lang: zh-CN
+translation_key: guns-lite-jpa-adaptation
 ---
 
-
-年初公司计划要上一个产品，而且是要在两周内上线（由于之前已经开发、运营过一个类似的产品，所以这次要求先将核心功能上线；当然最后没有那么快上线，这是后话）。
-由于这个系统比较复杂，所以我们和以前一样计划将服务拆分，包括后台管理、微信端，api层，消息服务，调度任务等若干服务。领导既然发话了，无论计划看上去多么不靠谱，撸起袖子也得干。
-
+一个新产品要求快速上线后台管理功能时，我选择在 Guns 的基础上改造，而不是从零制作所有页面。项目其他服务已经采用 Spring Data JPA，因此将后台的数据访问层也调整为 JPA，希望减少两套数据访问逻辑并行维护的成本。
 <!--break-->
 
 {% include JB/setup %}
 
+## 为什么没有直接使用原项目
 
+当时 Guns 使用 MyBatis，而我们的公共数据层采用 JPA。两者并非不能共存，业务层也可以通过接口隔离，但在这个项目中继续维护两套映射与查询会增加同步成本。这是团队上下文中的选择，不表示 JPA 普遍优于 MyBatis。
 
-技术方案决定使用spring boot 后，大家分工开始各自各干各的。
+改造后的项目是 [guns-lite](https://github.com/enilu/guns-lite)，在当时版本中使用 Spring Boot、Spring Data JPA、Shiro、Druid、Ehcache，以及 Beetl 和 Bootstrap。这里描述该次实现，不代表当前上游项目的完整技术栈。
 
-我很“荣幸”的分到后台管理等若干模块，开始干的时候我就想，两周时间写界面都不够。于是开始上网找轮子，有幸发现[guns](https://github.com/stylefeng/Guns)：一个基于spring boot的后台管理系统，而且具备代码生成功能。
-但是这个项目有个不方便的地方：数据库访问层使用的是mybatis。由于其他服务已经开始开发，而且都是使用spring data jpa。如果我要用guns，就没办法和别人共用dao层，层连带的
-service层也没办法共用了。想想以后要维护两套dao层和service层就吸了一口凉气——这是个金融系统，dao和service层仅仅靠自动生成的代码是远远不够的。
+## 功能开发与改造同时进行的代价
 
+项目没有在最初预计的两周内上线。业务和外部需求变化期间，老版本继续开发，新版本持续追赶，最终约两周后才完成替换。这段时间维护两套实现，消耗的不只是编码时间，还有需求同步和行为核对。
 
-所以等项目过了两周后，不出预料项目要延期了（具体原因不仅仅是内部原因，还有外部投资人、客户对产品需求的变更等，这不是重点，暂且不表）。于是趁着延期的那段时间，
-将后台管理的dao层适配为jpa，service也使用公共的service了。
+如果重做这种改造，我会先列出登录、权限、菜单、分页和关键业务的验收样例，再分块替换；为新旧实现设置明确停止条件，避免它们无限期追赶。
 
-改造期间，惊心动魄。因为产品人员几度表明“明天测试”或者“下周上线试运行”，导致同时维护两个后台管理，老版本继续在guns的基础上开发功能赶进度，新版本使用jpa和新的service不停的追赶老版本。
+## 复用数据层不能只换注解
 
-持续了将近两周的时间，终于新版本追上了，老版本果断丢弃。
+分页页码、事务、懒加载、查询排序和批量操作行为都要对照。共享 Service 应表达稳定的业务规则，而不是为了复用就把所有数据库操作暴露给后台。
 
-想到也许有同样需求的开发同学，或者不喜欢mybatis的同学，或者由于种种原因不方便使用mybatis，就将其贡献出来，也就是这个[guns-lite](https://github.com/enilu/guns-lite):
-[https://github.com/enilu/guns-lite](https://github.com/enilu/guns-lite).
+权限校验和数据范围也需要重新验证：复用了 DAO，不等于自动复用了调用者应有的授权。代码生成可以减少表单和简单 CRUD，但不能生成完整的状态约束与业务异常处理。
 
+## 开源改造的边界
 
+选择脚手架时，先确认许可证、维护状态、依赖和可替换部分，再估算定制与持续升级成本。适合本团队的二次开发，可以提供参考，但使用者仍需根据自己的版本和业务验证，而不是把项目截图当成已经适配的证明。
 
-## 说明
-
- - guns-lite是在[guns](https://github.com/stylefeng/Guns)的基础上将数据库层由mybatis替换为spring data jpa的系统。
- - guns-lite是一个基于spring boot的后台管理系统。
-
-## 技术选型
-
-- 核心框架：spring boot
-- 数据库层：spring data jpa
-- 安全框架：Shiro
-- 数据库连接池：Druid
-- 缓存：Ehcache
-- 前端：Beetl模版+Bootstrap
-
-## 交流
-- 欢迎提issue [https://github.com/enilu/guns-lite/issues/new](https://github.com/enilu/guns-lite/issues/new)
-- 欢迎加入qq交流群：740230743
+项目地址：[enilu/guns-lite](https://github.com/enilu/guns-lite)。

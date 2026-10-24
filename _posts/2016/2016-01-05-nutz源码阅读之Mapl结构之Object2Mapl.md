@@ -2,80 +2,37 @@
 layout: post
 category : 学习笔记 
 keywords: "nutz,源码学习"
-description : "一种以 Map, List 接口对象所组织起来的结构体系. 类似于JSON结构便于JAVA在内存中处理的结构. 主要提供键值对, 与列表的有机组合, 因这种结构只由Map, List组成, 因些称其为Mapl结构."
+description: "Mapl 用 Map 与 List 作为对象结构的容器，方便按路径读取、转换和修改数据。它不是要求每一个叶子值也变成 Map 或 List；数字、字符串等叶子本来就可以直接保留。本文阅读 Nutz 1.b.53 的 ObjCompileImpl。"
 tags : [nutz,源码学习]
+lang: zh-CN
+translation_key: nutz-object-to-mapl
 ---
 
-
-Mapl的使用方式参考[官方文档](http://nutzam.com/core/maplist/overview.html),灰常详细了。这里不再赘述。
-如图所示，Mapl有以下方法，可供使用
-
-![Mapl方法示例]({{ site.img_url }}/2016/nutz/mapl.png)
-
-Mapl类中并没有实现具体的操作方法，分别调用的具体的工具类：
-
-- ObjConvertImpl，将maplist数据转换为指定的java对象
-- ObjCompileImpl，将java对象转换为maplist结构。
-- MaplRebuild，对maplist结构进行修改操作，可以修改，删除制定路径的值，可以合并多个maplist为一个。
-- MaplMerge， 将多个maplist合并为一个。
-- FilterConvertImpl，针对maplist进行过滤，可以根据路径去掉不想要的路径，或者仅保留制定路径的值。
-- StructureConvert，可以根据模板将maplist结构进行转换，比如将{"name":"华为","date":"1992/01/02"}转换为:{"entName","华为","esDate":"1992/01/02"}
-
-
+Mapl 用 Map 与 List 作为对象结构的容器，方便按路径读取、转换和修改数据。它不是要求每一个叶子值也变成 Map 或 List；数字、字符串等叶子本来就可以直接保留。本文阅读 Nutz 1.b.53 的 ObjCompileImpl。
 <!--break-->
 
 {% include JB/setup %}
 
+## 先看类型分派
 
+parse 首先处理 null、枚举、数字、布尔、字符与日期等情况，再处理集合、数组、Map 和普通对象。数组和集合输出为 List，普通对象通过字段描述组装 Map。
 
-### ObjCompileImpl
-ObjCompileImpl 是MaplCompile接口的默认实现，该接口只有一个方法parse，将用来将java对象转换为maplist，
-parse方法中，将传入的参数（java对象）归类为三种类型进行处理：单个pojo对象，集合，数组，map，
-这三个对象分别对应了 pojo2Json,coll2Json,array2Json,map2Json方法。
+```text
+对象 -> 类型判断 -> 叶子直接保留
+                 -> 容器创建 -> 逐项转换
+                 -> POJO字段描述 -> 字段值处理
+```
 
-    if (obj instanceof Collection || obj.getClass().isArray()) {
-        List<Object> list = new ArrayList<Object>();
-        memo.put(obj, list);
-        // 集合
-        if (obj instanceof Collection) {
-            return coll2Json((Collection) obj, list);
-        }
-        // 数组
-        return array2Json(obj, list);
-    } else {
-        Map<String, Object> map = new LinkedHashMap<String, Object>();
-        memo.put(obj, map);
-        // Map
-        if (obj instanceof Map) {
-            return map2Json((Map) obj, map);
-        }
-        // 普通 Java 对象
-        return pojo2Json(obj, map);
-    }
-    
-- pojo2Json方法将java对象存储成一个个键值对，最后返回Map对象。当然如果对象的属性也是一个pojo对象，继续调用parse方法继续处理即可。
-- map2Json方法和pojo2Json类似，只不过是map本身就是一个个键值对。
-- coll2Json和array2Json 方法将传入的java对象直接放入List中，如果属性是pojo对象继续调用parse处理即可。
-- 不过有个疑惑，我原以为maplist中只是map和list组成的结构。其中存储基本数据类型，但貌似并不是，不太明白为什么这么设计，为什么不全部转为map或者list结构的数据
-    
-    - map2Json方法中，并没有对值类型进行判断，然后进行递归处理。而是直接返回，这样返回的maplist结构中就有pojo对象了。
-    
-            private Map<String, Object> map2Json(Map map, Map<String, Object> valMap) {
-                if (null == map)
-                    return null;
-                ArrayList<Pair> list = new ArrayList<Pair>(map.size());
-                Set<Entry<?, ?>> entrySet = map.entrySet();
-                for (Entry entry : entrySet) {
-                    String name = null == entry.getKey() ? "null" : entry.getKey().toString();
-                    Object value = entry.getValue();
-                    list.add(new Pair(name, value));
-                }
-                return writeItem(list, valMap);
-            }
-    - 而在pojo2Json中，只对属性依然是pojo的情况进行parse处理。而如果属性类型是集合的情况并没有处理，这里就不粘帖代码了，自行查看pojo2Json方法。
-    
-    
-## 题外话
- 
- 话说nutz的文档和注释，以及测试用例太完美了，这些配合起来读源码非常顺畅。
+方法名里出现 Json，不意味着这里已经生成 JSON 字符串。结果仍是 Java 内存结构，直到交给序列化器才成为文本。
 
+## memo 处理已遇到的对象
+
+源码在深入容器前，先把目标容器登记到 memo，再填充内容。再次遇到同一键对应的对象时可以返回已有结果，避免无限重复创建。这里使用的是 Map 的键比较机制，不能未经检查就称它为严格按对象身份区分的缓存。
+
+另一个容易忽略的点是分支并不完全对称：这个版本的 map2Json 把条目值加入 Pair，writeItem 直接放入目标 Map；集合元素则逐项调用 parse。不能仅凭“转换为 Mapl”的名字，就推断所有输入会被深度、统一地规范化。
+
+## 结构方便，不代表没有转换代价
+
+Map 键会字符串化，遇到不同对象具有相同文本键时可能覆盖。POJO 字段获取还可能失败，容器中的引用也可能被保留。使用前应验证嵌套 Map、集合、空值和共享引用，确认结果是否适合作为后续接口的中间结构。
+
+参考：[Nutz 1.b.53 ObjCompileImpl 源码](https://repo.maven.apache.org/maven2/org/nutz/nutz/1.b.53/nutz-1.b.53-sources.jar)。

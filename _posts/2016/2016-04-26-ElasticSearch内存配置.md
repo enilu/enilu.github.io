@@ -2,65 +2,39 @@
 layout: post
 category : 大数据 
 keywords : "开源,搜索,elasticsearch,大数据,问题"
-description : "elasticsearch堆内存溢出解决"
+description: "生产 Elasticsearch 出现 OutOfMemoryError: Java heap space 时，调整堆大小是一条排查路径，但不能只看进程还能否重新启动。错误中的查询参数，也可能暴露出持续消耗内存的请求模式。"
 tags : [开源,搜索,elasticsearch,大数据]
+lang: zh-CN
+translation_key: elasticsearch-heap-memory
 ---
 
-最近生产环境的es经常不稳定，用了一两天就开始报错，而测试环境的没有问题；甚是纳闷。看了错误日志如下：
-
-    org.elasticsearch.search.query.QueryPhaseExecutionException: [credit][2]: query[filtered(_all:北 _all:京)->cache(_type:entname)],from[12700000],size[100000]: Query Failed [Failed to execute main query]
-    	at org.elasticsearch.search.query.QueryPhase.execute(QueryPhase.java:163)
-    	at org.elasticsearch.search.SearchService.loadOrExecuteQueryPhase(SearchService.java:272)
-    	at org.elasticsearch.search.SearchService.executeQueryPhase(SearchService.java:283)
-    	at org.elasticsearch.search.action.SearchServiceTransportAction$5.call(SearchServiceTransportAction.java:231)
-    	at org.elasticsearch.search.action.SearchServiceTransportAction$5.call(SearchServiceTransportAction.java:228)
-    	at org.elasticsearch.search.action.SearchServiceTransportAction$23.run(SearchServiceTransportAction.java:559)
-    	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1145)
-    	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:615)
-    	at java.lang.Thread.run(Thread.java:745)
-    Caused by: java.lang.OutOfMemoryError: Java heap space
-    
-刚开始以为是查询写的有问题，导致内存溢出呢。但是自己看了写日志产生日期，感觉不对劲啊，这个日志一直报着，而且大半夜也听不下来。    
+生产 Elasticsearch 出现 `OutOfMemoryError: Java heap space` 时，调整堆大小是一条排查路径，但不能只看进程还能否重新启动。错误中的查询参数，也可能暴露出持续消耗内存的请求模式。
 <!--break-->
 
 {% include JB/setup %}
 
-后来查了以下，原来是队内存配置过低了，参考资料[戳这里](https://github.com/elastic/elasticsearch/issues/2636)
+## 日志里不只有 OOM
 
-es启动的时候直接从环境变量读取内存配置：
+当时日志包含 `from[12700000],size[100000]`。这类深分页加大批量返回，会要求搜索过程处理大量候选结果；即使请求发生在夜间，也不能排除后台任务或重试持续触发它。
 
-    export ES_HEAP_SIZE=内存大小。
-    
-具体应该配置多大，可以查看当前es的内存使用情况。如果es已经停止掉，可以先设置稍微大一些的内存，观察一段时间。
-查看内存使用情况可以直接通过下面连接：
+因此需要同时记录请求来源、并发、分片和排序方式，再观察 JVM 堆、GC 与查询负载，不能凭报错时间判断查询没有问题。
 
-    http://localhost:9200/_nodes/stats?jvm=true&pretty=true
-    
-可以看到类似下面的配置：
+## 确认设置是否真的生效
 
-    "jvm" : {
-            "timestamp" : 1461650503911,
-            "uptime_in_millis" : 15781046,
-            "mem" : {
-              "heap_used_in_bytes" : 124822216, //当前使用的内存字节数
-              "heap_used_percent" : 11, //当前内存使用百分比
-              "heap_committed_in_bytes" : 1065025536, 
-              "heap_max_in_bytes" : 1065025536,//当前分配的内存总大小
-              ...
-                }
-            ...
-            }
-    ...
-    }
+旧版 1.x、2.x 环境曾通过 `ES_HEAP_SIZE` 设置堆，后续版本采用不同的 JVM 配置机制，并可能自动计算堆大小。应查看实际启动参数和节点统计，而不是只修改一个文件就认为运行值已经改变。
 
+```http
+GET /_nodes/stats/jvm
+```
 
-**注意:**
+检查 heap_used、heap_max 和 GC 等字段。节点、容器和操作系统的内存限制也要一起看：除了 Java 堆，还需要给文件缓存和其他本地内存留出空间。配置值要依据对应版本官方建议和实际测量，不应一味调大。
 
-有的地方会该处查看内存情况的地址：http://localhost:9200/_cluster/nodes/stats?jvm=true&pretty=true，这个地址是1.3以上的版本地址，1.4以后已经更改为：
-   http://localhost:9200/_nodes/stats?jvm=true&pretty=true
+## 改查询，才能减少重复故障
 
+交互查询限制页深和每页数量；批量导出按版本使用 scroll 或 PIT 配合 search_after 等适合的机制，并及时释放上下文。它们的语义和资源成本不同，不能只把 from 改成另一种参数就结束。
 
-### 参考资料：
+同时检查聚合桶数、排序字段、字段映射和客户端超时后的重试。一次大请求被多次重试，可能让原本的资源压力持续放大。
 
-- [https://groups.google.com/forum/?fromgroups=#!topic/elasticsearch/mrnnOc0TEoE](https://groups.google.com/forum/?fromgroups=#!topic/elasticsearch/mrnnOc0TEoE)
-- [https://github.com/elastic/elasticsearch/issues/2636](https://github.com/elastic/elasticsearch/issues/2636)
+调整后用相同样本验证结果与资源变化，观察一段完整业务周期。能在更小的资源预算内稳定完成任务，比单纯延后下一次 OOM 更有意义。
+
+参考：[JVM 设置](https://www.elastic.co/guide/en/elasticsearch/reference/8.19/advanced-configuration.html)、[分页搜索](https://www.elastic.co/guide/en/elasticsearch/reference/8.19/paginate-search-results.html)。

@@ -2,98 +2,55 @@
 layout: post
 category : 爬虫 
 tags : [开源,java,数据抓取,jsoup,入门教程]
+description: "Jsoup 可以将 HTML 解析成 Document，再用 DOM 方法或 CSS 选择器提取数据。它也提供 HTTP 请求能力，但不会像浏览器一样执行页面 JavaScript，因此服务器返回的 HTML 与浏览器最终显示的内容可能不同。"
+lang: zh-CN
+translation_key: jsoup-html-parsing
 ---
 
-Jsoup是一款开源的抓取和解析网页的java组件，它可以很方便的对静态html进行解析，也可以方便的根据URL获取动态的页面内容，支持POST和get方式请求，而且支持参数的传递。其设计非常简单易用，毫无学习压力。 
+Jsoup 可以将 HTML 解析成 Document，再用 DOM 方法或 CSS 选择器提取数据。它也提供 HTTP 请求能力，但不会像浏览器一样执行页面 JavaScript，因此服务器返回的 HTML 与浏览器最终显示的内容可能不同。
 <!--break-->
 
 {% include JB/setup %}
 
-解析和遍历html：
+## 先用固定 HTML 验证解析逻辑
 
-    String html = "  Parsed HTML into a doc.  ";
-        Document doc = Jsoup.parse(html);
+下面只依赖 Jsoup，适合在项目中固定依赖版本后直接运行：
 
+```java
+import org.jsoup.Jsoup;
+import org.jsoup.nodes.Document;
+import org.jsoup.nodes.Element;
 
-    根据URL加载一个Document对象：
-
-
-    Document doc = Jsoup.connect("http://example.com/").get();
-
-    使用POST方式请求加载一个Document对象：
-
-    Document doc = Jsoup.connect("http://example.com")
-    .data("query", "Java")
-    .userAgent("Mozilla")
-    .cookie("auth", "token")
-    .timeout(3000)
-    .post();
-
-    根据一个文件加载一个Document对象：
-
-    File input = new File("/tmp/input.html");
-    Document doc = Jsoup.parse(input, "UTF-8", "http://example.com/");
-
-
-    将HTML解析成一个Document之后，就可以使用类似于DOM的方法进行操作。示例代码：
-
-    File input = new File("/tmp/input.html");
-    Document doc = Jsoup.parse(input, "UTF-8", "http://example.com/");
-
-    Element content = doc.getElementById("content");
-    Elements links = content.getElementsByTag("a");
-    for (Element link : links) {
-        String linkHref = link.attr("href");
-        String linkText = link.text();
+public class LinkExtractor {
+    public static void main(String[] args) {
+        String html = "<div id='content'><a href='/docs'>文档</a></div>";
+        Document doc = Jsoup.parse(html, "https://example.com/");
+        for (Element link : doc.select("#content a[href]")) {
+            System.out.println(link.text());
+            System.out.println(link.attr("abs:href"));
+        }
     }
+}
+```
 
-    说明
+输出文本“文档”和 `https://example.com/docs`。`text()` 返回文本内容，`html()` 返回元素内部 HTML，`attr("href")` 保留原属性，`abs:href` 则根据基准 URL 解析相对地址。没有有效基准地址时，不应假定一定能得到绝对链接。
 
-    Elements这个对象提供了一系列类似于DOM的方法来查找元素，抽取并处理其中的数据。具体如下：
+## 获取网络响应
 
-    查找元素
+```java
+Document doc = Jsoup.connect("https://example.com/")
+        .timeout(5000)
+        .get();
+```
 
-    getElementById(String id)
+网络请求需要处理 IOException，并根据目标服务约定配置超时与会话。设置 User-Agent 或 Cookie 并不会让 Jsoup 获得浏览器脚本执行能力。如果内容来自另一个接口，应确认其访问规则后请求该数据源；确实依赖渲染时，再选择浏览器自动化工具。
 
-    getElementsByTag(String tag)
+## 选择器与缺失值
 
-    getElementsByClass(String className)
+`#content a[href]` 表示在指定容器中选择具有 href 属性的链接。尽量选择有业务意义的属性或结构，避免完全依赖第几个子节点；页面增加一个广告节点就可能改变位置。
 
-    getElementsByAttribute(String key) (and related methods)
+`selectFirst` 找不到元素会返回 null，后续取值前要检查。缺失值、空文本和解析失败应是不同状态，否则数据质量问题会隐藏在空字符串中。
 
-    Element siblings: siblingElements(), firstElementSibling(), lastElementSibling();nextElementSibling(), previousElementSibling()
+测试可以使用固定 HTML 覆盖缺失容器、相对链接、HTML 实体和嵌套标签。网络变化与解析规则分开测试，定位问题会更直接。
 
-    Graph: parent(), children(), child(int index)
-
-    元素数据
-
-    attr(String key)获取属性attr(String key, String value)设置属性
-
-    attributes()获取所有属性
-
-    id(), className() and classNames()
-
-    text()获取文本内容text(String value) 设置文本内容
-
-    html()获取元素内HTMLhtml(String value)设置元素内的HTML内容
-
-    outerHtml()获取元素外HTML内容
-
-    data()获取数据内容（例如：script和style标签)
-
-    tag() and tagName()
-
-    操作HTML和文本
-
-    append(String html), prepend(String html)
-
-    appendText(String text), prependText(String text)
-
-    appendElement(String tagName), prependElement(String tagName)
-
-    html(String value)
-
-- Jsoup封装的解析Document的方法与网页标准的DOM操作非常相似，即使是初次使用基本上靠猜测都快一试出想要的方法和效果。
-- 使用Jsoup只需要吧Jsoup的一个jar包加入到项目中即可，最新版本的Jsoup是1.7.3，所以对应的jar包是：jsoup-1.7.3.jar
-- 更详细的使用方法参见这里：http://www.open-open.com/jsoup/
-- Jsoup的API参见这里：http://jsoup.org/apidocs/
+参考：[Jsoup Cookbook](https://jsoup.org/cookbook/)、[CSS 选择器](https://jsoup.org/cookbook/extracting-data/selector-syntax)。

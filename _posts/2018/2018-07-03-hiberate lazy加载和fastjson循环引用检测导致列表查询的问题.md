@@ -2,136 +2,55 @@
 layout: post
 category : java 
 keywords : "fastjson,延迟加载,循环引用检测"
-description : "hiberate lazy加载和fast json 循环引用检测导致列表查询的问题"
+description: "分页接口返回机构名称时，列表中前一条记录的 org 是完整对象，后面却出现了 $ref，前端直接读取 org.name 因而失败。这个问题需要分开看两个层次：数据库关联是否已加载，以及序列化如何表示同一个对象。"
 tags : [fastjson,hibernate,java]
+lang: zh-CN
+translation_key: hibernate-lazy-loading-json-references
 ---
 
-做分页查询的时候，发现外键关联的数据查询不出来，而且比较诡异的时候一个列表中，前面记录关联的记录可以正常出来，后面记录的关联数据出不来，debug发现返回的数据后面的出现：{"$ref":"$.rows[2]"} 的情况
-
+分页接口返回机构名称时，列表中前一条记录的 `org` 是完整对象，后面却出现了 `$ref`，前端直接读取 `org.name` 因而失败。这个问题需要分开看两个层次：数据库关联是否已加载，以及序列化如何表示同一个对象。
 <!--break-->
 
 {% include JB/setup %}
 
+## 重复引用和懒加载不是一回事
 
-问题复现：
-
-实体类做关联的时候使用了延迟加载，例如：
-
-```java
-@Data
-@Table(name = "t_test")
-@Entity
-public class TestBean   implements Serializable {
-    @Id
-    private Long id;
-    @Column(name = "id_org", columnDefinition = "bigint COMMENT '机构id'")
-    private Long idOrg;
-    @JoinColumn(name="id_org",referencedColumnName = "id",columnDefinition = "bigint COMMENT '机构id'",insertable = false,updatable = false)
-    @ManyToOne(fetch = FetchType.LAZY)
-    private Org org;
-    @Column(name = "amount", columnDefinition = "varchar(20) COMMENT '总金额'")
-    private String amount;
-
-}
-```
-
-查询TestBean列表的时候页面通过org.name 获取机构名称
-
-假如有两条记录的idOrg相同，那么第一条记录的org可以正常获取，而第二条记录的org返回为："org":{"$ref":"$.rows[2].org"}
-
-完整json数据记录如下：
+例如多条记录关联同一个机构，在同一持久化上下文中，它们可能引用同一个 Org 实例。Fastjson 1.x 的引用检测可以把后续出现的同一对象输出为路径引用：
 
 ```json
-	{
-			"amount":"500",
-			"id":"1",
-			"idOrg":"1",
-			"org":{
-				"id":"1",
-				"name":"XX教育公司",
-			}
-		},
-		{
-			"amount":"111",
-			"id":"5",
-			"idOrg":"1",
-			"org":{"$ref":"$.rows[2].org"},
-		}
-```
-
-出现上述问题的原因在于:
-后台处理hibernate 延迟加载(lazy)的数据的时候时，它交给了Javassist处理，这时fastjson.会把它当对象处理，而不会解析它。
-
-处理办法有两种，一种是不使用延迟加载，采用EAGER方式：
-
-```java
-    @JoinColumn(name="id_org",referencedColumnName = "id",columnDefinition = "bigint COMMENT '机构id'",insertable = false,updatable = false)
-    @ManyToOne(fetch = FetchType.EAGER)
-    private Org org;
-```
-
-当然上述方法是下策。更好的方式是关闭fastjson的循环引用检测功能：
-JSON.toJSONString(obj, SerializerFeature.DisableCircularReferenceDetect)
-
-我们在项目中做了fastjson的全局配置，具体更改如下：
-
-```java
-@Configuration("defaultFastjsonConfig")
-@ConditionalOnClass(com.alibaba.fastjson.JSON.class)
-@ConditionalOnMissingBean(FastJsonHttpMessageConverter.class)
-@ConditionalOnWebApplication
-public class DefaultFastjsonConfig {
-
-    @Bean
-    public FastJsonHttpMessageConverter fastJsonHttpMessageConverter() {
-        FastJsonHttpMessageConverter converter = new FastJsonHttpMessageConverter();
-        converter.setFastJsonConfig(fastjsonConfig());
-        converter.setSupportedMediaTypes(getSupportedMediaType());
-        return converter;
-    }
-
-    /**
-     * fastjson的配置
-     */
-    public FastJsonConfig fastjsonConfig() {
-        FastJsonConfig fastJsonConfig = new FastJsonConfig();
-        fastJsonConfig.setSerializerFeatures(
-                SerializerFeature.PrettyFormat,
-                SerializerFeature.WriteMapNullValue,
-                SerializerFeature.WriteEnumUsingToString,
-				        //关闭循环应用检测
-                SerializerFeature.DisableCircularReferenceDetect
-        );
-        fastJsonConfig.setDateFormat("yyyy-MM-dd HH:mm:ss");
-        ValueFilter valueFilter = new ValueFilter() {
-            public Object process(Object o, String s, Object o1) {
-                if (null == o1) {
-                    o1 = "";
-                }
-                return o1;
-            }
-        };
-        fastJsonConfig.setCharset(Charset.forName("utf-8"));
-        fastJsonConfig.setSerializeFilters(valueFilter);
-
-        //解决Long转json精度丢失的问题
-        SerializeConfig serializeConfig = SerializeConfig.globalInstance;
-        serializeConfig.put(BigInteger.class, ToStringSerializer.instance);
-        serializeConfig.put(Long.class, ToStringSerializer.instance);
-        serializeConfig.put(Long.TYPE, ToStringSerializer.instance);
-        fastJsonConfig.setSerializeConfig(serializeConfig);
-        return fastJsonConfig;
-    }
-
-    /**
-     * 支持的mediaType类型
-     */
-    public List<MediaType> getSupportedMediaType() {
-        ArrayList<MediaType> mediaTypes = new ArrayList<>();
-        mediaTypes.add(MediaType.APPLICATION_JSON_UTF8);
-        return mediaTypes;
-    }
-
+{
+  "rows": [
+    {"id": 1, "org": {"id": 7, "name": "示例机构"}},
+    {"id": 2, "org": {"$ref": "$.rows[0].org"}}
+  ]
 }
-
 ```
+
+这里 JSON 本身可以解析，但普通前端代码不会自动将 `$ref` 解引用。重复引用也不一定形成循环：两条记录共享一个机构，与机构反过来引用这些记录，是两种不同对象图。
+
+Hibernate 的懒加载决定关联何时取数，代理对象的访问可能触发查询，也可能在持久化上下文关闭后失败。看到 `$ref` 只能说明序列化表示里存在引用，不能单凭它认定是代理类“无法解析”。
+
+## 让接口返回独立的数据结构
+
+更容易维护的办法，是按接口需求查询并组装 DTO，只返回前端需要的字段：
+
+```json
+{
+  "rows": [
+    {"id": 1, "orgId": 7, "orgName": "示例机构"},
+    {"id": 2, "orgId": 7, "orgName": "示例机构"}
+  ]
+}
+```
+
+在查询或映射阶段取到名称，并关注 SQL 次数；避免每映射一条记录就额外查询一次。分页下使用 join fetch、投影或批量查询时，也要验证总数、重复行与分页是否符合预期。
+
+## 配置开关只能解决对应的问题
+
+在 Fastjson 1.x 中，`SerializerFeature.DisableCircularReferenceDetect` 可以关闭引用检测，使共享对象被重复展开。但如果对象图真的存在循环，关闭检测可能造成递归或栈溢出。因此不能把它设为所有实体接口的默认修复方案。
+
+将关联从 LAZY 改成 EAGER 同样不会消除对象共享关系，还可能增加无用查询或返回过大的对象图。应先明确接口需要什么数据，再控制取数和输出结构。
+
+Fastjson2 的选项与默认行为需要按对应版本确认，不应直接复制 1.x 配置。验证时至少准备无关联、共享机构、双向关联及会话关闭后的数据，检查 JSON 结构和数据库查询数量。
+
+参考：[Fastjson2 迁移说明](https://github.com/alibaba/fastjson2/wiki/fastjson_1_upgrade_cn)、[Hibernate ORM 用户指南](https://docs.jboss.org/hibernate/orm/current/userguide/html_single/Hibernate_User_Guide.html)。

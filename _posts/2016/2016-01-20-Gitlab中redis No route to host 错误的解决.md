@@ -2,62 +2,37 @@
 layout: post
 category : 问题集锦 
 keywords : "gitlab,redis,linux"
-description : ""
+description: "测试服务器做完安全加固后，GitLab 页面返回 500。检查应用日志，问题指向 Redis 连接；进程存在、端口也在监听，但 redis-cli 连接回环地址仍然报 No route to host。"
 tags : [gitlab,redis,linux]
+lang: zh-CN
+translation_key: gitlab-redis-no-route-to-host
 ---
 
-公司的测试服务器（centos）做安全加固，折腾完后，gitlab代码版本管理系统用不了了，界面一直报500错误，通过，端口，进程，数据库配置都没有问题，诡异了。
-
+测试服务器做完安全加固后，GitLab 页面返回 500。检查应用日志，问题指向 Redis 连接；进程存在、端口也在监听，但 redis-cli 连接回环地址仍然报 `No route to host`。
 <!--break-->
 
 {% include JB/setup %}
 
+## 从应用错误缩小到连接路径
 
-后来查看gitlab日志，发现下面错误：
+```text
+redis-cli -h 127.0.0.1 -p 6379 PING
+```
 
-![gitlab错误]({{ site.img_url }}/2016/gitlab.png)
+命令应使用应用实际配置的主机、端口和认证方式。`No route to host` 不一定表示缺少路由，也可能与防火墙的拒绝方式有关；连接拒绝、超时和认证失败则各有不同线索。
 
-哟，好像是redis有问题了哦
-redis的.conf文件中如果有
-1
-	
-bind 127.0.0.1
+确认 Redis 实际监听地址，区分 TCP 与 Unix socket，以及 GitLab 是否运行在容器或另一个网络命名空间。某个进程里的 127.0.0.1，不一定与宿主机是同一个端点。
 
-那么它就会被配置为仅接受本地的请求，这个是早就知道的，所以在此之前已经设置为
+## 规则放在拒绝之后不会生效
 
-    # If you want you can bind a single interface, if the bind option is not
-    # specified all the interfaces will listen for incoming connections.
-    #
-    # bind 127.0.0.1
-    bind 0.0.0.0
+这次排查中，关闭防火墙后连接恢复，随后发现追加的放行规则位于更早的拒绝规则之后。重新检查 INPUT、OUTPUT 和回环接口规则，调整匹配顺序后，连接与页面恢复。
 
-然后查看redis进程，查看端口占用没有问题。
+这个过程说明规则顺序很重要，不代表所有本机连接问题都应该通过关闭防火墙解决。优先查看规则和计数，定位确切命中，再对必要路径做最小修改。
 
-但是通过redis-cli连接redis的时候出事故了：
+## 不要顺带扩大 Redis 暴露范围
 
-    [ops@devmgr ~]$ redis-cli
-    Could not connect to Redis at 127.0.0.1:6379: No route to host
-    not connected> 
-然后设置telnet本机6379端口，果然也是不通。
-有点晕了，防火墙是开着的没错，但是一般来说，访问本机一般不会有端口限制嘛。
-试下关掉防火墙，果然好了，
-那么只好添加防火墙规则，将6379开通：
+如果客户端与 Redis 在同一主机且使用 TCP，绑定回环地址通常已经满足需求。改成 `0.0.0.0` 会扩大监听范围，并不能修复回环流量被规则拒绝的问题。
 
-    iptables -A INPUT -p tcp --dport 6379 -j ACCEPT
-    iptables -A OUTPUT -p tcp --dport 6379 -j ACCEPT
-    
-    
-然后,竟然还是不行！！！，原因是防火墙规则被其他规则覆盖了。那么把INPUT规则添加到第一条试试。
+同理，允许本机访问也不等于应向所有来源开放 6379。远程客户端需要单独明确网络范围、认证和访问控制。修复后检查运行时及重启后的规则，再验证实际 GitLab 请求，而不只看 redis-cli 能连上。
 
-    iptables -I INPUT -p tcp --dport 6379 -j ACCEPT
-        
-然后删除掉之前那个INPUT规则：
-
-    iptables -D 27（规则id）
-
-再试下：
-
-    [opt@devmgr ~]# redis-cli 
-    redis 127.0.0.1:6379> 
-
-然后刷新gitlab界面，ok，成功 
+参考：[iptables 基础](https://www.netfilter.org/documentation/)、[Redis 配置](https://redis.io/docs/latest/operate/oss_and_stack/management/config/)。
