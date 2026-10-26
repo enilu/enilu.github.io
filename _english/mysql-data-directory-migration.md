@@ -1,11 +1,11 @@
 ---
-source_sha256: c8ec1ded5f8c7d5b0eafe4f54c2c49e537a44feeec560a8726436bd4554af8dd
-title: Moving a MySQL Data Directory on Linux
+source_sha256: 269350e80cbd6a04b8924c74514f92c4747e5e24efa72a85266ff8038995d2ad
+title: "Moving MySQL Data: Offline Copying, Permissions and SELinux"
 date: '2015-05-07'
 lang: en
 translation_key: mysql-data-directory-migration
 permalink: /en/2015/05/07/mysql-data-directory-migration/
-description: Moving a MySQL data directory involves more than copying files to another disk. Service configuration, ownership, parent-directory permissions and SELinux labels all affect access. This workflow uses a CentOS 6.5 and MySQL 5.6 maintenance s
+description: "Move a MySQL data directory with offline copying, permissions and SELinux checks, using a CentOS 6.5/MySQL 5.6 scenario and a recoverable validation plan."
 ---
 
 Moving a MySQL data directory involves more than copying files to another disk. Service configuration, ownership, parent-directory permissions and SELinux labels all affect access. This workflow uses a CentOS 6.5 and MySQL 5.6 maintenance scenario; adapt service commands to the actual installation.

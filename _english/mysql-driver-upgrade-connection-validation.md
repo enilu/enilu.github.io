@@ -1,11 +1,11 @@
 ---
-source_sha256: 8d839a4b7d1b541d295e97663780b6eb57e4e286f7ceb5b04941b05c85322839
-title: "A Connection Validation Failure After Upgrading the MySQL JDBC Driver"
+source_sha256: 2c5753e8a8b4f24b0b956f8757a06fa71ca93097cf21af131fa267169a8d5a8e
+title: "MySQL Driver Upgrade: Druid and validateConnection false"
 date: 2022-10-27
 lang: en
 translation_key: mysql-driver-upgrade-connection-validation
 permalink: /en/2022/10/27/mysql-driver-upgrade-connection-validation/
-description: "A JDBC driver upgrade incident, separating an observed recovery from an unproven compatibility claim."
+description: "Investigate validateConnection false after a MySQL JDBC upgrade from 5.1.24 to 8.0.28, separating a Druid-related recovery from proven compatibility causes."
 ---
 
 After a vulnerability scan, a project needed a newer MySQL Java driver. I changed `mysql-connector-java` from 5.1.24 to 8.0.28 and then encountered `java.sql.SQLException: validateConnection false`.

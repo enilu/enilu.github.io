@@ -1,11 +1,11 @@
 ---
-source_sha256: 20eb0f86e6b1c499e9dab324887bc9ddbce137d354309548c6d4d2567fe99f2a
-title: Getting Started with SQLite
+source_sha256: f75211817cba1afb20bf1aa407df99bac314f5eb9b00b86806742f6bbc331fdf
+title: "SQLite Basics: Setup, Types, Concurrency and Backups"
 date: '2016-01-16'
 lang: en
 translation_key: sqlite-basics
 permalink: /en/2016/01/16/sqlite-basics/
-description: 'SQLite embeds a database engine inside an application without a separate database server. It suits local tools, desktop applications and devices with structured data. Select it based on access patterns and concurrency rather than a blanket '
+description: "Start with sqlite3 examples, then understand primary keys, type constraints, single-writer concurrency, WAL, consistent backups and Java JDBC usage."
 ---
 
 SQLite embeds a database engine inside an application without a separate database server. It suits local tools, desktop applications and devices with structured data. Select it based on access patterns and concurrency rather than a blanket claim that it is faster than other databases.

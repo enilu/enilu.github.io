@@ -2,10 +2,11 @@
 layout: post
 category : 学习笔记 
 keywords: "nutz,源码学习"
-description: "Nutz HTTP 工具把请求构造、连接和响应封装在一组小类里。以一次 GET 为入口，可以看到方便方法怎样落到 JDK 的网络能力。本文以 1.b.53 的实现为基线。"
+description: "基于 Nutz 1.b.53 沿 Http、Request、Sender 和 GetSender 跟踪请求，说明状态码、响应正文、压缩与错误流，并用本地固定响应验证异常和资源关闭责任。"
 tags : [nutz,源码学习]
 lang: zh-CN
 translation_key: nutz-http-client-basics
+title: "Nutz HTTP 源码：GET 调用链、响应与流关闭"
 ---
 
 Nutz HTTP 工具把请求构造、连接和响应封装在一组小类里。以一次 GET 为入口，可以看到方便方法怎样落到 JDK 的网络能力。本文以 1.b.53 的实现为基线。

@@ -1,11 +1,11 @@
 ---
-source_sha256: a6330929d2797588feff3a7f31494f0119559d726ad74b945c061e1f30bab03c
-title: Analyzing Nginx Logs for Excessive Requests with Python
+source_sha256: 32ac21797189e91ba7fbda0f3c0fa3260bfa1487fd4ac43b3824c1c9ced00215
+title: "Python Nginx Log Analysis: Request Counts and False Positives"
 date: '2014-09-25'
 lang: en
 translation_key: python-nginx-log-analysis
 permalink: /en/2014/09/25/python-nginx-log-analysis/
-description: Nginx access logs can identify sources making many requests in a short period, but high volume alone does not establish malicious behavior. Shared gateways, search engines, monitoring and frontend assets all produce traffic. Finding candida
+description: "Count requests by IP in a fixed Nginx log window, handling IPv4/IPv6, trusted proxies, rotation and the limits of rate-based blocking decisions."
 ---
 
 Nginx access logs can identify sources making many requests in a short period, but high volume alone does not establish malicious behavior. Shared gateways, search engines, monitoring and frontend assets all produce traffic. Finding candidates first and applying business rules afterward gives better control over false positives than immediately adding IPs to a firewall.

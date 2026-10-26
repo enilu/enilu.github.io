@@ -1,11 +1,11 @@
 ---
-source_sha256: c47f2bcbcb356b4b42c71ca6948934b9038926bfab84c7d53df97b39d031f64e
-title: 'Reading Nutz Nums and Times: Numeric and Date Boundaries'
+source_sha256: cb5ebafe6564020e2f1ebefc5a34fdfb15c04bb000f1c84cad0344f95efc0039
+title: "Nutz 1.b.53 Nums and Times: Leap Years, Formatters and Ranges"
 date: '2016-06-04'
 lang: en
 translation_key: nutz-numbers-dates
 permalink: /en/2016/06/04/nutz-numbers-dates/
-description: Numeric and date utilities may require only a few lines at call sites, yet boundary errors flow directly into reports and business decisions. Reading Nutz 1.b.53 Nums and Times, I focus on range, time reference and concurrency rather than j
+description: "Inspect leap-year rules and formatter ownership in Nutz 1.b.53, checking timezone, locale, calendar ranges, numeric conversion and overflow boundaries."
 ---
 
 Numeric and date utilities may require only a few lines at call sites, yet boundary errors flow directly into reports and business decisions. Reading Nutz 1.b.53 Nums and Times, I focus on range, time reference and concurrency rather than judging importance by class length.

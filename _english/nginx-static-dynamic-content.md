@@ -1,11 +1,11 @@
 ---
-source_sha256: dc04b8ae0351535655d902f50ecb6a13a2938e176a05f5856fa2ab1c34d940f6
-title: Serving Static Content Directly with Nginx
+source_sha256: d467940ed8a49992d84c0d6a2d9d3ef834e73521c712d2d6f96f975232bb8455
+title: "Nginx Static Content: Root Paths, Browser Caching and Releases"
 date: '2016-07-27'
 lang: en
 translation_key: nginx-static-dynamic-content
 permalink: /en/2016/07/27/nginx-static-dynamic-content/
-description: With Nginx forwarding requests and Jetty running a Java application, public static resources can be served directly by Nginx. This reduces that work on the application server. Measure request volume, latency and resource use to determine th
+description: "Serve public assets with Nginx, checking root versus alias, access boundaries, fresh caches versus 304 responses, content hashes and release sequencing."
 ---
 
 With Nginx forwarding requests and Jetty running a Java application, public static resources can be served directly by Nginx. This reduces that work on the application server. Measure request volume, latency and resource use to determine the overall improvement.

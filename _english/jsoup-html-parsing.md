@@ -1,11 +1,11 @@
 ---
-source_sha256: 0336a5a12228b4f2530555ae97c6976a7f62c82168dd142da81d5f8faee278f9
-title: Parsing and Extracting HTML with Jsoup
+source_sha256: becf8660e02b543950ecfe4f865cc357f12aa0b9d5c221419a64a795f685976a
+title: "Jsoup HTML Parsing: Selectors, Relative Links and Missing Values"
 date: '2014-07-21'
 lang: en
 translation_key: jsoup-html-parsing
 permalink: /en/2014/07/21/jsoup-html-parsing/
-description: Jsoup parses HTML into a Document and extracts data with DOM methods or CSS selectors. It also offers HTTP requests, but does not execute JavaScript like a browser. The server's HTML may therefore differ from the page eventually displayed i
+description: "Extract HTML with Jsoup selectors, resolve relative URLs and handle missing elements, while separating network retrieval from JavaScript rendering."
 ---
 
 Jsoup parses HTML into a Document and extracts data with DOM methods or CSS selectors. It also offers HTTP requests, but does not execute JavaScript like a browser. The server's HTML may therefore differ from the page eventually displayed in a browser.

@@ -1,11 +1,11 @@
 ---
-source_sha256: abf9b4e26af7bacbae80a2fec43bb5f896d5883ba6b75123fb2ee190f4e03dd6
-title: Laying Out Images and Text in a PDF with iText
+source_sha256: be59ce9a7cd3e7ee149f9d496cc1a631cd5269e865383fbceeede719355a7d8c
+title: "iText Image and Text Layout: Tables, Fonts and Scaling"
 date: '2009-10-14'
 lang: en
 translation_key: itext-image-text-layout
 permalink: /en/2009/10/14/itext-image-text-layout/
-description: For a PDF containing photos and text, an outer table can arrange cards while each card contains its image and caption. Defining paper size, columns, fonts and scaling beforehand produces a more controlled layout than appending images indivi
+description: "Arrange images and captions with nested tables in early iText, covering grid padding, Chinese fonts, image scaling, pagination and resource cleanup."
 ---
 
 For a PDF containing photos and text, an outer table can arrange cards while each card contains its image and caption. Defining paper size, columns, fonts and scaling beforehand produces a more controlled layout than appending images individually.

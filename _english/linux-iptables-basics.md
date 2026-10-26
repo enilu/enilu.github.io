@@ -1,11 +1,11 @@
 ---
-source_sha256: 3ae93859ab4ba8b5cd5169a23dbba8aa22553420a57795584c6b080b287f196d
-title: Understanding Basic Linux Firewall Rules
+source_sha256: 85467da93d581f3ab9f0e3ee2ffdc014b6b3b542f3126de49ab6b446f0bf89d9
+title: "iptables Firewall Basics: Chains, Rule Order and Persistence"
 date: '2015-09-09'
 lang: en
 translation_key: linux-iptables-basics
 permalink: /en/2015/09/09/linux-iptables-basics/
-description: Firewall diagnosis starts with the packet's chain, followed by rule order. These basics use the CentOS 6.5-era iptables filter table. Other systems may use firewalld or nftables; do not mix persistence mechanisms.
+description: "Inspect iptables chains, counters and terminal rule order, restrict required access, and verify allowed and denied traffic before and after persistence."
 ---
 
 Firewall diagnosis starts with the packet's chain, followed by rule order. These basics use the CentOS 6.5-era iptables filter table. Other systems may use firewalld or nftables; do not mix persistence mechanisms.

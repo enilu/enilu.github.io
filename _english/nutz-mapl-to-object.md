@@ -1,11 +1,11 @@
 ---
-source_sha256: 4697e16671ac6f16a09083c998e2d154a0263e60c36aa89363c5a638999d3401
-title: 'Reading Nutz Mapl: Converting Structures Back to Objects'
+source_sha256: 7450f45f848e9a2f85579594a778e9cfae45998e370d71661dfc4eeb8a36c8d8
+title: "Nutz 1.b.53 Mapl: Target Types and Recursive Object Injection"
 date: '2016-01-11'
 lang: en
 translation_key: nutz-mapl-to-object
 permalink: /en/2016/01/11/nutz-mapl-to-object/
-description: Restoring Java objects from Map/List structures requires both source values and target types. ObjConvertImpl in Nutz 1.b.53 separates recursive container injection from leaf conversion. These two layers provide a clearer reading path than f
+description: "Read Nutz 1.b.53 ObjConvertImpl using target types, recursive container injection and Castors, checking generics, invalid inputs and cyclic-graph limits."
 ---
 
 Restoring Java objects from Map/List structures requires both source values and target types. ObjConvertImpl in Nutz 1.b.53 separates recursive container injection from leaf conversion. These two layers provide a clearer reading path than following every conditional individually.

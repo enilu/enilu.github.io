@@ -2,9 +2,10 @@
 layout: post
 category : java 
 tags : [开源,lucene,读书笔记]
-description: "阅读《Lucene In Action》时，最有帮助的是把“建立索引”和“执行搜索”分开理解。Lucene 是应用内使用的检索库，不是一个自带 HTTP 接口的完整搜索服务器。"
+description: "从文档与字段出发理解 Lucene，区分存储、索引和排序结构，说明分析器匹配、IndexWriter 与搜索器的职责，以及写入、提交、刷新和 segment 合并的不同含义。"
 lang: zh-CN
 translation_key: lucene-reading-notes
+title: "《Lucene in Action》读书笔记：字段、分析器与索引可见性"
 ---
 
 阅读《Lucene In Action》时，最有帮助的是把“建立索引”和“执行搜索”分开理解。Lucene 是应用内使用的检索库，不是一个自带 HTTP 接口的完整搜索服务器。

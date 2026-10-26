@@ -2,10 +2,11 @@
 layout: post
 category : java
 keywords : "Spring Boot,JpaAuditing,数据审计"
-description: "业务数据常常需要记录创建时间、修改时间、创建人和修改人。Spring Data JPA 的审计功能可以自动维护这些字段，但需要同时配置实体监听器、审计基础设施以及当前操作者的来源。"
+description: "介绍 BaseEntity、AuditingEntityListener、EnableJpaAuditing 和 AuditorAware 的配合，说明认证身份与系统任务、flush 时机、批量更新绕过监听器及审计字段的验证范围。"
 tags : [SpringBoot,java]
 lang: zh-CN
 translation_key: spring-data-jpa-auditing
+title: "Spring Data JPA 审计：创建修改时间与操作者配置"
 ---
 
 业务数据常常需要记录创建时间、修改时间、创建人和修改人。Spring Data JPA 的审计功能可以自动维护这些字段，但需要同时配置实体监听器、审计基础设施以及当前操作者的来源。

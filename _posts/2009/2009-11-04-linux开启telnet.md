@@ -2,6 +2,8 @@
 layout: post
 category : linux 
 tags : [telnet,运维,linux]
+title: "Linux Telnet 配置记录：xinetd 服务与登录限制"
+description: "记录旧 Linux 环境中通过 xinetd 启用 Telnet 的配置、服务重启及登录限制问题，保留当时的操作与未验证结果，作为历史环境维护记录。"
 ---
  
 Linux默认没有开启telnet， 首先更改/etc/xinetd.d/telnet文件，有的可能没有该文件，有比如krb5-telnet之类的，那就更改这个文件，如果实在一个跟telnet沾边的文件都没有；可能是没有安装telent服务，就需要拿盘再安装了，或者安装后还没有，就新建一个该文件，文件内容为

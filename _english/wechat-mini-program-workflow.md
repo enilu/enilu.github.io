@@ -1,11 +1,11 @@
 ---
-source_sha256: 561b79354331ff8d3fe072b91b9fc73aa96c96136d112d7eb8b3c4b65777f217
-title: 'From Development to Release: A WeChat Mini Program Workflow'
+source_sha256: 20df2a96dff463173b813cded563ed6aa2cf7209a5dc966aecc9439bd21656d0
+title: "WeChat Mini Program Release: Environments, Devices and Review"
 date: '2018-01-26'
 lang: en
 translation_key: wechat-mini-program-workflow
 permalink: /en/2018/01/26/wechat-mini-program-workflow/
-description: Releasing a WeChat Mini Program from scratch requires accounts, backend APIs, real-device testing and review materials as well as pages. Identifying these dependencies early avoids finishing the code while still being unable to release.
+description: "Plan a WeChat Mini Program release across accounts, backend security, page structure, real-device tests, review environments and publication steps."
 ---
 
 Releasing a WeChat Mini Program from scratch requires accounts, backend APIs, real-device testing and review materials as well as pages. Identifying these dependencies early avoids finishing the code while still being unable to release.

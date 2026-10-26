@@ -2,10 +2,11 @@
 layout: post
 category : java 
 keywords : "fastjson,延迟加载,循环引用检测"
-description: "分页接口返回机构名称时，列表中前一条记录的 org 是完整对象，后面却出现了 $ref，前端直接读取 org.name 因而失败。这个问题需要分开看两个层次：数据库关联是否已加载，以及序列化如何表示同一个对象。"
+description: "从分页结果中 org 变为 $ref 的问题，区分 Hibernate 关联加载与 Fastjson 1.x 引用检测，说明 DTO、SQL 次数、循环引用和 EAGER 的边界，并给出验证场景。"
 tags : [fastjson,hibernate,java]
 lang: zh-CN
 translation_key: hibernate-lazy-loading-json-references
+title: "Hibernate 与 Fastjson 的 $ref 问题：懒加载、共享引用和 DTO"
 ---
 
 分页接口返回机构名称时，列表中前一条记录的 `org` 是完整对象，后面却出现了 `$ref`，前端直接读取 `org.name` 因而失败。这个问题需要分开看两个层次：数据库关联是否已加载，以及序列化如何表示同一个对象。

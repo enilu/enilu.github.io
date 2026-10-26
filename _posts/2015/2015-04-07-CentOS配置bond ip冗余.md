@@ -2,10 +2,11 @@
 layout: post
 category : linux 
 keywords : "linux,运维,ip bond"
-description: "Linux bonding 把多个网络接口组成一个逻辑接口，提供链路冗余或流量分担。它不只属于 CentOS，也不等于在多台服务器之间自动漂移一个 IP；先明确希望防范的故障，再选择模式。"
+description: "比较 Linux bonding 的常见模式，说明 active-backup 与 802.3ad 的区别、交换机和 VLAN/MTU 条件、成员接口配置及链路监测，并通过故障测试理解切换边界。"
 tags : [linux,运维,ip bond]
 lang: zh-CN
 translation_key: linux-network-bonding
+title: "Linux 网络 bonding：模式选择、交换机配置与故障验证"
 ---
 
 Linux bonding 把多个网络接口组成一个逻辑接口，提供链路冗余或流量分担。它不只属于 CentOS，也不等于在多台服务器之间自动漂移一个 IP；先明确希望防范的故障，再选择模式。

@@ -1,11 +1,11 @@
 ---
-source_sha256: db704a53a9c1d3f40e802ea425c35e764f76da00fc441385a7506ab0119cedc3
-title: Building a Small Desktop Search Tool with Lucene
+source_sha256: e1b4b7c619b2dfb6f2335d7b46a142aeff2c80fd7a2965fe63736cf291237793
+title: "Lucene 3.x Desktop Search: File Indexing, Updates and Refresh"
 date: '2014-07-31'
 lang: en
 translation_key: lucene-desktop-search
 permalink: /en/2014/07/31/lucene-desktop-search/
-description: 'A desktop search tool has a simple brief: read text files from a directory, index them, and return filenames and paths for keywords. The important details are repeated indexing, changed files, encoding and search-resource lifecycles.'
+description: "Build a small Lucene 3.x file search tool with stable IDs, compatible analysis, bounded results, update and deletion handling, and searcher refresh."
 ---
 
 A desktop search tool has a simple brief: read text files from a directory, index them, and return filenames and paths for keywords. The important details are repeated indexing, changed files, encoding and search-resource lifecycles.

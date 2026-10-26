@@ -1,11 +1,11 @@
 ---
-source_sha256: 7479fafa2d195da418c7601fafd94de4ef4f75d3b1f89747d66a70e6da01b77e
-title: 'Reading Nutz Mapl: Converting Objects to Map/List Structures'
+source_sha256: 4cee7a8534daf0930dc09d4f2be634f93cba0000ab7ba6516ee6114e1a33c574
+title: "Nutz 1.b.53 Mapl: Object Conversion, memo and Boundaries"
 date: '2016-01-05'
 lang: en
 translation_key: nutz-object-to-mapl
 permalink: /en/2016/01/05/nutz-object-to-mapl/
-description: 'Mapl uses Map and List as structural containers for reading, converting and modifying objects by path. It does not require every leaf to become another Map or List: values such as numbers and strings can remain leaves. This follows ObjCompi'
+description: "Follow ObjCompileImpl in Nutz 1.b.53 through leaves, containers and POJOs, examining memo comparisons, asymmetric map conversion and stringified keys."
 ---
 
 Mapl uses Map and List as structural containers for reading, converting and modifying objects by path. It does not require every leaf to become another Map or List: values such as numbers and strings can remain leaves. This follows ObjCompileImpl in Nutz 1.b.53.

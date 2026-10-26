@@ -1,11 +1,11 @@
 ---
-source_sha256: 558df252dcdcad086a70004ca1aa82d777d986d588e0fefae8671e2be953b089
-title: 'Reading Nutz Strings: Unicode, Width and Case'
+source_sha256: 58e4fff15d2c547f1d07c69acc649e1778f8ce668b334aaec59ada9c4c1b9343
+title: "Nutz 1.b.53 Strings: Unicode, Width and Case Boundaries"
 date: '2016-06-03'
 lang: en
 translation_key: nutz-strings-unicode
 permalink: /en/2016/06/03/nutz-strings-unicode/
-description: It is easy to mistake an application-specific character classification for Unicode's complete definition. Nutz 1.b.53 Strings offers Chinese-character, full-width/half-width and case helpers. Understanding them starts with whether an API ac
+description: "Inspect Nutz Strings character helpers, distinguishing UTF-16 units, code points, Unicode blocks, full-width ASCII forms, display width and case rules."
 ---
 
 It is easy to mistake an application-specific character classification for Unicode's complete definition. Nutz 1.b.53 Strings offers Chinese-character, full-width/half-width and case helpers. Understanding them starts with whether an API accepts a char or a complete code point.

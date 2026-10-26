@@ -1,11 +1,11 @@
 ---
-source_sha256: fe77586449277407a5d3b07a0f35f6c71fbc463c60b09f4d106a7a79c6546001
-title: 'Reading Nutz Mirror: Reflection and Object Construction'
+source_sha256: 5828435ceac1859679b8475d7dfee73729559f701827bb12f24333b619228424
+title: "Nutz 1.b.53 Mirror: Fields, Annotations and Object Construction"
 date: '2016-07-02'
 lang: en
 translation_key: nutz-reflection
 permalink: /en/2016/07/02/nutz-reflection/
-description: Nutz Mirror wraps common reflection work involving types, fields, methods and object creation. It helps explain how frameworks map external data into objects, but does not bypass every access restriction. This discussion is based on 1.b.53.
+description: "Read Nutz reflection wrappers through field and getter access, annotation lookup, array defaults, constructor exceptions and later JDK access restrictions."
 ---
 
 Nutz Mirror wraps common reflection work involving types, fields, methods and object creation. It helps explain how frameworks map external data into objects, but does not bypass every access restriction. This discussion is based on 1.b.53.

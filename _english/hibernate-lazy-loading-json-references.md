@@ -1,11 +1,11 @@
 ---
-source_sha256: aff167ddbd3323e7b174c5c19391d2e29faa7774af993caf638c428cc4a854cc
-title: Hibernate Lazy Loading and Fastjson References in List Responses
+source_sha256: 67a717bff2d7667b943c7cf0a2b9f9155a36b2e04be67edc53d18e52124ca029
+title: "Hibernate and Fastjson $ref: Lazy Loading, Shared References and DTOs"
 date: '2018-07-03'
 lang: en
 translation_key: hibernate-lazy-loading-json-references
 permalink: /en/2018/07/03/hibernate-lazy-loading-json-references/
-description: A paginated API returned an organization as a complete org object in its first row, then as $ref in later rows. Frontend code reading org.name failed. Understanding this requires separating association loading from the serializer's represen
+description: "Separate Hibernate loading from Fastjson 1.x reference output, using DTOs and query checks to address shared objects without hiding real circular graphs."
 ---
 
 A paginated API returned an organization as a complete `org` object in its first row, then as `$ref` in later rows. Frontend code reading `org.name` failed. Understanding this requires separating association loading from the serializer's representation of shared objects.

@@ -1,11 +1,11 @@
 ---
-source_sha256: 32dfb67978d93b4cea0075ea7f76ae7834247d90033de0eaba0fc0591bee2c83
-title: 'Adapting Guns to JPA: The Decisions Behind guns-lite'
+source_sha256: 8e85d71dff43c481e50320fc0f3dc319173f3b65b0829e2b304dec563d006dc4
+title: "Adapting Guns to JPA: guns-lite Design and Migration Costs"
 date: '2018-04-05'
 lang: en
 translation_key: guns-lite-jpa-adaptation
 permalink: /en/2018/04/05/guns-lite-jpa-adaptation/
-description: 'When a new product needed an admin interface quickly, I adapted Guns instead of building every page from scratch. Other services already used Spring Data JPA, so I moved the admin data-access layer to JPA as well, aiming to reduce the cost '
+description: "Review the guns-lite JPA adaptation, including parallel implementation costs, query and transaction behavior, permissions and long-term scaffold maintenance."
 ---
 
 When a new product needed an admin interface quickly, I adapted Guns instead of building every page from scratch. Other services already used Spring Data JPA, so I moved the admin data-access layer to JPA as well, aiming to reduce the cost of maintaining two data-access approaches.

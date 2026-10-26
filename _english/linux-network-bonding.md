@@ -1,11 +1,11 @@
 ---
-source_sha256: a2517a2b6950ff4a64b0c6a31b52febb1b1ed162c0a5f7560367ef8a69a7dfcc
-title: Understanding Linux Network Bonding
+source_sha256: 7f35000815cf874f02e616efca1fade69cd46876f377d7c47b8b72f6231eaa92
+title: "Linux Network Bonding: Modes, Switch Setup and Failover Tests"
 date: '2015-04-07'
 lang: en
 translation_key: linux-network-bonding
 permalink: /en/2015/04/07/linux-network-bonding/
-description: Linux bonding combines interfaces into a logical interface for redundancy or load sharing. It is not exclusive to CentOS and does not automatically move an IP between servers. Identify the failures to tolerate before selecting a mode.
+description: "Compare Linux bonding modes, LACP requirements and interface setup, then test link failures and distinguish physical status from service reachability."
 ---
 
 Linux bonding combines interfaces into a logical interface for redundancy or load sharing. It is not exclusive to CentOS and does not automatically move an IP between servers. Identify the failures to tolerate before selecting a mode.

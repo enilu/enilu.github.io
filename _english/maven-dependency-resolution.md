@@ -1,11 +1,11 @@
 ---
-source_sha256: 020ca31f71249652866e3ff899288945891e8fc1191e16104fd45e05490161d1
-title: Investigating a Maven Dependency Resolution Failure
+source_sha256: 0c29c6131427aa0559f4c551258d4840db4211b4518fd5f58703d699eb5284bc
+title: "Maven Resolution Failures: RELEASE Metadata, Cache and Reproducibility"
 date: '2017-03-27'
 lang: en
 translation_key: maven-dependency-resolution
 permalink: /en/2017/03/27/maven-dependency-resolution/
-description: 'A Jenkins build listed many dependencies, but its most specific clue was Could not find metadata org.jetbrains:annotations-java5/maven-metadata.xml. Finding the actual failing artifact is more effective than immediately deleting the entire '
+description: "Trace Maven RELEASE metadata errors through dependency paths, repositories and targeted cache repair, then verify pinned versions in a clean environment."
 ---
 
 A Jenkins build listed many dependencies, but its most specific clue was `Could not find metadata org.jetbrains:annotations-java5/maven-metadata.xml`. Finding the actual failing artifact is more effective than immediately deleting the entire local repository.

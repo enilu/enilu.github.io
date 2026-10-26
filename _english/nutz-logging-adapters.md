@@ -1,11 +1,11 @@
 ---
-source_sha256: e1371e42ee838d6f66c60aba3c9ba1a2c0681cac02d7553cfe56ea6e35091312
-title: 'Reading Nutz Logging: Interfaces and Adapters'
+source_sha256: c5cd3dd8a8bb9b286b56b6a9447b8ef0c216c4f7590e49ea089f8c9a89015653
+title: "Nutz 1.b.53 Logging: Interfaces, Adapter Selection and Initialization"
 date: '2016-10-16'
 lang: en
 translation_key: nutz-logging-adapters
 permalink: /en/2016/10/16/nutz-logging-adapters/
-description: 'Nutz logging provides a common interface and adapters for concrete outputs. The important paths are how business code obtains a logger and how runtime selection chooses an adapter. This uses 1.b.53; adapter lists and priorities must not be '
+description: "Inspect Nutz logger naming, Log4j/System adapter selection, initialization and NOP_ADAPTER, including saved references, bridge duplication and logging costs."
 ---
 
 Nutz logging provides a common interface and adapters for concrete outputs. The important paths are how business code obtains a logger and how runtime selection chooses an adapter. This uses 1.b.53; adapter lists and priorities must not be inferred across versions.

@@ -2,10 +2,11 @@
 layout: post
 category : 学习笔记
 keywords: "jekyll,个人网站"
-description: "维护 Jekyll 博客时，本地预览可以提前发现中文路径、代码排版和配置问题。Windows 环境的关键是让 Ruby、构建工具、Bundler 和项目依赖保持一致。"
+description: "介绍 Windows 上 Jekyll 博客预览的 RubyInstaller/Devkit、MSYS2 和 Bundler 环境，说明 Gemfile.lock、bundle exec、UTF-8 设置、配置重启及中文路径和构建结果的检查。"
 tags : [教程]
 lang: zh-CN
 translation_key: jekyll-windows-local-preview
+title: "Windows 本地运行 Jekyll：Ruby、Bundler 与中文路径"
 ---
 
 维护 Jekyll 博客时，本地预览可以提前发现中文路径、代码排版和配置问题。Windows 环境的关键是让 Ruby、构建工具、Bundler 和项目依赖保持一致。

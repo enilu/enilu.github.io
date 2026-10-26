@@ -1,11 +1,11 @@
 ---
-source_sha256: 2e18b2559bc4e40cfdbb909034409971293b766983efefd10a54c5b90f464fc0
-title: 'Lucene in Action: Notes on Indexing and Search'
+source_sha256: 5302c618b700b120403f2ae5b1facddcaf3ce2ddd6ee5c24e0c5d5bab4d4a5f1
+title: "Lucene in Action Notes: Fields, Analyzers and Index Visibility"
 date: '2014-07-28'
 lang: en
 translation_key: lucene-reading-notes
 permalink: /en/2014/07/28/lucene-reading-notes/
-description: The most useful distinction I found while reading Lucene in Action was between building an index and searching it. Lucene is an embedded retrieval library, not a complete search server with its own HTTP interface.
+description: "Understand Lucene fields, storage, analysis and sorting, then separate index writes, commits, searcher refresh and segment merging by responsibility."
 ---
 
 The most useful distinction I found while reading Lucene in Action was between building an index and searching it. Lucene is an embedded retrieval library, not a complete search server with its own HTTP interface.

@@ -1,11 +1,11 @@
 ---
-source_sha256: 5e5f2c091eeee3a34272b4cf10fd999b6247bd186cf71c8ead6f4b65b1079862
-title: Investigating Elasticsearch Heap Exhaustion
+source_sha256: f0e32649d9f8ee7092760fd4c08922e6f80f3386ae22103980c33fc3033757fe
+title: "Elasticsearch Heap Exhaustion: OOM, Deep Pagination and Query Load"
 date: '2016-04-26'
 lang: en
 translation_key: elasticsearch-heap-memory
 permalink: /en/2016/04/26/elasticsearch-heap-memory/
-description: 'When production Elasticsearch reports OutOfMemoryError: Java heap space, heap sizing deserves investigation. A successful restart alone is insufficient, however. Query parameters in the error may reveal a request pattern that continues cons'
+description: "Investigate Elasticsearch OOM with heap and GC metrics, deep-pagination parameters and retries, then choose bounded queries or suitable export mechanisms."
 ---
 
 When production Elasticsearch reports `OutOfMemoryError: Java heap space`, heap sizing deserves investigation. A successful restart alone is insufficient, however. Query parameters in the error may reveal a request pattern that continues consuming memory.

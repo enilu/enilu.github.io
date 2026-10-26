@@ -1,11 +1,11 @@
 ---
-source_sha256: 0b12e1f31ffdd569a0eb13aa3bd6ef5a55c6bc28e37a5b27263c7206f648111a
-title: Expanding Disk Space in a Linux VirtualBox Guest
+source_sha256: 32216fe11ed90d21f564cb1dd0b2324ad9d436ef39908a92872e125b31dc8c17
+title: "VirtualBox Linux Disk Expansion: Media, Partitions and Filesystems"
 date: '2015-09-09'
 lang: en
 translation_key: virtualbox-linux-disk-expansion
 permalink: /en/2015/09/09/virtualbox-linux-disk-expansion/
-description: 'Running out of disk in a VirtualBox Linux guest involves three layers: virtual media capacity on the host, partitions or logical volumes in the guest, and filesystem capacity. Expanding only the first layer usually does not change Linux df '
+description: "Separate virtual media, partition or LVM growth and filesystem expansion in VirtualBox, then verify mounts, fstab, permissions and host capacity."
 ---
 
 Running out of disk in a VirtualBox Linux guest involves three layers: virtual media capacity on the host, partitions or logical volumes in the guest, and filesystem capacity. Expanding only the first layer usually does not change Linux df output automatically.

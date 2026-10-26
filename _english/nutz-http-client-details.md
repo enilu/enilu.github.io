@@ -1,11 +1,11 @@
 ---
-source_sha256: cddc5505a7b983eab99c56094a868d224d68bed5e242f07265973d071000fcf1
-title: 'Reading the Nutz HTTP Client: Bodies, Timeouts and Cookies'
+source_sha256: 19907dfb8bbc6cdd2ed438e4212dc206fe5299738bd57189f279f1a6999713b7
+title: "Nutz 1.b.53 HTTP: POST, Uploads, Timeouts and Cookies"
 date: '2016-03-12'
 lang: en
 translation_key: nutz-http-client-details
 permalink: /en/2016/03/12/nutz-http-client-details/
-description: After tracing GET, POST bodies, file uploads and cookies reveal how a lightweight HTTP tool handles state and resources. This continues with Nutz 1.b.53. Its timeout constants should not be generalized to every release.
+description: "Examine Nutz 1.b.53 request bodies, multipart uploads, timeout defaults and cookie headers, then test retries, unknown outcomes and resource cleanup."
 ---
 
 After tracing GET, POST bodies, file uploads and cookies reveal how a lightweight HTTP tool handles state and resources. This continues with Nutz 1.b.53. Its timeout constants should not be generalized to every release.

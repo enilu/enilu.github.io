@@ -1,11 +1,11 @@
 ---
-source_sha256: 91e2c38f8c48e18b098e016be526b8c7873affe9106cb19b4cc0787ad5723ee5
-title: 'Reading Nutz JSON: Annotations and Formatting'
+source_sha256: cc5292689c1a237e13355580913c86fea11017bf81ebe62061c8e8fc917bd5ec
+title: "Nutz 1.b.53 JSON: Annotations, Formatting and Null Semantics"
 date: '2016-01-03'
 lang: en
 translation_key: nutz-json-formatting
 permalink: /en/2016/01/03/nutz-json-formatting/
-description: Null handling, field names and date formats become part of an API contract. Nutz expresses these policies through annotations and JsonFormat. Follow configuration through to the renderer that actually uses it. This article is based on 1.b.5
+description: "Examine Nutz 1.b.53 JSON annotations and presets, comparing omitted fields, explicit nulls and readable output while separating parsing from validation."
 ---
 
 Null handling, field names and date formats become part of an API contract. Nutz expresses these policies through annotations and JsonFormat. Follow configuration through to the renderer that actually uses it. This article is based on 1.b.53.

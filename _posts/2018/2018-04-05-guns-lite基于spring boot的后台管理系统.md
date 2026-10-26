@@ -2,10 +2,11 @@
 layout: post
 category : 开源项目
 keywords: "guns-lite,spring boot"
-description: "一个新产品要求快速上线后台管理功能时，我选择在 Guns 的基础上改造，而不是从零制作所有页面。项目其他服务已经采用 Spring Data JPA，因此将后台的数据访问层也调整为 JPA，希望减少两套数据访问逻辑并行维护的成本。"
+description: "记录为后台管理项目将 Guns 数据访问层改为 JPA 的选择，讨论双版本追赶、分页与事务行为、权限和数据范围验证，以及开源脚手架定制与持续维护的成本。"
 tags : [guns,guns-lite,spring boot]
 lang: zh-CN
 translation_key: guns-lite-jpa-adaptation
+title: "guns-lite 改造实践：从 Guns 到 Spring Data JPA"
 ---
 
 一个新产品要求快速上线后台管理功能时，我选择在 Guns 的基础上改造，而不是从零制作所有页面。项目其他服务已经采用 Spring Data JPA，因此将后台的数据访问层也调整为 JPA，希望减少两套数据访问逻辑并行维护的成本。

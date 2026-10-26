@@ -1,11 +1,11 @@
 ---
-source_sha256: 3b4f9aab90424eb92086d28d7ee11c1664b963d9120992cb11bd72440bf5ed7a
-title: Choosing Cloud Services for a Small Startup
+source_sha256: dacf89a2fc093f5e3f42dacdfcb81f3800293ffbce1d2f61500a47f5a326ed5e
+title: "Cloud Choices for Startups: Total Cost, Responsibilities and Exit"
 date: '2016-05-24'
 lang: en
 translation_key: startup-cloud-services
 permalink: /en/2016/05/24/startup-cloud-services/
-description: For a startup, choosing cloud services is about concentrating limited engineering time on business differences. Managed services may reduce deployment and maintenance work, but evaluate bills, staff time and incident responsibility together
+description: "Compare self-hosting and managed services through engineering time, bills, security responsibilities, data constraints, recovery and migration costs."
 ---
 
 For a startup, choosing cloud services is about concentrating limited engineering time on business differences. Managed services may reduce deployment and maintenance work, but evaluate bills, staff time and incident responsibility together.

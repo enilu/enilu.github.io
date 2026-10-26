@@ -1,11 +1,11 @@
 ---
-source_sha256: 67c5d1288286f92b5896b26c81b9b01b46b9c923f8ab1cee9ca87622526696f4
-title: Understanding BSON Through Its Bytes
+source_sha256: 6d07bf25ab47ddb9f1ff20ccd1bf1e73417cf863105066dcff2bddd445b300a7
+title: "BSON Byte Layout: Document Lengths, UTF-8 and Type Markers"
 date: '2014-07-29'
 lang: en
 translation_key: bson-format-explained
 permalink: /en/2014/07/29/bson-format-explained/
-description: BSON is a binary document format with type information. The clearest introduction is a small document whose lengths, field names and values can be matched byte by byte. It should not be treated as compressed JSON text.
+description: "Read BSON byte by byte, calculate integer and UTF-8 string lengths, and distinguish embedded documents, strings and binary values with parser boundaries."
 ---
 
 BSON is a binary document format with type information. The clearest introduction is a small document whose lengths, field names and values can be matched byte by byte. It should not be treated as compressed JSON text.

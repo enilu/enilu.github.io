@@ -2,10 +2,11 @@
 layout: post
 category : 数据库
 keywords : "mysql,java"
-description: "记录升级 MySQL JDBC 驱动后的连接校验异常，并区分环境恢复结果与兼容性结论。"
+description: "记录 MySQL JDBC 驱动从 5.1.24 升至 8.0.28 后的连接校验异常，以及调整 Druid 后的恢复结果，说明应如何区分环境变化、根因证据和通用兼容性结论。"
 tags : [java,mysql]
 lang: zh-CN
 translation_key: mysql-driver-upgrade-connection-validation
+title: "MySQL 驱动升级后 validateConnection false：Druid 与连接校验排查"
 ---
 
 一次漏洞扫描后，项目需要升级 MySQL 的 Java 驱动。我将 `mysql-connector-java` 从 5.1.24 调整到 8.0.28，随后遇到 `java.sql.SQLException: validateConnection false`。

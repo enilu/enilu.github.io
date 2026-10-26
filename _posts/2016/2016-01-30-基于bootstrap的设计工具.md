@@ -2,8 +2,9 @@
 layout: post
 category : 前端 
 keywords : "开发工具,bootstrap,pingendo"
-description : "随着响应式网站的大热，bootstrap几乎成了事实上的标准，这不，hacker news站点一连介绍两个bootstrap相关工具，bootstrap sutdio和pingendo"
+description: "记录 2016 年关注到的 Bootstrap Studio 与 Pingendo，两款面向 Bootstrap 网站设计和原型制作的工具。内容是简短介绍与个人印象，不是功能评测或安装教程。"
 tags : [开发工具,bootstrap,pingendo]
+title: "Bootstrap 可视化工具：Bootstrap Studio 与 Pingendo 简介"
 ---
 
  

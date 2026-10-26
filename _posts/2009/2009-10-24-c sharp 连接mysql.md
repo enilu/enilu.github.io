@@ -2,8 +2,9 @@
 layout: post
 category : c# 
 keywords: "c#,mysql,"
-description : "想用c#做点桌面应用，可是又不想用sqlserver，准备用mysql，找了些资料，先来个简单的c#连接mysql的例子："
+description: "记录早期 C# 桌面应用连接 MySQL 的尝试，包括 Connector/NET 5.0.3 的安装、MySql.Data.dll 引用及数据库连接测试代码，供理解当时的集成方式。"
 tags : [c#,mysql,入门教程]
+title: "C# 连接 MySQL：Connector/NET 5.0.3 使用示例"
 ---
 
 想用c#做点桌面应用，可是又不想用sqlserver，准备用mysql，找了些资料，先来个简单的连接例子：

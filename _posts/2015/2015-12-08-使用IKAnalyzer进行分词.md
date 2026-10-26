@@ -2,10 +2,11 @@
 layout: post
 category : java 
 keywords: "开源,搜索,ikanalyzer,入门教程"
-description: "中文检索需要先把连续文本转换成适合索引的词。IKAnalyzer 的词典和切分策略会影响搜索结果，因此接入时不只要让代码能运行，还要检查业务术语被切成了什么。"
+description: "从早期 IK 核心 API 说明中文切词与 useSmart 参数，讨论 Lucene 版本匹配、TokenStream 生命周期、自定义词典与业务词样本，以及分词规则改变后的索引重建。"
 tags : [开源,搜索,ikanalyzer,入门教程]
 lang: zh-CN
 translation_key: ikanalyzer-chinese-tokenization
+title: "IKAnalyzer 中文分词：版本匹配、TokenStream 与词典验证"
 ---
 
 中文检索需要先把连续文本转换成适合索引的词。IKAnalyzer 的词典和切分策略会影响搜索结果，因此接入时不只要让代码能运行，还要检查业务术语被切成了什么。

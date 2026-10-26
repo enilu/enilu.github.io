@@ -1,11 +1,11 @@
 ---
-source_sha256: 774964c61511194aa8866d8db628c434be487919995cfe34a68ca9b8990b1b59
-title: Building and Configuring Nginx from Source
+source_sha256: 65b89e18eab44bc4e0f78a877105213febc7d2c31847137a0e285cfbfbd9b697
+title: "Building Nginx from Source: Build Options, Services and Reloads"
 date: '2016-03-02'
 lang: en
 translation_key: nginx-source-installation
 permalink: /en/2016/03/02/nginx-source-installation/
-description: Building Nginx from source can provide a fixed installation path or selected modules. Compared with package-manager installation, it also leaves you responsible for versions, dependencies, service definitions and upgrades. Compilation is on
+description: "Build Nginx with recorded dependencies and options, align service and PID configuration, and verify reloads, permissions and upgrade rollback planning."
 ---
 
 Building Nginx from source can provide a fixed installation path or selected modules. Compared with package-manager installation, it also leaves you responsible for versions, dependencies, service definitions and upgrades. Compilation is only the first step.

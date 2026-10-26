@@ -1,11 +1,11 @@
 ---
-source_sha256: eb16a795b6c700447a63217ccc8c39ccc60d8af5a89c961ef1910c8e045ad45d
-title: Configuring and Verifying MySQL Replication
+source_sha256: 65153c435914132a10f33c8a700e56bfcc647ed19bc17b741ba7c6bdc02e602b
+title: "MySQL 5.6 Replication: Consistent Backups, Setup and Verification"
 date: '2015-05-08'
 lang: en
 translation_key: mysql-replication-basics
 permalink: /en/2015/05/08/mysql-replication-basics/
-description: MySQL replication must connect a consistent data baseline to the binlog position corresponding to that baseline. Configuring a host and starting two threads does not establish that existing data and subsequent changes are complete.
+description: "Set up MySQL 5.6 replication with consistent backups and matching binlog coordinates, then verify thread status, data changes, lag and recovery planning."
 ---
 
 MySQL replication must connect a consistent data baseline to the binlog position corresponding to that baseline. Configuring a host and starting two threads does not establish that existing data and subsequent changes are complete.

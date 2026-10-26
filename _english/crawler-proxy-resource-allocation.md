@@ -1,11 +1,11 @@
 ---
-source_sha256: dbb2afebfba430a27828582cfeb21c550083d5e1cab1c12c042da5a8380a4247
-title: Improving Crawler Performance by Fixing Proxy Allocation
+source_sha256: b4353ec85c4423e665ab895ec5c87f6464e04a49ae2e308e3946887c17866882
+title: "Crawler Proxy Allocation: Round Robin and Resource Lifecycles"
 date: '2015-12-24'
 lang: en
 translation_key: crawler-proxy-resource-allocation
 permalink: /en/2015/12/24/crawler-proxy-resource-allocation/
-description: 'Slow data collection does not always mean slow HTTP requests. In one case, initialization stalled because we allocated proxy resources incorrectly: shared configuration was treated as an exclusively owned resource and assigned too early to '
+description: "Fix proxy allocation stalls with an atomic round-robin selector, distinguishing shared configuration from pooling, concurrency limits and proxy health."
 ---
 
 Slow data collection does not always mean slow HTTP requests. In one case, initialization stalled because we allocated proxy resources incorrectly: shared configuration was treated as an exclusively owned resource and assigned too early to individual collectors.

@@ -5,7 +5,7 @@ date: 2026-10-22
 lang: en
 translation_key: ai-era-developer-toolkit
 permalink: /en/2026/10/22/ai-era-developer-toolkit/
-description: "Why I chose Paseo, DBX, Zed and Tabby, and how I adapted them so that humans and AI can work with the same projects, connections and working context."
+description: "Explore Paseo, DBX, customized Zed and Tabby as shared tools for humans and AI, covering agent choice, remote access, connections and project management."
 tags: [AI, Development tools, Engineering practice, Open source]
 ---
 

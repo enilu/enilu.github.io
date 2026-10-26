@@ -1,11 +1,11 @@
 ---
-source_sha256: cb837fc0cee6c9bed6d51d9519989e833dda3a9d12f63b0473f9270c6173fcd4
-title: Getting Started with MongoDB Documents
+source_sha256: 5c827cb0eaf8cc1b8701213fbf114382848b39dd424f2506e65e7b16d6bdd76b
+title: "MongoDB Basics: Document Modeling, Query Types and Indexes"
 date: '2016-05-31'
 lang: en
 translation_key: mongodb-basics
 permalink: /en/2016/05/31/mongodb-basics/
-description: MongoDB stores BSON documents and supports organizing nested fields and arrays around business objects. Documents need not have identical structures, but flexible schemas still require field meanings, types and validation rules. Otherwise q
+description: "Explore BSON documents, typed queries, embedding versus references and indexes, with guidance on transactions, replicas, sharding and Java client lifecycle."
 ---
 
 MongoDB stores BSON documents and supports organizing nested fields and arrays around business objects. Documents need not have identical structures, but flexible schemas still require field meanings, types and validation rules. Otherwise query and maintenance costs rise over time.

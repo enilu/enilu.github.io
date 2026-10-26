@@ -1,11 +1,11 @@
 ---
-source_sha256: e972e2ecae5e7bf5c1fbb25ce3e7f92b55262027a90f642dcadda700af401d9b
-title: 'A GitLab Redis Connection Failure: No Route to Host'
+source_sha256: c345b7febbdc05e0e0489f6701c946ac7c8758ea73f29d4e6dd85c61e39301d1
+title: "GitLab Redis Failure: No Route to Host and Firewall Rule Order"
 date: '2016-01-20'
 lang: en
 translation_key: gitlab-redis-no-route-to-host
 permalink: /en/2016/01/20/gitlab-redis-no-route-to-host/
-description: After security hardening on a test server, GitLab returned HTTP 500. Application logs pointed to Redis. Its process was running and its port listening, yet redis-cli connecting to loopback reported No route to host.
+description: "Diagnose a GitLab Redis connection failure by checking endpoints, loopback and firewall order, without unnecessarily expanding Redis network exposure."
 ---
 
 After security hardening on a test server, GitLab returned HTTP 500. Application logs pointed to Redis. Its process was running and its port listening, yet redis-cli connecting to loopback reported `No route to host`.

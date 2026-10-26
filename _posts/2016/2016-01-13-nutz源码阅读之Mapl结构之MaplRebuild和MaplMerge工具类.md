@@ -2,10 +2,11 @@
 layout: post
 category : 学习笔记 
 keywords: "nutz,源码学习"
-description: "嵌套数据里修改一个字段，常常需要逐层找到 Map 和 List。Nutz 的 MaplRebuild 把路径解析封装起来，MaplMerge 则处理多个结构的合并；两者看似接近，实际语义需要分别确认。本文基于 1.b.53。"
+description: "基于 Nutz 1.b.53 分析 cell、put、update、del 的路径操作，以及 MaplMerge 按首参数类型分派的合并规则，说明普通值覆盖、equals 去重、异构容器和业务冲突策略。"
 tags : [nutz,源码学习]
 lang: zh-CN
 translation_key: nutz-mapl-paths-merge
+title: "Nutz Mapl 源码：路径修改、列表去重与结构合并"
 ---
 
 嵌套数据里修改一个字段，常常需要逐层找到 Map 和 List。Nutz 的 MaplRebuild 把路径解析封装起来，MaplMerge 则处理多个结构的合并；两者看似接近，实际语义需要分别确认。本文基于 1.b.53。

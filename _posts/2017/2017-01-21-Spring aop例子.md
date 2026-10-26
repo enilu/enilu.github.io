@@ -2,10 +2,11 @@
 layout: post
 category : java
 keywords: "spring,aop"
-description: "Spring AOP 适合把日志、耗时统计等横切逻辑放到业务方法之外。关键是知道切面拦截哪个方法、何时执行，以及如何保留原方法的返回值和异常。"
+description: "通过 Around 切面记录方法耗时，说明 proceed、原始返回值和 finally 的处理，比较 Before、AfterReturning 等通知，并讨论异常传播、自调用、容器 Bean 和代理限制。"
 tags : [开源]
 lang: zh-CN
 translation_key: spring-aop-basics
+title: "Spring AOP 耗时统计：通知类型、返回值与代理边界"
 ---
 
 Spring AOP 适合把日志、耗时统计等横切逻辑放到业务方法之外。关键是知道切面拦截哪个方法、何时执行，以及如何保留原方法的返回值和异常。

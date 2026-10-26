@@ -1,11 +1,11 @@
 ---
-source_sha256: 71ac35de1e1480d0d29c17e85015e2e7a60ef05ce70a901e56b57169b6dda58a
-title: 'Reading Nutz lang: Understanding the Utility Layer'
+source_sha256: 8d4bdde5daabc62dada63cfd85a2bc1dd886ac97d3765ea8fa6201931fa4ad1a
+title: "Nutz 1.b.53 lang: Strings, Dates, IO and Reflection Utilities"
 date: '2016-03-22'
 lang: en
 translation_key: nutz-lang-overview
 permalink: /en/2016/03/22/nutz-lang-overview/
-description: org.nutz.lang wraps common JDK operations in shorter interfaces. To understand a utility, examine both the duplication it removes and any changes to error, null and cleanup semantics. This uses Nutz 1.b.53 as its baseline.
+description: "Map Nutz 1.b.53 lang utilities to caller needs, checking defaults, null behavior, path conventions and resource ownership against the underlying JDK APIs."
 ---
 
 org.nutz.lang wraps common JDK operations in shorter interfaces. To understand a utility, examine both the duplication it removes and any changes to error, null and cleanup semantics. This uses Nutz 1.b.53 as its baseline.

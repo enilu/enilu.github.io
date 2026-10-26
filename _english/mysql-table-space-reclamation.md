@@ -1,11 +1,11 @@
 ---
-source_sha256: 65fd6bfd7c5854c2ae64226fe6c23eabf8f0d0c1e48c322815ac1f7a44cb61a3
-title: "Reclaiming Space from a 260 GB MySQL Table"
+source_sha256: fcf710ad143f5344453e3399c8338bbf4d3b167197372d907b07c7788fd9d52d
+title: "MySQL Table Space Reclamation: From 260 GB to 130 GB"
 date: 2023-11-03
 lang: en
 translation_key: mysql-table-space-reclamation
 permalink: /en/2023/11/03/mysql-table-space-reclamation/
-description: "Rebuilding a large MySQL table, with disk usage changes, table switching and data reconciliation considerations."
+description: "Review reclaiming space from a 260 GB MySQL table, including a 2-hour-40-minute rebuild, peak disk usage, resumed writes and incremental-data reconciliation."
 ---
 
 A table in one of the systems I maintained occupied about 260 GB. Roughly half its data had been deleted to meet business compliance requirements, yet disk usage had barely fallen. With only about 20% free space left, we planned to rebuild the table during a system upgrade window.

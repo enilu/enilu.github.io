@@ -2,10 +2,11 @@
 layout: post
 category : 大数据 
 keywords : "开源,搜索,elasticsearch,大数据,mongodb,mongodb-connector"
-description: "产品需要将多个来源的企业数据按唯一标识合并，规模约为三千万条，并支持多维度检索和统计。当时选择 MongoDB 保存文档，Elasticsearch 建立搜索索引，两者之间的同步由独立链路负责。"
+description: "围绕三千万企业文档的搜索需求，说明 MongoDB 事实来源、稳定文档 ID、幂等更新、快照与变更衔接、检查点、删除和 mapping 处理，并区分同步延迟与 refresh 可见性。"
 tags : [开源,搜索,elasticsearch,大数据,mongodb]
 lang: zh-CN
 translation_key: mongodb-elasticsearch-synchronization
+title: "MongoDB 到 Elasticsearch：全量增量衔接与同步恢复"
 ---
 
 产品需要将多个来源的企业数据按唯一标识合并，规模约为三千万条，并支持多维度检索和统计。当时选择 MongoDB 保存文档，Elasticsearch 建立搜索索引，两者之间的同步由独立链路负责。

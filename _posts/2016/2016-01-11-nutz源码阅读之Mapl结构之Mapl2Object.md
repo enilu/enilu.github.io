@@ -2,10 +2,11 @@
 layout: post
 category : 学习笔记 
 keywords: "nutz,源码学习"
-description: "把 Map/List 结构恢复成 Java 对象，需要同时知道源值和目标类型。Nutz 1.b.53 的 ObjConvertImpl 将容器递归注入与叶子值转换分开，阅读时抓住这两层，比逐个跟进所有 if 分支更清楚。"
+description: "阅读 Nutz 1.b.53 ObjConvertImpl，区分 Class 与 Type 入口、容器递归注入和 Castors 叶子转换，说明泛型、反射、失败输入、可写字段和循环引用的处理边界。"
 tags : [nutz,源码学习]
 lang: zh-CN
 translation_key: nutz-mapl-to-object
+title: "Nutz Mapl 源码：目标 Type、递归注入与对象恢复"
 ---
 
 把 Map/List 结构恢复成 Java 对象，需要同时知道源值和目标类型。Nutz 1.b.53 的 ObjConvertImpl 将容器递归注入与叶子值转换分开，阅读时抓住这两层，比逐个跟进所有 if 分支更清楚。

@@ -1,11 +1,11 @@
 ---
-source_sha256: 27490f4d3b6da45f8f0f39334198c158282b2decb8b2c6278089d0667d78fa7c
-title: A Practical Introduction to Spring AOP
+source_sha256: d807ed780a47fdcfdb0a276f40bb2236546ea6087115a24ad9bf0561352bd68c
+title: "Spring AOP Timing: Advice, Return Values and Proxy Boundaries"
 date: '2017-01-21'
 lang: en
 translation_key: spring-aop-basics
 permalink: /en/2017/01/21/spring-aop-basics/
-description: Spring AOP moves cross-cutting behavior such as logging and timing outside business methods. The essentials are which methods are intercepted, when advice executes, and how original return values and exceptions are preserved.
+description: "Measure methods with Spring AOP around advice, preserving results and exceptions while checking advice types, self-invocation and proxy limitations."
 ---
 
 Spring AOP moves cross-cutting behavior such as logging and timing outside business methods. The essentials are which methods are intercepted, when advice executes, and how original return values and exceptions are preserved.

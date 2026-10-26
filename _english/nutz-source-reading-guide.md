@@ -1,11 +1,11 @@
 ---
-source_sha256: dd28c389ed416e664cd8516bd7f2b182bf33f9e2304294ba9458230af90d20e4
-title: A Guide to Reading the Nutz Source Code
+source_sha256: b1518302003bbf63e711e97661c1a5ddd72c2ed481365023425ffee0e2cd91f3
+title: "Nutz 1.b.53 Source Guide: Utility Modules and Call Chains"
 date: '2015-12-19'
 lang: en
 translation_key: nutz-source-reading-guide
 permalink: /en/2015/12/19/nutz-source-reading-guide/
-description: When reading the Nutz source, I started with utility modules and followed their use inside the framework. This reviews Java fundamentals while showing how reflection, conversion and I/O combine into higher-level features.
+description: "Follow a Nutz 1.b.53 reading path through lang, Mapl, JSON, HTTP, EL and logging, using minimal cases and boundary tests to understand dependencies."
 ---
 
 When reading the Nutz source, I started with utility modules and followed their use inside the framework. This reviews Java fundamentals while showing how reflection, conversion and I/O combine into higher-level features.

@@ -1,11 +1,11 @@
 ---
-source_sha256: 4a018e268f3d4eaf8c9bf30c7c44892732da0f9160a3133a73182c5281509ba9
-title: Diagnosing a Production Java Application with Arthas
+source_sha256: 482063aa41277630eb58efa56adb697644bbe70df5a8ef2a5070ab2e2e3d7bc2
+title: "Arthas Production Diagnosis: Loaded Classes, Arguments and Date Inputs"
 date: '2019-09-06'
 lang: en
 translation_key: arthas-java-production-diagnostics
 permalink: /en/2019/09/06/arthas-java-production-diagnostics/
-description: When a production job failed to generate a report for the requested date, I used Arthas to inspect the running code and method arguments. The investigation eventually narrowed the problem down to the parameter text. It is a small example of
+description: "Use Arthas sc, jad and bounded watch calls to investigate a report-date failure, inspecting deployed code, runtime inputs and malformed JSON parameters."
 ---
 
 When a production job failed to generate a report for the requested date, I used Arthas to inspect the running code and method arguments. The investigation eventually narrowed the problem down to the parameter text. It is a small example of avoiding repeated logging changes and deployments during diagnosis.

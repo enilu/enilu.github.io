@@ -1,11 +1,11 @@
 ---
-source_sha256: 9d7b3b2e082cc608732ddcb98b3dbed803ee816bfd5a1d90d80658a66c937089
-title: A Practical Workflow for Data Collection
+source_sha256: 15489959d9fa2eb2bec15656d045e2619e90eba3a9398106c69ebe1ea4f01816
+title: "Data Collection Workflow: Field Definitions, Requests and Validation"
 date: '2015-11-23'
 lang: en
 translation_key: data-collection-workflow
 permalink: /en/2015/11/23/data-collection-workflow/
-description: HTTP requests and parsing code are only the middle of a company-data collection workflow. Without clear scope, field meaning and acceptance criteria, successfully downloaded pages can still produce unusable data.
+description: "Plan company-data collection from field definitions to downstream use, with request tracing, stable keys, retries, provenance and end-to-end validation."
 ---
 
 HTTP requests and parsing code are only the middle of a company-data collection workflow. Without clear scope, field meaning and acceptance criteria, successfully downloaded pages can still produce unusable data.

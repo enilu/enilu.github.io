@@ -1,11 +1,11 @@
 ---
-source_sha256: c9f0370eee6f938414d6d933c268e3e67b287423d63d315486f956e4fa51f135
-title: Understanding and Setting Up a Redis 3.0.5 Cluster
+source_sha256: b022f6bcfc4993dac5f78d28a84abd9b38184eab30d53c635813e555a9f61f51
+title: "Redis 3.0.5 Cluster: Hash Slots, Node Setup and Failover"
 date: '2015-11-28'
 lang: en
 translation_key: redis-3-cluster
 permalink: /en/2015/11/28/redis-3-cluster/
-description: Redis Cluster distributes a keyspace across nodes and uses replication and failover to improve availability. This Redis 3.0.5 example explains a six-process learning setup. Six processes on one machine are not a production high-availability
+description: "Set up a Redis 3.0.5 learning cluster, covering hash slots, isolated node directories, bus ports, routing and failover without implying single-host HA."
 ---
 
 Redis Cluster distributes a keyspace across nodes and uses replication and failover to improve availability. This Redis 3.0.5 example explains a six-process learning setup. Six processes on one machine are not a production high-availability deployment.

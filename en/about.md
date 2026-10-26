@@ -2,6 +2,8 @@
 layout: default
 lang: en
 title: About
+seo_title: "About enilu | Software Development Notes and Contact"
+description: "Meet enilu, the author of this software development blog, and find GitHub and email contact links alongside an introduction to the Chinese and English archives."
 permalink: /en/about/
 translation_key: about
 ---

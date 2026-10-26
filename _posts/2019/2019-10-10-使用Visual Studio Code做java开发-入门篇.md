@@ -2,8 +2,9 @@
 layout: post
 category : 开发工具
 keywords : "VS Code,开发工具"
-description : "使用Visual Studio Code进行java开发-入门资源篇"
+description: "记录使用 VS Code 进行 Java 开发时的插件和资源，包括 Java 与 Spring Boot 扩展、JDK/Maven 路径、Lombok、IDEA 键位和部分前端工具，保留 2019 年的使用背景。"
 tags : [vs code,开发工具,java开发]
+title: "VS Code Java 开发：插件、JDK/Maven 配置与资源"
 ---
 
 最近在尝试用vscode做java开发，主要是想把家里的4G内存的mac本本用起来，使用IDEA打开有点慢，所以打算用vscode做开发。下面文章主要记录使用vscode做java开发过程中主要涉及到的插件，资源，配置；并不会一步步的教你入门；毕竟网上资料太多了。

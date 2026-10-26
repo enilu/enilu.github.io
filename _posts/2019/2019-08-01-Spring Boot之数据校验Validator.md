@@ -2,10 +2,11 @@
 layout: post
 category : java
 keywords : "Spring Boot,Validator,数据校验,开源项目"
-description: "前端校验用于及时提示用户，后端校验用于保证进入业务的数据满足约束。即使网页已经检查过必填项，接口仍可能被其他客户端直接调用，因此后端不能省略验证。"
+description: "配置 validation starter，通过请求 DTO 和 Valid 触发后端校验，区分 Boot 2 javax 与 Boot 3 jakarta，说明 BindingResult、常用约束、嵌套对象、分组和业务检查的边界。"
 tags : [SpringBoot,java]
 lang: zh-CN
 translation_key: spring-boot-request-validation
+title: "Spring Boot 请求校验：Validation、DTO 与约束边界"
 ---
 
 前端校验用于及时提示用户，后端校验用于保证进入业务的数据满足约束。即使网页已经检查过必填项，接口仍可能被其他客户端直接调用，因此后端不能省略验证。

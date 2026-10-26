@@ -1,11 +1,11 @@
 ---
-source_sha256: d8f7e3d699cc2a14d56af34b4e3ebc85d70c1b38d98a7b95d2ffb4c6b157d01f
-title: Using Easy Mock for Parallel Frontend and Backend Development
+source_sha256: 291ae89b9fafa2c68f9908ec18960ad53258ac6d734dc6af47f3a30fbb9ccd07
+title: "Easy Mock Collaboration: API Contracts, Scenarios and Integration"
 date: '2019-09-18'
 lang: en
 translation_key: easy-mock-contracts
 permalink: /en/2019/09/18/easy-mock-contracts/
-description: 'Mock services let frontend and backend development proceed in parallel by returning agreed responses before the backend is complete. Easy Mock is one tool I have used. The real artifact to maintain is the contract, rather than a collection '
+description: "Use Easy Mock for parallel development with explicit response contracts, error and stateful scenarios, compatible hosting dependencies and real API checks."
 ---
 
 Mock services let frontend and backend development proceed in parallel by returning agreed responses before the backend is complete. Easy Mock is one tool I have used. The real artifact to maintain is the contract, rather than a collection of plausible JSON.

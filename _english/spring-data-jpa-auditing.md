@@ -1,11 +1,11 @@
 ---
-source_sha256: 140ba056c67a14fab86e96d09f600fdde7c74b4129454920cb0682ce4eed3ce0
-title: Tracking Creation and Modification with JPA Auditing
+source_sha256: 45be0ff707a17da2b277abda5e6bb15faefa9b89ca582c8ec3b07c7e466aa07a
+title: "Spring Data JPA Auditing: Timestamps, Actors and Lifecycle Limits"
 date: '2019-05-29'
 lang: en
 translation_key: spring-data-jpa-auditing
 permalink: /en/2019/05/29/spring-data-jpa-auditing/
-description: 'Business records often need creation and modification timestamps and the identities of their creators and editors. Spring Data JPA auditing can maintain these fields automatically, provided entity listeners, auditing infrastructure and the '
+description: "Configure JPA auditing fields, listeners and AuditorAware, checking authenticated actors, background jobs, flush timing and bulk-update limitations."
 ---
 
 Business records often need creation and modification timestamps and the identities of their creators and editors. Spring Data JPA auditing can maintain these fields automatically, provided entity listeners, auditing infrastructure and the current actor source are configured together.

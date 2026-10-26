@@ -2,9 +2,10 @@
 layout: post
 category : java 
 tags : [linux,运维,java]
-description: "监控告警不总是“数值超过一个固定阈值”。有时需要组合多个采集值、比较字符串，甚至使用动态参数。BeanShell 可以嵌入 Java 应用执行脚本，适合用来理解这类可配置规则的实现思路。"
+description: "通过 Java 调用示例说明如何用 BeanShell 表达监控告警条件，讨论变量类型、单位、空值、规则版本、异常与 false 的区别，以及脚本权限、并发和超时边界。"
 lang: zh-CN
 translation_key: beanshell-monitoring-rules
+title: "BeanShell 监控规则：参数传入、结果校验与执行边界"
 ---
 
 监控告警不总是“数值超过一个固定阈值”。有时需要组合多个采集值、比较字符串，甚至使用动态参数。BeanShell 可以嵌入 Java 应用执行脚本，适合用来理解这类可配置规则的实现思路。

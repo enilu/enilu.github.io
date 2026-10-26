@@ -2,8 +2,9 @@
 layout: post
 category : 英语学习 
 keywords : "翻译,facebook关闭parse，facebook"
-description : "Facebook宣布将于2017年1月28日关闭parse服务"
+description: "翻译 2016 年 Parse 服务关闭公告，记录当时宣布的截止日期、迁移安排与服务背景。这是一份历史资讯译文，保留原文链接和当时的产品介绍。"
 tags : [英语学习,翻译]
+title: "Parse 服务关闭公告译文：截止日期与迁移背景（2016）"
 ---
 
 [原文地址](http://blog.parse.com/announcements/moving-on/)

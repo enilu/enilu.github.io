@@ -2,10 +2,11 @@
 layout: post
 category : 大数据 
 keywords : "开源,搜索,elasticsearch,大数据,问题"
-description: "生产 Elasticsearch 出现 OutOfMemoryError: Java heap space 时，调整堆大小是一条排查路径，但不能只看进程还能否重新启动。错误中的查询参数，也可能暴露出持续消耗内存的请求模式。"
+description: "从 Java heap space 与超深分页日志出发，说明如何检查 Elasticsearch 的实际堆配置、GC、容器限制和请求负载，并讨论限制分页、批量导出、聚合与客户端重试。"
 tags : [开源,搜索,elasticsearch,大数据]
 lang: zh-CN
 translation_key: elasticsearch-heap-memory
+title: "Elasticsearch 堆内存排查：OOM、深分页与查询负载"
 ---
 
 生产 Elasticsearch 出现 `OutOfMemoryError: Java heap space` 时，调整堆大小是一条排查路径，但不能只看进程还能否重新启动。错误中的查询参数，也可能暴露出持续消耗内存的请求模式。

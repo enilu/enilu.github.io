@@ -1,11 +1,11 @@
 ---
-source_sha256: e251dfe8ab7fd0c25b08a7997fcdee799a8c00efb5c35d89d0c7f9a261d2fe4e
-title: Building a PDF Merge Tool
+source_sha256: 5fdce24d89738d935ad29ea5f1b4f685aecb8a1a671f60cd2253c82ec3975a06
+title: "PDF Merging: Input Order, Page Copying and Failure Cleanup"
 date: '2018-07-12'
 lang: en
 translation_key: pdf-merge-service
 permalink: /en/2018/07/12/pdf-merge-service/
-description: I built an online PDF merger to combine course handouts for reading. The service is now offline, but input ordering, page copying and failure cleanup still illustrate useful file-processing service design.
+description: "Merge PDFs with ordered inputs and pypdf, checking source protection, partial outputs, page semantics, encrypted files and isolated service tasks."
 ---
 
 I built an online PDF merger to combine course handouts for reading. The service is now offline, but input ordering, page copying and failure cleanup still illustrate useful file-processing service design.

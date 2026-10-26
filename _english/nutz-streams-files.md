@@ -1,11 +1,11 @@
 ---
-source_sha256: 468af22b77419e9b6a1cfdba523ecd3e13c66acafbc694d4a73da73ead251079
-title: 'Reading Nutz Streams and Files: Ownership and Paths'
+source_sha256: 15697173d1092932b1b44e3726f22a7c1d9f64a47d227a45d468e9af96679c7d
+title: "Nutz 1.b.53 Streams and Files: Ownership, Paths and Copying"
 date: '2016-06-18'
 lang: en
 translation_key: nutz-streams-files
 permalink: /en/2016/06/18/nutz-streams-files/
-description: Streams wraps stream reading and writing, while Files handles paths and filesystem operations. Combining them produces short calls, but ownership and path resolution remain explicit concerns. This article follows Nutz 1.b.53.
+description: "Understand Nutz stream ownership, byte versus character operations and path conventions, then check partial copies, classpath resources and external paths."
 ---
 
 Streams wraps stream reading and writing, while Files handles paths and filesystem operations. Combining them produces short calls, but ownership and path resolution remain explicit concerns. This article follows Nutz 1.b.53.

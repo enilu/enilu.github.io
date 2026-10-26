@@ -1,11 +1,11 @@
 ---
-source_sha256: 6fd672288edfc18bb39522f7c335d2ccf73d0e5cee2bd61dfc19f2ef3dc486f8
-title: Notes on Building High-Performance Websites
+source_sha256: 1ad3768c4c1dfc7d383c4787d3f570cba66b496ce2cb8b4ee988b6a97e40ce6f
+title: "High-Performance Web Notes: Caching, Load Balancing and Scaling"
 date: '2014-07-25'
 lang: en
 translation_key: high-performance-web-reading-notes
 permalink: /en/2014/07/25/high-performance-web-reading-notes/
-description: While reading about high-performance websites, I treated caching, load balancing and database scaling as choices at different points in one request path. They solve different problems. Locating the bottleneck first establishes where an inve
+description: "Trace web request bottlenecks and compare load balancing, cache updates, session handling, replication and sharding before choosing an optimization."
 ---
 
 While reading about high-performance websites, I treated caching, load balancing and database scaling as choices at different points in one request path. They solve different problems. Locating the bottleneck first establishes where an investment is useful.

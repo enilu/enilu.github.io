@@ -1,11 +1,11 @@
 ---
-source_sha256: 0702c94d87f4c3e33254dba1118f307057288a0238c519c836ee209986c2dce2
-title: 'Java String split and contains: Regex or Literal Text?'
+source_sha256: 334a316bed1df866276af31d4bac9dab8a2b3c24a1b31d3201249fc39b1eb8e3
+title: "Java split and contains: Regex Escaping and Empty Fields"
 date: '2016-05-20'
 lang: en
 translation_key: java-split-contains
 permalink: /en/2016/05/20/java-split-contains/
-description: Some Java string APIs accept literal text, while others accept regular expressions. Similar names can conceal different argument semantics. A dot used as a split delimiter is a particularly common source of surprises.
+description: "Compare Java literal and regex string APIs, explaining dot escaping, Pattern.quote, trailing empty fields and the special syntax of replacement strings."
 ---
 
 Some Java string APIs accept literal text, while others accept regular expressions. Similar names can conceal different argument semantics. A dot used as a split delimiter is a particularly common source of surprises.

@@ -1,11 +1,11 @@
 ---
-source_sha256: 027d5ef2a1166be47f79242b75a2fe9b36d15751728ab8f1ac91b78e08a5884c
-title: Using BeanShell for Configurable Monitoring Rules
+source_sha256: 498e5f7314da765d916cae48c5bd8b1c38c7658bcd0778f8bf6dba1049f810a2
+title: "BeanShell Monitoring Rules: Inputs, Results and Execution Limits"
 date: '2013-03-14'
 lang: en
 translation_key: beanshell-monitoring-rules
 permalink: /en/2013/03/14/beanshell-monitoring-rules/
-description: Monitoring rules sometimes need several collected values, string comparisons or dynamic parameters rather than one fixed threshold. BeanShell embeds script execution in Java and provides a useful way to explore configurable rules.
+description: "Evaluate monitoring rules with BeanShell in Java, defining typed inputs, failure states, rule versions, concurrency, trusted access and timeout limits."
 ---
 
 Monitoring rules sometimes need several collected values, string comparisons or dynamic parameters rather than one fixed threshold. BeanShell embeds script execution in Java and provides a useful way to explore configurable rules.

@@ -1,11 +1,11 @@
 ---
-source_sha256: dacb1eccb83a7338b6a5c72230121685f1efa238010a8b540bfee29fe95473d4
-title: Designing Shared Services and Repositories with Spring Data JPA
+source_sha256: a7ec85e5310349fa17903e265454bf20430792b3b0c221507b50c92a374d3945
+title: "Shared Spring Data JPA Layers: Repositories, Queries and Services"
 date: '2019-06-29'
 lang: en
 translation_key: spring-data-common-service-repository
 permalink: /en/2019/06/29/spring-data-common-service-repository/
-description: Admin applications repeatedly need CRUD operations, filters and pagination. I have tried putting shared behavior into Repository and Service abstractions. The goal should be to remove stable duplication, rather than make every business feat
+description: "Reuse Spring Data repositories and Specifications while constraining queries, validating pagination and keeping authorization and transactions in business services."
 ---
 
 Admin applications repeatedly need CRUD operations, filters and pagination. I have tried putting shared behavior into Repository and Service abstractions. The goal should be to remove stable duplication, rather than make every business feature inherit an ever-growing parent class.

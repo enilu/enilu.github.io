@@ -1,11 +1,11 @@
 ---
-source_sha256: bda490da3323ae18285b4f9cef2653baec06ee743bb25e60b9dd418ffb343802
-title: Pushing One Git Project to Multiple Repositories
+source_sha256: 0700f9b72f10ec7ee1e649195b72084eb36298853b38ccb0664876e239c8b35c
+title: "Pushing Git to Multiple Repositories: Remotes and Push URLs"
 date: '2019-08-27'
 lang: en
 translation_key: git-multiple-remotes
 permalink: /en/2019/08/27/git-multiple-remotes/
-description: When an open-source project needs repositories on both GitHub and Gitee, configure separate remotes or multiple push URLs on one remote. The choice mostly depends on whether you need to inspect each repository's state independently.
+description: "Configure separate Git remotes or multiple push URLs, understanding upstreams, fetch sources, partial failures, divergent histories and tag synchronization."
 ---
 
 When an open-source project needs repositories on both GitHub and Gitee, configure separate remotes or multiple push URLs on one remote. The choice mostly depends on whether you need to inspect each repository's state independently.

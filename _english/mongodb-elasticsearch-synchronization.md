@@ -1,11 +1,11 @@
 ---
-source_sha256: a1d5f210c7ba62f2489030261fc068b71123eac98fd480af09aa051aa890ffb6
-title: Synchronizing MongoDB Documents to Elasticsearch
+source_sha256: e791d19ad6a69345e2386cb0ab83a654f11e39ce1a02fa69b014efb2a3e10e32
+title: "MongoDB to Elasticsearch: Snapshots, Incremental Changes and Recovery"
 date: '2016-05-26'
 lang: en
 translation_key: mongodb-elasticsearch-synchronization
 permalink: /en/2016/05/26/mongodb-elasticsearch-synchronization/
-description: A product needed to merge company data from several sources by a unique identifier, at a scale of roughly 30 million records, and support multidimensional search and aggregation. We stored the merged documents in MongoDB and built search in
+description: "Design MongoDB-to-Elasticsearch synchronization with stable IDs, snapshot/change boundaries, checkpoints, deletions, mapping changes and lag verification."
 ---
 
 A product needed to merge company data from several sources by a unique identifier, at a scale of roughly 30 million records, and support multidimensional search and aggregation. We stored the merged documents in MongoDB and built search indexes in Elasticsearch, with a separate synchronization pipeline connecting them.

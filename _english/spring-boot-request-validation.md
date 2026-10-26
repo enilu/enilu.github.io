@@ -1,11 +1,11 @@
 ---
-source_sha256: ba22898d2fc33800c6af8f619d578a8bce22897cae25aaa333ff8203fe631e6a
-title: Validating Requests in Spring Boot
+source_sha256: fa557d9ea823916b4d984a25fae88e9f1a42e41a57343f9b9a495cbb76cb8e39
+title: "Spring Boot Request Validation: DTOs, Constraints and Error Handling"
 date: '2019-08-01'
 lang: en
 translation_key: spring-boot-request-validation
 permalink: /en/2019/08/01/spring-boot-request-validation/
-description: Frontend validation gives users prompt feedback; backend validation enforces the constraints on data entering the application. A checked web form does not prevent another client from calling the API directly, so server-side validation remai
+description: "Configure request DTO validation in Spring Boot, distinguishing javax and jakarta packages, BindingResult, constraint semantics, nested values and groups."
 ---
 
 Frontend validation gives users prompt feedback; backend validation enforces the constraints on data entering the application. A checked web form does not prevent another client from calling the API directly, so server-side validation remains necessary.

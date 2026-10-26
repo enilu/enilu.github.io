@@ -1,11 +1,11 @@
 ---
-source_sha256: 56b2b59405bcd2b24c41488df68f1a41cdb650acd3c62f747017ea061f5fd16d
-title: 'Reading Nutz JSON: Parsing and Rendering'
+source_sha256: 8f2fe8f1230854f0d293c70bd15ea1b71f62730261ab99f06884114727ea915d
+title: "Nutz 1.b.53 JSON: Parsing, Type Dispatch and References"
 date: '2016-01-01'
 lang: en
 translation_key: nutz-json-conversion
 permalink: /en/2016/01/01/nutz-json-conversion/
-description: Nutz JSON handles both JSON text and Java types and fields. Separating parsing from rendering makes each layer's responsibility easier to understand. This discussion uses version 1.b.53 as its source baseline.
+description: "Trace Nutz 1.b.53 JSON parsing and rendering through type overloads, field metadata, escaping and shared references, with round-trip type limitations."
 ---
 
 Nutz JSON handles both JSON text and Java types and fields. Separating parsing from rendering makes each layer's responsibility easier to understand. This discussion uses version 1.b.53 as its source baseline.

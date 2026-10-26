@@ -1,11 +1,11 @@
 ---
-source_sha256: 04c5559cecb82cc092dbe337216c436aa49a083151cd6d8153632bafebee0849
-title: Replacing Previous Login Sessions with Apache Shiro
+source_sha256: 2704199a9961313d9b94e422fb540dba8ea8e0b854af01c179f09e6de21ee8f9
+title: "Shiro Single-Session Login: Replacement and Concurrency"
 date: '2014-07-28'
 lang: en
 translation_key: shiro-single-session-login
 permalink: /en/2014/07/28/shiro-single-session-login/
-description: 'A single-session-per-account requirement first needs a conflict policy: replace the previous login or reject the new one. This article discusses replacement, distinguishing session enumeration in one process from coordinated control across '
+description: "Replace previous Shiro sessions after authentication, distinguishing session enumeration, concurrent login control, revocation and recent-activity views."
 ---
 
 A single-session-per-account requirement first needs a conflict policy: replace the previous login or reject the new one. This article discusses replacement, distinguishing session enumeration in one process from coordinated control across multiple instances.

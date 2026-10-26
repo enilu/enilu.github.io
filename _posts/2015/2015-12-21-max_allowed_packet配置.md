@@ -2,10 +2,11 @@
 layout: post
 category : 数据库 
 keywords: "mysql,运维,max_allowed_packet"
-description: "从 Packet too large 错误排查 MySQL 配置文件、全局值、会话值与客户端限制。"
+description: "说明 max_allowed_packet 与 MySQL 大请求报错的关系，介绍服务端配置、会话和客户端限制的检查思路，并区分临时恢复连接与彻底解决批量 SQL 或大字段问题。"
 tags : [mysql, 运维]
 lang: zh-CN
 translation_key: mysql-max-allowed-packet-configuration
+title: "MySQL max_allowed_packet：大包限制、会话与客户端排查"
 ---
 
 服务器报出 `Packet for query is too large` 时，我以为只需要调大 `max_allowed_packet`。但配置文件明明已经修改，实际查询到的值却仍然很小。这次问题提醒我：配置文件里的值、运行中的全局值和当前连接的会话值，需要分开确认。

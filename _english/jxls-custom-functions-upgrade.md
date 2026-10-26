@@ -1,11 +1,11 @@
 ---
-source_sha256: 0600ae1c41c1fc99dbd7209e29fcdb5050eccb60a907fa3d4ed76f003bec74d0
-title: Custom Functions After a Jxls Upgrade
+source_sha256: 097ff931c552f3dc7ba709f48051dbc8b1f2e0fc8dd4c5f25c6135c34b7952d1
+title: "Jxls Custom Functions: JEXL Namespaces and Workbook Verification"
 date: '2022-03-04'
 lang: en
 translation_key: jxls-custom-functions-upgrade
 permalink: /en/2022/03/04/jxls-custom-functions-upgrade/
-description: Custom functions in Jxls templates can format dates and amounts or perform small presentation calculations. If an upgrade makes functions disappear, inspect expression-engine namespace configuration before changing every template.
+description: "Restore Jxls custom functions with version-matched JEXL namespaces, then verify template calls, permissions and generated cell values, types and formats."
 ---
 
 Custom functions in Jxls templates can format dates and amounts or perform small presentation calculations. If an upgrade makes functions disappear, inspect expression-engine namespace configuration before changing every template.

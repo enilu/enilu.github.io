@@ -2,10 +2,11 @@
 layout: post
 category : 学习笔记 
 keywords: "nutz,源码学习"
-description: "GET 请求看懂以后，再读 POST、文件上传和 Cookie，可以看到一个轻量 HTTP 工具怎样处理状态与资源。下面继续使用 Nutz 1.b.53，不把这个版本的超时常量当成所有版本的默认值。"
+description: "阅读 Nutz 1.b.53 的请求体和文件表单发送，区分连接、读取与总时限，检查 Cookie/Set-Cookie 和多值响应头，并讨论网络失败、非幂等重试及流资源的验证。"
 tags : [nutz,源码学习]
 lang: zh-CN
 translation_key: nutz-http-client-details
+title: "Nutz HTTP 源码：POST、文件上传、超时与 Cookie"
 ---
 
 GET 请求看懂以后，再读 POST、文件上传和 Cookie，可以看到一个轻量 HTTP 工具怎样处理状态与资源。下面继续使用 Nutz 1.b.53，不把这个版本的超时常量当成所有版本的默认值。

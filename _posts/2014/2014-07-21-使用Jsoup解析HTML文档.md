@@ -2,9 +2,10 @@
 layout: post
 category : 爬虫 
 tags : [开源,java,数据抓取,jsoup,入门教程]
-description: "Jsoup 可以将 HTML 解析成 Document，再用 DOM 方法或 CSS 选择器提取数据。它也提供 HTTP 请求能力，但不会像浏览器一样执行页面 JavaScript，因此服务器返回的 HTML 与浏览器最终显示的内容可能不同。"
+description: "通过固定 HTML 和网络请求示例介绍 Jsoup 的 DOM 与 CSS 选择器，区分 text、html、href 和绝对链接，说明缺失值处理及不执行 JavaScript 的边界。"
 lang: zh-CN
 translation_key: jsoup-html-parsing
+title: "Jsoup 解析 HTML：CSS 选择器、相对链接与缺失值"
 ---
 
 Jsoup 可以将 HTML 解析成 Document，再用 DOM 方法或 CSS 选择器提取数据。它也提供 HTTP 请求能力，但不会像浏览器一样执行页面 JavaScript，因此服务器返回的 HTML 与浏览器最终显示的内容可能不同。

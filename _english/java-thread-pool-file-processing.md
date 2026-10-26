@@ -1,11 +1,11 @@
 ---
-source_sha256: 86c71ddc107dca02d74628900960dec406fd74da41389400025632b23bd0a631
-title: "Using a Java Thread Pool to Process Files"
+source_sha256: e64d5d28d92aa3a718ea4f77f841319f7ecbcd35bb795b910b3d3ce98cec6080
+title: "Java Thread Pools for Files: Bounded Queues, Errors and Cleanup"
 date: 2016-03-12
 lang: en
 translation_key: java-thread-pool-file-processing
 permalink: /en/2016/03/12/java-thread-pool-file-processing/
-description: "A file-processing example covering task submission, result collection, failures and executor shutdown."
+description: "Process files with a Java thread pool, using bounded work queues, explicit failure handling, closed resources and completion checks before shutdown."
 ---
 
 A thread pool simplifies thread creation and reuse. We still need to decide how tasks are queued, how failures are collected and how the program waits for completion. This article connects those concerns through a batch text-file example.

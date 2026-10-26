@@ -1,11 +1,11 @@
 ---
-source_sha256: 593367b5fb7381dc6e5300532c0f1b19464e76bd2be3f7aacb801341002eb8c9
-title: Uploading and Transcoding Video from a Mobile Web Page
+source_sha256: f398ebce550f5e0f27586fa9e45a154a9a070a062710705b2cf0d54ebc7ff764
+title: "Mobile Web Video Uploads: Chunking, Base64 and FFmpeg Transcoding"
 date: '2020-03-18'
 lang: en
 translation_key: html5-video-upload-transcoding
 permalink: /en/2020/03/18/html5-video-upload-transcoding/
-description: A project needed users to record video on a mobile web page and upload it for staff review. A clip lasting only tens of seconds could exceed 100 MB. Upload delays, retry behavior and browser playback compatibility each needed their own desi
+description: "Design chunked video uploads and background FFmpeg processing, distinguishing Base64 decoding, codecs, containers, faststart and HTTP Range support."
 ---
 
 A project needed users to record video on a mobile web page and upload it for staff review. A clip lasting only tens of seconds could exceed 100 MB. Upload delays, retry behavior and browser playback compatibility each needed their own design.

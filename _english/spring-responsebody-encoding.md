@@ -1,11 +1,11 @@
 ---
-source_sha256: f9faa949219c3a8c6d7fd4a21c79ddd3e5aff9978a3555b9e93243ecdfa28068
-title: Fixing Chinese Text Encoding in Spring MVC Responses
+source_sha256: 59d9e28526d702ccde5e4e6ab4f00c7812aa9ef42c24f4d53921d3219eeaeb63
+title: "Spring MVC Chinese Encoding: ResponseBody and Message Converters"
 date: '2017-02-20'
 lang: en
 translation_key: spring-responsebody-encoding
 permalink: /en/2017/02/20/spring-responsebody-encoding/
-description: Garbled Chinese responses in Spring MVC require checking the Java string, message converter and HTTP encoding together. Strings and objects may use different converters. A historical default charset does not describe every Spring Boot appli
+description: "Diagnose garbled Chinese in Spring MVC through text and JSON converters, Content-Type, raw bytes and client decoding, avoiding incorrect re-encoding."
 ---
 
 Garbled Chinese responses in Spring MVC require checking the Java string, message converter and HTTP encoding together. Strings and objects may use different converters. A historical default charset does not describe every Spring Boot application's effective configuration.

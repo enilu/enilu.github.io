@@ -1,11 +1,11 @@
 ---
-source_sha256: 50b558bdb32afd71a403eb4de07f6062511c70062b8846d2c38473372ff0e7f8
-title: Getting Started with Elasticsearch Indexing and Search
+source_sha256: 81184b869937b2f4d24729a340f422c68ddff4726ef38ced6110d26db5aad254
+title: "Elasticsearch 8.x Basics: Mappings, Exact Queries and Full-Text Search"
 date: '2015-07-04'
 lang: en
 translation_key: elasticsearch-basics
 permalink: /en/2015/07/04/elasticsearch-basics/
-description: Elasticsearch builds on Lucene to provide document indexing and search. Start by understanding indexes, field mappings, analyzers and queries rather than relying on a management plugin to produce results.
+description: "Use Elasticsearch 8.x REST examples to explore mappings, keyword and text fields, exact and full-text queries, refresh visibility, shards and replicas."
 ---
 
 Elasticsearch builds on Lucene to provide document indexing and search. Start by understanding indexes, field mappings, analyzers and queries rather than relying on a management plugin to produce results.

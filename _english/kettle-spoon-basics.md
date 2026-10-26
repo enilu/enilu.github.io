@@ -1,11 +1,11 @@
 ---
-source_sha256: 89c46c3a4d01dcf0919aa7e41e9ff38c148d6cf045ae2719bf918f7a7fc79272
-title: A First Data Transformation with Kettle Spoon
+source_sha256: 494fc3ba97a1db5ab55a67031b7d29dfffa13f0dbc185eec033d2b27054e7e51
+title: "Kettle Spoon Basics: Transforming CSV into XML"
 date: '2015-08-01'
 lang: en
 translation_key: kettle-spoon-basics
 permalink: /en/2015/08/01/kettle-spoon-basics/
-description: Spoon is the graphical transformation and job designer in Pentaho Data Integration. A small CSV-to-fields-to-XML flow illustrates how records pass between steps and where cleaning failures should go.
+description: "Create a PDI 5.3 CSV-to-XML transformation in Spoon, checking field types, encoding, error rows, repeatable execution and input/output record counts."
 ---
 
 Spoon is the graphical transformation and job designer in Pentaho Data Integration. A small CSV-to-fields-to-XML flow illustrates how records pass between steps and where cleaning failures should go.

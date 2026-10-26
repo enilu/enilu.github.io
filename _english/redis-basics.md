@@ -1,11 +1,11 @@
 ---
-source_sha256: 9bbb6566909aea3d4b42659f204865dbdecf7b2750455a6f15ad71cae4b736c0
-title: Getting Started with Redis Data Structures
+source_sha256: 55105579c5d60acb98b8d9237d2fb503e741838668d9d58d870be5c5ce312705
+title: "Redis Basics: Data Structures, Atomicity and Persistence"
 date: '2015-05-09'
 lang: en
 translation_key: redis-basics
 permalink: /en/2015/05/09/redis-basics/
-description: Redis offers more than a string cache. Its data structures support counters, deduplication, ranking and simple queues. Understand command boundaries before deciding how these structures fit business data.
+description: "Learn Redis commands and data structures, then distinguish atomic operations, cache updates, RDB/AOF persistence, replication and Pub/Sub messaging."
 ---
 
 Redis offers more than a string cache. Its data structures support counters, deduplication, ranking and simple queues. Understand command boundaries before deciding how these structures fit business data.

@@ -1,11 +1,11 @@
 ---
-source_sha256: b80d01ac65af12d27eab0ffd819081423ceeae1ca9432dea8e38820a458e4328
-title: 'Reading Nutz Mapl: Path Operations and Merge Semantics'
+source_sha256: ba7717939d5bee4b96bf99a255c57af0c51bc914dda4650b899c82ea1bab777c
+title: "Nutz 1.b.53 Mapl: Paths, Deduplication and Merge Rules"
 date: '2016-01-13'
 lang: en
 translation_key: nutz-mapl-paths-merge
 permalink: /en/2016/01/13/nutz-mapl-paths-merge/
-description: 'Updating a nested field often means traversing Maps and Lists manually. Nutz MaplRebuild encapsulates path handling, while MaplMerge combines structures. Their related appearance should not obscure their separate semantics. This discussion '
+description: "Inspect Mapl paths and first-argument merge dispatch in Nutz 1.b.53, including scalar overwrite, equals-based deduplication and mixed-container limits."
 ---
 
 Updating a nested field often means traversing Maps and Lists manually. Nutz MaplRebuild encapsulates path handling, while MaplMerge combines structures. Their related appearance should not obscure their separate semantics. This discussion uses 1.b.53.

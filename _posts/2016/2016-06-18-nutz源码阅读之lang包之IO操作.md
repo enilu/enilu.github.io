@@ -2,10 +2,11 @@
 layout: post
 category : 学习笔记 
 keywords: "nutz,源码学习"
-description: "Streams 封装流的读写，Files 处理路径和文件；两者组合后调用很短，但资源归谁关闭、路径从哪里解析，仍需明确。本文以 Nutz 1.b.53 为基线。"
+description: "基于 Nutz 1.b.53 区分 write 与 writeAndClose，说明字节流和字符流、try-with-resources、框架资源、波浪号和类路径约定，以及部分复制、扩展名和外部路径的检查。"
 tags : [nutz,源码学习]
 lang: zh-CN
 translation_key: nutz-streams-files
+title: "Nutz Streams 与 Files 源码：资源所有权、路径与复制边界"
 ---
 
 Streams 封装流的读写，Files 处理路径和文件；两者组合后调用很短，但资源归谁关闭、路径从哪里解析，仍需明确。本文以 Nutz 1.b.53 为基线。

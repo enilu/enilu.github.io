@@ -2,10 +2,11 @@
 layout: post
 category : 学习笔记 
 keywords: "nutz,源码学习"
-description: "Mapl 用 Map 与 List 作为对象结构的容器，方便按路径读取、转换和修改数据。它不是要求每一个叶子值也变成 Map 或 List；数字、字符串等叶子本来就可以直接保留。本文阅读 Nutz 1.b.53 的 ObjCompileImpl。"
+description: "阅读 Nutz 1.b.53 ObjCompileImpl 的类型分派，说明叶子值、集合、Map 与 POJO 的转换路径，分析 memo、分支不对称和键字符串化，避免把结构转换理解为统一深拷贝。"
 tags : [nutz,源码学习]
 lang: zh-CN
 translation_key: nutz-object-to-mapl
+title: "Nutz Mapl 源码：对象转 Map/List、memo 与转换边界"
 ---
 
 Mapl 用 Map 与 List 作为对象结构的容器，方便按路径读取、转换和修改数据。它不是要求每一个叶子值也变成 Map 或 List；数字、字符串等叶子本来就可以直接保留。本文阅读 Nutz 1.b.53 的 ObjCompileImpl。

@@ -1,11 +1,11 @@
 ---
-source_sha256: 32e9429323c461d9c95a47aa357348cf80b2095464d0dc30a36f78822c2d7303
-title: Running a Jekyll Blog Locally on Windows
+source_sha256: 48cdb89396dbe1f8ae941f8cf412583089f4d9a40e6dfd1628e4e234229b4760
+title: "Jekyll on Windows: Ruby, Bundler and Chinese Paths"
 date: '2017-01-25'
 lang: en
 translation_key: jekyll-windows-local-preview
 permalink: /en/2017/01/25/jekyll-windows-local-preview/
-description: Local Jekyll preview helps catch Chinese-path, code-formatting and configuration problems before publication. On Windows, the key is keeping Ruby, build tools, Bundler and project dependencies aligned.
+description: "Preview Jekyll on Windows with compatible Ruby, MSYS2 and Bundler versions, checking UTF-8, Chinese URLs, project dependencies and generated pages."
 ---
 
 Local Jekyll preview helps catch Chinese-path, code-formatting and configuration problems before publication. On Windows, the key is keeping Ruby, build tools, Bundler and project dependencies aligned.

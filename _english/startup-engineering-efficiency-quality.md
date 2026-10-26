@@ -1,11 +1,11 @@
 ---
-source_sha256: 8a916d012902d842dc5ce7371c22e5cded213b7d2b6ddeeffdca463d9724adfd
-title: Engineering Efficiency and Quality in a Small Startup
+source_sha256: 25b56287955cf441f3d6debbaee4f0d05831912747ea828729163a6598d24ce1
+title: "Startup Engineering Quality: Refactoring, Testing and Release Feedback"
 date: '2017-03-05'
 lang: en
 translation_key: startup-engineering-efficiency-quality
 permalink: /en/2017/03/05/startup-engineering-efficiency-quality/
-description: 'A large refactoring caused an outage after deployment, leaving the service unavailable for about seven hours across the incident and rollback. Meanwhile, new features frequently failed testing or differed from the requested behavior. These '
+description: "Learn from a seven-hour refactoring outage to stage architecture changes, test complete message flows, clarify requirements and make releases recoverable."
 ---
 
 A large refactoring caused an outage after deployment, leaving the service unavailable for about seven hours across the incident and rollback. Meanwhile, new features frequently failed testing or differed from the requested behavior. These experiences changed how I think about efficiency in a small team: time saved during coding can be paid back many times over in integration, deployment and rework.

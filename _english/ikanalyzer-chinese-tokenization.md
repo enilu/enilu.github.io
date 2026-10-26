@@ -1,11 +1,11 @@
 ---
-source_sha256: 70480ff515331aad0210e83566f4e8f0bfe33c17468197c15796279c9dafdc72
-title: Chinese Tokenization with IKAnalyzer
+source_sha256: 47873b69b80b0bd85cd1168aee2b943736f47b97bb16f52eda94a893ec2e24c6
+title: "IKAnalyzer Chinese Tokenization: Versions, Streams and Dictionaries"
 date: '2015-12-08'
 lang: en
 translation_key: ikanalyzer-chinese-tokenization
 permalink: /en/2015/12/08/ikanalyzer-chinese-tokenization/
-description: Chinese search requires converting continuous text into indexable terms. IKAnalyzer dictionaries and segmentation strategies affect results. Integration therefore needs to verify business terms, rather than merely make the code run.
+description: "Explore IK segmentation modes, compatible Lucene TokenStream usage and dictionary testing, including business terms and rebuilding indexes after changes."
 ---
 
 Chinese search requires converting continuous text into indexable terms. IKAnalyzer dictionaries and segmentation strategies affect results. Integration therefore needs to verify business terms, rather than merely make the code run.

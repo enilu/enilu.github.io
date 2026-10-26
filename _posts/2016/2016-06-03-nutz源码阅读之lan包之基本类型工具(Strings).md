@@ -2,10 +2,11 @@
 layout: post
 category : 学习笔记 
 keywords: "nutz,源码学习"
-description: "读字符串工具时，很容易把某种业务分类当成 Unicode 的完整定义。Nutz 1.b.53 的 Strings 提供中文字符、全半角和大小写等方法，理解它们需要先看接受的是 char 还是完整码点。"
+description: "阅读 Nutz 1.b.53 Strings 的字符工具，区分 UnicodeBlock、UTF-16 char 与码点，说明补充平面、全半角 ASCII 转换、显示宽度和大小写规则，避免以简单分类替代完整 Unicode 语义。"
 tags : [nutz,源码学习]
 lang: zh-CN
 translation_key: nutz-strings-unicode
+title: "Nutz Strings 源码：Unicode、全半角与大小写边界"
 ---
 
 读字符串工具时，很容易把某种业务分类当成 Unicode 的完整定义。Nutz 1.b.53 的 Strings 提供中文字符、全半角和大小写等方法，理解它们需要先看接受的是 char 还是完整码点。

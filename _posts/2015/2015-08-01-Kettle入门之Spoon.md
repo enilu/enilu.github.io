@@ -2,10 +2,11 @@
 layout: post
 category : 学习笔记 
 keywords : "kettle,开源,数据清洗,入门教程,spoon"
-description: "Spoon 是 Pentaho Data Integration 中设计转换和作业的图形工具。一个“读 CSV、处理字段、输出 XML”的小流程，就可以说明数据在步骤之间怎样传递，以及清洗失败应该落在哪里。"
+description: "以 PDI 5.3 的小型转换说明 Spoon 的使用，配置 CSV 输入、字段处理与 XML 输出，讨论编码、错误数据、转换与作业的区别，以及重复运行和记录数验证。"
 tags : [kettle,开源,数据清洗,入门教程]
 lang: zh-CN
 translation_key: kettle-spoon-basics
+title: "Kettle Spoon 入门：从 CSV 读取到 XML 输出"
 ---
 
 Spoon 是 Pentaho Data Integration 中设计转换和作业的图形工具。一个“读 CSV、处理字段、输出 XML”的小流程，就可以说明数据在步骤之间怎样传递，以及清洗失败应该落在哪里。

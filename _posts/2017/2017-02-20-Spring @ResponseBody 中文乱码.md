@@ -2,10 +2,11 @@
 layout: post
 category : java
 keywords: "spring,springmvc中文乱码"
-description: "Spring MVC 返回中文乱码时，需要同时检查 Java 字符串、消息转换器和 HTTP 响应编码。字符串与对象可能由不同转换器处理，某个旧版默认字符集不能代表所有 Spring Boot 项目的最终配置。"
+description: "区分纯文本与 JSON 响应的消息转换路径，展示 text/plain UTF-8 和对象返回示例，说明如何检查 Java 字符串、Content-Type、响应字节与客户端解码，避免错误转码修补。"
 tags : [学习笔记]
 lang: zh-CN
 translation_key: spring-responsebody-encoding
+title: "Spring MVC 中文乱码：ResponseBody、消息转换器与编码排查"
 ---
 
 Spring MVC 返回中文乱码时，需要同时检查 Java 字符串、消息转换器和 HTTP 响应编码。字符串与对象可能由不同转换器处理，某个旧版默认字符集不能代表所有 Spring Boot 项目的最终配置。

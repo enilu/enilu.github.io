@@ -2,10 +2,11 @@
 layout: post
 category : java
 keywords : "Spring Boot,公共service,公共repository,开源项目"
-description: "后台项目经常重复编写增删改查与筛选分页代码。我在项目中尝试将公共能力放入 Repository 和 Service，但抽象的目标应该是减少真正稳定的重复，而不是让每个业务都继承一套不断膨胀的父类。"
+description: "复用 JpaRepository 和 JpaSpecificationExecutor，讨论 NoRepositoryBean、查询字段允许列表、类型转换、关联 count 与分页，并说明 Service 中的权限、状态约束和事务边界。"
 tags : [SpringBoot,java]
 lang: zh-CN
 translation_key: spring-data-common-service-repository
+title: "Spring Data JPA 公共层：Repository、Specification 与业务 Service"
 ---
 
 后台项目经常重复编写增删改查与筛选分页代码。我在项目中尝试将公共能力放入 Repository 和 Service，但抽象的目标应该是减少真正稳定的重复，而不是让每个业务都继承一套不断膨胀的父类。

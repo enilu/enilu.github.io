@@ -1,11 +1,11 @@
 ---
-source_sha256: 2ec2e5d184c666c1e8d0b698f6f6d62cdef7c501d2b46ffb63cfb463473c2e4d
-title: Setting Up and Understanding a MongoDB Replica Set
+source_sha256: 836567c9d7ac8feb5c1d011c3fe4d2d4c79f5a362b3e9d4bb79080534a1f0556
+title: "MongoDB 3.2 Replica Sets: Roles, Elections and Consistency"
 date: '2016-06-15'
 lang: en
 translation_key: mongodb-replica-set
 permalink: /en/2016/06/15/mongodb-replica-set/
-description: A MongoDB replica set stores the same dataset on multiple members and elects a new primary when the existing one becomes unavailable. It primarily provides redundancy and failover. Sharding distributes data across shards; the two can be com
+description: "Configure a MongoDB 3.2 replica-set example and distinguish data copies, arbiters, elections, read preferences, write concern and client recovery."
 ---
 
 A MongoDB replica set stores the same dataset on multiple members and elects a new primary when the existing one becomes unavailable. It primarily provides redundancy and failover. Sharding distributes data across shards; the two can be combined but serve different purposes.

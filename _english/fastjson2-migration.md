@@ -1,11 +1,11 @@
 ---
-source_sha256: a0664a33f6e9b125b1b20b994d50bf5ffb9dc423697f267b4e5914bbb63c7425
-title: Migrating from Fastjson 1.x to Fastjson2
+source_sha256: d0d164fa4142389d8cfcca324fd6653374f54936be73c429435fea8aa5295c33
+title: "Fastjson2 Migration: Jackson Responses and Protocol Verification"
 date: '2022-05-29'
 lang: en
 translation_key: fastjson2-migration
 permalink: /en/2022/05/29/fastjson2-migration/
-description: 'When migrating from Fastjson 1.x to Fastjson2, I separated two concerns: standardizing Spring MVC responses on Jackson, and moving internal JSON utility calls to Fastjson2. This allowed the API protocol and utility behavior to be verified i'
+description: "Separate Fastjson2 utility migration from Jackson MVC responses, checking dependencies, date formats, proxies, DTOs and representative input/output contracts."
 ---
 
 When migrating from Fastjson 1.x to Fastjson2, I separated two concerns: standardizing Spring MVC responses on Jackson, and moving internal JSON utility calls to Fastjson2. This allowed the API protocol and utility behavior to be verified independently, reducing the scope of each change.

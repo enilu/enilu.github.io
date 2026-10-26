@@ -2,10 +2,11 @@
 layout: post
 category : 数据库 
 keywords : "linux,运维,mysql,mysql目录迁移"
-description: "MySQL 数据目录迁移，不只是把文件挪到另一块磁盘。服务配置、文件属主、父目录权限和 SELinux 标签，都可能决定新目录能否被正常访问。下面以 CentOS 6.5、MySQL 5.6 的维护场景说明流程，服务命令需按实际安装方式调整。"
+description: "以 CentOS 6.5 和 MySQL 5.6 为背景，介绍确认 datadir、停止写入、离线复制、属主与父目录权限检查，以及 SELinux 标签、业务验证和迁移后回退的注意事项。"
 tags : [linux,运维,mysql]
 lang: zh-CN
 translation_key: mysql-data-directory-migration
+title: "MySQL 数据目录迁移：离线复制、权限与 SELinux 排查"
 ---
 
 MySQL 数据目录迁移，不只是把文件挪到另一块磁盘。服务配置、文件属主、父目录权限和 SELinux 标签，都可能决定新目录能否被正常访问。下面以 CentOS 6.5、MySQL 5.6 的维护场景说明流程，服务命令需按实际安装方式调整。

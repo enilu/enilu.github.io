@@ -2,9 +2,10 @@
 layout: post
 category : java 
 tags : [开源,java,apache,权限管理]
-description: "“同一账号只允许一个会话”需要先定义冲突策略：新登录替换旧登录，还是拒绝新登录。本文讨论前者，并区分单进程会话枚举与多实例下的统一控制。"
+description: "以新登录替换旧会话为例，说明 Shiro SessionDAO 的接入、认证后撤销旧会话、用户身份匹配和在线列表含义，并讨论单实例枚举与多实例并发控制的区别。"
 lang: zh-CN
 translation_key: shiro-single-session-login
+title: "Shiro 单账号单会话：替换旧登录与并发控制"
 ---
 
 “同一账号只允许一个会话”需要先定义冲突策略：新登录替换旧登录，还是拒绝新登录。本文讨论前者，并区分单进程会话枚举与多实例下的统一控制。

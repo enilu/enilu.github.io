@@ -2,10 +2,11 @@
 layout: post
 category : 问题集锦 
 keywords : "gitlab,redis,linux"
-description: "测试服务器做完安全加固后，GitLab 页面返回 500。检查应用日志，问题指向 Redis 连接；进程存在、端口也在监听，但 redis-cli 连接回环地址仍然报 No route to host。"
+description: "从服务器加固后 GitLab 返回 500 的案例，追踪 Redis 连接、监听地址、回环与网络命名空间，说明 iptables 规则顺序的影响，以及修复时避免扩大监听和放行范围。"
 tags : [gitlab,redis,linux]
 lang: zh-CN
 translation_key: gitlab-redis-no-route-to-host
+title: "GitLab Redis 连接失败：No route to host 与防火墙顺序"
 ---
 
 测试服务器做完安全加固后，GitLab 页面返回 500。检查应用日志，问题指向 Redis 连接；进程存在、端口也在监听，但 redis-cli 连接回环地址仍然报 `No route to host`。

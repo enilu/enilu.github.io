@@ -1,11 +1,11 @@
 ---
-source_sha256: 8dcd0d5b33ca991ff1342e73b0102c6a4bdf7797b76517becf742d3fb58ecfc7
-title: 'Reading the Nutz HTTP Client: Following a GET Request'
+source_sha256: 52a814decac9e6944a8ca2a7af1e3db2eca87677f8016ef2e82f33352b4e2c22
+title: "Nutz 1.b.53 HTTP: GET Calls, Responses and Stream Ownership"
 date: '2016-02-02'
 lang: en
 translation_key: nutz-http-client-basics
 permalink: /en/2016/02/02/nutz-http-client-basics/
-description: Nutz HTTP wraps request construction, connections and responses in a small set of classes. Following a GET shows how convenience methods reach the JDK's networking APIs. This article uses the 1.b.53 implementation.
+description: "Trace Nutz 1.b.53 HTTP calls through Request and Sender, inspect statuses and compressed or error responses, and test stream ownership locally."
 ---
 
 Nutz HTTP wraps request construction, connections and responses in a small set of classes. Following a GET shows how convenience methods reach the JDK's networking APIs. This article uses the 1.b.53 implementation.

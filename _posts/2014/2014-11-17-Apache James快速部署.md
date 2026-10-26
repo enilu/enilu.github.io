@@ -2,6 +2,8 @@
 layout: post
 category : java 
 tags : [开源,运维,apache]
+title: "Apache James 旧版部署：邮件端口、启动与用户管理"
+description: "记录早期 Apache James 邮件系统的部署流程，介绍 Java 环境、配置文件中的服务端口、启动脚本，以及通过 Remote Manager 创建和查看用户的过程。"
 ---
 
 Apache James是Aapache组织出品的开源邮件系统。可以用它快速搭建一个自己的邮件系统。

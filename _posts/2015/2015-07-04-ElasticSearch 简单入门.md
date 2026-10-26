@@ -2,10 +2,11 @@
 layout: post
 category : java 
 keywords : "开源,搜索,elasticsearch,大数据,入门教程,elasticsearch简单入门"
-description: "Elasticsearch 基于 Lucene 提供文档索引与检索服务。入门时最值得先理解的是索引、字段映射、分析器和查询之间的关系，而不是依赖某个管理插件点出结果。"
+description: "使用 Elasticsearch 8.x REST 示例完成索引创建、文档写入与精确查询，解释 keyword、text、分析器和全文检索的关系，并说明 refresh 可见性、分片、副本与快照的作用。"
 tags : [开源,搜索,elasticsearch,大数据,入门教程]
 lang: zh-CN
 translation_key: elasticsearch-basics
+title: "Elasticsearch 8.x 入门：字段映射、精确查询与全文检索"
 ---
 
 Elasticsearch 基于 Lucene 提供文档索引与检索服务。入门时最值得先理解的是索引、字段映射、分析器和查询之间的关系，而不是依赖某个管理插件点出结果。

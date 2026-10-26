@@ -2,10 +2,11 @@
 layout: post
 category : linux
 keywords : "Arthas,java应用诊断"
-description: "线上任务没有按指定日期生成报表时，我用 Arthas 依次检查了正在运行的代码和方法入参，最终将问题缩小到参数内容。这个例子不复杂，但能说明如何减少反复加日志、重新发布的排查成本。"
+description: "从报表日期参数未生效的案例，使用 Arthas 的 sc、jad 和 watch 检查实际加载实现与运行输入，定位非法 JSON 引号，并说明观察次数、展开深度与线上诊断成本。"
 tags : [运维,java]
 lang: zh-CN
 translation_key: arthas-java-production-diagnostics
+title: "Arthas 线上排障：检查加载类、方法入参与日期参数"
 ---
 
 线上任务没有按指定日期生成报表时，我用 Arthas 依次检查了正在运行的代码和方法入参，最终将问题缩小到参数内容。这个例子不复杂，但能说明如何减少反复加日志、重新发布的排查成本。

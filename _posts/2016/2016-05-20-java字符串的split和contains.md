@@ -2,10 +2,11 @@
 layout: post
 category : java 
 keywords : "java基础,字符串处理"
-description: "Java 字符串 API 有的接受普通文本，有的接受正则表达式。两者名称相近，参数含义却不同；使用 split 时尤其容易因为分隔符中的点号而得到意外结果。"
+description: "用点号分隔与尾部空字段示例区分 Java 字符串的字面文本和正则 API，解释双层转义、Pattern.quote、split 的 limit，以及替换字符串和 CSV 解析的边界。"
 tags : [java基础]
 lang: zh-CN
 translation_key: java-split-contains
+title: "Java 字符串 split 与 contains：正则、转义和空字段"
 ---
 
 Java 字符串 API 有的接受普通文本，有的接受正则表达式。两者名称相近，参数含义却不同；使用 split 时尤其容易因为分隔符中的点号而得到意外结果。

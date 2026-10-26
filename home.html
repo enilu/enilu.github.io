@@ -1,6 +1,8 @@
 ---
 layout: null
 lang: zh-CN
+seo_title: "enilu 的个人主页｜技术博客与生活记录"
+description: "enilu 的个人主页，作为中文博客与英文站点的访问入口。博客记录软件开发、数据库和工具实践，也保存旅行、生活与个人思考，从这里进入文章列表继续阅读。"
 permalink: /home.html
 ---
 {% include bilingual-context.html %}
@@ -12,7 +14,8 @@ permalink: /home.html
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
     <meta name="generator" content="Movable Type 5.2.2" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>enilu的网络日志</title>
+    <title>{{ page.seo_title | escape }}</title>
+    {% include meta-description.html %}
 
     <style>
         html{

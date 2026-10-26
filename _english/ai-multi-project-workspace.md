@@ -5,7 +5,7 @@ date: 2026-10-21
 lang: en
 translation_key: ai-multi-project-workspace
 permalink: /en/2026/10/21/ai-multi-project-workspace/
-description: "How I use a project registry, task records and a reusable workspace pool to organize AI development across repositories and tasks."
+description: "Organize AI work with a project registry, layered rules, task records and reusable workspace pools for cross-repository changes, isolation and handover."
 tags: [AI, Development tools, Engineering practice, Git]
 ---
 

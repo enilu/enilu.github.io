@@ -1,0 +1,14 @@
+{%- assign meta_description = page.description | default: '' | normalize_whitespace | strip -%}
+{%- if meta_description == '' -%}
+  {%- if page.layout == 'post' or page.layout == 'english-post' -%}
+    {%- assign meta_description = page.content | split: '<!--break-->' | first | markdownify | strip_html | normalize_whitespace | strip -%}
+    {%- if page.lang == 'en' -%}
+      {%- assign meta_description = meta_description | truncate: 160 -%}
+    {%- else -%}
+      {%- assign meta_description = meta_description | truncate: 120 -%}
+    {%- endif -%}
+  {%- endif -%}
+{%- endif -%}
+{%- if meta_description != '' -%}
+<meta name="description" content="{{ meta_description | escape }}">
+{%- endif -%}

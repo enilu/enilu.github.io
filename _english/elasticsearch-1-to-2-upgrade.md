@@ -1,11 +1,11 @@
 ---
-source_sha256: 2599b5b38c7cc7bfc0b7927e560b58243c08180beef0a0f39202949d1f688e46
-title: Lessons from Upgrading Elasticsearch 1.4.4 to 2.3.4
+source_sha256: c0d01fc9ae17fe54ca36b1cc40fe1751e84a5ced37c5726b195fa9e82e425952
+title: "Elasticsearch 1.4.4 to 2.3.4: JDK, Configuration and Compatibility"
 date: '2016-07-18'
 lang: en
 translation_key: elasticsearch-1-to-2-upgrade
 permalink: /en/2016/07/18/elasticsearch-1-to-2-upgrade/
-description: 'Upgrading Elasticsearch from 1.4.4 to 2.3.4 affected more than the server: the JDK, service account, discovery configuration, plugins and Java client all changed. These layers need verification as one compatibility chain.'
+description: "Review an Elasticsearch 1.4.4-to-2.3.4 upgrade across Java, accounts, discovery, clients and plugins, with index compatibility and rollback validation."
 ---
 
 Upgrading Elasticsearch from 1.4.4 to 2.3.4 affected more than the server: the JDK, service account, discovery configuration, plugins and Java client all changed. These layers need verification as one compatibility chain.

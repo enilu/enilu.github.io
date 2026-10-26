@@ -2,6 +2,8 @@
 layout: post
 category : 前端 
 tags : [linux,运维,java]
+title: "JavaScript 代码题：变量提升、函数声明与作用域（转载）"
+description: "转载一组早期 JavaScript 代码题及解析，围绕变量声明、函数表达式、作用域和 arguments 展开讨论，保留原文中的浏览器环境背景与解释。"
 ---
 
 （转载），猛戳[查看原文](http://144.dragonparking.com/?site=julying.com&t=1448548406&s=d942dfed3e78bfdc8a603b1334a506d8) 引原文：昨天在著名前端架构师Baranovskiy的博客中看到一个帖子《So, you think you know JavaScript?》

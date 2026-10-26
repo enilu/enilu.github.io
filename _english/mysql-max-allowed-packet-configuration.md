@@ -1,11 +1,11 @@
 ---
-source_sha256: 583d8b2e815880486637da31542661dbfd9a6111d0e80f49916fad49a91869d7
-title: "When max_allowed_packet Does Not Match the Configuration"
+source_sha256: 2ecdb28ab197c2578cc727f52f2aa6ba86248acb98277775d9059776b0f59cc1
+title: "MySQL max_allowed_packet: Server, Session and Client Limits"
 date: 2015-12-21
 lang: en
 translation_key: mysql-max-allowed-packet-configuration
 permalink: /en/2015/12/21/mysql-max-allowed-packet-configuration/
-description: "Investigating a packet-size error through option files, global and session values, and client limits."
+description: "Investigate MySQL packet-size errors across server, session and client settings, and distinguish a larger limit from fixing oversized SQL or payloads."
 ---
 
 When a server reported `Packet for query is too large`, I initially thought increasing `max_allowed_packet` would be enough. The configuration file had already been changed, yet a query still showed a small value. This incident illustrates why file configuration, the running global value and the current connection's session value must be checked separately.
