@@ -123,7 +123,7 @@ JB :
     gauges :
         site_id : 'enilu'
     google :
-        tracking_id : 'UA-71886989-1'
+        measurement_id : 'G-ZZF8E1HDEL'
     getclicky :
       site_id :
     mixpanel :

@@ -2,6 +2,13 @@
 
 - 评论系统采用Disqus
 
+## 访问统计
+
+- 使用现有 Google Analytics 4 网站数据流，衡量 ID 统一维护在 `_config.yml` 的 `JB.analytics.google.measurement_id`。
+- `JB/analytics` 负责生产环境与页面级开关，Google provider 通过 `gtag.js` 接入。主模板和独立个人主页在 `<head>` 内各加载一次；中文与英文文章使用同一数据流，按 URL 区分。
+- `gtag('config', ...)` 自动发送页面浏览，不再同时加载旧版 `analytics.js` 或额外手动发送 `page_view`，避免重复计数。
+- 日常 `jekyll serve` 的 development 环境不加载统计；生产构建使用 `JEKYLL_ENV=production`。排查时分别检查构建产物和实际发布页面，再到 GA4 实时报告或代码测试页面确认，不以本地构建通过代替线上收数验证。
+
 ## AI Agent Guide（统一入口）
 
 维护文章时沿用 `_posts/年份/YYYY-MM-DD-标题.md`、Jekyll front matter、`<!--break-->` 摘要分隔及现有分类、标签约定。
