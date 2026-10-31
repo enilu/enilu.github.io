@@ -1,5 +1,5 @@
 ---
-source_sha256: 54bb05ac147f6ad4791849e9f4c151f8e60b90c1b4f5d79613b1f2010500faf3
+source_sha256: 80516e1c7881d0a4d889a6740fc75e2d001ee3e2858aaed2acfb89354588e7ac
 layout: english-post
 lang: en
 translation_key: small-open-models-for-local-deployment
@@ -16,6 +16,10 @@ I recently came across Xiaomi-OCR-0, an open model from Xiaomi with just 0.8B pa
 
 Beyond chat, there are small models for recognizing scans, transcribing recordings and searching documents. Some have fewer than a billion parameters and can support a local tool built around one specific function. The candidates below are grouped by purpose, with links to official sources.
 <!--break-->
+
+<img src="/assets/images/2026/small-open-models-local-ai.png" alt="A laptop and compact server with document, audio, code and search modules illustrating local AI applications" width="1919" height="820" style="display:block;max-width:100%;height:auto;" />
+
+*AI-generated illustration of local AI applications, not a screenshot of a running system.*
 
 This article draws on official information available as of **October 31, 2026**. It covers downloading weights and running inference on your own machine; the models have not been individually tested here. This first article explains their purposes and differences. Later articles will cover individual installations, actual configurations, speed, results and problems encountered.
 
