@@ -1,5 +1,5 @@
 ---
-source_sha256: c25708fa1483dcd9405df5560c386e042466ca145eab583e5107b95c352a46a3
+source_sha256: 85fbf8a47e40aeebd2a08b652c217181e63d3b3813f59e1bc37ffc0f0325a7fd
 title: "Records of the Grand Historian: The Life of Jensen Huang"
 date: 2026-11-21
 lang: en
@@ -13,7 +13,7 @@ tags: [AI, Classical Chinese]
 
 <!--break-->
 
-<img src="/assets/images/2026/jensen-huang-grand-historian.webp" alt="An ink painting of a graphics card and chip beside bamboo slips, with server racks visible in a distant city gate" width="1536" height="1024" style="display:block;max-width:100%;height:auto;" />
+<img src="/assets/images/2026/jensen-huang-grand-historian-textbook.webp" alt="Three people in period dress stand on the riverbank, one holding a wooden box with a graphics card, as a boatman rows past the city gate" width="1536" height="1024" style="display:block;max-width:100%;height:auto;" />
 
 *AI-generated illustration.*
 
